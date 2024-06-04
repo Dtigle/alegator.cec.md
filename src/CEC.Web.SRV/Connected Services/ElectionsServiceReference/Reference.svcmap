@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="7d40b779-f52a-460c-954b-e0bc6e0e1508" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://cec-admin-dev.cs1.soft-tehnica.com/webservices/ElectionsService.svc?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ElectionsService6.xsd" MetadataType="Schema" ID="d42d294c-f42e-4b78-a520-df88830b38a0" SourceId="1" SourceUrl="http://cec-admin-dev.cs1.soft-tehnica.com/webservices/ElectionsService.svc?xsd=xsd3" />
+    <MetadataFile FileName="ElectionsService1.wsdl" MetadataType="Wsdl" ID="5f3cefc7-375e-4168-b391-b5611fc42a8f" SourceId="1" SourceUrl="http://cec-admin-dev.cs1.soft-tehnica.com/webservices/ElectionsService.svc?wsdl" />
+    <MetadataFile FileName="ElectionsService61.xsd" MetadataType="Schema" ID="c0b4ddf1-8cd6-4789-b6aa-6998e2867d09" SourceId="1" SourceUrl="http://cec-admin-dev.cs1.soft-tehnica.com/webservices/ElectionsService.svc?xsd=xsd4" />
+    <MetadataFile FileName="ElectionsService62.xsd" MetadataType="Schema" ID="8cd9bf67-5ff2-46e7-9028-094d4d77bc64" SourceId="1" SourceUrl="http://cec-admin-dev.cs1.soft-tehnica.com/webservices/ElectionsService.svc?xsd=xsd5" />
+    <MetadataFile FileName="ElectionsService63.xsd" MetadataType="Schema" ID="93db6e12-95e2-41c6-a209-25ee238eba3a" SourceId="1" SourceUrl="http://cec-admin-dev.cs1.soft-tehnica.com/webservices/ElectionsService.svc?xsd=xsd1" />
+    <MetadataFile FileName="ElectionsService64.xsd" MetadataType="Schema" ID="e77fd996-4941-4719-97a2-d820a52728ae" SourceId="1" SourceUrl="http://cec-admin-dev.cs1.soft-tehnica.com/webservices/ElectionsService.svc?xsd=xsd2" />
+    <MetadataFile FileName="ElectionsService65.xsd" MetadataType="Schema" ID="1e41aa4f-a2a4-4470-a75f-ecb165dbfa9b" SourceId="1" SourceUrl="http://cec-admin-dev.cs1.soft-tehnica.com/webservices/ElectionsService.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

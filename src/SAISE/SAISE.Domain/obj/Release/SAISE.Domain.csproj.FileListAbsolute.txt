@@ -1,0 +1,9 @@
+D:\work\CEC\CEC.SRV\src\SAISE\SAISE.Domain\bin\Release\SAISE.Domain.dll
+D:\work\CEC\CEC.SRV\src\SAISE\SAISE.Domain\bin\Release\SAISE.Domain.pdb
+D:\work\CEC\CEC.SRV\src\SAISE\SAISE.Domain\bin\Release\Amdaris.Domain.dll
+D:\work\CEC\CEC.SRV\src\SAISE\SAISE.Domain\bin\Release\Amdaris.Domain.Identity.dll
+D:\work\CEC\CEC.SRV\src\SAISE\SAISE.Domain\obj\Release\SAISE.Domain.csproj.CoreCompileInputs.cache
+D:\work\CEC\CEC.SRV\src\SAISE\SAISE.Domain\obj\Release\SAISE.Domain.csproj.CopyComplete
+D:\work\CEC\CEC.SRV\src\SAISE\SAISE.Domain\obj\Release\SAISE.Domain.dll
+D:\work\CEC\CEC.SRV\src\SAISE\SAISE.Domain\obj\Release\SAISE.Domain.pdb
+D:\work\CEC\CEC.SRV\src\SAISE\SAISE.Domain\obj\Release\SAISE.Domain.csproj.AssemblyReference.cache

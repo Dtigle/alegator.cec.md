@@ -1,0 +1,50 @@
+﻿@using CEC.SRV.BLL
+@using CEC.SRV.Domain
+@using CEC.SRV.Domain.Constants
+@using CEC.Web.SRV.Resources
+@model CEC.Web.SRV.Models.PollingStation.UpdatePollingStationBaseModel
+
+<div class="clearfix">
+
+    @using (Html.BeginForm("CreateUpdatePollingStation", "PollingStation", FormMethod.Post, new { @class = "form-horizontal" }))
+    {   
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(x => x.Id)
+        @Html.HiddenFor(x => x.RegionId)
+		<div class="form-group">
+			@Html.EditorFor(x => x.CircumscriptionNumber, new { ReadOnly = true })
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(x => x.Number)
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(x => x.Location)
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(x => x.ContactInfo)
+        </div>
+        if (SecurityHelper.LoggedUserIsInRole(Transactions.Administrator))
+        {
+            <div class="form-group">
+                @Html.EditorFor(x => x.SaiseId)
+            </div>
+        }
+        else
+        {
+            @Html.HiddenFor(x =>x .SaiseId)
+        }
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+	            <input type="submit" value="@MUI.ButtonSave" class="btn btn-primary" />
+            </div>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+    $('.rsa-form-group > div.col-sm-4').removeClass('col-sm-4').addClass('col-sm-6');
+    $('.rsa-form-group > div.col-sm-2').removeClass('col-sm-2').addClass('col-sm-4');
+    $('.select2Control').select2();
+</script>

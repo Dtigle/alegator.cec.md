@@ -1,0 +1,11 @@
+D:\work\CEC\CEC.SRV\src\RSPChecker\bin\Release\RSPChecker.exe.config
+D:\work\CEC\CEC.SRV\src\RSPChecker\bin\Release\RSPChecker.exe
+D:\work\CEC\CEC.SRV\src\RSPChecker\bin\Release\RSPChecker.pdb
+D:\work\CEC\CEC.SRV\src\RSPChecker\bin\Release\RSP.CEC.WebClient.dll
+D:\work\CEC\CEC.SRV\src\RSPChecker\bin\Release\RSP.CEC.WebClient.pdb
+D:\work\CEC\CEC.SRV\src\RSPChecker\bin\Release\RSP.CEC.WebClient.dll.config
+D:\work\CEC\CEC.SRV\src\RSPChecker\obj\Release\RSPChecker.csprojAssemblyReference.cache
+D:\work\CEC\CEC.SRV\src\RSPChecker\obj\Release\RSPChecker.csproj.CoreCompileInputs.cache
+D:\work\CEC\CEC.SRV\src\RSPChecker\obj\Release\RSPChecker.csproj.CopyComplete
+D:\work\CEC\CEC.SRV\src\RSPChecker\obj\Release\RSPChecker.exe
+D:\work\CEC\CEC.SRV\src\RSPChecker\obj\Release\RSPChecker.pdb

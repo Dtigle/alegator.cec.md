@@ -1,0 +1,190 @@
+﻿@using System.Web.Mvc.Html
+@using CEC.SAISE.EDayModule.Infrastructure
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css/styles")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/moment")
+    <script src="/scripts/moment-timezone-with-data.min.js"></script>
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/knockout")
+    @Scripts.Render("~/bundles/devoops")
+    @Scripts.Render("~/bundles/select2")
+
+    @Scripts.Render("~/bundles/jquery-ui")
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+    @Scripts.Render("~/bundles/idleTimeout")
+
+</head>
+<body>
+    <!--Start Header-->
+    <header class="navbar">
+        <div class="container-fluid expanded-panel">
+            <div class="row">
+                <div id="logo" class="col-xs-12 col-sm-2">
+                    @Html.ActionLink("CEC SIASA", "Index", "Home")
+                </div>
+                <div id="top-panel" class="col-xs-12 col-sm-10">
+                    <div class="row">
+                        <div class="col-xs-8 col-sm-4">
+                            <a href="#" class="show-sidebar">
+                                <i class="fa fa-bars"></i>
+                            </a>
+                        </div>
+                        <div class="col-xs-4 col-sm-8 top-panel-right">
+                            @*<span style="font-size: large; background-color: yellow; color: red">Call centru: 022-88-01-01</span>*@
+                            <ul class="nav navbar-nav pull-right panel-menu">
+                                @*<li class="hidden-xs">
+                                    <a href="@Url.Action("Index", "Notification" )">
+                                        <i class="fa fa-envelope"></i>
+                                        @Html.Partial("_NotificationItems")
+                                    </a>
+                                </li>*@
+                                @*<li class="dropdown">
+                                        <a href="#" class="dropdown-toggle lang" data-toggle="dropdown">
+                                            <i class="fa fa-angle-down pull-right"></i>
+                                            <div class="user-mini pull-right">
+                                                <span>@ViewBag.CurrentLanguage</span>
+                                            </div>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a href="#" hreflang="ro" class="lang-selector">
+                                                    <span class="hidden-sm text">Ro</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" hreflang="ru" class="lang-selector">
+                                                    <span class="hidden-sm text">Ru</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>*@
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle account" data-toggle="dropdown">
+                                        <div class="avatar">
+                                            @*<img src="img/avatar.jpg" class="img-rounded" alt="avatar" />*@
+                                            <i class="fa fa-user"></i>
+                                        </div>
+                                        <i class="fa fa-angle-down pull-right"></i>
+                                        <div class="user-mini pull-right">
+                                            <span class="welcome">Salut,</span>
+                                            <span>@ViewBag.CurrentUserName</span>
+                                        </div>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        @*<li>
+                                            <a href="@Url.Action("ViewProfile","Account")">
+                                                <i class="fa fa-user"></i>
+                                                <span class="hidden-sm text">@MUI.Profile</span>
+                                            </a>
+                                        </li>*@
+                                        @*<li>
+                                                <a href="#">
+                                                    <i class="fa fa-cog"></i>
+                                                    <span class="hidden-sm text">@MUI.Settings</span>
+                                                </a>
+                                            </li>*@
+                                        <li>
+                                            <a href="@Url.Action("LogOff", "Account" )">
+                                                <i class="fa fa-power-off"></i>
+                                                <span class="hidden-sm text">Iesire</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--End Header-->
+    <!--Start Container-->
+    <div id="main" class="container-fluid">
+        <div class="row">
+            <div id="sidebar-left" class="col-xs-2 col-sm-2">
+                <ul class="nav main-menu">
+                    @Html.Partial("_MenuItems", MenuHelper.GetMenuItems(Html))
+                </ul>
+            </div>
+            <!--Start Content-->
+            <div id="content" class="col-xs-12 col-sm-10">
+                <div class="row">
+                    <div id="breadcrumb" class="col-md-12">
+                        <ol class="breadcrumb">
+                            @Html.Partial("_BreadcrumbMenu", MenuHelper.GetMenuItems(Html))
+                        </ol>
+                    </div>
+                </div>
+                @RenderBody()
+            </div>
+            <!--End Content-->
+        </div>
+    </div>
+    <!--End Container-->
+    
+   
+    @Scripts.Render("~/bundles/app")
+    @*@Scripts.Render("~/bundles/openlayers")
+    @Scripts.Render("~/bundles/terminal")*@
+
+    <div id="dialog" title="Sesiunea curentă va fi terminată curând!">
+        <p>
+            <span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 50px 0;"></span>
+            Sesiunea curentă va fi terminată în <span id="dialog-countdown" style="font-weight:bold"></span> secunde.
+        </p>
+
+        <p>Doriți să continuați lucrul?</p>
+    </div>
+
+    <script type="text/javascript">
+        $("#dialog").dialog({
+            autoOpen: false,
+            modal: true,
+            width: 400,
+            height: 200,
+            closeOnEscape: false,
+            draggable: false,
+            resizable: false,
+            buttons: {
+                'Da, continui': function(){
+                    $(this).dialog('close');
+                },
+                'Nu, ieșire': function(){
+                    // fire whatever the configured onTimeout callback is.
+                    // using .call(this) keeps the default behavior of "this" being the warning
+                    // element (the dialog in this case) inside the callback.
+                    $.idleTimeout.options.onTimeout.call(this);
+                }
+            }
+        });
+        
+        // start the idle timer plugin
+        $.idleTimeout('#dialog', 'div.ui-dialog-buttonpane button:first', {
+            idleAfter: @Convert.ToInt32(CEC.SAISE.EDayModule.Properties.Settings.Default.IdleTimeSpan.TotalSeconds),
+            pollingInterval: @Convert.ToInt32(CEC.SAISE.EDayModule.Properties.Settings.Default.SessionPollingTimeSpan.TotalSeconds),
+            keepAliveURL: '@Url.Action("Index", "KeepAlive")',
+            serverResponseEquals: 'OK',
+            onTimeout: function() {
+                window.location = '@Url.Action("LogOff", "Account")';
+            },
+            onIdle: function() {
+                $(this).dialog("open");
+            },
+            onCountdown: function(counter) {
+                $("#dialog-countdown").html(counter); // update the counter
+            }
+        });
+    </script>
+</body>
+</html>

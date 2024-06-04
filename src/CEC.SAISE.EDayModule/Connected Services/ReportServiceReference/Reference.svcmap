@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="d9b20fe9-7bf4-4d43-980c-29d5f2f6fa93" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://cec-admin.cs1.soft-tehnica.com/webservices/ReportService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ReportService3.xsd" MetadataType="Schema" ID="b461b06c-7a5e-4612-b69d-9a2c9f695829" SourceId="1" SourceUrl="http://cec-admin.cs1.soft-tehnica.com/webservices/ReportService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ReportService1.wsdl" MetadataType="Wsdl" ID="76078897-0f5c-4c3a-b17a-3fb6bc89fe67" SourceId="1" SourceUrl="http://cec-admin.cs1.soft-tehnica.com/webservices/ReportService.svc?wsdl" />
+    <MetadataFile FileName="ReportService31.xsd" MetadataType="Schema" ID="0b27eb5b-5269-4bb3-bbdf-417891175808" SourceId="1" SourceUrl="http://cec-admin.cs1.soft-tehnica.com/webservices/ReportService.svc?xsd=xsd1" />
+    <MetadataFile FileName="ReportService1.disco" MetadataType="Disco" ID="0eb3b79d-e064-4cfd-9deb-5ec969b5d469" SourceId="1" SourceUrl="http://cec-admin.cs1.soft-tehnica.com/webservices/ReportService.svc?disco" />
+    <MetadataFile FileName="ReportService32.xsd" MetadataType="Schema" ID="646eb29b-32b1-4623-a183-3933f5587bda" SourceId="1" SourceUrl="http://cec-admin.cs1.soft-tehnica.com/webservices/ReportService.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

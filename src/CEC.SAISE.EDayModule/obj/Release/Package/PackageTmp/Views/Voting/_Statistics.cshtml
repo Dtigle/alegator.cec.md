@@ -1,0 +1,28 @@
+﻿<div id="ow-summary" class="row">
+    <div class="col-xs-12">
+        <h4 class="page-header">Statistici</h4>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row">
+                    <div class="col-xs-12">
+                        Alegători incluşi în listele electorale de bază:
+                        <b><span data-bind="text: viewModel.Statistics().BaseListCounter"></span></b>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        Alegători incluşi în listele suplimentare:
+                        <b><span data-bind="text: viewModel.Statistics().SupplimentaryListCounter"></span></b>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        Alegători care au primit buletine de vot:
+                        <b><span data-bind="text: viewModel.Statistics().VotedCounter"></span></b>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </div>
+</div>
+

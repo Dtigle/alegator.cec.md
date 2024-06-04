@@ -1,0 +1,159 @@
+﻿
+@using CEC.Web.SRV.Resources
+@model CEC.Web.SRV.Models.Conflict.ResolveLocalityConflictModel
+
+@Html.HiddenFor(x=>x.RspId)
+
+<div class="row allAddress">
+    @Html.EditorFor(x => x.RegionId)       
+</div>
+<div class="row">
+    <div id="AddressesGridView"></div>
+</div>
+
+<div class="row">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="button" value="@MUI.ButtonAccept" class="btn btn-primary" id="map_address"/>
+        <input type="button" value="@MUI.ButtonClose" class="btn btn-default" id="close_dialog" />
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $('.allAddress .rsa-form-group > div.col-sm-2').removeClass('col-sm-2').addClass('col-sm-3');
+    $('.modal-content').attr('style', 'width:900px;');
+
+    $(document).ready(function() {
+        var selectedRegionId = 0;
+        var hasStreets = true;
+        $('#RegionId').on('change', function () {
+            selectedRegionId = $(this).val();
+            
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("CheckRegionForStreets", "Conflict")',
+                data: { regionId: selectedRegionId },
+                dataType: "JSON",
+                success: function (data) {
+                    hasStreets = data;
+                    if (hasStreets) {
+                        LoadAddressesGridPerRegion(selectedRegionId);
+                    } else {
+                        LoadPollingStationsPerRegion();
+                    }
+                }
+            });
+        });
+
+        $('#map_address').click(function() {
+            if (selectedRegionId == null || selectedRegionId == 0) {
+                BootstrapDialog.alert({ message: '@MUI.Conflict_Region_NotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+                return;
+            }
+            if (hasStreets) {
+                var selections = onAddressSelect();
+                if (selections == null || selections.length == 0) {
+                    BootstrapDialog.alert({ message: '@MUI.Conflict_Address_NotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+                    return;
+                }
+                ChangeAddress(GetConflictId(), selections);
+            } else {
+                var pollingStationId = $('#PollingStationId').val();
+                if (pollingStationId == null || pollingStationId == 0) {
+                    BootstrapDialog.alert({ message: '@MUI.Conflict_PollingStation_NotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+                     return;
+                }
+                ChangePolligStation(GetConflictId(), pollingStationId);
+            }
+        });
+       
+        $('#close_dialog').click(function() {
+            BootstrapDialog.closeAll();
+        });
+    });
+    function GetConflictId() {
+        return $('#RspId').val();
+            
+    }
+    function ChangeAddress(conflictId, addressId) {
+        BootstrapDialog.confirm('@MUI.ConflictAddress_MapAddress_MessageConfirmation', function(result) {
+            if (result) {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("ChangeAddress", "Conflict")',
+                    data: { conflictId: conflictId, addressId: addressId },
+                    success: function () {
+                        $.clearViewConflict();
+                        BootstrapDialog.closeAll();
+                        $("#localityConflicts").trigger('reloadGrid');
+                    }
+                });
+            }
+        });
+    }
+    function ChangePolligStation(conflictId, pollingStationId) {
+        BootstrapDialog.confirm('@MUI.ConflictAddress_MapPollingStation_MessageConfirmation', function (result) {
+            if (result) {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("ChangePollingStation", "Conflict")',
+                    data: { conflictId: conflictId, pollingStationId: pollingStationId },
+                    success: function () {
+                        $.clearViewConflict();
+                        BootstrapDialog.closeAll();
+                        $("#localityConflicts").trigger('reloadGrid');
+                    }
+                });
+            }
+        });
+    }
+    function onAddressSelect() {
+        var selections = $("#rsvAddresses").jqGrid('getGridParam', 'selrow');
+        return selections;
+    }
+
+    function LoadAddressesGridPerRegion(regionId) {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("LoadAddressGridList", "Conflict")',
+            data: { regionId: regionId },
+            success: function (data) {
+                $('#AddressesGridView').html(data);
+            }
+        });
+    }
+    function LoadPollingStationsPerRegion() {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("LoadPollingStationsList", "Conflict")',
+            success: function (data) {
+                $('#AddressesGridView').html(data);
+            }
+        });
+    }
+    
+    function regionDataRequest(term, page, pageLimit) {
+        return {
+            q: term,
+            pageLimit: pageLimit,
+            page: page
+        };
+    }
+
+    function regionResults(data, more) {
+        return { results: data, more: more };
+    }
+    
+    function pollingStationDataRequest(term, page, pageLimit) {
+        return {
+            regionId : $('#RegionId').val(),
+            q: term,
+            pageLimit: pageLimit,
+            page: page
+        };
+    }
+
+    function pollingStationResults(data, more) {
+        return { results: data, more: more };
+    }
+</script>

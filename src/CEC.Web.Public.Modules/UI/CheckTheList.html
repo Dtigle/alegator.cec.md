@@ -1,0 +1,140 @@
+﻿<div class="row">
+
+    <div id="breadcrumb" class="col-md-12">
+
+    </div>
+</div>
+
+<div class="form-group" id="inputSearch">
+
+    <div class="row">
+        <div class="col-sm-3 control-label">
+            <span>*</span>
+            <label for="UserName">Introduceți IDNP</label>
+        </div>
+
+        <div class="col-sm-3">
+
+            <input type="text" class="form-control " data-original-title=""
+                   id="txtIdnpPersonal" name="idnp" placeholder="IDNP – 13 cifre" value="">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3 control-label">
+            <span></span>
+            <label for="UserName"></label>
+        </div>
+        <div class="col-sm-3 ">
+            <div class="g-recaptcha" id="captchadiv"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <input type="submit" id="goSearchByIdnp" class="btn btn-primary" value="Caută">
+            <input type="submit" id="showIdnpHelpImage" class="btn btn-info" value="Unde să găsiți IDNP-ul?">
+        </div>
+    </div>
+</div>
+
+<div class="col-xs-12" id="idnpHelpImage">
+    <img src="Content/img/buletine.jpg" width="50%" />
+</div>
+
+<div id="marketplace" class="col-md-12 box-content">
+
+    <h4>Rezultatul căutării după IDNP</h4>
+
+    <div id="searchingProgress" class="preloader">
+        &nbsp;
+    </div>
+
+    <div id="searchByIdnpResult" class="col-md-12">
+        <div id="infoMessage"></div>
+        <div id="helpPage"></div>
+    </div>
+
+    <table id="tableResult" class="table table-hover">
+        <tbody>
+            <tr>
+                <td>Inițialele alegătorului</td>
+                <td>
+                    <div id="initialePersonal" class="info-container"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>Anul nașterii</td>
+                <td>
+                    <div id="anulNasterii" class="info-container"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>Domiciliul alegătorului</td>
+                <td>
+                    <div id="domiciliul" class="info-container"></div>
+                </td>
+            </tr>
+            <!--<tr>
+        <td>Numărul alegătorilor pe această adresă</td>
+        <td>
+            <button id="votersCount" type="button" class="btn btn-success">
+            </button>
+        </td>
+    </tr>-->
+
+            <tr>
+                <td>
+                    <h4>Secția de votare</h4>
+                </td>
+                <td>
+                    <h4 id="stationNumber"></h4>
+                </td>
+            </tr>
+            <tr>
+                <td>Localul secției de votare</td>
+                <td>
+                    <div id="locationDescription" class="info-container"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>Adresa</td>
+                <td>
+                    <div id="addressFull" class="info-container"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>Contacte</td>
+                <td>
+                    <div id="phoneNumber" class="info-container"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>Numarul circumsriptiei electorale</td>
+                <td>
+                    <div id="electionCircNr" class="info-container"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>Numarul în listă</td>
+                <td>
+                    <div id="electionListNr" class="info-container"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>Certificat cu drept de vot</td>
+                <td>
+                    <div id="certificat" class="info-container"></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <div id="map-2" style="height: 400px;"></div>
+
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        initCheckTheList();
+    });
+</script>

@@ -1,0 +1,55 @@
+﻿@using CEC.SRV.BLL
+@using CEC.SRV.Domain
+@using CEC.SRV.Domain.Constants
+@using CEC.Web.SRV.Resources
+@model CEC.Web.SRV.Models.Lookup.UpdateStreetModel
+
+<div class="clearfix">
+
+    @using (Html.BeginForm("CreateUpdateStreet", "Lookup", FormMethod.Post, new { @class = "form-horizontal" }))
+    {   
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(x => x.Id)
+        @Html.HiddenFor(x => x.RegionId)
+        <div class="form-group">
+            @Html.EditorFor(x => x.StreetTypeId)
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(x => x.Name)
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(x => x.Description)
+        </div>
+        <div class="form-group">
+            @if (SecurityHelper.LoggedUserIsInRole(Transactions.Administrator))
+            {
+                @Html.HiddenFor(x => x.RopId)
+            }
+            else
+            {
+                @Html.EditorFor(x => x.RopId)
+            }
+        </div>
+        <div class="form-group">
+            @if (SecurityHelper.LoggedUserIsInRole(Transactions.Administrator))
+            {
+                @Html.EditorFor(x => x.SaiseId)
+            }
+            else   
+            {
+                @Html.EditorFor(x => x.SaiseId)
+            }
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+	            <input type="submit" value="@MUI.ButtonSave" class="btn btn-primary" />
+            </div>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+    $('.rsa-form-group > div.col-sm-4').removeClass('col-sm-4').addClass('col-sm-6');
+    $('.rsa-form-group > div.col-sm-2').removeClass('col-sm-2').addClass('col-sm-4');
+</script>

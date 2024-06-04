@@ -1,0 +1,11 @@
+D:\work\CEC\CEC.SRV\src\CEC.SAISE.Domain\bin\Release\CEC.SAISE.Domain.dll
+D:\work\CEC\CEC.SRV\src\CEC.SAISE.Domain\bin\Release\CEC.SAISE.Domain.pdb
+D:\work\CEC\CEC.SRV\src\CEC.SAISE.Domain\bin\Release\Amdaris.Domain.dll
+D:\work\CEC\CEC.SRV\src\CEC.SAISE.Domain\bin\Release\Amdaris.Domain.Identity.dll
+D:\work\CEC\CEC.SRV\src\CEC.SAISE.Domain\bin\Release\Microsoft.AspNet.Identity.Core.dll
+D:\work\CEC\CEC.SRV\src\CEC.SAISE.Domain\bin\Release\Microsoft.AspNet.Identity.Core.xml
+D:\work\CEC\CEC.SRV\src\CEC.SAISE.Domain\obj\Release\CEC.SAISE.Domain.csproj.CoreCompileInputs.cache
+D:\work\CEC\CEC.SRV\src\CEC.SAISE.Domain\obj\Release\CEC.SAISE.Domain.csproj.CopyComplete
+D:\work\CEC\CEC.SRV\src\CEC.SAISE.Domain\obj\Release\CEC.SAISE.Domain.dll
+D:\work\CEC\CEC.SRV\src\CEC.SAISE.Domain\obj\Release\CEC.SAISE.Domain.pdb
+D:\work\CEC\CEC.SRV\src\CEC.SAISE.Domain\obj\Release\CEC.SAISE.Domain.csproj.AssemblyReference.cache

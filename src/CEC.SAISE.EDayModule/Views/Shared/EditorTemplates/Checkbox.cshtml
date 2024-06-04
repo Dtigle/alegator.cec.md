@@ -1,0 +1,10 @@
+﻿
+@{
+    Layout = "_Template.cshtml";	
+	@model Boolean?
+}
+
+@section Data
+{
+@Html.CheckBox("", Model.HasValue && Model.Value)
+}

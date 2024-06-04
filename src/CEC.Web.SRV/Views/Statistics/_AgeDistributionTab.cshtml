@@ -1,0 +1,122 @@
+﻿
+
+<div id="dashboard-ageOfPeople" class="row" style="width: 100%;">
+    <div class="col-xs-12 col-sm-6">
+        <div id="loadingProgress_ageDistribution" class="preloader">
+            &nbsp;
+        </div>
+        <div class="box-content" id="box-content-age-distribution" style="display: block;">
+
+            <div id="google-chart" style="min-height: 200px; position: relative; width: 500px;height: 350px">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-6">
+        <table id="overview-table" class="table m-table table-bordered table-hover table-heading">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="m-ticker"></td>
+                    <td class="m-price"></td>
+                </tr>
+                <tr>
+                    <td class="m-ticker"></td>
+                    <td class="m-price"></td>
+                </tr>
+                <tr>
+                    <td class="m-ticker"></td>
+                    <td class="m-price"></td>
+                </tr>
+                <tr>
+                    <td class="m-ticker"></td>
+                    <td class="m-price"></td>
+                </tr>
+                <tr>
+                    <td class="m-ticker"></td>
+                    <td class="m-price"></td>
+                </tr>
+                <tr>
+                    <td class="m-ticker"></td>
+                    <td class="m-price"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+
+	var dataChart;
+
+	$(document).ready(function () {
+        $('#loadingProgress_ageDistribution').show();
+        $('#overview-table').hide();
+		getChartData();
+
+        $(window).resize(function () {
+	        drawChart(dataChart);
+        });
+    });
+
+    function drawChart(result) {
+        var arr = [];
+        arr.push(['Topping', 'Slices']);
+        $('#loadingProgress_ageDistribution').hide();
+        $('#overview-table').show();
+
+        var tableRows = $('#overview-table tbody tr');
+        $.each(result, function (index) {
+            arr.push([this.text + ': ' + this.value, this.value]);
+            var row = tableRows.get(index);
+            $(row).find('td:first').html('<b>'+this.text+'</b>');
+            $(row).find('td:last').html(this.value);
+        });
+
+        var data = google.visualization.arrayToDataTable(arr);
+
+        var options = {
+            backgroundColor: '#f8f8f8',
+            width: $('#box-content-age-distribution').width()+100,
+            height: $('#box-content-age-distribution').height(),
+            title: 'Distribuția alegătorilor pe vîrste',
+            pieHole: 0.4,
+            is3D: true,
+            legend: { textStyle: { bold: true }},
+            tooltip: { textStyle: { showColorCode: true }, text: 'percentage' },
+            pieSliceText: 'value',
+            titleTextStyle: { fontSize: 16 }
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('google-chart'));
+        chart.draw(data, options);
+
+        $("svg rect").width(200);
+    }
+
+    function getChartData() {
+        $.ajax({
+            url: '@Url.Action("GetNumberOfPeopleForAgeIntervals", "Statistics")',
+            type: "POST",
+            dataType: "json",
+            data: {
+                //see _FilterForHome.cshtml
+                regionId: $.getDashboardRegionId(),
+                pollingStationId: $.getDashboardPollingStationId()
+            },
+            success: function (data) {
+	            dataChart = data;
+	            drawChart(data);
+            }
+        });
+    }
+
+</script>

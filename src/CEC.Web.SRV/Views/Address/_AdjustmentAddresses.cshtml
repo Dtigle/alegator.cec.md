@@ -1,0 +1,87 @@
+﻿@using CEC.Web.SRV.Resources
+@model CEC.Web.SRV.Models.Address.AdjustmentAddressesModel
+
+<div class="clearfix">
+
+    @using (Html.BeginForm("AdjustmentAddresses", "Address", FormMethod.Post, new { @class = "form-horizontal", id = "stayStatmentForm" }))
+    {
+	    @Html.AntiForgeryToken()
+	    @Html.ValidationSummary(true)
+        @Html.HiddenFor(x => x.BaseAddressInfo.AddressId)
+
+	    <div class="box" id="box1">
+		    <div class="box-content">
+			    <h5 class="page-header">@MUI.UpdateVotes_CurrentAddress</h5>
+			    <div class="form-group">
+				    <div class="control-label col-sm-2">
+					    <label>@MUI.Person_Address</label>
+				    </div>
+				    @Html.EditorFor(x => x.BaseAddressInfo.FullAddress, new {ReadOnly = true, HideLabel = true})
+			    </div>
+		    </div>
+	    </div>
+		
+	    <div class="box" id="box2">
+		    <div class="box-content">
+			    <h5 class="page-header">@MUI.UpdateVotes_NewAddress</h5>
+			    <div class="form-group">
+				    <div class="control-label col-sm-2">
+					    <label>@MUI.Region</label>
+				    </div>
+				    @Html.EditorFor(x => x.RegionId, new {ReadOnly = true, HideLabel = true})
+			    </div>
+			    <div class="form-group">
+				    <div class="control-label col-sm-2">
+					    <label>@MUI.Person_Address</label>
+				    </div>
+				    @Html.EditorFor(x => x.AdjustmentAddressesId, new { HideLabel = true})
+			    </div>
+		    </div>
+	    </div>
+		
+	    <div class="form-group" style="padding-top: 15px">
+		    <div class="col-md-offset-2 col-md-10">
+			    <input type="submit" value="@MUI.ButtonSave" class="btn btn-primary" />
+		    </div>
+	    </div>
+    }
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		$('#RegionId').on('change', function () {
+			$('#AdjustmentAddressesId').select2('data', null);
+		});
+	});
+
+	$('#box1 .rsa-form-group > div.col-sm-4').removeClass('col-sm-4').addClass('col-sm-8');
+	$('#box2 .rsa-form-group > div.col-sm-4').removeClass('col-sm-4').addClass('col-sm-8');
+	$('.modal-content').attr('style', 'width:600px;');
+
+	function addressDataRequest(term, page, pageLimit) {
+		var regionId = $('#RegionId').val();
+		return {
+			q: term,
+			pageLimit: pageLimit,
+			page: page,
+			regionId: regionId
+		};
+	}
+
+	function addressResults(data, more) {
+		return { results: data, more: more };
+	}
+
+	function regionDataRequestStayStatement(term, page, pageLimit) {
+		return {
+			q: term,
+			pageLimit: pageLimit,
+			page: page
+		};
+	}
+
+	function regionResultsStayStatement(data, more) {
+		return { results: data, more: more };
+	}
+
+</script>

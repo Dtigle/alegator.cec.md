@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>DataSource_ReportingServer</DataSourceReference>
+      <DataSetParameters>
+        <DataSetParameter Name="@ElectionRoundId">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>false</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>Object</rd:DbType>
+        </DataSetParameter>
+        <DataSetParameter Name="@CircumscriptionId">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>false</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>Object</rd:DbType>
+        </DataSetParameter>
+      </DataSetParameters>
+      <CommandText>SELECT 
+ps.PollingStationId,
+ps.Number,
+ps.NameRo as PollingStation,
+ec.NameRo as Competitor,
+ecm.NameRo as CompetitorMember,
+SUM(bp.BallotsValidVotes) as ValidVotes
+FROM 
+[dbo].[ElectionResult] as er
+INNER JOIN [dbo].[BallotPaper] as bp ON er.BallotPaperId = bp.BallotPaperId AND bp.ElectionRoundId = er.ElectionRoundId
+INNER JOIN [dbo].[PollingStation] as ps ON ps.PollingStationId = bp.PollingStationId
+INNER JOIN [dbo].[AssignedPollingStation] as aps ON aps.PollingStationId = ps.PollingStationId AND aps.ElectionRoundId = er.ElectionRoundId
+INNER JOIN [dbo].[ElectionCompetitor] as ec ON ec.ElectionCompetitorId = er.ElectionCompetitorId AND ec.ElectionRoundId = er.ElectionRoundId
+LEFT OUTER JOIN [dbo].[ElectionCompetitorMember] as ecm ON ecm.ElectionCompetitorMemberId = er.ElectionCompetitorMemberId AND ecm.ElectionRoundId = er.ElectionRoundId
+WHERE 
+er.ElectionRoundId = @ElectionRoundId
+AND aps.AssignedCircumscriptionId = @CircumscriptionId
+GROUP BY ps.PollingStationId, ps.Number, ps.NameRo, ec.NameRo, ecm.NameRo
+ORDER BY ps.Number ASC</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="PollingStationId">
+        <DataField>PollingStationId</DataField>
+        <rd:TypeName>System.Int64</rd:TypeName>
+      </Field>
+      <Field Name="Number">
+        <DataField>Number</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="PollingStation">
+        <DataField>PollingStation</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Competitor">
+        <DataField>Competitor</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="CompetitorMember">
+        <DataField>CompetitorMember</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="ValidVotes">
+        <DataField>ValidVotes</DataField>
+        <rd:TypeName>System.Int64</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

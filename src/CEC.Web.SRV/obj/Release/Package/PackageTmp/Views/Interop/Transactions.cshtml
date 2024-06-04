@@ -1,0 +1,165 @@
+﻿
+@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.Interop
+@using CEC.Web.SRV.Models.Lookup
+@using CEC.Web.SRV.Models.UnDelete
+@using CEC.Web.SRV.Resources
+@using Lib.Web.Mvc.JQuery.JqGrid
+
+@{
+    ViewBag.Title = MUI.mnuInterop_Transactions;
+}
+
+@{
+    var grid = Html.GridOptions<TransactionGridModel>("transactions")
+        .SetOptions(x =>
+         {
+             //x.OnSelectRow = "onRowSelect";
+             x.MultiSelect = true;
+             //x.OnSelectAll = "onSelectAll";
+         })
+        .BuildGrid(Url.Action("ListTransactionsAjax"), null, null, null, null, null)
+        .Navigator(new JqGridNavigatorOptions()
+        {
+            Add = false,
+            Edit = false,
+            Delete = false,
+            Search = true,
+            AddFunction = "$.CreateUpdateTransaction",
+            EditFunction = "$.CreateUpdateTransaction",
+            //DeleteFunction = "$.DeleteTransaction",
+            CloneToTop = true
+        })
+        .AddNavigatorButton(new JqGridNavigatorButtonOptions { Caption = MUI.Voters_VoterProfile, OnClick = "$.voterProfile", Id = "voterProfile" })
+        .AddNavigatorButton(new JqGridNavigatorButtonOptions { Caption = MUI.Transaction_Undo, OnClick = "$.undoTransactions", Id = "undoTransactions" })
+        .AddNavigatorButton(new JqGridNavigatorButtonOptions { Caption = MUI.Transaction_AssignPollingStation, OnClick = "$.changePollingStation", Id = "changePollingStation" });
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-content">
+                <h4 class="page-header">@MUI.Transactions</h4>
+                @grid.GetHtml()
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        @grid.GetJavaScript();
+    });
+
+    $.CreateUpdateTransaction = function (transactionId) {
+
+        var idParam = null;
+        var url = '@Url.Action("CreateUpdateTransaction", "Interop")';
+        var dialogTitle = '@MUI.TransactionAdd_DialogTitle';
+        if (transactionId != undefined) {
+            dialogTitle = '@MUI.TransactionEdit_DialogTitle';
+            idParam = transactionId;
+        }
+
+        $.openDialog($(this), {
+            url: url + '?transactionId=' + idParam,
+            title: dialogTitle,
+            onSubmit: function () {
+                $("#transactions").trigger('reloadGrid');
+            }
+        });
+    };
+
+    $.voterProfile = function (e) {
+        var selectedIdnp = GetGridSelectedIdnp();
+
+        console.log(selectedIdnp);
+
+        if (selectedIdnp == null || selectedIdnp.length == 0) {
+            BootstrapDialog.alert({ message: '@MUI.VoterNotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+            return;
+        }
+
+        $.openDialog($(this), {
+            title: '@MUI.Voters_VoterProfile',
+            url: '@Url.Action("CreateVoterProfile", "Voters")',
+            usePost: true,
+            postData: {
+                idnp: selectedIdnp
+            },
+            onClose: function() {
+                dialog.close();
+                //$.getCountNotification();
+            }
+        });
+    }
+
+
+    $.undoTransactions = function(e) {
+        var selections = GetGridSelections();
+
+        if (selections == null || selections.length == 0) {
+            BootstrapDialog.alert({ message: '@MUI.Transaction_NotSelected', title: '@MUI.DialogTitle_Information' });
+            return;
+        }
+
+        console.log(selections);
+
+        BootstrapDialog.confirm('@MUI.Transaction_Undo_MessageConfirmation', function (result) {
+            if (result) {
+
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    traditional: true,
+                    url: '@Url.Action("UndoTransactions", "Interop")',
+                    data: { transactionIds: selections },
+                    success: function (data) {
+                        BootstrapDialog.alert({ message: data.Message, title: '@MUI.DialogTitle_Information'});
+                        $("#transactions").trigger('reloadGrid', [{ current: true }]);
+                    }
+                });
+
+            }
+        });
+    }
+
+
+    $.changePollingStation = function(e) {
+        var selections = GetGridSelections();
+
+        if (selections == null || selections.length == 0) {
+            BootstrapDialog.alert({ message: '@MUI.Transaction_NotSelected', title: '@MUI.DialogTitle_Information' });
+            return;
+        }
+
+        $.openDialog($(this), {
+            title: '@MUI.Transaction_DialogTitle_AssignPollingStation',
+            url: '@Url.Action("AssignPollingStationForm", "Interop")',
+            usePost: true,
+            postData: { transactionIds: selections },
+            onContentLoad: function (submitForm) {
+                for (var i = 0; i < selections.length; i++) {
+                    submitForm.append($('<input type="hidden" />').attr('name', 'TransactionIds[' + i + ']').val(selections[i]));
+                }
+                $('.transactionCount', submitForm).text(selections.length);
+            },
+            onSubmit: function () {
+                $("#transactions").trigger('reloadGrid', [{ current: true }]);
+                $.getCountNotification();
+            }
+        });
+    };
+
+    function GetGridSelections() {
+        var selections = $("#transactions").jqGrid('getGridParam', 'selarrrow');
+        return selections;
+    }
+
+    function GetGridSelectedIdnp() {
+        var selections = $("#transactions").jqGrid('getGridParam', 'selarrrow');
+        var real = $("tr[id='" + selections + "'] > td[aria-describedby='transactions_Idnp']").attr('title');
+        return real;
+    }
+</script>

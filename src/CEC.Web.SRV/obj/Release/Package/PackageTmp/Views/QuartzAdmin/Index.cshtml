@@ -1,0 +1,155 @@
+﻿@using CEC.Web.SRV.Resources
+@model CEC.Web.SRV.Models.QuartzAdmin.QuartzAdminModel
+
+@{
+    ViewBag.Title = "QuartzAdmin";
+}
+
+@if (Model.IsConnected)
+{
+    <h4>Serverul Quartz este accesibil</h4>
+
+    <div class="form-group">
+        <p id="countdown"></p>
+    </div>
+
+    <div class="box-content">
+        <div>Job-uri în execuție:</div>
+        @Html.Partial("_QuartzRunningJobs")
+    </div>
+
+    <div class="box-content">
+        <div>Job-uri programate:</div>
+        @Html.Partial("_QuartzJobs")
+    </div>
+
+    <script type="text/javascript">
+    var timeout = 0;
+    var pageUpdateInterval = 5;
+
+    $(document).ready(function () {
+        var timeLeft = pageUpdateInterval;
+        var countdown = document.getElementById('countdown');
+
+        updateGrids();
+
+        timeout = setInterval(function () {
+            if (timeLeft === 0) {
+                updateGrids();
+                timeLeft = pageUpdateInterval;
+            } else {
+                countdown.innerHTML = '' + '<span> @MUI.ExportUpdateRemained ' + timeLeft + ' @MUI.Seconds</span>';
+                timeLeft--;
+            }
+        }, 1000);
+    });
+
+    function jobActions(grid) {
+        var url = '@Url.Action("JobActions", "QuartzAdmin")';
+        var selection = grid.jqGrid('getGridParam', 'selrow');
+        if (selection == null || selection.length === 0) {
+            BootstrapDialog.alert({ message: '@MUI.QuarzAdmin_JobNotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+            return;
+        }
+        var rowData = grid.jqGrid('getRowData', selection);
+        rowData.Id = selection;
+        $.openDialog($(this), {
+            url: url,
+            usePost: true,
+            postData: rowData,
+            onSubmit: function () {
+                setTimeout(function () {
+                    updateGrids();
+                }, 3000);
+            }
+        });
+    }
+
+    function interruptJobActions(grid) {
+        var url = '@Url.Action("InterruptRunningJob", "QuartzAdmin")';
+        var selection = grid.jqGrid('getGridParam', 'selrow');
+        var rowData = grid.jqGrid('getRowData', selection);
+        rowData.Id = selection;
+        if (selection == null || selection.length === 0) {
+            BootstrapDialog.alert({ message: '@MUI.QuarzAdmin_JobNotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+                return;
+            }
+
+            if (rowData.IsInterruptable === 'No') {
+                BootstrapDialog.alert({ message: '@MUI.QuarzAdmin_JobIsNotInterruptableMessage', title: '@MUI.DialogTitle_Information' });
+                return;
+            }
+
+            BootstrapDialog.confirm('@MUI.QuartzJob_Interrupt_ConfirmationMessage', function (result) {
+            if (result) {
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: { jobModel: rowData },
+                    success: function () {
+                        setTimeout(function () {
+                            updateGrids();
+                        }, 3000);
+                    }
+                });
+            }
+        });
+    }
+
+    function updateGrids() {
+        var quartzJobsUrl = '@Url.Action("GetQuartzJobs", "QuartzAdmin")';
+        var runningJobsUrl = '@Url.Action("GetRunningJobs", "QuartzAdmin")';
+
+        $.post(quartzJobsUrl, null, function (data) {
+            //populate quartz jobs grid
+            populateGrid($('#quartzScheduledJobs'), data);
+        });
+
+        $.post(runningJobsUrl, null, function (data) {
+            //populate running jobs grid
+            $.originalGridData = data;
+            var grid = $('#quartzRunningJobs');
+            populateGrid(grid, data);
+            updateProgress(grid);
+
+            updateSubgrids();
+        });
+    }
+
+    function populateGrid(grid, data) {
+        if (data == undefined || data.length === 0) {
+            grid.jqGrid('clearGridData');
+            return;
+        }
+
+        //remove missing rows
+        var gridRows = grid.jqGrid('getDataIDs');
+        for (var i = 0; i < gridRows.length; i++) {
+            var rowId = gridRows[i];
+            var found = $.grep(data, function (item) {
+                return item.Id === rowId;
+            });
+
+            if ($.isEmptyObject(found)) {
+                grid.jqGrid('collapseSubGridRow', rowId);
+                grid.jqGrid('delRowData', rowId);
+            }
+        }
+
+        //add or update rows
+        for (var i = 0; i < data.length; i++) {
+            var oldData = grid.jqGrid('getRowData', data[i].Id);
+            if (oldData != undefined && !$.isEmptyObject(oldData)) {
+                grid.jqGrid('setRowData', data[i].Id, data[i]);
+            } else {
+                grid.jqGrid('addRowData', data[i].Id, data[i]);
+            }
+        }
+    }
+
+    </script>
+}
+else
+{
+    <div>@Html.DisplayFor(x => x.ErrorMessage)</div>
+}

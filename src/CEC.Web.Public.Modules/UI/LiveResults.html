@@ -1,0 +1,38 @@
+﻿<div class="row">
+    <div id="breadcrumb" class="col-md-12" />
+</div>
+
+<div id="contentFormCEC" class="col-md-12 box-content">
+
+    <table class="table table-hover">
+        <tr>
+            <td class="page-header col-xs-3">
+                Total alegători înregistrați
+            <b id="totalVoters" class=" info-container"></b>
+            </td>
+            <td class="page-header col-xs-3">
+                Ultima actualizare
+            <b id="lastRefreshDate" class=" info-container"></b>
+            </td>
+            <td class="page-header col-xs-3">
+                Monitorizați
+            <b id="totalConnected" class=" info-container"></b>
+            </td>
+        </tr>
+    </table>
+
+    <div id="morris-chart-cec-1" class="cec-chart"></div>
+     
+    <div id="morris-chart-cec-2" class="cec-chart"></div>
+         
+</div>
+     
+
+<script >
+
+    $(document).ready(function() {
+
+        reloadCharts();
+    });
+
+</script>

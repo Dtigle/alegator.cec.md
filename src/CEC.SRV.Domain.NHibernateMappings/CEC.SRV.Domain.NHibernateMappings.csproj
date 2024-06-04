@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5DBEBBD6-4DF7-40F1-99D9-5A6C5B6FEE21}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CEC.SRV.Domain.NHibernateMappings</RootNamespace>
+    <AssemblyName>CEC.SRV.Domain.NHibernateMappings</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Amdaris.Domain">
+      <HintPath>..\Infrastructure\Amdaris.Domain.dll</HintPath>
+    </Reference>
+    <Reference Include="Amdaris.Domain.Identity, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Infrastructure\Amdaris.Domain.Identity.dll</HintPath>
+    </Reference>
+    <Reference Include="Amdaris.NHibernateProvider">
+      <HintPath>..\Infrastructure\Amdaris.NHibernateProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="Amdaris.NHibernateProvider.Audit">
+      <HintPath>..\Infrastructure\Amdaris.NHibernateProvider.Audit.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\packages\FluentNHibernate.1.4.0.0\lib\net35\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\packages\Iesi.Collections.3.2.0.1001\lib\Net35\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.0.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=3.3.1.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NHibernate.3.3.4.4000\lib\Net35\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.Envers">
+      <HintPath>..\packages\NHibernate.Envers.1.6.1\lib\Net35\NHibernate.Envers.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AbroadVoterRegistrationMap.cs" />
+    <Compile Include="AdditionalUserInfoMap.cs" />
+    <Compile Include="AddressMap.cs" />
+    <Compile Include="AddressWithoutPollingStationMap.cs" />
+    <Compile Include="AddressWithPollingStationMap.cs" />
+    <Compile Include="Audit\AdditionalUserInfoAuditMap.cs" />
+    <Compile Include="Audit\AddressAuditMap.cs" />
+    <Compile Include="Audit\ConfigurationSettingAuditMap.cs" />
+    <Compile Include="Audit\ConflictShareReasonTypesAuditMap.cs" />
+    <Compile Include="Audit\ElectionAuditMap.cs" />
+    <Compile Include="Audit\PersonAddressTypeAuditMap.cs" />
+    <Compile Include="Audit\PersonAddressAuditMap.cs" />
+    <Compile Include="Audit\PersonAuditMap.cs" />
+    <Compile Include="Audit\PersonDocumentAuditMap.cs" />
+    <Compile Include="Audit\PersonStatusAuditMap.cs" />
+    <Compile Include="Audit\PublicAdministrationAuditMap.cs" />
+    <Compile Include="Audit\PollingStationAuditMap.cs" />
+    <Compile Include="Audit\RegionAuditMap.cs" />
+    <Compile Include="Audit\StayStatementAuditMap.cs" />
+    <Compile Include="Audit\StreetAuditMap.cs" />
+    <Compile Include="Audit\StreetTypeAuditMap.cs" />
+    <Compile Include="Audit\RegionTypeAuditMap.cs" />
+    <Compile Include="Audit\PersonStatusTypeAuditMap.cs" />
+    <Compile Include="Audit\ManagerTypeAuditMap.cs" />
+    <Compile Include="Audit\GenderAuditMap.cs" />
+    <Compile Include="Audit\ElectionTypeAuditMap.cs" />
+    <Compile Include="Audit\DocumentTypeAuditMap.cs" />
+    <Compile Include="Audit\IdentityUserAuditMap.cs" />
+    <Compile Include="Audit\SRVIdentityUserAuditMap.cs" />
+    <Compile Include="Audit\VotersListOrderTypeAuditMap.cs" />
+    <Compile Include="CircumscriptionListMap.cs" />
+    <Compile Include="CircumscriptionMap.cs" />
+    <Compile Include="ConfigurationSettingMap.cs" />
+    <Compile Include="ConflictShareMap.cs" />
+    <Compile Include="Conventions\PrintConvention.cs" />
+    <Compile Include="Conventions\ClassifierConvention.cs" />
+    <Compile Include="Conventions\FiltreConventions.cs" />
+    <Compile Include="Conventions\ImporterConvention.cs" />
+    <Compile Include="Conventions\SrvEntitiesConvention.cs" />
+    <Compile Include="AddressWithCountOfPeopleMap.cs" />
+    <Compile Include="Election\ElectionRoundMap.cs" />
+    <Compile Include="Election\ElectionTypeMap.cs" />
+    <Compile Include="Interop\InstitutionMap.cs" />
+    <Compile Include="Interop\InteropSystemMap.cs" />
+    <Compile Include="Interop\TransactionMap.cs" />
+    <Compile Include="ProblematicDataPollingStationStatisticsMap.cs" />
+    <Compile Include="PollingStationWithFullAddressMap.cs" />
+    <Compile Include="LinkedRegionsFullNameMap.cs" />
+    <Compile Include="LinkedRegionMap.cs" />
+    <Compile Include="RegionWithoutSaiseIdMap.cs" />
+    <Compile Include="RoleTransactionMap.cs" />
+    <Compile Include="RspAddressMappingMap.cs" />
+    <Compile Include="RspConflictDataAdminMap.cs" />
+    <Compile Include="RegionWithFullyQualifiedNameMap.cs" />
+    <Compile Include="PersonByConflictMap.cs" />
+    <Compile Include="ImportStatisticMap.cs" />
+    <Compile Include="MappingAddressMap.cs" />
+    <Compile Include="PrintSessionMap.cs" />
+    <Compile Include="ExportPollingStationMap.cs" />
+    <Compile Include="RspConflictDataMap.cs" />
+    <Compile Include="RspModificationDataMap.cs" />
+    <Compile Include="RspRegistrationDataMap.cs" />
+    <Compile Include="SaiseExporterMap.cs" />
+    <Compile Include="SaiseExporterStageMap.cs" />
+    <Compile Include="StreetViewMap.cs" />
+    <Compile Include="StreetWithCountOfAddressesMap.cs" />
+    <Compile Include="PollingStationStatisticsMap.cs" />
+    <Compile Include="EventMap.cs" />
+    <Compile Include="Election\ElectionMap.cs" />
+    <Compile Include="IdentityUserRegionViewMap.cs" />
+    <Compile Include="NotificationMap.cs" />
+    <Compile Include="NotificationReceiverMap.cs" />
+    <Compile Include="PersonFullAddressMap.cs" />
+    <Compile Include="PersonRawMap.cs" />
+    <Compile Include="PersonStatusMap.cs" />
+    <Compile Include="PublicAdministrationMap.cs" />
+    <Compile Include="DeleteOwnFilter.cs" />
+    <Compile Include="GeoLocationMap.cs" />
+    <Compile Include="PersonAddressMap.cs" />
+    <Compile Include="PersonDocumentMap.cs" />
+    <Compile Include="PersonMap.cs" />
+    <Compile Include="PollingStationMap.cs" />
+    <Compile Include="RawAddressComponentMap.cs" />
+    <Compile Include="RawDataMap.cs" />
+    <Compile Include="RawDocumentComponentMap.cs" />
+    <Compile Include="RegionMap.cs" />
+    <Compile Include="SRVIdentityUserMap.cs" />
+    <Compile Include="AutoPersistenceModelProvider.cs" />
+    <Compile Include="Conventions\LookupConvention.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Schemas.cs" />
+    <Compile Include="SRVEntityMap.cs" />
+    <Compile Include="StayStatementMap.cs" />
+    <Compile Include="StreetMap.cs" />
+    <Compile Include="TransactionMap.cs" />
+    <Compile Include="ViewItem\ConflictCountAdminMap.cs" />
+    <Compile Include="ViewItem\ConflictCountRegistratorMap.cs" />
+    <Compile Include="ViewItem\ConflictViewItemMap.cs" />
+    <Compile Include="ViewItem\VoterViewItemMap.cs" />
+    <Compile Include="VotersListOrderTypeMap.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CEC.SRV.BLL\CEC.SRV.BLL.csproj">
+      <Project>{E46CD8A4-BF92-4309-AA5B-7DA68CAB10C4}</Project>
+      <Name>CEC.SRV.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CEC.SRV.Domain\CEC.SRV.Domain.csproj">
+      <Project>{53b47a01-32d5-48bd-ab7e-64a255f8463c}</Project>
+      <Name>CEC.SRV.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

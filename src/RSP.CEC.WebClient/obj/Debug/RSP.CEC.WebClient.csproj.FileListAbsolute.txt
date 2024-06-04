@@ -1,0 +1,7 @@
+D:\work\CEC\CEC.SRV\src\RSP.CEC.WebClient\bin\Debug\RSP.CEC.WebClient.dll.config
+D:\work\CEC\CEC.SRV\src\RSP.CEC.WebClient\bin\Debug\RSP.CEC.WebClient.dll
+D:\work\CEC\CEC.SRV\src\RSP.CEC.WebClient\bin\Debug\RSP.CEC.WebClient.pdb
+D:\work\CEC\CEC.SRV\src\RSP.CEC.WebClient\obj\Debug\RSP.CEC.WebClient.dll
+D:\work\CEC\CEC.SRV\src\RSP.CEC.WebClient\obj\Debug\RSP.CEC.WebClient.pdb
+D:\work\CEC\CEC.SRV\src\RSP.CEC.WebClient\obj\Debug\RSP.CEC.WebClient.csproj.CoreCompileInputs.cache
+D:\work\CEC\CEC.SRV\src\RSP.CEC.WebClient\obj\Debug\RSP.CEC.WebClient.csproj.AssemblyReference.cache

@@ -1,0 +1,281 @@
+=== 1.6 GA (v 1.6.0), 2013-03-14, NH 3.3.3 CR1 ===
+
+*** Possible breaking change ***
+* IAuditStrategy.Initialize(AuditConfiguration) added. AuditConfiguration and GlobalConfiguration removed from interface methods.
+* All factory methods on ICollectionMapperFactory has one extra parameter - embeddableElementType saying if it's a collection of components or not
+* ...and the same goes for ICustomCollectionMapperFactory
+
+** Bug
+* [NHE-104] - IdBag + WithModifiedFlag throws when inserting
+* [NHE-105] - Detached ManyToMany + WithModifiedFlag throws
+* [NHE-107] - Insert child + update parent misses changed prop for modified flag
+* [NHE-109] - Projections on AuditEntity.Property("id") throws
+
+** Improvement
+* [NHE-38] - Support for collection of Components in envers 
+* [NHE-101] - Add IPostInstantiationListener
+* [NHE-102] - Introducing AuditFactoryAttribute
+
+
+
+=== 1.5 GA (v 1.5.0), 2012-12-05, NH 3.3.2 GA ====
+
+*** Possible breaking change ***
+* ICollectionMapperFactory.IdBag and IdBag<T> signature changed. IndexComponentData no longer passed.
+
+** Bug
+* [NHE-95] - unionsubclass mapping creates table for abstract base class
+* [NHE-98] - Between in OR statement produce wrong result
+* [NHE-99] - Maximize in OR statement produce wrong result
+* [NHE-93] - Rolled back transaction might create audit data
+* [NHE-94] - Support composite-id with key-many-to-one
+* [NHE-97] - Exception if non lazy ToOne ref exists
+
+** Improvement
+* [NHE-96] - IdBag is not currently supported
+* [NHE-100] - Get the latest revision of all instances for a requested Entity Class
+
+
+
+=== 1.4 GA (v 1.4.0.0), 2012-10-05, NH 3.3.1 GA ===
+
+** Bug
+* [NHE-60] - Support bidirectional onetomany with join table
+* [NHE-86] - Bidirectional one-to-many with composite-id throws
+* [NHE-88] - Support custom generic types
+* [NHE-90] - Incorrect entity revision when clearing the cache
+
+** Improvement
+* [NHE-85] - generateMappingData Method throws NullReferenceException
+* [NHE-89] - Make Envers configuration serializable.
+
+*** Possible breaking change ***
+* AuditConfiguration made sealed
+
+
+
+=== 1.3 GA (v 1.3.0.0), 2012-07-10, NH 3.3.1 GA ===
+
+** Bug
+* [NHE-83] - Envers should throw if trying to persist outside transaction
+* [NHE-84] - Auditing a previously detached and now reatched object causes a null pointer exception
+
+** Improvement
+* [NHE-82] - Let user reuse enversproxyfactory instance in DefaultCollectionMapperFactory override
+
+*** Breaking changes ***
+* Persisting outside a transaction now throws AuditException
+* ICollectionMapperFactory changed. Initialize method gone. Instead IEnversProxyFactory is passed to every factory method.
+
+
+
+=== 1.2 GA (v 1.2.0.0), 2012-06-12, NH 3.3.1 GA ===
+
+** Bug
+* [NHE-70] - Join is ignored if not all join properties are audited
+* [NHE-71] - The use of dynamic-component with multiple properties causes an exception on initialization.
+* [NHE-72] - Dynamic component with non set value should not result with any dictionary entry
+* [NHE-73] - The use of dynamic-component combined with using many-to-one reference causes an XML validation exception on initialization 
+* [NHE-76] - Non default sql-type for revision id column + ValidityAuditStrategy throws
+* [NHE-78] - Make tests pass on Oracle
+* [NHE-79] - Make tests pass on postgreesql
+* [NHE-80] - Make tests pass on mysql
+* [NHE-81] - Detached entities + updatable=false fails
+* [NHE-74] - Data truncation may occur if you use IUserType with StringClobSqlType
+
+** Improvement
+* [NHE-39] - Support for CustomCollection
+
+
+*** Breaking changes ***
+* ----- ConfigurationKey.CollectionProxyMapperFactory changed----
+* ICollectionProxyMapperFactory renamed to ICollectionMapperFactory
+* ICollectionMapperFactory.Initialize(ICollectionProxyFactory) added
+* nhibernate.envers.collection_proxy_mapper_factory renamed to nhibernate.envers.collection_mapper_factory
+* ConfigurationKey.CollectionProxyMapperFactory renamed to ConfigurationKey.CollectionMapperFactory
+* ---------------------------------------------------------------
+* 
+* --- Non existing items in dynamic-property now behaves like NH Core ---
+* - If no items exists, the IDictionary is null
+* - if an item don't exist, the keyvalue in IDictionary does not exist
+* -----------------------------------------------------------------------
+*
+* --- NoResultException no longer exists ---
+* If IEntityAuditQuery<T>.Single() returns no rows, null is returned
+* If IAuditQuery.GetSingleResult() returns no rows, null is returned
+* ------------------------------------------
+
+
+
+=== 1.1 GA (v 1.1.0.2), 2012-04-22, NH 3.3 GA ===
+
+** Bug
+* [NHE-66] - Support for custom PrimitiveType classes
+* [NHE-69] - Non audited collection throws if in a <join>
+
+** Improvement
+* [NHE-67] - Type safe way configuration of properties
+
+
+*** Breaking changes ***
+*
+* -- ConfigurationKey --
+* nhConf.SetProperty(ConfigurationKey.StoreDataAtDelete, "true") no longer supported.
+* Choose either...
+* nhConf.SetProperty("nhibernate.envers.store_data_at_delete", "true");
+* nhConf.SetEnversProperty(ConfigurationKey.StoreDataAtDelete, true);
+* ConfigurationKey.StoreDataAtDelete.SetUserValue(nhConfiguration, true);
+
+
+
+=== 1.1 CR1 (v 1.1.0.1), 2012-03-12, NH 3.3 CR1 ===
+
+** Bug
+[NHE-40] - Only add RevInfo table if audited types exists
+[NHE-41] - Support auditing of <properties>
+[NHE-42] - Many-to-many with base class throws NonUniqueException when persisted
+[NHE-43] - Don't assume session is open when transaction is completed
+[NHE-44] - Delete + Save on entity with no mod shouldn't trigger audit
+[NHE-45] - Allow nullable, unidirectional one-to-one mapping
+[NHE-46] - Problem with one to many relation with subclass of a base class
+[NHE-47] - Support composite-id with custom type
+[NHE-48] - Components having properties with default values 
+[NHE-49] - Mixing <join> and <subclass> causes crash
+[NHE-51] - Support quoted mapped columns (reserved sql keywords)
+[NHE-52] - Can't find class attributes on non mapped base types
+[NHE-53] - Correcting configuration of base classes
+[NHE-54] - User defined Envers schema/catalog + <subclass> causes crash
+[NHE-57] - Possible to have non audit entities even if base classes are audited
+[NHE-59] - Support scale=0
+[NHE-63] - Memory leaks in envers configuration
+
+** Improvement
+[NHE-35] - Track entity names in a revision
+[NHE-36] - Implement support of AuditJoinTable/AuditTable attribute functionality with fluent interface
+[NHE-58] - Enable query for changed properties
+
+** Patch
+[NHE-65] - Non generic fine grain methods in fluent configuration interface
+
+
+*** Breaking changes ***
+* Removed obsolute methods; AuditQueryCreator.ForHistoryOf<TEntity> and ForHistoryOf<TEntity>(bool)
+* Changed IAuditReader.GetRevisions to be non generic. Instead having Type as inparameter.
+* Removed unnecessary audit column for one-to-one mapping using pk to pk
+
+*** Possible breaking change ***
+* AbstractCollectionMapper.Ctor changed
+* FluentConfiguration.Exclude/ExcludeRelationData now throws FluentException and not ArgumentException if property/field cannot be found.
+* (Fluent) Using a non mapped type as revision entity now throws FluentException and not MappedException
+* IFluentRevision.Attributes now takes a Configuration object as inparameter
+* IMetaDataStore.EntitiesDeclaredWith<T> removed
+
+
+
+=== 1.0 GA (v 1.0.0.0), 2011-10-14, NH 3.2 GA ===
+
+** Bug
+[NHE-18] - Discriminator formula support
+[NHE-19] - Cannot associate proxy with two open sessions
+[NHE-20] - turning off nhibernate.envers.revision_on_collection_change doesn't affect coll modifications
+[NHE-21] - REVINFO doesn't use nhibernate.envers.default_schema
+[NHE-23] - AuditProperty.IsNull()/IsNotNull() generates wrong sql
+[NHE-24] - Cannot use inherited DefaultRevisionEntity with FluentConfiguration
+[NHE-25] - Inconsistent API - ForHistoryOf demands DefaultRevisionEntity or subclass, configuration supports a custom revision entity
+[NHE-26] - nullable primitivetype + field.camelcase-underscore generates exception when read
+[NHE-27] - Allow components to have a non public ctor
+[NHE-30] - AuditProperty.In(IEnumerable<T>) must not be generic
+[NHE-32] - When using ValidityAuditStrategy, when an entity has audited set of child values, the same value cannot be added/removed from set twice
+[NHE-33] - Support <component> with insert false
+
+** Improvement
+[NHE-22] - Offer a type safe way to configure global settings
+[NHE-28] - Consisten exceptions when querying non audited entities
+[NHE-29] - Using non mapped entity as custom revision entity should throw
+[NHE-31] - Support AuditEntity.Property("ReferencingProperty").In(....)
+[NHE-34] - Remove audit entities and revision from 1st level cache at the end of tx
+
+** New Feature
+[NHE-17] - Establish a way to configure an Envers RevisionListener via DI
+
+
+*** Breaking changes ***
+* Attribute API: RevisionEntityAttribute
+[RevisionEntity(Listener=typeof(MyListener))] no longer available. 
+Use [RevisionEntity(typeof(MyListener))] instead.
+
+* Fluent API: 
+fluentConfiguration.SetRevisionEntity<MyRevEntity>(e => e.Number, e => e.Timestamp, typeof(RevListener));
+...changed to...
+fluentConfiguration.SetRevisionEntity<MyRevEntity>(e => e.Number, e => e.Timestamp, new RevListener());
+
+* DefaultRevisionEntity now takes nhiberate.envers.default_schema into consideration (NHE-21)
+
+
+
+=== 1.0 CR 2 (v 0.9.9.2), 2011-07-31, NH 3.2 GA ===
+
+** Bug
+[NHE-15] - Support for <set> with sort="customComparer"
+[NHE-16] - Support for <map> with sort="customComparer"
+
+** Improvement
+[NHE-14] - Support custom (NH Core) CollectionTypeFactory
+
+
+
+=== 1.0 CR 1 (v 0.9.9.1), 2011-06-20, NH 3.2.0 Beta 2 ===
+
+* Bug 
+[NHE-12] - Dynamic Components cause envers to crash on initialization
+
+
+
+=== BETA 2 (v 0.9.2.0), 2011-05-10, NH 3.2.0 Alpha 3 ===
+
+*** Breaking changes ***
+* Changed API: AuditJoinTableAttribute
+* Changed API: AuditOverrideAttribute
+* Changed API: Removed AuditOverridesAttribute, added allowmultiple on AuditOverrideAttribute instead
+* Using IAuditReader with closed ISession throws ObjectDisposedException (like NH Core) instead of a System.Exception
+
+
+
+=== BETA 1 (v 0.9.1.0), 2011-04-11, NH 3.2.0 Alpha 1 ===
+
+** Bug
+[NHE-8] - Rollback of audit data if exception when flushmode.never is used
+[NHE-9] - Query component properties using "."
+
+** Improvement
+[NHE-10] - Support for IAuditReader.FindRevisions()
+
+** New Feature
+[NHE-1] - Port audit strategy
+
+
+*** Breaking changes ***
+* Changed signature: IAuditReader.FindRevision(Type, long) -> IAuditReader.FindRevision(long)
+* Changed signature: IAuditReader.GetCurrentRevision(Type, bool) -> IAuditReader.GetCurrentRevision(bool)
+
+
+
+=== ALPHA 2 (v 0.8.2.0), 2011-03-14, NH 3.1.0 ===
+
+[NHE-5] - Documentation
+
+*** Breaking changes ***
+* Renamed IFluentAudit<T>.ExcludeRelation to ExcludeRelationData
+* AuditMappedByAttribute no longer public for users. Handled automatically internally.
+* Renamed envers.store_data_at_delete to nhibernate.envers.store_data_at_delete
+* Renamed envers.do_not_audit_optimistic_locking_field to nhibernate.envers.do_not_audit_optimistic_locking_field
+
+
+
+=== ALPHA 1 (v 0.8.1.0), 2011-03-05, NH 3.1.0 ===
+
+[NHE-2] - Biref onetoone on pk
+[NHE-3] - Support access="readonly"
+[NHE-4] - Structs as components - querying
+[NHE-6] - Bidirectional list support
+[NHE-7] - Exception in AuditSync.BeforeCompletion is swallowed by (NH) AdoTransaction

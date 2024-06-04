@@ -1,0 +1,10 @@
+﻿@model DateTime?
+@{
+    Layout = "_Template.cshtml";
+}
+
+@section Data {
+    @String.Format("{0:dd.MM.yyyy HH:mm:ss}", @ViewData.TemplateInfo.FormattedModelValue)
+}
+
+

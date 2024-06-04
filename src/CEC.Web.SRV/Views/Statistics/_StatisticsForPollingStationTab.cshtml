@@ -1,0 +1,31 @@
+﻿@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.Statistics
+@using Lib.Web.Mvc.JQuery.JqGrid
+
+@{
+    var grid = Html.GridOptions<StatisticsPollingStationGridModel>("pollingStationStatistics", rowsPerPage: 100)
+        .SetOptions(x =>
+        {
+            x.PostDataScript = "{ 'regionId':function(){ return $.getDashboardRegionId()}, 'pollingStationId': function(){ return $.getDashboardPollingStationId()} }";
+            x.SortingName = "PollingStation";
+            x.SortingOrder = JqGridSortingOrders.Asc;
+        })
+        .BuildGrid(
+            Url.Action("ListStatisticsPollingStationsAjax", "Statistics"),
+            exportAction: Url.Action("ExportStatisticsPollingStations", "Statistics"),
+            columnChooser: false)
+        .Navigator(new JqGridNavigatorOptions() { Add = false, Edit = false, Delete = false, CloneToTop = true });
+}
+
+<div id="dashboard-overview" class="row">
+    <div class="col-sm-12 col-md-12">
+        @grid.GetHtml()
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        @grid.GetJavaScript();
+        $.forEachGrid($.removeClonedGridButtons);
+    });
+</script>

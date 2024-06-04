@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>D:\cec.webapi</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="Areas/HelpPage/HelpPage.css">
+      <publishTime>04/24/2018 13:08:31</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/Help/Api.cshtml">
+      <publishTime>04/24/2018 13:08:31</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/Help/DisplayTemplates/ApiGroup.cshtml">
+      <publishTime>04/24/2018 13:08:31</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/Help/DisplayTemplates/CollectionModelDescription.cshtml">
+      <publishTime>04/24/2018 13:08:31</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/Help/DisplayTemplates/ComplexTypeModelDescription.cshtml">
+      <publishTime>04/24/2018 13:08:31</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/Help/DisplayTemplates/DictionaryModelDescription.cshtml">
+      <publishTime>04/24/2018 13:08:31</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/Help/DisplayTemplates/EnumTypeModelDescription.cshtml">
+      <publishTime>04/24/2018 13:08:31</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/Help/DisplayTemplates/HelpPageApiModel.cshtml">
+      <publishTime>04/24/2018 13:08:31</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/Help/DisplayTemplates/ImageSample.cshtml">
+      <publishTime>04/24/2018 13:08:31</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/Help/DisplayTemplates/InvalidSample.cshtml">
+      <publishTime>04/24/2018 13:08:31</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/Help/DisplayTemplates/KeyValuePairModelDescription.cshtml">
+      <publishTime>04/24/2018 13:08:31</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/Help/DisplayTemplates/ModelDescriptionLink.cshtml">
+      <publishTime>04/24/2018 13:08:31</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/Help/DisplayTemplates/Parameters.cshtml">
+      <publishTime>04/24/2018 13:08:31</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/Help/DisplayTemplates/Samples.cshtml">
+      <publishTime>04/24/2018 13:08:31</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/Help/DisplayTemplates/SimpleTypeModelDescription.cshtml">
+      <publishTime>04/24/2018 13:08:31</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/Help/DisplayTemplates/TextSample.cshtml">
+      <publishTime>04/24/2018 13:08:31</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/Help/Index.cshtml">
+      <publishTime>04/24/2018 13:08:31</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/Help/ResourceModel.cshtml">
+      <publishTime>04/24/2018 13:08:31</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/Shared/_Layout.cshtml">
+      <publishTime>04/24/2018 13:08:31</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/Web.config">
+      <publishTime>04/24/2018 13:08:31</publishTime>
+    </File>
+    <File Include="Areas/HelpPage/Views/_ViewStart.cshtml">
+      <publishTime>04/24/2018 13:08:31</publishTime>
+    </File>
+    <File Include="bin/Amdaris.dll">
+      <publishTime>04/24/2018 13:08:32</publishTime>
+    </File>
+    <File Include="bin/Amdaris.Domain.dll">
+      <publishTime>04/24/2018 13:08:32</publishTime>
+    </File>
+    <File Include="bin/Amdaris.Domain.Identity.dll">
+      <publishTime>04/24/2018 13:08:32</publishTime>
+    </File>
+    <File Include="bin/Amdaris.NHibernateProvider.Audit.dll">
+      <publishTime>04/24/2018 13:08:32</publishTime>
+    </File>
+    <File Include="bin/Amdaris.NHibernateProvider.dll">
+      <publishTime>04/24/2018 13:08:32</publishTime>
+    </File>
+    <File Include="bin/Amdaris.NHibernateProvider.Identity.dll">
+      <publishTime>04/24/2018 13:08:32</publishTime>
+    </File>
+    <File Include="bin/Amdaris.NHibernateProvider.Web.dll">
+      <publishTime>04/24/2018 13:08:32</publishTime>
+    </File>
+    <File Include="bin/Amdaris.NLogProvider.dll">
+      <publishTime>04/24/2018 13:08:32</publishTime>
+    </File>
+    <File Include="bin/Amdaris.UnityProvider.dll">
+      <publishTime>04/24/2018 13:08:32</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.compiled">
+      <publishTime>09/18/2018 16:29:03</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.dll">
+      <publishTime>09/18/2018 16:29:03</publishTime>
+    </File>
+    <File Include="bin/AutoMapper.dll">
+      <publishTime>04/24/2018 13:08:32</publishTime>
+    </File>
+    <File Include="bin/AutoMapper.Net4.dll">
+      <publishTime>04/24/2018 13:08:32</publishTime>
+    </File>
+    <File Include="bin/CEC.SRV.BLL.dll">
+      <publishTime>09/18/2018 16:28:54</publishTime>
+    </File>
+    <File Include="bin/CEC.SRV.BLL.dll.config">
+      <publishTime>04/24/2018 13:08:31</publishTime>
+    </File>
+    <File Include="bin/CEC.SRV.BLL.pdb">
+      <publishTime>09/18/2018 16:28:54</publishTime>
+    </File>
+    <File Include="bin/CEC.SRV.BLL.XmlSerializers.dll">
+      <publishTime>09/18/2018 16:28:54</publishTime>
+    </File>
+    <File Include="bin/CEC.SRV.Domain.dll">
+      <publishTime>09/18/2018 16:28:53</publishTime>
+    </File>
+    <File Include="bin/CEC.SRV.Domain.NHibernateMappings.dll">
+      <publishTime>09/18/2018 16:28:55</publishTime>
+    </File>
+    <File Include="bin/CEC.SRV.Domain.NHibernateMappings.pdb">
+      <publishTime>09/18/2018 16:28:55</publishTime>
+    </File>
+    <File Include="bin/CEC.SRV.Domain.pdb">
+      <publishTime>09/18/2018 16:28:53</publishTime>
+    </File>
+    <File Include="bin/CEC.Web.Api.dll">
+      <publishTime>09/18/2018 16:28:59</publishTime>
+    </File>
+    <File Include="bin/CEC.Web.Api.pdb">
+      <publishTime>09/18/2018 16:28:59</publishTime>
+    </File>
+    <File Include="bin/CEC.Web.SRV.Resources.dll">
+      <publishTime>09/18/2018 16:28:53</publishTime>
+    </File>
+    <File Include="bin/CEC.Web.SRV.Resources.pdb">
+      <publishTime>09/18/2018 16:28:53</publishTime>
+    </File>
+    <File Include="bin/Common.Logging.Core.dll">
+      <publishTime>04/24/2018 13:08:32</publishTime>
+    </File>
+    <File Include="bin/Common.Logging.dll">
+      <publishTime>04/24/2018 13:08:32</publishTime>
+    </File>
+    <File Include="bin/Configuration/ConnectionString.config">
+      <publishTime>07/13/2018 13:46:10</publishTime>
+    </File>
+    <File Include="bin/Configuration/NHibernate.config">
+      <publishTime>04/24/2018 13:08:31</publishTime>
+    </File>
+    <File Include="bin/Configuration/NLog.config">
+      <publishTime>04/24/2018 13:08:31</publishTime>
+    </File>
+    <File Include="bin/FluentNHibernate.dll">
+      <publishTime>04/24/2018 13:08:33</publishTime>
+    </File>
+    <File Include="bin/Iesi.Collections.dll">
+      <publishTime>04/24/2018 13:08:33</publishTime>
+    </File>
+    <File Include="bin/Inflector.dll">
+      <publishTime>04/24/2018 13:08:33</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
+      <publishTime>04/24/2018 13:08:33</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.Unity.Configuration.dll">
+      <publishTime>04/24/2018 13:08:34</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.Unity.dll">
+      <publishTime>04/24/2018 13:08:34</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.Unity.RegistrationByConvention.dll">
+      <publishTime>04/24/2018 13:08:34</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>04/24/2018 13:08:33</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>04/24/2018 13:08:34</publishTime>
+    </File>
+    <File Include="bin/NHibernate.dll">
+      <publishTime>04/24/2018 13:08:33</publishTime>
+    </File>
+    <File Include="bin/NHibernate.Envers.dll">
+      <publishTime>04/24/2018 13:08:33</publishTime>
+    </File>
+    <File Include="bin/NLog.dll">
+      <publishTime>04/24/2018 13:08:33</publishTime>
+    </File>
+    <File Include="bin/Owin.dll">
+      <publishTime>04/24/2018 13:08:34</publishTime>
+    </File>
+    <File Include="bin/Quartz.dll">
+      <publishTime>04/24/2018 13:08:34</publishTime>
+    </File>
+    <File Include="bin/ru/CEC.Web.SRV.Resources.resources.dll">
+      <publishTime>09/18/2018 16:28:53</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Formatting.dll">
+      <publishTime>04/24/2018 13:08:33</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>04/24/2018 13:08:33</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>04/24/2018 13:08:33</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.dll">
+      <publishTime>04/24/2018 13:08:33</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>04/24/2018 13:08:33</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>04/24/2018 13:08:33</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>04/24/2018 13:08:33</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>04/24/2018 13:08:33</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>04/24/2018 13:08:33</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>04/24/2018 13:08:33</publishTime>
+    </File>
+    <File Include="bin/Unity.WebApi.dll">
+      <publishTime>04/24/2018 13:08:34</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>04/24/2018 13:08:34</publishTime>
+    </File>
+    <File Include="Configuration/ConnectionString.config">
+      <publishTime>07/13/2018 13:46:10</publishTime>
+    </File>
+    <File Include="Configuration/NHibernate.config">
+      <publishTime>04/24/2018 13:08:31</publishTime>
+    </File>
+    <File Include="Configuration/NLog.config">
+      <publishTime>04/24/2018 13:08:31</publishTime>
+    </File>
+    <File Include="Connected Services/getVoterDataEday/CEC.Web.Api.getVoterDataEday.VoterData.datasource">
+      <publishTime>07/13/2018 13:46:10</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css">
+      <publishTime>04/24/2018 13:08:31</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css">
+      <publishTime>04/24/2018 13:08:31</publishTime>
+    </File>
+    <File Include="Content/cecmd_.png">
+      <publishTime>04/24/2018 13:08:31</publishTime>
+    </File>
+    <File Include="Content/Site.css">
+      <publishTime>04/24/2018 13:08:31</publishTime>
+    </File>
+    <File Include="favicon.ico">
+      <publishTime>04/24/2018 13:08:32</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.eot">
+      <publishTime>04/24/2018 13:08:32</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.svg">
+      <publishTime>04/24/2018 13:08:32</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>04/24/2018 13:08:32</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff">
+      <publishTime>04/24/2018 13:08:32</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>04/24/2018 13:08:32</publishTime>
+    </File>
+    <File Include="PrecompiledApp.config">
+      <publishTime>09/18/2018 16:28:59</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.js">
+      <publishTime>04/24/2018 13:08:32</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js">
+      <publishTime>04/24/2018 13:08:32</publishTime>
+    </File>
+    <File Include="Scripts/respond.js">
+      <publishTime>04/24/2018 13:08:32</publishTime>
+    </File>
+    <File Include="Scripts/respond.min.js">
+      <publishTime>04/24/2018 13:08:32</publishTime>
+    </File>
+    <File Include="Scripts/_references.js">
+      <publishTime>04/24/2018 13:08:32</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>04/24/2018 13:08:32</publishTime>
+    </File>
+    <File Include="Views/Shared/Error.cshtml">
+      <publishTime>04/24/2018 13:08:32</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>04/24/2018 13:08:32</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>04/24/2018 13:08:32</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>04/24/2018 13:08:32</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>09/18/2018 16:28:59</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

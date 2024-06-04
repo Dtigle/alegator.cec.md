@@ -1,0 +1,145 @@
+﻿@model CEC.SAISE.EDayModule.Models.VoterCertificate.CertificatModel
+@using CEC.SAISE.BLL.Dto
+
+
+@using (Html.BeginForm("ViewCertificat", "VoterCertificat", FormMethod.Post, new { @class = "form-horizontal", autocomplete = "off" , id = "certificatForm" }))
+{
+
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(x => x.PolingStationId)
+    @Html.HiddenFor(x => x.ElectionId)
+    @Html.HiddenFor(x => x.Id)
+    @Html.HiddenFor(x => x.ElectionId)
+    @Html.HiddenFor(x => x.ElectionDate)
+   
+    <div class="box-content">
+        <h4 class="page-header"><strong>Datele Personale</strong></h4>
+        <div class="row form-group">
+            <div class="control-label col-sm-2">
+                <label>Numele Complet</label>
+            </div>
+            @Html.EditorFor(x => x.FullName, new { HideLabel = true, ReadOnly = true })
+            <div class="control-label col-sm-2">
+                <label>Ziua Nasterii</label>
+            </div>
+            @Html.EditorFor(x => x.BirthDate, new { HideLabel = true, ReadOnly = true })
+        </div>
+        <div class="row form-group">
+            <div class="control-label col-sm-2">
+                <label>IDNP</label>
+            </div>
+            @Html.EditorFor(x => x.IDNP, new { HideLabel = true, ReadOnly = true })
+            <div class="control-label col-sm-2">
+                <label>Buletin de identitate</label>
+            </div>
+            @Html.EditorFor(x => x.DocumentNumber, new { HideLabel = true, ReadOnly = true })
+        </div>
+        <div class="row form-group">
+            <div class="control-label col-sm-2">
+                <label>Data eliberării</label>
+            </div>
+            @Html.EditorFor(x => x.DocumentData, new { HideLabel = true, ReadOnly = true })
+            <div class="control-label col-sm-2">
+                <label>Oficiul</label>
+            </div>
+            @Html.EditorFor(x => x.Office, new { HideLabel = true, ReadOnly = true })
+        </div>
+        <div class="row form-group">
+            <div class="control-label col-sm-2">
+                <label>Valabil pînă la</label>
+            </div>
+            @Html.EditorFor(x => x.DocumentExpireData, new { HideLabel = true, ReadOnly = true })
+
+        </div>
+
+    </div>
+
+
+    <div class="box-content" style="">
+        <h4 class="page-header"><strong>Viza de reședință</strong></h4>
+        <div class="form-group">
+            <div class="control-label col-sm-2">
+                <label>Adresa</label>
+            </div>
+            @Html.EditorFor(x => x.Adres, new { HideLabel = true, ReadOnly = true })
+        </div>
+    </div>
+
+
+
+    <div class="box-content">
+        <h4 class="page-header"><strong>Date privind eliberarea certificatului cu drept de vot </strong></h4>
+        <div class="form-group">
+            <div class="control-label col-sm-2">
+                <label>Scrutin</label>
+            </div>
+            @Html.EditorFor(x => x.TypeElection, new { HideLabel = true, ReadOnly = true })
+        </div>
+        <div class="form-group">
+            <div class="control-label col-sm-2">
+                <label>Cicumscripția</label>
+            </div>
+            @Html.EditorFor(x => x.Circumscription, new { HideLabel = true, ReadOnly = true })
+        </div>
+        <div class="form-group">
+            <div class="control-label col-sm-2">
+                <label>Secția de votare</label>
+            </div>
+            @Html.EditorFor(x => x.ElectionOffice, new { HideLabel = true, ReadOnly = true })
+        </div>
+        <div class="form-group">
+            <div class="control-label col-sm-2">
+                <label>Data eliberării</label>
+            </div>
+            @Html.EditorFor(x => x.ReleaseDate, new { HideLabel = true })
+            
+        </div>
+        <div class="form-group">
+            <div class="control-label col-sm-2">
+                <label>Numărul Certificat</label>
+            </div>
+            @Html.EditorFor(x => x.CertificatNr, new { HideLabel = true,  })
+          
+        </div>         
+    </div>
+
+}
+
+
+
+
+<style>
+    .modal-dialog {
+        width: 1000px !important;
+        padding: 19px;
+    }
+
+    .bootstrap-dialog-title {
+        color: white;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        $('#buttonClose').on('click',
+            function() {
+                dialogItself.close();
+                $('.close').click();
+            });
+    });
+    $(document).ready(function () {
+        var date_input = $('input[name="ReleaseDate"]'); //our date input has the name "date"
+        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+        var options = {
+            dateFormat: 'dd.mm.yy',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+            language: 'es',
+
+        };
+        date_input.datepicker(options);
+
+    })
+</script>
+

@@ -1,0 +1,275 @@
+2018-08-09 12:06:08.4517 ERROR CEC.Web.SRV.Infrastructure.HandleAndLogErrorAttribute.OnException  System.Web.Services.Protocols.SoapException: The report parameter 'ElectionDate' is read-only and cannot be modified. ---> Microsoft.ReportingServices.Diagnostics.Utilities.ReadOnlyReportParameterException: The report parameter 'ElectionDate' is read-only and cannot be modified.
+   at System.Web.Services.Protocols.SoapHttpClientProtocol.ReadResponse(SoapClientMessage message, WebResponse response, Stream responseStream, Boolean asyncCall)
+   at System.Web.Services.Protocols.SoapHttpClientProtocol.Invoke(String methodName, Object[] parameters)
+   at SoftTehnica.MvcReportViewer.ReportService.ReportingService2010.GetItemParameters(String ItemPath, String HistoryID, Boolean ForRendering, ParameterValue[] Values, DataSourceCredentials[] Credentials) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\Web References\ReportService\Reference.cs:line 3354
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.GetReportParameters(ReportViewerModel model, Boolean forRendering) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 81
+   at SoftTehnica.MvcReportViewer.HtmlHelperExtensions.ParametersToHtmlString(List`1 parameters, ReportViewerModel model) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\HtmlHelperExtensions.cs:line 188
+   at SoftTehnica.MvcReportViewer.ReportController.ReloadParameters(String reportPath) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportController.cs:line 170
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass33.<BeginInvokeActionMethodWithFilters>b__32(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+2018-08-09 12:06:26.4418 ERROR CEC.Web.SRV.Infrastructure.HandleAndLogErrorAttribute.OnException  System.Web.Services.Protocols.SoapException: The report parameter 'ElectionDate' is read-only and cannot be modified. ---> Microsoft.ReportingServices.Diagnostics.Utilities.ReadOnlyReportParameterException: The report parameter 'ElectionDate' is read-only and cannot be modified.
+   at System.Web.Services.Protocols.SoapHttpClientProtocol.ReadResponse(SoapClientMessage message, WebResponse response, Stream responseStream, Boolean asyncCall)
+   at System.Web.Services.Protocols.SoapHttpClientProtocol.Invoke(String methodName, Object[] parameters)
+   at SoftTehnica.MvcReportViewer.ReportService.ReportingService2010.GetItemParameters(String ItemPath, String HistoryID, Boolean ForRendering, ParameterValue[] Values, DataSourceCredentials[] Credentials) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\Web References\ReportService\Reference.cs:line 3354
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.GetReportParameters(ReportViewerModel model, Boolean forRendering) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 81
+   at SoftTehnica.MvcReportViewer.HtmlHelperExtensions.ParametersToHtmlString(List`1 parameters, ReportViewerModel model) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\HtmlHelperExtensions.cs:line 188
+   at SoftTehnica.MvcReportViewer.ReportController.ReloadParameters(String reportPath) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportController.cs:line 170
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass33.<BeginInvokeActionMethodWithFilters>b__32(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+2018-08-09 12:07:48.0000 ERROR CEC.Web.SRV.Infrastructure.HandleAndLogErrorAttribute.OnException  System.Web.Services.Protocols.SoapException: The report parameter 'ElectionDate' is read-only and cannot be modified. ---> Microsoft.ReportingServices.Diagnostics.Utilities.ReadOnlyReportParameterException: The report parameter 'ElectionDate' is read-only and cannot be modified.
+   at System.Web.Services.Protocols.SoapHttpClientProtocol.ReadResponse(SoapClientMessage message, WebResponse response, Stream responseStream, Boolean asyncCall)
+   at System.Web.Services.Protocols.SoapHttpClientProtocol.Invoke(String methodName, Object[] parameters)
+   at SoftTehnica.MvcReportViewer.ReportService.ReportingService2010.GetItemParameters(String ItemPath, String HistoryID, Boolean ForRendering, ParameterValue[] Values, DataSourceCredentials[] Credentials) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\Web References\ReportService\Reference.cs:line 3354
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.GetReportParameters(ReportViewerModel model, Boolean forRendering) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 81
+   at SoftTehnica.MvcReportViewer.HtmlHelperExtensions.ParametersToHtmlString(List`1 parameters, ReportViewerModel model) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\HtmlHelperExtensions.cs:line 188
+   at SoftTehnica.MvcReportViewer.ReportController.ReloadParameters(String reportPath) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportController.cs:line 170
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass33.<BeginInvokeActionMethodWithFilters>b__32(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+2018-08-09 12:08:00.5824 ERROR CEC.Web.SRV.Infrastructure.HandleAndLogErrorAttribute.OnException  System.Web.Services.Protocols.SoapException: The report parameter 'ElectionDate' is read-only and cannot be modified. ---> Microsoft.ReportingServices.Diagnostics.Utilities.ReadOnlyReportParameterException: The report parameter 'ElectionDate' is read-only and cannot be modified.
+   at System.Web.Services.Protocols.SoapHttpClientProtocol.ReadResponse(SoapClientMessage message, WebResponse response, Stream responseStream, Boolean asyncCall)
+   at System.Web.Services.Protocols.SoapHttpClientProtocol.Invoke(String methodName, Object[] parameters)
+   at SoftTehnica.MvcReportViewer.ReportService.ReportingService2010.GetItemParameters(String ItemPath, String HistoryID, Boolean ForRendering, ParameterValue[] Values, DataSourceCredentials[] Credentials) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\Web References\ReportService\Reference.cs:line 3354
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.GetReportParameters(ReportViewerModel model, Boolean forRendering) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 81
+   at SoftTehnica.MvcReportViewer.HtmlHelperExtensions.ParametersToHtmlString(List`1 parameters, ReportViewerModel model) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\HtmlHelperExtensions.cs:line 188
+   at SoftTehnica.MvcReportViewer.ReportController.ReloadParameters(String reportPath) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportController.cs:line 170
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass33.<BeginInvokeActionMethodWithFilters>b__32(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+2018-08-09 12:09:26.9752 ERROR CEC.Web.SRV.Infrastructure.HandleAndLogErrorAttribute.OnException  System.Web.Services.Protocols.SoapException: The report parameter 'ElectionDate' is read-only and cannot be modified. ---> Microsoft.ReportingServices.Diagnostics.Utilities.ReadOnlyReportParameterException: The report parameter 'ElectionDate' is read-only and cannot be modified.
+   at System.Web.Services.Protocols.SoapHttpClientProtocol.ReadResponse(SoapClientMessage message, WebResponse response, Stream responseStream, Boolean asyncCall)
+   at System.Web.Services.Protocols.SoapHttpClientProtocol.Invoke(String methodName, Object[] parameters)
+   at SoftTehnica.MvcReportViewer.ReportService.ReportingService2010.GetItemParameters(String ItemPath, String HistoryID, Boolean ForRendering, ParameterValue[] Values, DataSourceCredentials[] Credentials) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\Web References\ReportService\Reference.cs:line 3354
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.GetReportParameters(ReportViewerModel model, Boolean forRendering) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 81
+   at SoftTehnica.MvcReportViewer.HtmlHelperExtensions.ParametersToHtmlString(List`1 parameters, ReportViewerModel model) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\HtmlHelperExtensions.cs:line 188
+   at SoftTehnica.MvcReportViewer.ReportController.ReloadParameters(String reportPath) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportController.cs:line 170
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass33.<BeginInvokeActionMethodWithFilters>b__32(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+2018-08-09 12:09:32.5184 ERROR CEC.Web.SRV.Infrastructure.HandleAndLogErrorAttribute.OnException  System.Web.Services.Protocols.SoapException: The report parameter 'ElectionDate' is read-only and cannot be modified. ---> Microsoft.ReportingServices.Diagnostics.Utilities.ReadOnlyReportParameterException: The report parameter 'ElectionDate' is read-only and cannot be modified.
+   at System.Web.Services.Protocols.SoapHttpClientProtocol.ReadResponse(SoapClientMessage message, WebResponse response, Stream responseStream, Boolean asyncCall)
+   at System.Web.Services.Protocols.SoapHttpClientProtocol.Invoke(String methodName, Object[] parameters)
+   at SoftTehnica.MvcReportViewer.ReportService.ReportingService2010.GetItemParameters(String ItemPath, String HistoryID, Boolean ForRendering, ParameterValue[] Values, DataSourceCredentials[] Credentials) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\Web References\ReportService\Reference.cs:line 3354
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.GetReportParameters(ReportViewerModel model, Boolean forRendering) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 81
+   at SoftTehnica.MvcReportViewer.HtmlHelperExtensions.ParametersToHtmlString(List`1 parameters, ReportViewerModel model) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\HtmlHelperExtensions.cs:line 188
+   at SoftTehnica.MvcReportViewer.ReportController.ReloadParameters(String reportPath) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportController.cs:line 170
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass33.<BeginInvokeActionMethodWithFilters>b__32(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+2018-08-09 12:10:33.2209 ERROR CEC.Web.SRV.Infrastructure.HandleAndLogErrorAttribute.OnException  System.Web.Services.Protocols.SoapException: The report parameter 'ElectionDate' is read-only and cannot be modified. ---> Microsoft.ReportingServices.Diagnostics.Utilities.ReadOnlyReportParameterException: The report parameter 'ElectionDate' is read-only and cannot be modified.
+   at System.Web.Services.Protocols.SoapHttpClientProtocol.ReadResponse(SoapClientMessage message, WebResponse response, Stream responseStream, Boolean asyncCall)
+   at System.Web.Services.Protocols.SoapHttpClientProtocol.Invoke(String methodName, Object[] parameters)
+   at SoftTehnica.MvcReportViewer.ReportService.ReportingService2010.GetItemParameters(String ItemPath, String HistoryID, Boolean ForRendering, ParameterValue[] Values, DataSourceCredentials[] Credentials) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\Web References\ReportService\Reference.cs:line 3354
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.GetReportParameters(ReportViewerModel model, Boolean forRendering) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 81
+   at SoftTehnica.MvcReportViewer.HtmlHelperExtensions.ParametersToHtmlString(List`1 parameters, ReportViewerModel model) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\HtmlHelperExtensions.cs:line 188
+   at SoftTehnica.MvcReportViewer.ReportController.ReloadParameters(String reportPath) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportController.cs:line 170
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass33.<BeginInvokeActionMethodWithFilters>b__32(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+2018-08-09 12:10:41.3602 ERROR CEC.Web.SRV.Infrastructure.HandleAndLogErrorAttribute.OnException  System.Web.Services.Protocols.SoapException: The report parameter 'ElectionDate' is read-only and cannot be modified. ---> Microsoft.ReportingServices.Diagnostics.Utilities.ReadOnlyReportParameterException: The report parameter 'ElectionDate' is read-only and cannot be modified.
+   at System.Web.Services.Protocols.SoapHttpClientProtocol.ReadResponse(SoapClientMessage message, WebResponse response, Stream responseStream, Boolean asyncCall)
+   at System.Web.Services.Protocols.SoapHttpClientProtocol.Invoke(String methodName, Object[] parameters)
+   at SoftTehnica.MvcReportViewer.ReportService.ReportingService2010.GetItemParameters(String ItemPath, String HistoryID, Boolean ForRendering, ParameterValue[] Values, DataSourceCredentials[] Credentials) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\Web References\ReportService\Reference.cs:line 3354
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.GetReportParameters(ReportViewerModel model, Boolean forRendering) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 81
+   at SoftTehnica.MvcReportViewer.HtmlHelperExtensions.ParametersToHtmlString(List`1 parameters, ReportViewerModel model) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\HtmlHelperExtensions.cs:line 188
+   at SoftTehnica.MvcReportViewer.ReportController.ReloadParameters(String reportPath) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportController.cs:line 170
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass33.<BeginInvokeActionMethodWithFilters>b__32(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+2018-08-09 12:23:39.1406 ERROR CEC.Web.SRV.Infrastructure.HandleAndLogErrorAttribute.OnException  System.Web.Services.Protocols.SoapException: The report parameter 'ElectionDate' is read-only and cannot be modified. ---> Microsoft.ReportingServices.Diagnostics.Utilities.ReadOnlyReportParameterException: The report parameter 'ElectionDate' is read-only and cannot be modified.
+   at System.Web.Services.Protocols.SoapHttpClientProtocol.ReadResponse(SoapClientMessage message, WebResponse response, Stream responseStream, Boolean asyncCall)
+   at System.Web.Services.Protocols.SoapHttpClientProtocol.Invoke(String methodName, Object[] parameters)
+   at SoftTehnica.MvcReportViewer.ReportService.ReportingService2010.GetItemParameters(String ItemPath, String HistoryID, Boolean ForRendering, ParameterValue[] Values, DataSourceCredentials[] Credentials) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\Web References\ReportService\Reference.cs:line 3354
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.GetReportParameters(ReportViewerModel model, Boolean forRendering) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 81
+   at SoftTehnica.MvcReportViewer.HtmlHelperExtensions.ParametersToHtmlString(List`1 parameters, ReportViewerModel model) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\HtmlHelperExtensions.cs:line 188
+   at SoftTehnica.MvcReportViewer.ReportController.ReloadParameters(String reportPath) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportController.cs:line 170
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass33.<BeginInvokeActionMethodWithFilters>b__32(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+2018-08-09 15:20:39.9725 ERROR CEC.Web.SRV.Infrastructure.HandleAndLogErrorAttribute.OnException  System.TimeoutException: The request channel timed out while waiting for a reply after 00:00:49.9659927. Increase the timeout value passed to the call to Request or increase the SendTimeout value on the Binding. The time allotted to this operation may have been a portion of a longer timeout. ---> System.TimeoutException: The HTTP request to 'http://cec-admin.cs1.soft-tehnica.com/webservices/ReportService.svc' has exceeded the allotted timeout of 00:01:00. The time allotted to this operation may have been a portion of a longer timeout. ---> System.Net.WebException: The operation has timed out
+   at System.Net.HttpWebRequest.GetResponse()
+   at System.ServiceModel.Channels.HttpChannelFactory`1.HttpRequestChannel.HttpChannelRequest.WaitForReply(TimeSpan timeout)
+   --- End of inner exception stack trace ---
+   at System.ServiceModel.Channels.HttpChannelUtilities.ProcessGetResponseWebException(WebException webException, HttpWebRequest request, HttpAbortReason abortReason)
+   at System.ServiceModel.Channels.HttpChannelFactory`1.HttpRequestChannel.HttpChannelRequest.WaitForReply(TimeSpan timeout)
+   at System.ServiceModel.Channels.RequestChannel.Request(Message message, TimeSpan timeout)
+   --- End of inner exception stack trace ---
+
+Server stack trace: 
+   at System.ServiceModel.Channels.RequestChannel.Request(Message message, TimeSpan timeout)
+   at System.ServiceModel.Dispatcher.RequestChannelBinder.Request(Message message, TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   at System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   at System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   at System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   at System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   at CEC.Web.SRV.ReportServiceReference.IReportService.GetAppReports(String roleName)
+   at CEC.Web.SRV.ReportServiceReference.ReportServiceClient.GetAppReports(String roleName) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\Connected Services\ReportServiceReference\Reference.cs:line 225
+   at CEC.Web.SRV.Controllers.ReportingController.Index() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\Controllers\ReportingController.cs:line 245
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass33.<BeginInvokeActionMethodWithFilters>b__32(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecute>b__15(IAsyncResult asyncResult, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)

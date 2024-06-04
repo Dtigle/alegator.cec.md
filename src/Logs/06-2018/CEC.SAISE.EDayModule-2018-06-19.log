@@ -1,0 +1,199 @@
+2018-06-19 10:29:23.5764 ERROR CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission Index-ElectionCompetitor System.Web.HttpException (0x80004005): The controller for path '/' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.GetControllerByName(RequestContext requestContext, String controllerName) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 277
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission(ControllerContext controllerContext, String action, String controller) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 197
+2018-06-19 10:30:43.7120 ERROR CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission Index-ElectionCompetitor System.Web.HttpException (0x80004005): The controller for path '/' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.GetControllerByName(RequestContext requestContext, String controllerName) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 277
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission(ControllerContext controllerContext, String action, String controller) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 197
+2018-06-19 10:31:07.6875 ERROR CEC.SAISE.EDayModule.Infrastructure.HandleAndLogErrorAttribute.OnException  System.Web.Mvc.HttpAntiForgeryException (0x80004005): The provided anti-forgery token was meant for a different claims-based user than the current user.
+   at System.Web.Helpers.AntiXsrf.TokenValidator.ValidateTokens(HttpContextBase httpContext, IIdentity identity, AntiForgeryToken sessionToken, AntiForgeryToken fieldToken)
+   at System.Web.Helpers.AntiXsrf.AntiForgeryWorker.Validate(HttpContextBase httpContext)
+   at System.Web.Helpers.AntiForgery.Validate()
+   at System.Web.Mvc.ValidateAntiForgeryTokenAttribute.OnAuthorization(AuthorizationContext filterContext)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeAuthorizationFilters(ControllerContext controllerContext, IList`1 filters, ActionDescriptor actionDescriptor)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__19(AsyncCallback asyncCallback, Object asyncState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeAction(ControllerContext controllerContext, String actionName, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1c(AsyncCallback asyncCallback, Object asyncState, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Controller.BeginExecuteCore(AsyncCallback callback, Object state)
+   at CEC.SAISE.EDayModule.Controllers.BaseController.BeginExecuteCore(AsyncCallback callback, Object state) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Controllers\BaseController.cs:line 41
+   at System.Web.Mvc.Controller.<BeginExecute>b__14(AsyncCallback asyncCallback, Object callbackState, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Controller.BeginExecute(RequestContext requestContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.BeginExecute(RequestContext requestContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__4(AsyncCallback asyncCallback, Object asyncState, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2018-06-19 10:31:12.7162 ERROR CEC.SAISE.EDayModule.MvcApplication.Application_Error  System.Web.Mvc.HttpAntiForgeryException (0x80004005): The provided anti-forgery token was meant for a different claims-based user than the current user.
+   at System.Web.Helpers.AntiXsrf.TokenValidator.ValidateTokens(HttpContextBase httpContext, IIdentity identity, AntiForgeryToken sessionToken, AntiForgeryToken fieldToken)
+   at System.Web.Helpers.AntiXsrf.AntiForgeryWorker.Validate(HttpContextBase httpContext)
+   at System.Web.Helpers.AntiForgery.Validate()
+   at System.Web.Mvc.ValidateAntiForgeryTokenAttribute.OnAuthorization(AuthorizationContext filterContext)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeAuthorizationFilters(ControllerContext controllerContext, IList`1 filters, ActionDescriptor actionDescriptor)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__19(AsyncCallback asyncCallback, Object asyncState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeAction(ControllerContext controllerContext, String actionName, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1c(AsyncCallback asyncCallback, Object asyncState, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Controller.BeginExecuteCore(AsyncCallback callback, Object state)
+   at CEC.SAISE.EDayModule.Controllers.BaseController.BeginExecuteCore(AsyncCallback callback, Object state) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Controllers\BaseController.cs:line 41
+   at System.Web.Mvc.Controller.<BeginExecute>b__14(AsyncCallback asyncCallback, Object callbackState, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Controller.BeginExecute(RequestContext requestContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.BeginExecute(RequestContext requestContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__4(AsyncCallback asyncCallback, Object asyncState, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2018-06-19 10:31:27.4087 ERROR CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission Index-ElectionCompetitor System.Web.HttpException (0x80004005): The controller for path '/' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.GetControllerByName(RequestContext requestContext, String controllerName) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 277
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission(ControllerContext controllerContext, String action, String controller) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 197
+2018-06-19 10:33:50.1564 ERROR CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission Index-ElectionCompetitor System.Web.HttpException (0x80004005): The controller for path '/' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.GetControllerByName(RequestContext requestContext, String controllerName) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 277
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission(ControllerContext controllerContext, String action, String controller) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 197
+2018-06-19 10:48:49.7039 ERROR CEC.SAISE.EDayModule.Infrastructure.HandleAndLogErrorAttribute.OnException  System.Web.Mvc.HttpAntiForgeryException (0x80004005): The provided anti-forgery token was meant for a different claims-based user than the current user.
+   at System.Web.Helpers.AntiXsrf.TokenValidator.ValidateTokens(HttpContextBase httpContext, IIdentity identity, AntiForgeryToken sessionToken, AntiForgeryToken fieldToken)
+   at System.Web.Helpers.AntiXsrf.AntiForgeryWorker.Validate(HttpContextBase httpContext)
+   at System.Web.Helpers.AntiForgery.Validate()
+   at System.Web.Mvc.ValidateAntiForgeryTokenAttribute.OnAuthorization(AuthorizationContext filterContext)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeAuthorizationFilters(ControllerContext controllerContext, IList`1 filters, ActionDescriptor actionDescriptor)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__19(AsyncCallback asyncCallback, Object asyncState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeAction(ControllerContext controllerContext, String actionName, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1c(AsyncCallback asyncCallback, Object asyncState, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Controller.BeginExecuteCore(AsyncCallback callback, Object state)
+   at CEC.SAISE.EDayModule.Controllers.BaseController.BeginExecuteCore(AsyncCallback callback, Object state) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Controllers\BaseController.cs:line 41
+   at System.Web.Mvc.Controller.<BeginExecute>b__14(AsyncCallback asyncCallback, Object callbackState, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Controller.BeginExecute(RequestContext requestContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.BeginExecute(RequestContext requestContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__4(AsyncCallback asyncCallback, Object asyncState, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+2018-06-19 10:48:51.7520 ERROR CEC.SAISE.EDayModule.MvcApplication.Application_Error  System.Web.Mvc.HttpAntiForgeryException (0x80004005): The provided anti-forgery token was meant for a different claims-based user than the current user.
+   at System.Web.Helpers.AntiXsrf.TokenValidator.ValidateTokens(HttpContextBase httpContext, IIdentity identity, AntiForgeryToken sessionToken, AntiForgeryToken fieldToken)
+   at System.Web.Helpers.AntiXsrf.AntiForgeryWorker.Validate(HttpContextBase httpContext)
+   at System.Web.Helpers.AntiForgery.Validate()
+   at System.Web.Mvc.ValidateAntiForgeryTokenAttribute.OnAuthorization(AuthorizationContext filterContext)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeAuthorizationFilters(ControllerContext controllerContext, IList`1 filters, ActionDescriptor actionDescriptor)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__19(AsyncCallback asyncCallback, Object asyncState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeAction(ControllerContext controllerContext, String actionName, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1c(AsyncCallback asyncCallback, Object asyncState, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Controller.BeginExecuteCore(AsyncCallback callback, Object state)
+   at CEC.SAISE.EDayModule.Controllers.BaseController.BeginExecuteCore(AsyncCallback callback, Object state) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Controllers\BaseController.cs:line 41
+   at System.Web.Mvc.Controller.<BeginExecute>b__14(AsyncCallback asyncCallback, Object callbackState, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Controller.BeginExecute(RequestContext requestContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.BeginExecute(RequestContext requestContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__4(AsyncCallback asyncCallback, Object asyncState, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContext httpContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.BeginProcessRequest(HttpContext context, AsyncCallback cb, Object extraData)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2018-06-19 10:49:03.6480 ERROR CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission Index-ElectionCompetitor System.Web.HttpException (0x80004005): The controller for path '/' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.GetControllerByName(RequestContext requestContext, String controllerName) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 277
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission(ControllerContext controllerContext, String action, String controller) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 197
+2018-06-19 11:28:51.8793 ERROR CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission Index-ElectionCompetitor System.Web.HttpException (0x80004005): The controller for path '/' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.GetControllerByName(RequestContext requestContext, String controllerName) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 277
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission(ControllerContext controllerContext, String action, String controller) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 197
+2018-06-19 11:29:20.6921 ERROR CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission Index-ElectionCompetitor System.Web.HttpException (0x80004005): The controller for path '/' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.GetControllerByName(RequestContext requestContext, String controllerName) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 277
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission(ControllerContext controllerContext, String action, String controller) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 197
+2018-06-19 11:29:47.2073 ERROR CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission Index-ElectionCompetitor System.Web.HttpException (0x80004005): The controller for path '/' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.GetControllerByName(RequestContext requestContext, String controllerName) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 277
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission(ControllerContext controllerContext, String action, String controller) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 197
+2018-06-19 11:30:48.0955 ERROR CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission Index-ElectionCompetitor System.Web.HttpException (0x80004005): The controller for path '/' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.GetControllerByName(RequestContext requestContext, String controllerName) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 277
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission(ControllerContext controllerContext, String action, String controller) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 197
+2018-06-19 11:31:12.7792 ERROR CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission Index-ElectionCompetitor System.Web.HttpException (0x80004005): The controller for path '/' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.GetControllerByName(RequestContext requestContext, String controllerName) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 277
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission(ControllerContext controllerContext, String action, String controller) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 197
+2018-06-19 11:35:16.3683 ERROR CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission Index-ElectionCompetitor System.Web.HttpException (0x80004005): The controller for path '/' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.GetControllerByName(RequestContext requestContext, String controllerName) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 277
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission(ControllerContext controllerContext, String action, String controller) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 197
+2018-06-19 12:49:43.3182 ERROR CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission Index-ElectionCompetitor System.Web.HttpException (0x80004005): The controller for path '/' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.GetControllerByName(RequestContext requestContext, String controllerName) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 277
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission(ControllerContext controllerContext, String action, String controller) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 197
+2018-06-19 13:50:34.4962 ERROR CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission Index-ElectionCompetitor System.Web.HttpException (0x80004005): The controller for path '/' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.GetControllerByName(RequestContext requestContext, String controllerName) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 277
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission(ControllerContext controllerContext, String action, String controller) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 197
+2018-06-19 16:12:11.7726 ERROR CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission Index-ElectionCompetitor System.Web.HttpException (0x80004005): The controller for path '/' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.GetControllerByName(RequestContext requestContext, String controllerName) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 277
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission(ControllerContext controllerContext, String action, String controller) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 197
+2018-06-19 16:16:04.7406 ERROR CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission Index-ElectionCompetitor System.Web.HttpException (0x80004005): The controller for path '/' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.GetControllerByName(RequestContext requestContext, String controllerName) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 277
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission(ControllerContext controllerContext, String action, String controller) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 197
+2018-06-19 16:18:54.6135 ERROR CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission Index-ElectionCompetitor System.Web.HttpException (0x80004005): The controller for path '/' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.GetControllerByName(RequestContext requestContext, String controllerName) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 277
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission(ControllerContext controllerContext, String action, String controller) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 197
+2018-06-19 16:39:09.2106 ERROR CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission Index-ElectionCompetitor System.Web.HttpException (0x80004005): The controller for path '/' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.GetControllerByName(RequestContext requestContext, String controllerName) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 277
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission(ControllerContext controllerContext, String action, String controller) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 197

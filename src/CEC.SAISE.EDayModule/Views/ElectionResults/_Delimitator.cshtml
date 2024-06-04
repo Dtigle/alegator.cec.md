@@ -1,0 +1,41 @@
+﻿<h4 class="page-header">Delimitare</h4>
+<div class="row form-horizontal">
+    <div class="col-sm-8">
+        <div class="row padding-15">
+            <div class="col-sm-2">
+                <strong>Scrutin:</strong>
+            </div>
+            <div class="col-sm-6">
+                <input class="electionsSelect" type="hidden" />
+            </div>
+        </div>
+        <div data-bind="if: electionResultsVM.Delimitator().SelectedElectionId() != null" class="row padding-15">
+            <div class="col-sm-2">
+                <strong>Circumscripție:</strong>
+            </div>
+            <div class="col-sm-6">
+                <input class="circumscriptionSelect" type="hidden" />
+            </div>
+        </div>
+
+        <div data-bind="if: electionResultsVM.Delimitator().SelectedCircumscriptionId() != null" class="row padding-15">
+            <div class="col-sm-2">
+                <strong>Localitate:</strong>
+            </div>
+            <div class="col-sm-6">
+                <input class="regionSelect" type="hidden" />
+            </div>
+        </div>
+
+        <div data-bind="if: electionResultsVM.Delimitator().SelectedRegionId() != null" class="row padding-15">
+            <div class="col-sm-2">
+                <strong>Secție de votare:</strong>
+            </div>
+            <div class="col-sm-6">
+                <input class="pollingStationSelect" type="hidden" />
+            </div>
+        </div>
+
+
+    </div>
+</div>

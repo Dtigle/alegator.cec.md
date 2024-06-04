@@ -1,0 +1,73 @@
+﻿@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.Export
+@using CEC.Web.SRV.Resources
+@using Lib.Web.Mvc.JQuery.JqGrid
+
+
+@{
+	var grid1 = Html.GridOptions<PrintSessionsGridModel>("printSessionsGrid", 200)
+		 .SetOptions(x =>
+		 {
+			 x.OnCellSelect = "onCellSelect";
+		     x.SortingName = "StartDate";
+             x.SortingOrder = JqGridSortingOrders.Desc;
+		 })
+		 .BuildGrid(Url.Action("ListPrintSessionsAjax", "Export"))
+        .Navigator(new JqGridNavigatorOptions
+        {
+            Add = false, 
+            Edit = false, 
+            Delete = false, 
+            Search = true, 
+            CloneToTop = true
+        });
+}
+
+@{
+	var grid2 = Html.GridOptions<ExportPollingStationsGridModel>("exportPollingStations", 200)
+		.BuildGrid(Url.Action("ListHistoryPollingStationAjax", "Export"))
+        .Navigator(new JqGridNavigatorOptions
+        {
+            Add = false, 
+            Edit = false, 
+            Delete = false, 
+            Search = true, 
+            CloneToTop = true
+        });
+}
+
+@{
+	ViewBag.Title = MUI.Reporting_HistoryExport;
+}
+
+<div class="box">
+	<div class="box-content">
+		<h5 class="page-header">@MUI.ViewJobList</h5>
+		@grid1.GetHtml()
+	</div>
+</div>
+<div class="box">
+	<div class="box-content">
+		<h5 class="page-header">@MUI.ViewPollingStationExport</h5>
+		@grid2.GetHtml()
+	</div>
+</div>
+
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		@grid1.GetJavaScript();
+	    @grid2.GetJavaScript();
+	});
+	
+	function onCellSelect(printSessionId) {
+		var exportPollingStations = $('#exportPollingStations').jqGrid();
+		exportPollingStations.jqGrid('setGridParam', { 'postData': { 'printSessionId': printSessionId } });
+		exportPollingStations.trigger('reloadGrid');
+	}
+</script>
+
+
+
+
+

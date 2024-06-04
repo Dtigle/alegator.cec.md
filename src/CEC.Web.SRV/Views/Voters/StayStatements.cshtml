@@ -1,0 +1,95 @@
+﻿@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.Voters
+@using CEC.Web.SRV.Resources
+@using Lib.Web.Mvc.JQuery.JqGrid
+
+@{
+	ViewBag.Title = MUI.StayStatements_TabTitle;
+}
+
+@{
+	var grid = Html.GridOptions<StayStatementsGridModel>("stayStatements")
+		.BuildGrid(Url.Action("ListStayStatementsAjax"), exportAction: Url.Action("ExportStayStatements"))
+		.Navigator(new JqGridNavigatorOptions()
+		{
+			Add = false,
+			Edit = false,
+			Delete = false,
+			Search = true,
+            CloneToTop = true
+		})
+        .AddNavigatorButton("Vizualizare", onClick: "$.viewStayStatement")
+        .AddNavigatorButton("Anulare", onClick: "$.cancelStayStatement");
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-content">
+                <h5 class="page-header">@MUI.Voters_SearchLabel</h5>
+                @Html.Partial("_SearchIdnp")
+            </div>
+        </div>
+        <div class="box">
+            <div class="box-content">
+                <h4 class="page-header">@MUI.StayStatements_TabTitle</h4>
+                @grid.GetHtml()
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        @grid.GetJavaScript();
+    });
+	
+    $.viewStayStatement = function (e) {
+        var selections = $("#stayStatements").jqGrid('getGridParam', 'selrow');
+        var url = '@Url.Action("StayStatementView","Voters")';
+
+        if (selections == null || selections.length == 0) {
+            BootstrapDialog.alert({ message: '@MUI.DeclarationNotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+            return;
+        }
+
+        $.openDialog($(this), {
+            title: 'Declarație de ședere',
+            url: url + '?id=' + selections,
+            onSubmit: function() {
+                $("#stayStatements").trigger('reloadGrid');
+            }
+        });
+    };
+
+
+    $.cancelStayStatement = function(e) {
+        var grid = $(this);
+        var stayStatementId = grid.jqGrid('getGridParam', 'selrow');
+        var rowData = grid.getRowData(stayStatementId);
+        var url = '@Url.Action("CancelStayStatement", "Voters")';
+
+        if (stayStatementId == null || stayStatementId.length == 0) {
+            BootstrapDialog.alert({ message: '@MUI.DeclarationNotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+            return;
+        }
+
+        if (rowData.DataDeleted != "" && rowData.DeletedById != "") {
+            return;
+        }
+
+        $.confirm('@MUI.DialogTitle_Confirmation', '@MUI.StayStatementsCancel_Message', function (result) {
+    		if (result) {
+	            $.ajax({
+	                type: "POST",
+	                url: url,
+	                data: { stayStatementId: stayStatementId },
+	                success: function (returnData) {
+	                    grid.trigger('reloadGrid');
+	                }
+	            });
+	        }
+	    });
+	};
+</script>

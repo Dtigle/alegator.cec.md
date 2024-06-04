@@ -1,0 +1,40 @@
+﻿@using CEC.Web.SRV.Resources
+@model CEC.Web.SRV.Models.Address.EditGeolocationModel
+
+<div class="clearfix">
+
+    @using (Html.BeginForm("UpdateGeolocation", "Address", FormMethod.Post, new { @class = "form-horizontal" }))
+	{   
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(x => x.Id)
+        @Html.HiddenFor(x => x.Geolatitude)
+        @Html.HiddenFor(x => x.Geolongitude)
+
+		<div class="form-group">
+			@Html.DisplayFor(x=>x.Address)
+			<label id="Longitude" style="display: none"></label>
+			<label id="Latitude" style="display: none"></label>
+		</div>
+		
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-10">
+				<input type="submit" value="@MUI.ButtonSave" class="btn btn-primary" onclick="SetGeolocation()" style="float: right" />
+			</div>
+		</div>
+		
+		<div id="map-2" style="height: 400px;"></div>
+	}
+</div>
+
+<script type="text/javascript">
+	var imageUrl = '@Url.Content("~/")';
+	$('.rsa-form-group > div.col-sm-4').removeClass('col-sm-4').addClass('col-sm-6');
+	$('.rsa-form-group > div.col-sm-2').removeClass('col-sm-2');
+	$('#Address').css('font-weight', 'bold');
+
+	function SetGeolocation() {
+		$("#Geolongitude").val($("#Longitude").text().replace(".",","));
+		$("#Geolatitude").val($("#Latitude").text().replace(".", ","));
+	}
+</script>

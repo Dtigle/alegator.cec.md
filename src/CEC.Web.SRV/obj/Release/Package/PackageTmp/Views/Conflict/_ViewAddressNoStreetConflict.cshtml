@@ -1,0 +1,60 @@
+﻿@using CEC.Web.SRV.Resources
+@model  CEC.Web.SRV.Models.Conflict.ViewAddressConflictModel
+
+<div class="row">
+    @Html.HiddenFor(x=>x.IdRSP)
+    @Html.DisplayFor(x=>x.StatusMessage)
+</div>
+<div class="row messageBox" style="padding: 15px;">
+    @Html.Partial("_ShareConflictDetails")
+</div>
+<button type="button" class="btn btn-default" id="resolve_conflict">Rezolvă conflictul</button>
+
+<script type="text/javascript">
+    $('.rsa-form-group > div.col-sm-4').removeClass('col-sm-4').addClass('col-sm-10');
+    $(document).ready(function() {
+
+        $('#resolve_conflict').click(function() {
+            var selections = onRowSelect();
+            if (selections == null || selections.length == 0) {
+                BootstrapDialog.alert({ message: '@MUI.Conflict_AddressNoStreet_NotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+                return;
+            }
+            if (selections.length > 1 && !VerificationSameRegion(selections)) {
+                return;
+            }
+            var url = '@Url.Action("ResolveAddressNoStreetConflict", "Conflict")';
+            var arr = [];
+            $.each(selections, function(i,v) {
+                arr.push(v);
+            });
+            $.openDialog($(this), {
+                url: url,
+                usePost: true,
+                title: "@MUI.ResolveConflict_DialogTitle",
+                postData: { conflictIds: arr },
+                onSubmit: function () {
+                    $("#addressNoStreetConflicts").trigger('reloadGrid');
+                }
+            });
+        });
+    });
+    
+   function onRowSelect() {
+        var selections = $("#addressNoStreetConflicts").jqGrid('getGridParam', 'selarrrow');
+        return selections;
+   };
+   
+   function VerificationSameRegion(selections) {
+       var grid = $("#addressNoStreetConflicts");
+       var rowData = grid.jqGrid("getRowData", selections[0]);
+       for (var i = 1; i < selections.length; i++) {
+           var rowData2 = grid.jqGrid("getRowData", selections[i]);
+           if (rowData.RegionId != rowData2.RegionId) {
+               BootstrapDialog.alert({ message: '@MUI.Conflict_DifferentRegion', title: '@MUI.DialogTitle_Information' });
+               return false;
+           }
+       }
+       return true;
+   } 
+</script>

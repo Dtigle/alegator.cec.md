@@ -1,0 +1,248 @@
+2018-08-06 16:31:40.7360 ERROR CEC.Web.SRV.Infrastructure.HandleAndLogErrorAttribute.OnException  System.NullReferenceException: Object reference not set to an instance of an object.
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.GetReportParameters(ReportViewerModel model, Boolean forRendering) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 58
+   at CEC.Web.SRV.Controllers.ReportingController.ViewReport(String path) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\Controllers\ReportingController.cs:line 305
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass33.<BeginInvokeActionMethodWithFilters>b__32(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+2018-08-06 16:33:16.6698 ERROR CEC.Web.SRV.Infrastructure.HandleAndLogErrorAttribute.OnException  System.NullReferenceException: Object reference not set to an instance of an object.
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.GetReportParameters(ReportViewerModel model, Boolean forRendering) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 58
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.ExportReportToFormat(ReportViewerModel model, String format, Nullable`1 startPage, Nullable`1 endPage, Boolean bindData) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 107
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.ExportReportToFormat(ReportViewerModel model, ReportFormats format, Nullable`1 startPage, Nullable`1 endPage, Boolean bindData) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 88
+   at SoftTehnica.MvcReportViewer.HtmlHelperExtensions.RenderReportViewer(HtmlHelper helper, ReportViewerModel model, Nullable`1 startPage) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\HtmlHelperExtensions.cs:line 43
+   at ASP._Page_Views_Reporting__ViewReport_cshtml.Execute() in d:\work\CEC\CEC.SRV\src\CEC.Web.SRV\Views\Reporting\_ViewReport.cshtml:line 8
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+2018-08-06 16:34:09.9173 ERROR CEC.Web.SRV.Infrastructure.HandleAndLogErrorAttribute.OnException  System.NullReferenceException: Object reference not set to an instance of an object.
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.GetReportParameters(ReportViewerModel model, Boolean forRendering) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 58
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.ExportReportToFormat(ReportViewerModel model, String format, Nullable`1 startPage, Nullable`1 endPage, Boolean bindData) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 107
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.ExportReportToFormat(ReportViewerModel model, ReportFormats format, Nullable`1 startPage, Nullable`1 endPage, Boolean bindData) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 88
+   at SoftTehnica.MvcReportViewer.HtmlHelperExtensions.RenderReportViewer(HtmlHelper helper, ReportViewerModel model, Nullable`1 startPage) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\HtmlHelperExtensions.cs:line 43
+   at ASP._Page_Views_Reporting__ViewReport_cshtml.Execute() in d:\work\CEC\CEC.SRV\src\CEC.Web.SRV\Views\Reporting\_ViewReport.cshtml:line 8
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+2018-08-06 16:34:32.8318 ERROR CEC.Web.SRV.Infrastructure.HandleAndLogErrorAttribute.OnException  System.NullReferenceException: Object reference not set to an instance of an object.
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.GetReportParameters(ReportViewerModel model, Boolean forRendering) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 58
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.ExportReportToFormat(ReportViewerModel model, String format, Nullable`1 startPage, Nullable`1 endPage, Boolean bindData) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 107
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.ExportReportToFormat(ReportViewerModel model, ReportFormats format, Nullable`1 startPage, Nullable`1 endPage, Boolean bindData) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 88
+   at SoftTehnica.MvcReportViewer.HtmlHelperExtensions.RenderReportViewer(HtmlHelper helper, ReportViewerModel model, Nullable`1 startPage) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\HtmlHelperExtensions.cs:line 43
+   at ASP._Page_Views_Reporting__ViewReport_cshtml.Execute() in d:\work\CEC\CEC.SRV\src\CEC.Web.SRV\Views\Reporting\_ViewReport.cshtml:line 8
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+2018-08-06 16:36:11.8214 ERROR CEC.Web.SRV.Infrastructure.HandleAndLogErrorAttribute.OnException  System.NullReferenceException: Object reference not set to an instance of an object.
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.GetReportParameters(ReportViewerModel model, Boolean forRendering) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 58
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.ExportReportToFormat(ReportViewerModel model, String format, Nullable`1 startPage, Nullable`1 endPage, Boolean bindData) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 107
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.ExportReportToFormat(ReportViewerModel model, ReportFormats format, Nullable`1 startPage, Nullable`1 endPage, Boolean bindData) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 88
+   at SoftTehnica.MvcReportViewer.HtmlHelperExtensions.RenderReportViewer(HtmlHelper helper, ReportViewerModel model, Nullable`1 startPage) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\HtmlHelperExtensions.cs:line 43
+   at ASP._Page_Views_Reporting__ViewReport_cshtml.Execute() in d:\work\CEC\CEC.SRV\src\CEC.Web.SRV\Views\Reporting\_ViewReport.cshtml:line 8
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+2018-08-06 16:36:46.6577 ERROR CEC.Web.SRV.Infrastructure.HandleAndLogErrorAttribute.OnException  System.NullReferenceException: Object reference not set to an instance of an object.
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.GetReportParameters(ReportViewerModel model, Boolean forRendering) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 58
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.ExportReportToFormat(ReportViewerModel model, String format, Nullable`1 startPage, Nullable`1 endPage, Boolean bindData) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 107
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.ExportReportToFormat(ReportViewerModel model, ReportFormats format, Nullable`1 startPage, Nullable`1 endPage, Boolean bindData) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 88
+   at SoftTehnica.MvcReportViewer.HtmlHelperExtensions.RenderReportViewer(HtmlHelper helper, ReportViewerModel model, Nullable`1 startPage) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\HtmlHelperExtensions.cs:line 43
+   at ASP._Page_Views_Reporting__ViewReport_cshtml.Execute() in d:\work\CEC\CEC.SRV\src\CEC.Web.SRV\Views\Reporting\_ViewReport.cshtml:line 8
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+2018-08-06 16:38:14.1053 ERROR CEC.Web.SRV.Infrastructure.HandleAndLogErrorAttribute.OnException  System.NullReferenceException: Object reference not set to an instance of an object.
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.GetReportParameters(ReportViewerModel model, Boolean forRendering) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 58
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.ExportReportToFormat(ReportViewerModel model, String format, Nullable`1 startPage, Nullable`1 endPage, Boolean bindData) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 107
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.ExportReportToFormat(ReportViewerModel model, ReportFormats format, Nullable`1 startPage, Nullable`1 endPage, Boolean bindData) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 88
+   at SoftTehnica.MvcReportViewer.HtmlHelperExtensions.RenderReportViewer(HtmlHelper helper, ReportViewerModel model, Nullable`1 startPage) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\HtmlHelperExtensions.cs:line 43
+   at ASP._Page_Views_Reporting__ViewReport_cshtml.Execute() in d:\work\CEC\CEC.SRV\src\CEC.Web.SRV\Views\Reporting\_ViewReport.cshtml:line 8
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+2018-08-06 16:40:47.8042 ERROR CEC.Web.SRV.Infrastructure.HandleAndLogErrorAttribute.OnException  System.NullReferenceException: Object reference not set to an instance of an object.
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.GetReportParameters(ReportViewerModel model, Boolean forRendering) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 58
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.ExportReportToFormat(ReportViewerModel model, String format, Nullable`1 startPage, Nullable`1 endPage, Boolean bindData) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 107
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.ExportReportToFormat(ReportViewerModel model, ReportFormats format, Nullable`1 startPage, Nullable`1 endPage, Boolean bindData) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 88
+   at SoftTehnica.MvcReportViewer.HtmlHelperExtensions.RenderReportViewer(HtmlHelper helper, ReportViewerModel model, Nullable`1 startPage) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\HtmlHelperExtensions.cs:line 43
+   at ASP._Page_Views_Reporting__ViewReport_cshtml.Execute() in d:\work\CEC\CEC.SRV\src\CEC.Web.SRV\Views\Reporting\_ViewReport.cshtml:line 8
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+2018-08-06 16:41:29.0481 ERROR CEC.Web.SRV.Infrastructure.HandleAndLogErrorAttribute.OnException  System.NullReferenceException: Object reference not set to an instance of an object.
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.GetReportParameters(ReportViewerModel model, Boolean forRendering) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 58
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.ExportReportToFormat(ReportViewerModel model, String format, Nullable`1 startPage, Nullable`1 endPage, Boolean bindData) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 107
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.ExportReportToFormat(ReportViewerModel model, ReportFormats format, Nullable`1 startPage, Nullable`1 endPage, Boolean bindData) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 88
+   at SoftTehnica.MvcReportViewer.HtmlHelperExtensions.RenderReportViewer(HtmlHelper helper, ReportViewerModel model, Nullable`1 startPage) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\HtmlHelperExtensions.cs:line 43
+   at ASP._Page_Views_Reporting__ViewReport_cshtml.Execute() in d:\work\CEC\CEC.SRV\src\CEC.Web.SRV\Views\Reporting\_ViewReport.cshtml:line 8
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+2018-08-06 16:42:00.1153 ERROR CEC.Web.SRV.Infrastructure.HandleAndLogErrorAttribute.OnException  System.NullReferenceException: Object reference not set to an instance of an object.
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.GetReportParameters(ReportViewerModel model, Boolean forRendering) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 58
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.ExportReportToFormat(ReportViewerModel model, String format, Nullable`1 startPage, Nullable`1 endPage, Boolean bindData) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 107
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.ExportReportToFormat(ReportViewerModel model, ReportFormats format, Nullable`1 startPage, Nullable`1 endPage, Boolean bindData) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 88
+   at SoftTehnica.MvcReportViewer.HtmlHelperExtensions.RenderReportViewer(HtmlHelper helper, ReportViewerModel model, Nullable`1 startPage) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\HtmlHelperExtensions.cs:line 43
+   at ASP._Page_Views_Reporting__ViewReport_cshtml.Execute() in d:\work\CEC\CEC.SRV\src\CEC.Web.SRV\Views\Reporting\_ViewReport.cshtml:line 8
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+2018-08-06 16:42:12.7215 ERROR CEC.Web.SRV.Infrastructure.HandleAndLogErrorAttribute.OnException  System.NullReferenceException: Object reference not set to an instance of an object.
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.GetReportParameters(ReportViewerModel model, Boolean forRendering) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 58
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.ExportReportToFormat(ReportViewerModel model, String format, Nullable`1 startPage, Nullable`1 endPage, Boolean bindData) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 107
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.ExportReportToFormat(ReportViewerModel model, ReportFormats format, Nullable`1 startPage, Nullable`1 endPage, Boolean bindData) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 88
+   at SoftTehnica.MvcReportViewer.HtmlHelperExtensions.RenderReportViewer(HtmlHelper helper, ReportViewerModel model, Nullable`1 startPage) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\HtmlHelperExtensions.cs:line 43
+   at ASP._Page_Views_Reporting__ViewReport_cshtml.Execute() in d:\work\CEC\CEC.SRV\src\CEC.Web.SRV\Views\Reporting\_ViewReport.cshtml:line 8
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+2018-08-06 16:43:43.2820 ERROR CEC.Web.SRV.Infrastructure.HandleAndLogErrorAttribute.OnException  System.NullReferenceException: Object reference not set to an instance of an object.
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.GetReportParameters(ReportViewerModel model, Boolean forRendering) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 58
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.ExportReportToFormat(ReportViewerModel model, String format, Nullable`1 startPage, Nullable`1 endPage, Boolean bindData) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 107
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.ExportReportToFormat(ReportViewerModel model, ReportFormats format, Nullable`1 startPage, Nullable`1 endPage, Boolean bindData) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 88
+   at SoftTehnica.MvcReportViewer.HtmlHelperExtensions.RenderReportViewer(HtmlHelper helper, ReportViewerModel model, Nullable`1 startPage) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\HtmlHelperExtensions.cs:line 43
+   at ASP._Page_Views_Reporting__ViewReport_cshtml.Execute() in d:\work\CEC\CEC.SRV\src\CEC.Web.SRV\Views\Reporting\_ViewReport.cshtml:line 8
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+2018-08-06 16:44:10.2727 ERROR CEC.Web.SRV.Infrastructure.HandleAndLogErrorAttribute.OnException  System.NullReferenceException: Object reference not set to an instance of an object.
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.GetReportParameters(ReportViewerModel model, Boolean forRendering) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 58
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.ExportReportToFormat(ReportViewerModel model, String format, Nullable`1 startPage, Nullable`1 endPage, Boolean bindData) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 107
+   at SoftTehnica.MvcReportViewer.ReportServiceHelpers.ExportReportToFormat(ReportViewerModel model, ReportFormats format, Nullable`1 startPage, Nullable`1 endPage, Boolean bindData) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\ReportServiceHelpers.cs:line 88
+   at SoftTehnica.MvcReportViewer.HtmlHelperExtensions.RenderReportViewer(HtmlHelper helper, ReportViewerModel model, Nullable`1 startPage) in D:\work\CEC\CEC.SRV\src\Infrastructure\SoftTehnica.MvcReportViewer\HtmlHelperExtensions.cs:line 43
+   at ASP._Page_Views_Reporting__ViewReport_cshtml.Execute() in d:\work\CEC\CEC.SRV\src\CEC.Web.SRV\Views\Reporting\_ViewReport.cshtml:line 8
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.RazorView.RenderView(ViewContext viewContext, TextWriter writer, Object instance)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResult(ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)

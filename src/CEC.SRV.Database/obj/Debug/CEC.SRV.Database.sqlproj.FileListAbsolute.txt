@@ -1,0 +1,5 @@
+D:\work\CEC\CEC.SRV\src\CEC.SRV.Database\bin\Debug\CEC.SRV.Database.dacpac
+D:\work\CEC\CEC.SRV\src\CEC.SRV.Database\bin\Debug\CEC.SRV.Database.dll
+D:\work\CEC\CEC.SRV\src\CEC.SRV.Database\bin\Debug\CEC.SRV.Database.pdb
+D:\work\CEC\CEC.SRV\src\CEC.SRV.Database\obj\Debug\CEC.SRV.Database.dll
+D:\work\CEC\CEC.SRV\src\CEC.SRV.Database\obj\Debug\CEC.SRV.Database.pdb

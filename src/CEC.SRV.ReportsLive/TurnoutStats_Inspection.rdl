@@ -1,0 +1,1919 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Tablix Name="Tablix3">
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn>
+              <Width>1.15063cm</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>0.96542cm</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>6.73333cm</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1.81208cm</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1.75917cm</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1.73271cm</Width>
+            </TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>0.6cm</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox200">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style>
+                                <FontFamily>Trebuchet MS</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox200</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>Gray</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <LeftBorder>
+                          <Color>#00c3e1</Color>
+                        </LeftBorder>
+                        <BackgroundColor>#00c3e1</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                    <ColSpan>3</ColSpan>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell />
+                <TablixCell />
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="ET_TimeOfEntry4">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=iif(Fields!ET_TimeOfEntry.Value = "Open", "Deschidere", Fields!ET_TimeOfEntry.Value)</Value>
+                              <Style>
+                                <FontFamily>Trebuchet MS</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>ET_TimeOfEntry1</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>Gray</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <RightBorder>
+                          <Color>Black</Color>
+                        </RightBorder>
+                        <BackgroundColor>#00c3e1</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                    <ColSpan>3</ColSpan>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell />
+                <TablixCell />
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>1.18521cm</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Header_PSCount">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Num.</Value>
+                              <Style>
+                                <FontFamily>Trebuchet MS</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>SV</Value>
+                              <Style>
+                                <FontFamily>Trebuchet MS</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <Style>
+                        <Border>
+                          <Color>Gray</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>#00c3e1</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox5">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Nr.</Value>
+                              <Style>
+                                <FontFamily>Trebuchet MS</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox5</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>Gray</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>#ffb363</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox10">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Secția de votare</Value>
+                              <Style>
+                                <FontFamily>Trebuchet MS</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox10</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>Gray</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>#ffb363</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox221">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=iif (Fields!ET_TimeOfEntry.Value = "Open"
+		, "Lista" + Chr(13) + Chr(10)
+			+ "de bază"
+		, "Buletine" + Chr(13) + Chr(10)
+			+ "eliberate")</Value>
+                              <Style>
+                                <FontFamily>Trebuchet MS</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox221</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>Gray</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>#3bae3e</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="ET_TimeOfEntry2">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=iif (Fields!ET_TimeOfEntry.Value = "Open"
+		, "Secții" + Chr(13) + Chr(10)
+			+ "Deschise"
+		, "Rapoarte" + Chr(13) + Chr(10)
+			+ "recep-te")</Value>
+                              <Style>
+                                <FontFamily>Trebuchet MS</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>ET_TimeOfEntry1</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>Gray</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>CornflowerBlue</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox212">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=iif (Fields!ET_TimeOfEntry.Value = "Open"
+	, "Secții" + Chr(13) + Chr(10)
+	  + "Închise"
+	, "Rapoarte" + Chr(13) + Chr(10)
+	  +"lipsă")</Value>
+                              <Style>
+                                <FontFamily>Trebuchet MS</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox212</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>Gray</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <RightBorder>
+                          <Color>Black</Color>
+                        </RightBorder>
+                        <BackgroundColor>CornflowerBlue</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>0.46cm</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="PS_PollingStationId3">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=CountDistinct(Fields!PS_PollingStationId.Value)</Value>
+                              <Style>
+                                <FontFamily>Trebuchet MS</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>PS_PollingStationId</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>Gray</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>PaleTurquoise</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox69">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style>
+                                <FontFamily>Trebuchet MS</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox69</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>Gray</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>PaleTurquoise</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox70">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style>
+                                <FontFamily>Trebuchet MS</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox70</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>Gray</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>PaleTurquoise</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox222">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=iif (Fields!ET_TimeOfEntry.Value = "Open", Sum(Fields!APS_OpeningVoters.Value), Sum(Fields!ET_ListCount.Value) + Sum(Fields!ET_SupplementaryCount.Value) )</Value>
+                              <Style>
+                                <FontFamily>Trebuchet MS</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox222</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>Gray</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>LightGreen</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox72">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=iif (Fields!ET_TimeOfEntry.Value = "Open", Sum(Fields!Opened.Value), Sum(Fields!Raported.Value) )</Value>
+                              <Style>
+                                <FontFamily>Trebuchet MS</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox72</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>Gray</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>#c1d5f2</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox185">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=iif (Fields!ET_TimeOfEntry.Value = "Open", Sum(Fields!Closed.Value), Sum(Fields!NotRaported.Value))</Value>
+                              <Style>
+                                <FontFamily>Trebuchet MS</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox185</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>Gray</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <RightBorder>
+                          <Color>Black</Color>
+                        </RightBorder>
+                        <BackgroundColor>= iif( iif (Fields!ET_TimeOfEntry.Value = "Open", Sum(Fields!Closed.Value), Sum(Fields!NotRaported.Value)) = 0
+		, "#c1d5f2"
+		,"HotPink" )</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>0.46cm</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="PS_PollingStationId">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=CountDistinct(Fields!PS_PollingStationId.Value)</Value>
+                              <Style>
+                                <FontFamily>Trebuchet MS</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>PS_PollingStationId</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>Gray</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>PaleTurquoise</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox62">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style>
+                                <FontFamily>Trebuchet MS</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox62</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>Gray</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>PaleTurquoise</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox63">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style>
+                                <FontFamily>Trebuchet MS</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox63</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>Gray</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>PaleTurquoise</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="APS_OpeningVoters3">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=iif (Fields!ET_TimeOfEntry.Value = "Open", Sum(Fields!APS_OpeningVoters.Value), Sum(Fields!ET_ListCount.Value) + Sum(Fields!ET_SupplementaryCount.Value) )</Value>
+                              <Style>
+                                <FontFamily>Trebuchet MS</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>APS_OpeningVoters3</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>Gray</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>LightGreen</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Opened">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=iif (Fields!ET_TimeOfEntry.Value = "Open", Sum(Fields!Opened.Value), Sum(Fields!Raported.Value) )</Value>
+                              <Style>
+                                <FontFamily>Trebuchet MS</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Opened</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>Gray</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>#c1d5f2</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Closed">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=iif (Fields!ET_TimeOfEntry.Value = "Open", Sum(Fields!Closed.Value), Sum(Fields!NotRaported.Value))</Value>
+                              <Style>
+                                <FontFamily>Trebuchet MS</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Closed</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>Gray</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <RightBorder>
+                          <Color>Black</Color>
+                        </RightBorder>
+                        <BackgroundColor>= iif( iif (Fields!ET_TimeOfEntry.Value = "Open", Sum(Fields!Closed.Value), Sum(Fields!NotRaported.Value)) = 0
+		, "#c1d5f2"
+		,"HotPink" )</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>0.46cm</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox204">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style>
+                                <FontFamily>Trebuchet MS</FontFamily>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox204</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>Gray</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>PaleTurquoise</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="PS_Nr">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!PS_Nr.Value</Value>
+                              <Style>
+                                <FontFamily>Trebuchet MS</FontFamily>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>PS_Nr</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>Gray</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="PS_NameRo">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!PS_NameRo.Value</Value>
+                              <Style>
+                                <FontFamily>Trebuchet MS</FontFamily>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>PS_NameRo</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>Gray</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="APS_OpeningVoters1">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=iif (Fields!ET_TimeOfEntry.Value = "Open", Fields!APS_OpeningVoters.Value, Fields!ET_ListCount.Value + Fields!ET_SupplementaryCount.Value )</Value>
+                              <Style>
+                                <FontFamily>Trebuchet MS</FontFamily>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>APS_OpeningVoters1</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>Gray</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                      </Style>
+                    </Textbox>
+                    <rd:Selected>true</rd:Selected>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Opened1">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=iif (Fields!ET_TimeOfEntry.Value = "Open", Fields!Opened.Value, Fields!Raported.Value )</Value>
+                              <Style>
+                                <FontFamily>Trebuchet MS</FontFamily>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Opened1</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>Gray</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="APS_OpeningVoters">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=iif (Fields!ET_TimeOfEntry.Value = "Open", Fields!Closed.Value, Fields!NotRaported.Value )</Value>
+                              <Style>
+                                <FontFamily>Trebuchet MS</FontFamily>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>APS_OpeningVoters</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>Gray</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <RightBorder>
+                          <Color>Black</Color>
+                        </RightBorder>
+                        <BackgroundColor>= iif( iif (Fields!ET_TimeOfEntry.Value = "Open", 
+			Fields!Closed.Value, 
+			Fields!NotRaported.Value ) = 0
+		, "Transparent"
+		,"HotPink" )</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember />
+            <TablixMember>
+              <Visibility>
+                <Hidden>true</Hidden>
+                <ToggleItem>Header_V</ToggleItem>
+              </Visibility>
+            </TablixMember>
+            <TablixMember>
+              <Visibility>
+                <Hidden>true</Hidden>
+                <ToggleItem>Header_V</ToggleItem>
+              </Visibility>
+            </TablixMember>
+            <TablixMember>
+              <Group Name="ET_TimeOfEntry">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!ET_TimeOfEntry.Value</GroupExpression>
+                </GroupExpressions>
+              </Group>
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=iif(Fields!ET_TimeOfEntry.Value = "Open","00:00",Fields!ET_TimeOfEntry.Value)</Value>
+                </SortExpression>
+              </SortExpressions>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixMember>
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <TablixHeader>
+                <Size>7.18789cm</Size>
+                <CellContents>
+                  <Textbox Name="Textbox188">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Label>ElectionName</Label>
+                            <Value />
+                            <Style>
+                              <FontFamily>Trebuchet MS</FontFamily>
+                              <FontWeight>Bold</FontWeight>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style>
+                          <TextAlign>Center</TextAlign>
+                        </Style>
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>Textbox188</rd:DefaultName>
+                    <Style>
+                      <Border>
+                        <Color>Gray</Color>
+                        <Style>Solid</Style>
+                      </Border>
+                      <RightBorder>
+                        <Color>#00c3e1</Color>
+                      </RightBorder>
+                      <BackgroundColor>#00c3e1</BackgroundColor>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixHeader>
+              <FixedData>true</FixedData>
+              <KeepWithGroup>After</KeepWithGroup>
+              <RepeatOnNewPage>true</RepeatOnNewPage>
+            </TablixMember>
+            <TablixMember>
+              <TablixHeader>
+                <Size>3.04208cm</Size>
+                <CellContents>
+                  <Textbox Name="Textbox64">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>Circumscripție</Value>
+                            <Style>
+                              <FontFamily>Trebuchet MS</FontFamily>
+                              <FontWeight>Bold</FontWeight>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style>
+                          <TextAlign>Center</TextAlign>
+                        </Style>
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>Textbox64</rd:DefaultName>
+                    <Style>
+                      <Border>
+                        <Color>Gray</Color>
+                        <Style>Solid</Style>
+                      </Border>
+                      <BackgroundColor>#00c3e1</BackgroundColor>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                      <PaddingBottom>2pt</PaddingBottom>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixHeader>
+              <TablixMembers>
+                <TablixMember>
+                  <TablixHeader>
+                    <Size>4.14581cm</Size>
+                    <CellContents>
+                      <Textbox Name="Header_V">
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value>Localitate / Sector</Value>
+                                <Style>
+                                  <FontFamily>Trebuchet MS</FontFamily>
+                                  <FontWeight>Bold</FontWeight>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style>
+                              <TextAlign>Center</TextAlign>
+                            </Style>
+                          </Paragraph>
+                        </Paragraphs>
+                        <Style>
+                          <Border>
+                            <Color>Gray</Color>
+                            <Style>Solid</Style>
+                          </Border>
+                          <BackgroundColor>#00c3e1</BackgroundColor>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixHeader>
+                  <TablixMembers>
+                    <TablixMember />
+                  </TablixMembers>
+                </TablixMember>
+              </TablixMembers>
+              <FixedData>true</FixedData>
+              <KeepWithGroup>After</KeepWithGroup>
+              <RepeatOnNewPage>true</RepeatOnNewPage>
+            </TablixMember>
+            <TablixMember>
+              <Group Name="D_DistrictId">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!D_DistrictId.Value</GroupExpression>
+                </GroupExpressions>
+              </Group>
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=Fields!D_Nr.Value</Value>
+                </SortExpression>
+              </SortExpressions>
+              <TablixHeader>
+                <Size>3.04208cm</Size>
+                <CellContents>
+                  <Textbox Name="D_NamePropRo">
+                    <CanGrow>true</CanGrow>
+                    <KeepTogether>true</KeepTogether>
+                    <Paragraphs>
+                      <Paragraph>
+                        <TextRuns>
+                          <TextRun>
+                            <Value>=Fields!D_NamePropRo.Value</Value>
+                            <Style>
+                              <FontFamily>Trebuchet MS</FontFamily>
+                              <FontWeight>Bold</FontWeight>
+                            </Style>
+                          </TextRun>
+                        </TextRuns>
+                        <Style />
+                      </Paragraph>
+                    </Paragraphs>
+                    <rd:DefaultName>D_NamePropRo</rd:DefaultName>
+                    <Style>
+                      <Border>
+                        <Color>Gray</Color>
+                        <Style>Solid</Style>
+                      </Border>
+                      <BackgroundColor>PaleTurquoise</BackgroundColor>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingRight>2pt</PaddingRight>
+                    </Style>
+                  </Textbox>
+                </CellContents>
+              </TablixHeader>
+              <TablixMembers>
+                <TablixMember>
+                  <TablixHeader>
+                    <Size>4.14581cm</Size>
+                    <CellContents>
+                      <Textbox Name="Textbox68">
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value />
+                                <Style>
+                                  <FontFamily>Trebuchet MS</FontFamily>
+                                  <FontWeight>Bold</FontWeight>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style />
+                          </Paragraph>
+                        </Paragraphs>
+                        <rd:DefaultName>Textbox68</rd:DefaultName>
+                        <Style>
+                          <Border>
+                            <Color>Gray</Color>
+                            <Style>Solid</Style>
+                          </Border>
+                          <BackgroundColor>PaleTurquoise</BackgroundColor>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixHeader>
+                  <KeepWithGroup>After</KeepWithGroup>
+                </TablixMember>
+                <TablixMember>
+                  <Group Name="V_VillageId">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!V_VillageId.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!V_NamePropRo.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <TablixHeader>
+                    <Size>4.14581cm</Size>
+                    <CellContents>
+                      <Textbox Name="V_NamePropRo">
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value>=Fields!V_NamePropRo.Value</Value>
+                                <Style>
+                                  <FontFamily>Trebuchet MS</FontFamily>
+                                  <FontWeight>Bold</FontWeight>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style />
+                          </Paragraph>
+                        </Paragraphs>
+                        <rd:DefaultName>V_NamePropRo</rd:DefaultName>
+                        <Style>
+                          <Border>
+                            <Color>Gray</Color>
+                            <Style>Solid</Style>
+                          </Border>
+                          <BackgroundColor>PaleTurquoise</BackgroundColor>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixHeader>
+                  <TablixMembers>
+                    <TablixMember>
+                      <KeepWithGroup>After</KeepWithGroup>
+                    </TablixMember>
+                    <TablixMember>
+                      <Group Name="Details_PollingStation">
+                        <GroupExpressions>
+                          <GroupExpression>=Fields!PS_PollingStationId.Value</GroupExpression>
+                        </GroupExpressions>
+                      </Group>
+                      <SortExpressions>
+                        <SortExpression>
+                          <Value>=Fields!PS_Nr.Value</Value>
+                        </SortExpression>
+                      </SortExpressions>
+                      <TablixMembers>
+                        <TablixMember />
+                      </TablixMembers>
+                      <Visibility>
+                        <Hidden>true</Hidden>
+                        <ToggleItem>V_NamePropRo</ToggleItem>
+                      </Visibility>
+                    </TablixMember>
+                  </TablixMembers>
+                  <Visibility>
+                    <Hidden>true</Hidden>
+                    <ToggleItem>D_NamePropRo</ToggleItem>
+                  </Visibility>
+                </TablixMember>
+              </TablixMembers>
+            </TablixMember>
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <DataSetName>DS_pDK_ElectionTurnoutInternal_Inspection</DataSetName>
+        <Height>3.16521cm</Height>
+        <Width>21.34123cm</Width>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Tablix>
+    </ReportItems>
+    <Height>3.16521cm</Height>
+    <Style />
+  </Body>
+  <Width>22.10852cm</Width>
+  <Page>
+    <PageHeader>
+      <Height>1.235cm</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="Textbox4">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Label>ElectionName</Label>
+                  <Value>=Lookup(Parameters!ElectionId.Value(0),
+		Fields!E_ElectionId.Value, 
+		Fields!E_DescriptionRo.Value,
+		"DS_Election_RP")</Value>
+                  <Style>
+                    <FontSize>12pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Value xml:space="preserve">  </Value>
+                  <Style>
+                    <FontFamily>Trebuchet MS</FontFamily>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Label>ElectionDate</Label>
+                  <Value>=Lookup(Parameters!ElectionId.Value(0),
+			Fields!E_ElectionId.Value, 
+			Fields!E_DateOfElection.Value,
+			"DS_Election_RP")</Value>
+                  <Style>
+                    <FontFamily>Trebuchet MS</FontFamily>
+                    <FontSize>12pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <Format>dd.MM.yyyy</Format>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Value>.</Value>
+                  <Style>
+                    <FontFamily>Trebuchet MS</FontFamily>
+                    <FontSize>12pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox4</rd:DefaultName>
+          <Height>1.235cm</Height>
+          <Width>15.38811cm</Width>
+          <Visibility>
+            <Hidden>true</Hidden>
+          </Visibility>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageHeader>
+    <PageFooter>
+      <Height>0.6cm</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="Textbox77">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Pagina:</Value>
+                  <Style>
+                    <FontFamily>Trebuchet MS</FontFamily>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Value>=Globals!PageNumber</Value>
+                  <Style>
+                    <FontFamily>Trebuchet MS</FontFamily>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Value> din </Value>
+                  <Style>
+                    <FontFamily>Trebuchet MS</FontFamily>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Value>=Globals!TotalPages</Value>
+                  <Style>
+                    <FontFamily>Trebuchet MS</FontFamily>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox77</rd:DefaultName>
+          <Height>0.56472cm</Height>
+          <Width>7.18789cm</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="ExecutionTime">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Data generării raportului: </Value>
+                  <Style>
+                    <FontFamily>Trebuchet MS</FontFamily>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Label>ExecDate</Label>
+                  <Value>=Globals!ExecutionTime</Value>
+                  <Style>
+                    <FontFamily>Trebuchet MS</FontFamily>
+                    <Format>dd.MM.yyyy</Format>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Value xml:space="preserve"> </Value>
+                  <Style>
+                    <FontFamily>Trebuchet MS</FontFamily>
+                    <Format>dd.MM.yyyy</Format>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Label>ExecTime</Label>
+                  <Value>=Globals!ExecutionTime</Value>
+                  <Style>
+                    <FontFamily>Trebuchet MS</FontFamily>
+                    <Format>H:mm</Format>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>ExecutionTime</rd:DefaultName>
+          <Left>13.79303cm</Left>
+          <Height>0.6cm</Height>
+          <Width>8.28903cm</Width>
+          <ZIndex>1</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageFooter>
+    <PageHeight>21cm</PageHeight>
+    <PageWidth>29.7cm</PageWidth>
+    <LeftMargin>0.5cm</LeftMargin>
+    <RightMargin>0.5cm</RightMargin>
+    <TopMargin>0.5cm</TopMargin>
+    <BottomMargin>0.5cm</BottomMargin>
+    <ColumnSpacing>0.13cm</ColumnSpacing>
+    <Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource_SAISE">
+      <DataSourceReference>DataSource_SAISE</DataSourceReference>
+      <rd:SecurityType>Windows</rd:SecurityType>
+      <rd:DataSourceID>82af6a7a-9b46-48a6-be3c-e0b25d4a4c36</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="DS_Election_RP">
+      <Query>
+        <DataSourceName>DataSource_SAISE</DataSourceName>
+        <CommandText>SELECT     E_ElectionId, E_ElectionType, E_DateOfElection, E_ElectionName, E_DescriptionRo
+FROM         vDK_Election</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="E_ElectionId">
+          <DataField>E_ElectionId</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="E_ElectionType">
+          <DataField>E_ElectionType</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="E_DateOfElection">
+          <DataField>E_DateOfElection</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="E_ElectionName">
+          <DataField>E_ElectionName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="E_DescriptionRo">
+          <DataField>E_DescriptionRo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ElectionNameLkp">
+          <Value>=Fields!E_ElectionName.Value 
+	+ " [" + Code.IsNull(Fields!E_ElectionId.Value,"Null") + "]"</Value>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="DS_District_UTA_RP">
+      <Query>
+        <DataSourceName>DataSource_SAISE</DataSourceName>
+        <CommandText>SELECT 
+	D_DistrictId
+	,D_RopUniqueId
+	,D_Nr 
+	,D_NameRo
+	,D_NameRu
+	,D_Name
+FROM         vDK_District
+WHERE     (D_RopUniqueId &gt; 0)
+union 
+select 
+	  D_DistrictId = null
+	  ,D_RopUniqueId = 0
+	  ,D_Nr = ''
+	  ,D_NameRo = ''
+	  ,D_NameRu = ''
+	  ,D_Name = '[Toate]'
+order by D_Nr</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="D_DistrictId">
+          <DataField>D_DistrictId</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="D_RopUniqueId">
+          <DataField>D_RopUniqueId</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="D_Nr">
+          <DataField>D_Nr</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="D_NameRo">
+          <DataField>D_NameRo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="D_NameRu">
+          <DataField>D_NameRu</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="D_Name">
+          <DataField>D_Name</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NameLkp">
+          <Value>=Fields!D_Name.Value
+	+ " [" + Code.IsNull(Fields!D_DistrictId.Value,"Null") + "]"</Value>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="DS_pDK_ElectionTurnoutInternal_Inspection">
+      <Query>
+        <DataSourceName>DataSource_SAISE</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@ElectionIdListStr">
+            <Value>=Parameters!ElectionId.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@ElectionId_UTA">
+            <Value>=Parameters!ElectionId_UTA.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@DistrictId_UTA">
+            <Value>=Parameters!DistrictId_UTA.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>pDK_ElectionTurnoutInternal_Inspection</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="PS_PollingStationId">
+          <DataField>PS_PollingStationId</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="PS_Type">
+          <DataField>PS_Type</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="PS_Nr">
+          <DataField>PS_Nr</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="PS_NameRo">
+          <DataField>PS_NameRo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PS_NameRu">
+          <DataField>PS_NameRu</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="V_VillageId">
+          <DataField>V_VillageId</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="V_Nr">
+          <DataField>V_Nr</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="V_NamePropRo">
+          <DataField>V_NamePropRo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="V_NamePropRu">
+          <DataField>V_NamePropRu</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="V_Type">
+          <DataField>V_Type</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="D_DistrictId">
+          <DataField>D_DistrictId</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="D_Nr">
+          <DataField>D_Nr</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="D_NamePropRo">
+          <DataField>D_NamePropRo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="D_NamePropRu">
+          <DataField>D_NamePropRu</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="D_MapName">
+          <DataField>D_MapName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="APS_OpeningVoters">
+          <DataField>APS_OpeningVoters</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="E_ElectionId">
+          <DataField>E_ElectionId</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="E_ElectionType">
+          <DataField>E_ElectionType</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="E_DateOfElection">
+          <DataField>E_DateOfElection</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="E_DescriptionRo">
+          <DataField>E_DescriptionRo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="E_DescriptionRu">
+          <DataField>E_DescriptionRu</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ET_ElectionTurnoutId">
+          <DataField>ET_ElectionTurnoutId</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="ET_ListCount">
+          <DataField>ET_ListCount</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="ET_SupplementaryCount">
+          <DataField>ET_SupplementaryCount</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="ET_TimeOfEntry">
+          <DataField>ET_TimeOfEntry</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PS_LastTimeOfEntryUsed">
+          <DataField>PS_LastTimeOfEntryUsed</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Opened">
+          <Value>= iif(Fields!APS_OpeningVoters.Value &lt;&gt; 0 , 1, 0)</Value>
+        </Field>
+        <Field Name="Closed">
+          <Value>= iif(Fields!APS_OpeningVoters.Value &lt;&gt; 0 , 0, 1)</Value>
+        </Field>
+        <Field Name="Raported">
+          <Value>= iif(Fields!ET_ListCount.Value &lt;&gt; 0 , 1, 0)</Value>
+        </Field>
+        <Field Name="NotRaported">
+          <Value>= iif(Fields!ET_ListCount.Value &lt;&gt; 0 , 0, 1)</Value>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="DS_Election_UTA_RP">
+      <Query>
+        <DataSourceName>DataSource_SAISE</DataSourceName>
+        <CommandText>SELECT     E_ElectionId
+			,E_ElectionType
+			,E_DateOfElection
+			,E_ElectionName
+			,E_DescriptionRo
+FROM         vDK_Election
+union
+SELECT     [E_ElectionId] = null
+			,[E_ElectionType] = 0
+			,E_DateOfElection = null
+			,E_ElectionName = '[Null]'
+			,E_DescriptionRo = '[Null]'
+FROM         vDK_Election</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="E_ElectionId">
+          <DataField>E_ElectionId</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="E_ElectionType">
+          <DataField>E_ElectionType</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="E_DateOfElection">
+          <DataField>E_DateOfElection</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="E_ElectionName">
+          <DataField>E_ElectionName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="E_DescriptionRo">
+          <DataField>E_DescriptionRo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ElectionNameLkp">
+          <Value>=Fields!E_ElectionName.Value 
+	+ " [" + Code.IsNull(Fields!E_ElectionId.Value,"Null") + "]"</Value>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportParameters>
+    <ReportParameter Name="ElectionId">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>18</Value>
+          <Value>17</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Election</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>DS_Election_RP</DataSetName>
+          <ValueField>E_ElectionId</ValueField>
+          <LabelField>ElectionNameLkp</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+    <ReportParameter Name="LanguageId">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>1</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Language</Prompt>
+      <Hidden>true</Hidden>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>1</Value>
+            <Label>="Ro [1]"</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>2</Value>
+            <Label>="Ru [2]"</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="ElectionId_UTA">
+      <DataType>Integer</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <Values>
+          <Value>16</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Election Id UTA</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>DS_Election_UTA_RP</DataSetName>
+          <ValueField>E_ElectionId</ValueField>
+          <LabelField>ElectionNameLkp</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="DistrictId_UTA">
+      <DataType>Integer</DataType>
+      <Nullable>true</Nullable>
+      <DefaultValue>
+        <Values>
+          <Value>80</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>District Id UTA</Prompt>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>DS_District_UTA_RP</DataSetName>
+          <ValueField>D_DistrictId</ValueField>
+          <LabelField>NameLkp</LabelField>
+        </DataSetReference>
+      </ValidValues>
+    </ReportParameter>
+  </ReportParameters>
+  <Code>  Function GetRO(LanguageId as Integer) As Boolean
+ 	If (LanguageId = 1)  Then Return True
+
+   End Function
+
+ Function GetRU(LanguageId as Integer) As Boolean
+ 	If (LanguageId = 2)  Then Return True
+	
+   End Function
+
+Function IsNull(ByVal Value As Object, ByVal RetValue As String) As String
+        Dim Res As String
+        If Value = Nothing Then
+            Res = RetValue
+        Else
+            Res = Value.ToString()
+        End If
+
+        Return Res
+    End Function</Code>
+  <EmbeddedImages>
+    <EmbeddedImage Name="cec">
+      <MIMEType>image/png</MIMEType>
+      <ImageData>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</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
+  <rd:ReportID>68ed738f-1e2c-4d62-b4a1-55a818fca059</rd:ReportID>
+</Report>

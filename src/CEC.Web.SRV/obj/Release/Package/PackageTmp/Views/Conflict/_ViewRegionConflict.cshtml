@@ -1,0 +1,36 @@
+﻿
+@using CEC.Web.SRV.Resources
+@model  CEC.Web.SRV.Models.Conflict.RegionConflictModel
+
+
+@Html.HiddenFor(x => x.IdRSP)
+<div class="row messageBox">@Html.DisplayFor(x => x.StatusMessage)</div>
+<p>
+    @string.Format(MUI.Conflict_RegionConflict_InfoMessage, Model.RegistruId)
+</p>
+
+<div class="row">
+    <div class="col-sm-6">
+        <button type="button" class="btn btn-default" id="retryProcess">Re-procesare</button>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $('.messageBox .rsa-form-group > div.col-sm-4').removeClass('col-sm-4').addClass('col-sm-10');
+    $('.messageBox .rsa-form-group > div.col-sm-2').removeClass('col-sm-2').addClass('col-sm-2');
+    $(document).ready(function () {
+
+        $('#retryProcess').click(function () {
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("ResolveRegionConflict", "Conflict")',
+                data: { conflictId: '@Model.IdRSP' },
+                    success: function () {
+                        $.clearViewConflict();
+                        $("#regionConflicts").trigger('reloadGrid');
+                }
+            });
+        });
+    });
+</script>

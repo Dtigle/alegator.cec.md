@@ -1,0 +1,104 @@
+﻿@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.Conflict
+@using CEC.Web.SRV.Resources
+@using Lib.Web.Mvc.JQuery.JqGrid
+@model long?
+
+@{
+    var grid = Html.GridOptions<AddressRSVGridModel>("rsvAddresses", width: 860, rowsPerPage: 100)
+        .SetOptions(x =>
+        {
+            x.ColumnsRemaping = new List<int> { 3, 4, 5, 1, 2, 0, 6, 7, 8, 9 };
+        })
+        .BuildGrid(Url.Action("ListAddressesAjax", new { regionId = Model }),
+            deleteAction: null,
+            addAction: null,
+            editAction: null,
+            unDeleteAction: Url.Action("UnDeleteAddress", "Address"),
+            historyAction: Url.Action("AddressHistory", "History")
+        )
+        .Navigator(new JqGridNavigatorOptions()
+        {
+            Add = true,
+            Edit = true,
+            Delete = true,
+            CloneToTop = true,
+            AddFunction = "$.CreateUpdateAddressShortCut",
+            EditFunction = "$.CreateUpdateAddressShortCut",
+            DeleteFunction = "$.DeleteAddressShortCut"
+        });
+}
+<div class="col-sm-12">
+    @grid.GetHtml()
+</div>
+
+<script type="text/javascript">
+    (function($) {
+
+        var currentRegionId = null;;
+
+        $.GetGridSelectedRegionId = function() {
+            var selections = $("#rsvAddresses").jqGrid('getGridParam', 'selrow');
+            var real = $("tr[id='" + selections + "'] > td[aria-describedby='rsvAddresses_RegionId']").attr('title');
+            return real;
+        }
+
+        $.CreateUpdateAddressShortCut = function (addressId) {
+            var url = '@Url.Action("SaveBuildingAddress", "Address")';
+
+            var addressParam = '';
+            var dialogTitle = '@MUI.AddressBuildingAdd_DialogTitle';
+            if (addressId != undefined) {
+                addressParam = '&addressId=' + addressId;
+                dialogTitle = '@MUI.AddressBuildingEdit_DialogTitle';
+                currentRegionId = $.GetGridSelectedRegionId();
+            } else {
+                currentRegionId = 0 + '@Model';
+            }
+
+            if (currentRegionId && currentRegionId  <= 0) {
+                BootstrapDialog.alert({ message: 'Nu se poate adauga adresa in alta localitate decat localitatea conflictului', title: '@MUI.DialogTitle_Information' });
+                return;
+            }
+
+            $.openDialog($(this), {
+                url: url + '?regionId=' + currentRegionId + addressParam,
+                title: dialogTitle,
+                onSubmit: function () {
+                    $("#rsvAddresses").trigger('reloadGrid');
+                }
+            });
+        };
+
+        $.DeleteAddressShortCut = function (addressId) {
+
+            var url = '@Url.Action("DeleteAddress","Address")';
+
+            BootstrapDialog.confirm('@MUI.AddressBuildingDelete_Message', function (result) {
+                if (result) {
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        data: { addressId: addressId },
+                        success: function (returnData) {
+                            $("#rsvAddresses").trigger('reloadGrid');
+                        }
+                    });
+                }
+
+            });
+
+        };
+
+        $.getRegionId = function () {
+            return { regionId: currentRegionId };
+        };
+
+
+    })(jQuery);
+
+    $(document).ready(function () {
+        @grid.GetJavaScript();
+        $.forEachGrid($.removeClonedGridButtons);
+    });
+</script>

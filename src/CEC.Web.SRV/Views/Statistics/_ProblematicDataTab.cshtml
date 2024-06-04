@@ -1,0 +1,149 @@
+﻿@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.Statistics
+@using CEC.Web.SRV.Resources
+@using Lib.Web.Mvc.JQuery.JqGrid
+
+
+@{
+    var grid = Html.GridOptions<ProblematicDataPollingStationGridModel>("pollingStationGrid")
+        .BuildGrid(Url.Action("ListProblematicDataPollingStationAjax"), columnChooser: false)
+        .Navigator(new JqGridNavigatorOptions()
+        {
+            Add = false,
+            Edit = false,
+            Delete = false,
+            Search = true,
+            CloneToTop = false
+        });
+}
+
+
+
+<div id="dashboard-problematicData" class="row">
+    <div class="col-sm-12 col-md-6">
+        @*<h4 class="page-header">STATISTICI</h4>*@
+        <table id="problematicData-table" class="table m-table table-bordered table-hover table-heading">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td class="m-ticker"><b>Persoane fără domiciliu</b></td>
+                    <td class="m-price">
+                        <div id="loadingProgress_addressMissing" class="preloader">
+                            &nbsp;
+                        </div>
+                        <div id="addressMissing"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="m-ticker"><b>Persoane fără document</b></td>
+                    <td class="m-price">
+                        <div id="loadingProgress_documentMissing" class="preloader">
+                            &nbsp;
+                        </div>
+                        <div id="documentMissing"></div>
+                    </td>
+                </tr>
+                @*<tr>
+                        <td class="m-ticker"><b>Persoane cu documentul expirat</b></td>
+                        <td class="m-price">
+                            <div id="loadingProgress_documentExpired" class="preloader">
+                                &nbsp;
+                            </div>
+                            <div id="documentExpired"></div>
+                        </td>
+                    </tr>*@
+
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-content">
+                    <h4 class="page-header">@MUI.ProblematicDataTab</h4>
+                    @grid.GetHtml()
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+    	getTotalNumberOfPeopleWithAddressMissing();
+    	getTotalNumberOfPeopleWithDocMissing();
+    	@grid.GetJavaScript();
+        //getTotalNumberOfPeopleWithDocExpired();
+    });
+
+    function getTotalNumberOfPeopleWithAddressMissing() {
+        $('#loadingProgress_addressMissing').show();
+        $('#addressMissing').hide();
+
+        $.ajax({
+            url: '@Url.Action("GetTotalNumberOfPeopleWithAddressMissing", "Statistics")',
+            type: "POST",
+            dataType: "json",
+            data: {
+                //see _FilterForHome.cshtml
+                regionId: $.getDashboardRegionId(),
+                pollingStationId: $.getDashboardPollingStationId()
+            },
+
+            success: function (data) {
+            	$('#loadingProgress_addressMissing').hide();
+            	$('#addressMissing').show();
+            	$('#addressMissing').html(data);
+            }
+        });
+    };
+
+    function getTotalNumberOfPeopleWithDocMissing() {
+        $('#loadingProgress_documentMissing').show();
+        $('#documentMissing').hide();
+
+        $.ajax({
+            url: '@Url.Action("GetTotalNumberOfPeopleWithDocMissing", "Statistics")',
+            type: "POST",
+            dataType: "json",
+            data: {
+                //see _FilterForHome.cshtml
+                regionId: $.getDashboardRegionId(),
+                pollingStationId: $.getDashboardPollingStationId()
+            },
+
+            success: function (data) {
+                $('#loadingProgress_documentMissing').hide();
+                $('#documentMissing').show();
+                $('#documentMissing').html(data);
+            }
+        });
+    }
+    function getTotalNumberOfPeopleWithDocExpired() {
+        $('#loadingProgress_documentExpired').show();
+        $('#documentExpired').hide();
+
+        $.ajax({
+            url: '@Url.Action("GetTotalNumberOfPeopleWithDocExpired", "Statistics")',
+            type: "POST",
+            dataType: "json",
+            data: {
+                //see _FilterForHome.cshtml
+                regionId: $.getDashboardRegionId(),
+                pollingStationId: $.getDashboardPollingStationId()
+            },
+
+            success: function (data) {
+                $('#loadingProgress_documentExpired').hide();
+                $('#documentExpired').show();
+                $('#documentExpired').html(data);
+            }
+        });
+    }
+</script>

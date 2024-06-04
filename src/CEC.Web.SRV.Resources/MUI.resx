@@ -1,0 +1,2733 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Buildings" xml:space="preserve">
+    <value>Adrese</value>
+  </data>
+  <data name="ByBuildings" xml:space="preserve">
+    <value>După case</value>
+  </data>
+  <data name="ByExclusions" xml:space="preserve">
+    <value>După motiv excludere</value>
+  </data>
+  <data name="ExclusionGrounds" xml:space="preserve">
+    <value>Motive excludere</value>
+  </data>
+  <data name="FullList" xml:space="preserve">
+    <value>Lista alegătorilor</value>
+  </data>
+  <data name="Localities" xml:space="preserve">
+    <value>Localități</value>
+  </data>
+  <data name="LocalityInfo" xml:space="preserve">
+    <value>Informații Localitate</value>
+  </data>
+  <data name="LocalityTypes" xml:space="preserve">
+    <value>Tipuri de localități</value>
+  </data>
+  <data name="Lookups" xml:space="preserve">
+    <value>Nomenclatoare</value>
+  </data>
+  <data name="ManagerTypes" xml:space="preserve">
+    <value>Tipuri de conducători</value>
+  </data>
+  <data name="mnuConfig" xml:space="preserve">
+    <value>Configurare</value>
+  </data>
+  <data name="mnuElectionTypes" xml:space="preserve">
+    <value>Tipuri de alegeri</value>
+  </data>
+  <data name="mnuHome" xml:space="preserve">
+    <value>Principala</value>
+  </data>
+  <data name="mnuPrinting" xml:space="preserve">
+    <value>Imprimare Listă</value>
+  </data>
+  <data name="mnuExport" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="mnuInterop" xml:space="preserve">
+    <value>Interop</value>
+  </data>
+  <data name="mnuInterop_Dashboard" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
+  <data name="mnuInterop_Systems" xml:space="preserve">
+    <value>Sisteme</value>
+  </data>
+  <data name="mnuInterop_Institutions" xml:space="preserve">
+    <value>Instituții</value>
+  </data>
+  <data name="mnuInterop_Transactions" xml:space="preserve">
+    <value>Tranzacții</value>
+  </data>
+  <data name="mnuApp_Settings" xml:space="preserve">
+    <value>Setări</value>
+  </data>
+  <data name="Config_SettingsManager" xml:space="preserve">
+    <value>Configurări</value>
+  </data>
+  <data name="ExportList" xml:space="preserve">
+    <value>Export Liste</value>
+  </data>
+  <data name="HistoryExportList" xml:space="preserve">
+    <value>Istoria exportului de liste</value>
+  </data>
+  <data name="HistoryExportRsaToSaise" xml:space="preserve">
+    <value>Istoria exportului către SAISE</value>
+  </data>
+  <data name="ExportRsaToSaise" xml:space="preserve">
+    <value>Export către SAISE</value>
+  </data>
+  <data name="mnuReports" xml:space="preserve">
+    <value>Rapoarte</value>
+  </data>
+  <data name="mnuUserRights" xml:space="preserve">
+    <value>Utilizatori și drepturi</value>
+  </data>
+  <data name="PollingSectorsBorders" xml:space="preserve">
+    <value>Hotarele secțiilor de votare</value>
+  </data>
+  <data name="PollingStations" xml:space="preserve">
+    <value>Secții de votare</value>
+  </data>
+  <data name="Circumscription" xml:space="preserve">
+    <value>Circumscripții</value>
+  </data>
+  <data name="PollingStationsList" xml:space="preserve">
+    <value>Lista secțiilor de votare</value>
+  </data>
+  <data name="StayStatements" xml:space="preserve">
+    <value>Declarații de ședere</value>
+  </data>
+  <data name="RspChecking" xml:space="preserve">
+    <value>Verificare in RSP</value>
+  </data>
+  <data name="PersonalData" xml:space="preserve">
+    <value>Date personale</value>
+  </data>
+  <data name="Registration" xml:space="preserve">
+    <value>Reședința</value>
+  </data>
+  <data name="Streets" xml:space="preserve">
+    <value>Străzi</value>
+  </data>
+  <data name="StreetsList" xml:space="preserve">
+    <value>Lista străzilor</value>
+  </data>
+  <data name="StreetTypes" xml:space="preserve">
+    <value>Tipuri de străzi</value>
+  </data>
+  <data name="VotersMgmt" xml:space="preserve">
+    <value>Gestionare Alegători</value>
+  </data>
+  <data name="CreateUser" xml:space="preserve">
+    <value>Creare utilizator nou</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Roluri</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Utilizatori</value>
+  </data>
+  <data name="UsersRoles" xml:space="preserve">
+    <value>Utilizatori și Roluri</value>
+  </data>
+  <data name="PersonStatus" xml:space="preserve">
+    <value>Statutul persoanelor</value>
+  </data>
+  <data name="ActionChPassword" xml:space="preserve">
+    <value>Schimbare parolă</value>
+  </data>
+  <data name="ActionResPassword" xml:space="preserve">
+    <value>Resetare parolă</value>
+  </data>
+  <data name="ButtonCancel" xml:space="preserve">
+    <value>Anulează</value>
+  </data>
+  <data name="ButtonSave" xml:space="preserve">
+    <value>Salvează</value>
+  </data>
+  <data name="Account_LoginName" xml:space="preserve">
+    <value>Nume utilizator</value>
+  </data>
+  <data name="ProfileBox1Title" xml:space="preserve">
+    <value>Acțiuni</value>
+  </data>
+  <data name="ProfileTitle" xml:space="preserve">
+    <value>Detalii profil</value>
+  </data>
+  <data name="AccountErrorNumLimit_LandlinePhoneNumber" xml:space="preserve">
+    <value>{0} trebuie să contină {2} cifre.</value>
+  </data>
+  <data name="AccountErrorNumLimit_MobilePhoneNumber" xml:space="preserve">
+    <value>{0} trebuie să contină {2} cifre.</value>
+  </data>
+  <data name="AccountErrorNum_LandlinePhoneNumber" xml:space="preserve">
+    <value>Introduceți numai cifre.</value>
+  </data>
+  <data name="AccountErrorNum_MobilePhoneNumber" xml:space="preserve">
+    <value>Introduceți numai cifre.</value>
+  </data>
+  <data name="AccountErrorRequired_FirstName" xml:space="preserve">
+    <value>{0} este obligatoriu.</value>
+  </data>
+  <data name="AccountErrorRequired_LastName" xml:space="preserve">
+    <value>{0} este obligatoriu</value>
+  </data>
+  <data name="Account_DateOfBirth" xml:space="preserve">
+    <value>Data de naștere</value>
+  </data>
+  <data name="Account_FirstName" xml:space="preserve">
+    <value>Prenume</value>
+  </data>
+  <data name="Account_LandlinePhoneNumber" xml:space="preserve">
+    <value>Telefon (fix)</value>
+  </data>
+  <data name="Account_LastLogin" xml:space="preserve">
+    <value>Ultima logare</value>
+  </data>
+  <data name="Users_IsOnline" xml:space="preserve">
+    <value>Este online</value>
+  </data>
+  <data name="Account_LastName" xml:space="preserve">
+    <value>Nume</value>
+  </data>
+  <data name="Account_LoginCreationDate" xml:space="preserve">
+    <value>Data creării contului</value>
+  </data>
+  <data name="Account_MobilePhoneNumber" xml:space="preserve">
+    <value>Telefon (mob.)</value>
+  </data>
+  <data name="Account_WorkAddressDetails" xml:space="preserve">
+    <value>Adresa de lucru</value>
+  </data>
+  <data name="ButtonChPassword" xml:space="preserve">
+    <value>Schimbarea parolei</value>
+  </data>
+  <data name="ButtonLogin" xml:space="preserve">
+    <value>Logare</value>
+  </data>
+  <data name="ButtonRegister" xml:space="preserve">
+    <value>Înregistrează</value>
+  </data>
+  <data name="ButtonResPassword" xml:space="preserve">
+    <value>Resetarea parolei</value>
+  </data>
+  <data name="ChangePasswordErrorCompare_ConfirmPassword" xml:space="preserve">
+    <value>'Parola nouă' și 'Confirmare parolă' trebuie să coincidă.</value>
+  </data>
+  <data name="ChangePasswordErrorIncorrect_OldPassword" xml:space="preserve">
+    <value>Parola incorectă.</value>
+  </data>
+  <data name="ChangePasswordErrorRequired_NewPassword" xml:space="preserve">
+    <value>Introduceți parola nouă.</value>
+  </data>
+  <data name="ChangePasswordErrorRequired_OldPassword" xml:space="preserve">
+    <value>Introduceți parola curentă.</value>
+  </data>
+  <data name="ChangePasswordErrorStringLimit_NewPassword" xml:space="preserve">
+    <value>{0} trebuie să conțină minimum {2} caractere și maximum 100.</value>
+  </data>
+  <data name="ChangePassword_AuthenticationMess" xml:space="preserve">
+    <value>Ești logat ca </value>
+  </data>
+  <data name="ChangePassword_ConfirmPassword" xml:space="preserve">
+    <value>Confirmare parolă</value>
+  </data>
+  <data name="ChangePassword_NewPassword" xml:space="preserve">
+    <value>Parola nouă</value>
+  </data>
+  <data name="ChangePassword_OldPassword" xml:space="preserve">
+    <value>Parola curentă</value>
+  </data>
+  <data name="ChangePassword_Title" xml:space="preserve">
+    <value>Schimbare parolă</value>
+  </data>
+  <data name="CreateUserErrorCompare_ConfirmPassword" xml:space="preserve">
+    <value>'Parolă' și 'Confirmare parolă' trebuie să coincidă.</value>
+  </data>
+  <data name="CreateUserErrorExpresion_Email" xml:space="preserve">
+    <value>E-mail-ul nu este valid.</value>
+  </data>
+  <data name="CreateUserErrorRequired_Email" xml:space="preserve">
+    <value>Introduceți E-mail-ul.</value>
+  </data>
+  <data name="CreateUserErrorNum_Telephone" xml:space="preserve">
+    <value>Introduceți numai cifre.</value>
+  </data>
+  <data name="CreateUserErrorRequired_Password" xml:space="preserve">
+    <value>Introduceți parola.</value>
+  </data>
+  <data name="CreateUserErrorRequired_RoleId" xml:space="preserve">
+    <value>Introduceți rolul.</value>
+  </data>
+  <data name="CreateUserErrorRequired_UserName" xml:space="preserve">
+    <value>Introduceți nume utilizator.</value>
+  </data>
+  <data name="CreateUserErrorStringLimit_Password" xml:space="preserve">
+    <value>{0} trebuie să conțină minimum {2} caractere și maximum 100.</value>
+  </data>
+  <data name="CreateUserErrorStringLimit_Telephone" xml:space="preserve">
+    <value>{0} trebuie să aibă {2} cifre.</value>
+  </data>
+  <data name="CreateUserTooltip_UserName" xml:space="preserve">
+    <value>Introduceți numele folosit pentru intrare în sistem.</value>
+  </data>
+  <data name="CreateUser_Comments" xml:space="preserve">
+    <value>Comentarii</value>
+  </data>
+  <data name="CreateUser_ConfirmPassword" xml:space="preserve">
+    <value>Confirmare parolă</value>
+  </data>
+  <data name="CreateUser_Email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="CreateUser_FullName" xml:space="preserve">
+    <value>Nume</value>
+  </data>
+  <data name="CreateUser_Password" xml:space="preserve">
+    <value>Parolă</value>
+  </data>
+  <data name="CreateUser_RoleId" xml:space="preserve">
+    <value>Rol</value>
+  </data>
+  <data name="CreateUser_Telephone" xml:space="preserve">
+    <value>Telefon</value>
+  </data>
+  <data name="CreateUser_Title" xml:space="preserve">
+    <value>Creare Utilizator</value>
+  </data>
+  <data name="CreateUser_UserName" xml:space="preserve">
+    <value>Nume utilizator</value>
+  </data>
+  <data name="LoginErrorRequired_Password" xml:space="preserve">
+    <value>Introduceți parola</value>
+  </data>
+  <data name="LoginErrorRequired_UserName" xml:space="preserve">
+    <value>Introduceți nume utilizator.</value>
+  </data>
+  <data name="LoginError_UserNamePassword" xml:space="preserve">
+    <value>'Nume utilizator' sau 'Parola' sunt greșite</value>
+  </data>
+  <data name="LoginError_UserLogonDenied" xml:space="preserve">
+    <value>Acces interzis pentru acest utilizator</value>
+  </data>
+  <data name="Login_Password" xml:space="preserve">
+    <value>Parolă</value>
+  </data>
+  <data name="Login_RememberMe" xml:space="preserve">
+    <value>Memorează-mă?</value>
+  </data>
+  <data name="Login_TabTitle" xml:space="preserve">
+    <value>Autentificare</value>
+  </data>
+  <data name="Login_Title" xml:space="preserve">
+    <value>CEC Autentificare</value>
+  </data>
+  <data name="Login_UserName" xml:space="preserve">
+    <value>Nume Utilizator</value>
+  </data>
+  <data name="ManagerTypes_TabTitle" xml:space="preserve">
+    <value>Gestionarea tipului de conducători</value>
+  </data>
+  <data name="Configurationsettings_TabTitle" xml:space="preserve">
+    <value>Gestionarea parametrilor de configurare a aplicațiilor </value>
+  </data>
+  <data name="Circumscriptions_TabTitle" xml:space="preserve">
+    <value>Gestionarea circumscripţiilor</value>
+  </data>
+  <data name="ManagerTypes_Title" xml:space="preserve">
+    <value>Tipuri de conducători</value>
+  </data>
+  <data name="PersonStatus_TabTitle" xml:space="preserve">
+    <value>Gestionarea statutului persoanelor</value>
+  </data>
+  <data name="PersonStatus_Title" xml:space="preserve">
+    <value>Statutul persoanelor</value>
+  </data>
+  <data name="RegionTypes_TabTitle" xml:space="preserve">
+    <value>Gestionarea tipului de localități</value>
+  </data>
+  <data name="RegionTypes_Title" xml:space="preserve">
+    <value>Tipuri de localități</value>
+  </data>
+  <data name="RegisterErrorCompare_ConfirmPassword" xml:space="preserve">
+    <value>'Parolă' și 'Confirmare parolă' trebuie să coincidă.</value>
+  </data>
+  <data name="RegisterErrorExist_UserName" xml:space="preserve">
+    <value>Utilizator cu acest nume deja există.</value>
+  </data>
+  <data name="RegisterErrorRequired_Password" xml:space="preserve">
+    <value>Introduceți parola</value>
+  </data>
+  <data name="RegisterErrorRequired_UserName" xml:space="preserve">
+    <value>Introduceți nume utilizator.</value>
+  </data>
+  <data name="RegisterErrorStringLimit_Password" xml:space="preserve">
+    <value>{0} trebuie să conțină minimum {2} caractere și maximum 100.</value>
+  </data>
+  <data name="Register_ConfirmPassword" xml:space="preserve">
+    <value>Confirmare parolă</value>
+  </data>
+  <data name="Register_DisplayName" xml:space="preserve">
+    <value>Nume</value>
+  </data>
+  <data name="Register_Password" xml:space="preserve">
+    <value>Parolă</value>
+  </data>
+  <data name="Register_PreferredEmail" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="Register_TabTitle" xml:space="preserve">
+    <value>Înregistrare</value>
+  </data>
+  <data name="Register_UserName" xml:space="preserve">
+    <value>Nume utilizator</value>
+  </data>
+  <data name="ResetPasswordErrorCompare_ConfirmPassword" xml:space="preserve">
+    <value>'Parola nouă' și 'Confirmare parolă' trebuie să coincidă.</value>
+  </data>
+  <data name="ResetPasswordErrorRequired_NewPassword" xml:space="preserve">
+    <value>Introduceți parola nouă.</value>
+  </data>
+  <data name="ResetPasswordErrorStringLimit_NewPassword" xml:space="preserve">
+    <value>{0} trebuie să conțină minimum {2} caractere și maximum 100.</value>
+  </data>
+  <data name="ResetPassword_AuthenticationMess" xml:space="preserve">
+    <value>Ești logat ca </value>
+  </data>
+  <data name="ResetPassword_ConfirmPassword" xml:space="preserve">
+    <value>Confirmare parolă</value>
+  </data>
+  <data name="ResetPassword_NewPassword" xml:space="preserve">
+    <value>Parola nouă</value>
+  </data>
+  <data name="ResetPassword_Title" xml:space="preserve">
+    <value>Resetare parolă</value>
+  </data>
+  <data name="StreetTypes_TabTitle" xml:space="preserve">
+    <value>Gestionarea tipurilor de străzi</value>
+  </data>
+  <data name="StreetTypes_Title" xml:space="preserve">
+    <value>Tipuri de străzi</value>
+  </data>
+  <data name="CreateUserErrorExist_UserName" xml:space="preserve">
+    <value>Utilizator cu acest nume deja există.</value>
+  </data>
+  <data name="Users_ManageUsers" xml:space="preserve">
+    <value>Gestionare Utilizatori</value>
+  </data>
+  <data name="Users_Statistics" xml:space="preserve">
+    <value>Statistici</value>
+  </data>
+  <data name="Users_UsersList" xml:space="preserve">
+    <value>Lista de utilizatori</value>
+  </data>
+  <data name="ChangePasswordErrorRequired_NewPassword2" xml:space="preserve">
+    <value>Parola trebuie să aibă de la 8 la 100 de caractere. Minimum 2 majuscule și 1 cifră.</value>
+  </data>
+  <data name="TelephonePrompt" xml:space="preserve">
+    <value>0XXXXXXXX</value>
+  </data>
+  <data name="Lookups_Description" xml:space="preserve">
+    <value>Descriere</value>
+  </data>
+  <data name="Lookups_Name" xml:space="preserve">
+    <value>Nume</value>
+  </data>
+  <data name="PersonStatusLookup_IsExcludable" xml:space="preserve">
+    <value>Excludabil</value>
+  </data>
+  <data name="SaiseExporter_ExportAllVoters" xml:space="preserve">
+    <value>Exportarea totală?</value>
+  </data>
+  <data name="RegionTypesLookup_Rank" xml:space="preserve">
+    <value>Rang</value>
+  </data>
+  <data name="Genders_TabTitle" xml:space="preserve">
+    <value>Gestionarea sexelor</value>
+  </data>
+  <data name="CreateUser_FirstName" xml:space="preserve">
+    <value>Nume</value>
+  </data>
+  <data name="CreateUser_LastName" xml:space="preserve">
+    <value>Prenume</value>
+  </data>
+  <data name="CreateUserErrorRequired_FirstName" xml:space="preserve">
+    <value>Introduceți Numele persoanei</value>
+  </data>
+  <data name="CreateUserErrorRequired_LastName" xml:space="preserve">
+    <value>Introduceți Prenumele persoanei</value>
+  </data>
+  <data name="CreateUserError_RoleNotFound" xml:space="preserve">
+    <value>Rolul nu există</value>
+  </data>
+  <data name="Lookups_CreatedById" xml:space="preserve">
+    <value>Creat de </value>
+  </data>
+  <data name="Lookups_DataCreated" xml:space="preserve">
+    <value>Data creării</value>
+  </data>
+  <data name="Conflict_DataCreated" xml:space="preserve">
+    <value>Data creării</value>
+  </data>
+  <data name="Conflict_StatusDate" xml:space="preserve">
+    <value>Data statutului</value>
+  </data>
+  <data name="Lookups_DataDeleted" xml:space="preserve">
+    <value>Data ștergerii</value>
+  </data>
+  <data name="ExportPollingStations_StartDate" xml:space="preserve">
+    <value>Data lansării</value>
+  </data>
+  <data name="SaiseExporter_StartDate" xml:space="preserve">
+    <value>Data lansării</value>
+  </data>
+  <data name="ExportRsaToSaise_StartDate" xml:space="preserve">
+    <value>Data lansării</value>
+  </data>
+  <data name="PrintSessionsGrid_StartDate" xml:space="preserve">
+    <value>Data creării</value>
+  </data>
+  <data name="ExportPollingStations_EndDate" xml:space="preserve">
+    <value>Data finisării</value>
+  </data>
+  <data name="SaiseExporter_EndDate" xml:space="preserve">
+    <value>Data finisării</value>
+  </data>
+  <data name="ExportRsaToSaise_EndDate" xml:space="preserve">
+    <value>Data finisării</value>
+  </data>
+  <data name="PrintSessionsGrid_EndDate" xml:space="preserve">
+    <value>Data finisării</value>
+  </data>
+  <data name="PrintSessionsGrid_Name" xml:space="preserve">
+    <value>Scrutinul</value>
+  </data>
+  <data name="Lookups_DataModified" xml:space="preserve">
+    <value>Data modificării</value>
+  </data>
+  <data name="Lookups_DeletedById" xml:space="preserve">
+    <value>Șters de </value>
+  </data>
+  <data name="Lookups_ModifiedById" xml:space="preserve">
+    <value>Modificat de </value>
+  </data>
+  <data name="DocumentTypeLookup_IsPrimary" xml:space="preserve">
+    <value>Document primar?</value>
+  </data>
+  <data name="DocumentTypes" xml:space="preserve">
+    <value>Tipuri de documente</value>
+  </data>
+  <data name="DocumentTypes_TabTitle" xml:space="preserve">
+    <value>Gestionarea Tipurilor de Documente</value>
+  </data>
+  <data name="ElectionTypes" xml:space="preserve">
+    <value>Tipuri Alegeri</value>
+  </data>
+  <data name="ElectionTypes_TabTitle" xml:space="preserve">
+    <value>Gestionarea Tipuri de Alegeri</value>
+  </data>
+  <data name="Account_Activ" xml:space="preserve">
+    <value>Activ</value>
+  </data>
+  <data name="Account_Blocat" xml:space="preserve">
+    <value>Blocat</value>
+  </data>
+  <data name="Error_TabTitle" xml:space="preserve">
+    <value>Eroare</value>
+  </data>
+  <data name="Home_About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="Home_Contact" xml:space="preserve">
+    <value>Contacte</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Ieșire</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="Roles_TabTitle" xml:space="preserve">
+    <value>Gestionare Roluri</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Setări</value>
+  </data>
+  <data name="Users_Comentarii" xml:space="preserve">
+    <value>Comentarii</value>
+  </data>
+  <data name="Users_Login" xml:space="preserve">
+    <value>Ultima logare</value>
+  </data>
+  <data name="Users_Nume" xml:space="preserve">
+    <value>Nume</value>
+  </data>
+  <data name="Users_Rol" xml:space="preserve">
+    <value>Rol</value>
+  </data>
+  <data name="Users_Statut" xml:space="preserve">
+    <value>Statut</value>
+  </data>
+  <data name="Voters_TabTitle" xml:space="preserve">
+    <value>Gestionare Alegatori</value>
+  </data>
+  <data name="Users_Login_Name" xml:space="preserve">
+    <value>Utilizator</value>
+  </data>
+  <data name="Lookups_StreetTypeName" xml:space="preserve">
+    <value>Tipul Străzii</value>
+  </data>
+  <data name="mnuRegions" xml:space="preserve">
+    <value>Gestionare Localități</value>
+  </data>
+  <data name="mnuTreeView" xml:space="preserve">
+    <value>Gestionare Localitati - arbore</value>
+  </data>
+  <data name="mnuGridView" xml:space="preserve">
+    <value>Gestionare Localitati - tabel</value>
+  </data>
+  <data name="RegionLookup_HasStreets" xml:space="preserve">
+    <value>Are Străzi?</value>
+  </data>
+  <data name="RegionLookup_Circumscription" xml:space="preserve">
+    <value>Circumscripție</value>
+  </data>
+  <data name="RegionLookup_FullyQualifiedName" xml:space="preserve">
+    <value>Părinte</value>
+  </data>
+  <data name="RegionLookup_Parent" xml:space="preserve">
+    <value>Părinte</value>
+  </data>
+  <data name="RegionLookup_RegionType" xml:space="preserve">
+    <value>Tip</value>
+  </data>
+  <data name="RegionLookup_HasLinkedRegions" xml:space="preserve">
+    <value>Legatură cu alte regiuni</value>
+  </data>
+  <data name="LinkedRegions_Regions" xml:space="preserve">
+    <value>Localitate</value>
+  </data>
+  <data name="RegionLookup_HasChildren" xml:space="preserve">
+    <value>Are sub-localități?</value>
+  </data>
+  <data name="AssignRegions" xml:space="preserve">
+    <value>Alocare Localități</value>
+  </data>
+  <data name="SelectPrompt" xml:space="preserve">
+    <value>Selectați...</value>
+  </data>
+  <data name="HouseNo" xml:space="preserve">
+    <value>Număr casă</value>
+  </data>
+  <data name="HouseSufix" xml:space="preserve">
+    <value>Sufix</value>
+  </data>
+  <data name="StreetName" xml:space="preserve">
+    <value>Nume stradă</value>
+  </data>
+  <data name="BtnExecute" xml:space="preserve">
+    <value>Execută</value>
+  </data>
+  <data name="StatusRequired" xml:space="preserve">
+    <value>Selectați un statut</value>
+  </data>
+  <data name="StreetAddEditeErrorNum_RopSaise" xml:space="preserve">
+    <value>Întroduceți numai cifre</value>
+  </data>
+  <data name="CircumscriptionEditeErrorNum_Formatter" xml:space="preserve">
+    <value>Numărul circumscripției trebuie sa conțină maxim 5 cifre</value>
+  </data>
+  <data name="StreetAdd_DialogTitle" xml:space="preserve">
+    <value>Adăugați o nouă stradă</value>
+  </data>
+  <data name="StreetDescription" xml:space="preserve">
+    <value>Descriere</value>
+  </data>
+  <data name="StreetEdite_DialogTitle" xml:space="preserve">
+    <value>Modificați strada selectată</value>
+  </data>
+  <data name="StreetRopId" xml:space="preserve">
+    <value>Reg. Populației ID</value>
+  </data>
+  <data name="StreetSaiseId" xml:space="preserve">
+    <value>SIAS ID</value>
+  </data>
+  <data name="ButtonDelete" xml:space="preserve">
+    <value>Șterge</value>
+  </data>
+  <data name="StreetAddEditeErrorRequired_Name" xml:space="preserve">
+    <value>Introduceți numele străzii</value>
+  </data>
+  <data name="StreetAddEditeErrorRequired_StreetTypes" xml:space="preserve">
+    <value>Introduceți tipul străzii</value>
+  </data>
+  <data name="StreetDelete_DialogTitle" xml:space="preserve">
+    <value>Ștergeți strada selectată</value>
+  </data>
+  <data name="ButtonNO" xml:space="preserve">
+    <value>Nu</value>
+  </data>
+  <data name="ButtonYES" xml:space="preserve">
+    <value>Da</value>
+  </data>
+  <data name="StreetDelete_Message" xml:space="preserve">
+    <value>Sunteți sigur că doriți să eliminați strada selectată?</value>
+  </data>
+  <data name="ColumnsChoserTitle" xml:space="preserve">
+    <value>Coloane</value>
+  </data>
+  <data name="Users_Regions" xml:space="preserve">
+    <value>Localități</value>
+  </data>
+  <data name="RegionNotSelectedAlertMessage" xml:space="preserve">
+    <value>Selectați o Localitate</value>
+  </data>
+  <data name="RegioneCountryNotModifichePermission" xml:space="preserve">
+    <value>Regiunea Republica Moldova nu poate să fie editată</value>
+  </data>
+  <data name="UserNotSelectedAlertMessage" xml:space="preserve">
+    <value>Selectați un utilizator.</value>
+  </data>
+  <data name="UserSelectedManyAlertMessage" xml:space="preserve">
+    <value>Selectați doar un utilizator.</value>
+  </data>
+  <data name="Users_AllocatedRegions" xml:space="preserve">
+    <value>Localități Alocate</value>
+  </data>
+  <data name="PollingStationAddress" xml:space="preserve">
+    <value>Adresa</value>
+  </data>
+  <data name="PollingStationAddressCount" xml:space="preserve">
+    <value>Total adrese</value>
+  </data>
+  <data name="PollingStationAdd_DialogTitle" xml:space="preserve">
+    <value>Creare secție de votare</value>
+  </data>
+  <data name="PollingStationContactInfo" xml:space="preserve">
+    <value>Informație de contact</value>
+  </data>
+  <data name="VotersListOrderTypes" xml:space="preserve">
+    <value>Tipul ordonării</value>
+  </data>
+  <data name="ExportPollingStations_Status" xml:space="preserve">
+    <value>Statutul</value>
+  </data>
+  <data name="SaiseExporter_Status" xml:space="preserve">
+    <value>Statutul</value>
+  </data>
+  <data name="PrintSessionsGrid_Status" xml:space="preserve">
+    <value>Statutul</value>
+  </data>
+  <data name="ExportPollingStations_StageType" xml:space="preserve">
+    <value>Tipul</value>
+  </data>
+  <data name="PollingStationDelete_Message" xml:space="preserve">
+    <value>Sunteți sigur că doriți să eliminați secția de votare selectată?</value>
+  </data>
+  <data name="PollingStationEdite_DialogTitle" xml:space="preserve">
+    <value>Modificare secție de votare</value>
+  </data>
+  <data name="PollingStationLatitude" xml:space="preserve">
+    <value>Latitudine</value>
+  </data>
+  <data name="PollingStationLocation" xml:space="preserve">
+    <value>Locația</value>
+  </data>
+  <data name="PollingStationLongitude" xml:space="preserve">
+    <value>Longitudine</value>
+  </data>
+  <data name="PollingStationNumber" xml:space="preserve">
+    <value>Număr</value>
+  </data>
+  <data name="ExportRsaToSaise_Name" xml:space="preserve">
+    <value>Nume</value>
+  </data>
+  <data name="SaiseExporter_Description" xml:space="preserve">
+    <value>Descrierea</value>
+  </data>
+  <data name="SaiseExporter_ErrorMessage" xml:space="preserve">
+    <value>Mesajul de eroare</value>
+  </data>
+  <data name="ExportRsaToSaise_ErrorMessage" xml:space="preserve">
+    <value>Mesajul de eroare</value>
+  </data>
+  <data name="ExportPollingStations_ErrorMessage" xml:space="preserve">
+    <value>Mesajul de eroare</value>
+  </data>
+  <data name="PollingStationPersonCount" xml:space="preserve">
+    <value>Total alegători</value>
+  </data>
+  <data name="PollingStationSaiseId" xml:space="preserve">
+    <value>SIAS ID</value>
+  </data>
+  <data name="PollingStation_TabTitle" xml:space="preserve">
+    <value>Gestionarea secțiilor de votare</value>
+  </data>
+  <data name="PollingStationAddEditeErrorRequired_Address" xml:space="preserve">
+    <value>Introduceți adresa</value>
+  </data>
+  <data name="PollingStationAddEditeErrorRequired_ContactInfo" xml:space="preserve">
+    <value>Introduceți informația de contact</value>
+  </data>
+  <data name="PollingStationAddEditeErrorRequired_Location" xml:space="preserve">
+    <value>Introduceți locația</value>
+  </data>
+  <data name="PollingStationAddEditeErrorRequired_Number" xml:space="preserve">
+    <value>Introduceți numărul</value>
+  </data>
+  <data name="HistoryBtnTitle" xml:space="preserve">
+    <value>Istoric</value>
+  </data>
+  <data name="BuildingType" xml:space="preserve">
+    <value>Tipul clădirii</value>
+  </data>
+  <data name="PublicAdministrationErrorRequired_ManagerTypes" xml:space="preserve">
+    <value>Tipul de conducator</value>
+  </data>
+  <data name="PublicAdministrationErrorRequired_Name" xml:space="preserve">
+    <value>Introduceți Prenumele</value>
+  </data>
+  <data name="PublicAdministrationErrorRequired_Surname" xml:space="preserve">
+    <value>Introduceți Numele</value>
+  </data>
+  <data name="PublicAdministrationName" xml:space="preserve">
+    <value>Prenume</value>
+  </data>
+  <data name="PublicAdministrationSurname" xml:space="preserve">
+    <value>Nume</value>
+  </data>
+  <data name="PublicAdministration_DialogTitle" xml:space="preserve">
+    <value>Introduceți date despre administrație</value>
+  </data>
+  <data name="LinkedRegions_DialogTitle" xml:space="preserve">
+    <value>Creați legătură cu alte regiuni</value>
+  </data>
+  <data name="UnDelete" xml:space="preserve">
+    <value>Restabilire</value>
+  </data>
+  <data name="Create_UniqueError" xml:space="preserve">
+    <value>Înregistrare cu numele dat deja există</value>
+  </data>
+  <data name="CreateAddress_AlreadyExist_Message" xml:space="preserve">
+    <value>Adresa dată deja există</value>
+  </data>
+  <data name="LoginError_BlockedUser" xml:space="preserve">
+    <value>Utilizatorul este blocat. Contactați CEC pentru detalii</value>
+  </data>
+  <data name="UserDelete_Message" xml:space="preserve">
+    <value>Utilizatorul va fi sters definitiv, sunteţi sigur?</value>
+  </data>
+  <data name="UserActive" xml:space="preserve">
+    <value>Activ</value>
+  </data>
+  <data name="UserBlocked" xml:space="preserve">
+    <value>Blocat</value>
+  </data>
+  <data name="Person_Address" xml:space="preserve">
+    <value>Adresa</value>
+  </data>
+  <data name="Person_ApNumber" xml:space="preserve">
+    <value>Ap.Număr</value>
+  </data>
+  <data name="Person_ApSuffix" xml:space="preserve">
+    <value>Ap.Sufix</value>
+  </data>
+  <data name="Person_DataOfBirth" xml:space="preserve">
+    <value>Data nașterii</value>
+  </data>
+  <data name="Conflict_DataOfBirth" xml:space="preserve">
+    <value>Data nașterii</value>
+  </data>
+  <data name="Person_DocumentNumber" xml:space="preserve">
+    <value>Numarul doc.</value>
+  </data>
+  <data name="Person_DocumentSeries" xml:space="preserve">
+    <value>Seria doc.</value>
+  </data>
+  <data name="Conflict_DocNumber" xml:space="preserve">
+    <value>Număr doc.</value>
+  </data>
+  <data name="Conflict_DocSeria" xml:space="preserve">
+    <value>Seria doc.</value>
+  </data>
+  <data name="Person_FirstName" xml:space="preserve">
+    <value>Prenumele</value>
+  </data>
+  <data name="Conflict_FirstName" xml:space="preserve">
+    <value>Prenumele</value>
+  </data>
+  <data name="Person_Gender" xml:space="preserve">
+    <value>Genul</value>
+  </data>
+  <data name="Conflict_Gender" xml:space="preserve">
+    <value>Genul</value>
+  </data>
+  <data name="Conflict_PersonStatus" xml:space="preserve">
+    <value>Statutul persoanei</value>
+  </data>
+  <data name="Conflict_Idnp" xml:space="preserve">
+    <value>IDNP</value>
+  </data>
+  <data name="Person_Idnp" xml:space="preserve">
+    <value>IDNP</value>
+  </data>
+  <data name="RspInfo_Idnp" xml:space="preserve">
+    <value>IDNP</value>
+  </data>
+  <data name="RspInfo_BirthDate" xml:space="preserve">
+    <value>Data nașterii</value>
+  </data>
+  <data name="RspInfo_CitizenRm" xml:space="preserve">
+    <value>Cetățenie</value>
+  </data>
+  <data name="RspInfo_Dead" xml:space="preserve">
+    <value>Decedat</value>
+  </data>
+  <data name="RspInfo_ExpirationDate" xml:space="preserve">
+    <value>Data expirării</value>
+  </data>
+  <data name="RspInfo_IssueDate" xml:space="preserve">
+    <value>Data eliberării</value>
+  </data>
+  <data name="RspInfo_IssueLocation" xml:space="preserve">
+    <value>Oficiul</value>
+  </data>
+  <data name="RspInfo_Number" xml:space="preserve">
+    <value>Numărul</value>
+  </data>
+  <data name="RspInfo_Series" xml:space="preserve">
+    <value>Seria</value>
+  </data>
+  <data name="RspInfo_Validity" xml:space="preserve">
+    <value>Valid</value>
+  </data>
+  <data name="RspInfo_LastName" xml:space="preserve">
+    <value>Prenume</value>
+  </data>
+  <data name="RspInfo_FirstName" xml:space="preserve">
+    <value>Nume</value>
+  </data>
+  <data name="RspInfo_DocType" xml:space="preserve">
+    <value>Tipul</value>
+  </data>
+  <data name="RspInfo_SecondName" xml:space="preserve">
+    <value>Patronimic</value>
+  </data>
+  <data name="RspInfo_Sex" xml:space="preserve">
+    <value>Sexul</value>
+  </data>
+  <data name="RspInfo_Street" xml:space="preserve">
+    <value>Strada</value>
+  </data>
+  <data name="RspInfo_StreetAddress" xml:space="preserve">
+    <value>Strada(Nom.)</value>
+  </data>
+  <data name="RspInfo_StreetCode" xml:space="preserve">
+    <value>Codul străzii</value>
+  </data>
+  <data name="RspInfo_House" xml:space="preserve">
+    <value>Numărul casei</value>
+  </data>
+  <data name="RspInfo_Block" xml:space="preserve">
+    <value>Blocul</value>
+  </data>
+  <data name="RspInfo_Locality" xml:space="preserve">
+    <value>Localitatea</value>
+  </data>
+  <data name="RspInfo_Region" xml:space="preserve">
+    <value>Regiunea</value>
+  </data>
+  <data name="RspInfo_AdministrativCode" xml:space="preserve">
+    <value>Codul Administrativ</value>
+  </data>
+  <data name="RspInfo_Flat" xml:space="preserve">
+    <value>Apartamentul</value>
+  </data>
+  <data name="RspInfo_ExpirationDateAddress" xml:space="preserve">
+    <value>Data expirării</value>
+  </data>
+  <data name="RspInfo_RegDate" xml:space="preserve">
+    <value>Data înregistrării</value>
+  </data>
+  <data name="RspInfo_Address" xml:space="preserve">
+    <value>Adresa</value>
+  </data>
+  <data name="RspInfo_RegType" xml:space="preserve">
+    <value>Tipul reședinței</value>
+  </data>
+  <data name="Idnp_Placeholder" xml:space="preserve">
+    <value>IDNP – 13 cifre</value>
+  </data>
+  <data name="Person_MiddleName" xml:space="preserve">
+    <value>Patronimicul</value>
+  </data>
+  <data name="Conflict_MiddleName" xml:space="preserve">
+    <value>Patronimicul</value>
+  </data>
+  <data name="Person_Status" xml:space="preserve">
+    <value>Statutul</value>
+  </data>
+  <data name="Conflict_Status" xml:space="preserve">
+    <value>Statutul</value>
+  </data>
+  <data name="Conflict_StatusMessage" xml:space="preserve">
+    <value>Mesajul conflictului</value>
+  </data>
+  <data name="Conflict_StreetName" xml:space="preserve">
+    <value>Nume stradă</value>
+  </data>
+  <data name="Person_Surname" xml:space="preserve">
+    <value>Numele</value>
+  </data>
+  <data name="Conflict_Surname" xml:space="preserve">
+    <value>Numele</value>
+  </data>
+  <data name="Conflict_HouseNumber" xml:space="preserve">
+    <value>Număr casă</value>
+  </data>
+  <data name="Conflict_Source" xml:space="preserve">
+    <value>Sursa</value>
+  </data>
+  <data name="Conflict_Comments" xml:space="preserve">
+    <value>Comentariu</value>
+  </data>
+  <data name="Conflict_RegionId" xml:space="preserve">
+    <value>Localitatea Id</value>
+  </data>
+  <data name="Conflict_HouseSuffix" xml:space="preserve">
+    <value>Sufixul</value>
+  </data>
+  <data name="Conflict_ApartmentNumber" xml:space="preserve">
+    <value>Ap.Număr</value>
+  </data>
+  <data name="Conflict_ApartmentSuffix" xml:space="preserve">
+    <value>Ap.Suffix</value>
+  </data>
+  <data name="ButtonSearch" xml:space="preserve">
+    <value>Caută</value>
+  </data>
+  <data name="Voters_ResultLabel" xml:space="preserve">
+    <value>Rezultatul căutării</value>
+  </data>
+  <data name="Voters_SearchLabel" xml:space="preserve">
+    <value>Căutare în întreaga listă</value>
+  </data>
+  <data name="Person_FullName" xml:space="preserve">
+    <value>Numele Complet</value>
+  </data>
+  <data name="FilterForVoters_PollingStation" xml:space="preserve">
+    <value>Secție de votare</value>
+  </data>
+  <data name="StayStatement_PollingStation" xml:space="preserve">
+    <value>Secție de votare</value>
+  </data>
+  <data name="FilterForVoters_Region" xml:space="preserve">
+    <value>Localitatea</value>
+  </data>
+  <data name="StayStatement_Region" xml:space="preserve">
+    <value>Localitatea</value>
+  </data>
+  <data name="Region" xml:space="preserve">
+    <value>Localitatea</value>
+  </data>
+  <data name="RegionAddEditeErrorRequired_Name" xml:space="preserve">
+    <value>Introduceți numele localității</value>
+  </data>
+  <data name="RegionAdd_DialogTitle" xml:space="preserve">
+    <value>Adăugați o nouă localitate</value>
+  </data>
+  <data name="RegionDelete_Message" xml:space="preserve">
+    <value>Sunteți sigur că doriți să eliminați localitatea selectată?</value>
+  </data>
+  <data name="RegionEdite_DialogTitle" xml:space="preserve">
+    <value>Modificați localitatea selectată</value>
+  </data>
+  <data name="Address_RequiredPollingStation" xml:space="preserve">
+    <value>Secția de votare este obligatorie</value>
+  </data>
+  <data name="NumberPollingStation" xml:space="preserve">
+    <value>Secție de votare</value>
+  </data>
+  <data name="AddressPeopleNumber" xml:space="preserve">
+    <value>Numărul persoanelor</value>
+  </data>
+  <data name="UsersEdite_DialogTitle" xml:space="preserve">
+    <value>Modificați utilizatorul selectat</value>
+  </data>
+  <data name="Users_RequiredRol" xml:space="preserve">
+    <value>Introduceți rolul</value>
+  </data>
+  <data name="Users_RequireStatut" xml:space="preserve">
+    <value>Introduceți statutul</value>
+  </data>
+  <data name="Lookups_RequireDescription" xml:space="preserve">
+    <value>Introduceți Descrierea</value>
+  </data>
+  <data name="Lookups_RequiredName" xml:space="preserve">
+    <value>Introduceți Numele</value>
+  </data>
+  <data name="ManagerTypeAdd_DialogTitle" xml:space="preserve">
+    <value>Adăugați o nouă înregistrare</value>
+  </data>
+  <data name="ManagerTypeEdite_DialogTitle" xml:space="preserve">
+    <value>Modificați înregistrarea selectată</value>
+  </data>
+  <data name="ManagerTypesDelete_Message" xml:space="preserve">
+    <value>Sunteți sigur că doriți să eliminați înregistrarea selectată?</value>
+  </data>
+  <data name="ManagerTypesNotSelectedAlertMessage" xml:space="preserve">
+    <value>Selectați măcar o înregistrare</value>
+  </data>
+  <data name="ManagerTypesNotSelectedAlertMessaged" xml:space="preserve">
+    <value>Selectați doar o înregistrare</value>
+  </data>
+  <data name="PersonStatusAdd_DialogTitle" xml:space="preserve">
+    <value>Adăugați o nouă înregistrare</value>
+  </data>
+  <data name="PersonStatusDelete_Message" xml:space="preserve">
+    <value>Sunteți sigur că doriți să eliminați înregistrarea selectată?</value>
+  </data>
+  <data name="PersonStatusEdite_DialogTitle" xml:space="preserve">
+    <value>Modificați înregistrarea selectată</value>
+  </data>
+  <data name="GenderAdd_DialogTitle" xml:space="preserve">
+    <value>Adăugați o nouă înregistrare</value>
+  </data>
+  <data name="GenderDelete_Message" xml:space="preserve">
+    <value>Sunteți sigur că doriți să eliminați înregistrarea selectată?</value>
+  </data>
+  <data name="GenderEdite_DialogTitle" xml:space="preserve">
+    <value>Modificați înregistrarea selectată</value>
+  </data>
+  <data name="CircumscriptionAdd_DialogTitle" xml:space="preserve">
+    <value>Modificați înregistrarea selectată</value>
+  </data>
+  <data name="DocumentTypeAdd_DialogTitle" xml:space="preserve">
+    <value>Adăugați o nouă înregistrare</value>
+  </data>
+  <data name="DocumentTypeDelete_Message" xml:space="preserve">
+    <value>Sunteți sigur că doriți să eliminați înregistrarea selectată?</value>
+  </data>
+  <data name="DocumentTypeEdite_DialogTitle" xml:space="preserve">
+    <value>Modificați înregistrarea selectată</value>
+  </data>
+  <data name="ElectionTypeAdd_DialogTitle" xml:space="preserve">
+    <value>Adăugați o nouă înregistrare</value>
+  </data>
+  <data name="ElectionTypeDelete_Message" xml:space="preserve">
+    <value>Sunteți sigur că doriți să eliminați înregistrarea selectată?</value>
+  </data>
+  <data name="ElectionTypeEdite_DialogTitle" xml:space="preserve">
+    <value>Modificați înregistrarea selectată</value>
+  </data>
+  <data name="RegionTypeAdd_DialogTitle" xml:space="preserve">
+    <value>Adăugați o nouă înregistrare</value>
+  </data>
+  <data name="RegionTypeDelete_Message" xml:space="preserve">
+    <value>Sunteți sigur că doriți să eliminați înregistrarea selectată?</value>
+  </data>
+  <data name="RegionTypeEdite_DialogTitle" xml:space="preserve">
+    <value>Modificați înregistrarea selectată</value>
+  </data>
+  <data name="Lookups_RequiredRank" xml:space="preserve">
+    <value>Introduceți Rang-ul</value>
+  </data>
+  <data name="StreetTypeDelete_Message" xml:space="preserve">
+    <value>Sunteți sigur că doriți să eliminați înregistrarea selectată?</value>
+  </data>
+  <data name="StreetTypeEdite_DialogTitle" xml:space="preserve">
+    <value>Modificați înregistrarea selectată</value>
+  </data>
+  <data name="StreetTypeAdd_DialogTitle" xml:space="preserve">
+    <value>Adăugați o nouă înregistrare</value>
+  </data>
+  <data name="Lookups_RankInvalidValue" xml:space="preserve">
+    <value>Rang-ul nu poate depăși valoarea 255</value>
+  </data>
+  <data name="Error_SubRegionsChildren" xml:space="preserve">
+    <value>Localitatea are sub-localități.  Nu puteți șterge o localitate pînă nu ștergeți sau nu mutați toate sub-localitățile la o alta localitate.</value>
+  </data>
+  <data name="Error_RegionsHasStreet" xml:space="preserve">
+    <value>Localitatea are străzi.  Nu puteți șterge o localitate pînă nu ștergeți sau nu mutați toate străzile la o alta localitate.</value>
+  </data>
+  <data name="Error_RegionsIsDeleted" xml:space="preserve">
+    <value>Localitatea este ștearsă. Restabiliți localitatea.</value>
+  </data>
+  <data name="Error_EntityIsDeleted" xml:space="preserve">
+    <value>Înregistrarea este ștearsă. Restabiliți înregistrarea.</value>
+  </data>
+  <data name="Error_RegionsHasPollingStation" xml:space="preserve">
+    <value>Localitatea are seții de votare.  Nu puteți șterge o localitate pînă nu ștergeți sau nu mutați toate sețiile de votare la o alta localitate.</value>
+  </data>
+  <data name="Error_404" xml:space="preserve">
+    <value>Pagina '{0}' nu a fost găsită.</value>
+  </data>
+  <data name="Error_Default" xml:space="preserve">
+    <value>A avut loc o excepție în sistem. Adresațivă Administratorilor.</value>
+  </data>
+  <data name="RegionAddEditeErrorRequired_Parent" xml:space="preserve">
+    <value>Introduceți părintele localității</value>
+  </data>
+  <data name="RegionAddEditeErrorRequired_RegionType" xml:space="preserve">
+    <value>Introduceți tipul localității</value>
+  </data>
+  <data name="RegionUniqueKey_ValidateMessage" xml:space="preserve">
+    <value>Localitate cu așa Nume, Părinte și Tip deja există</value>
+  </data>
+  <data name="StreetUniqueKey_ValidateMessage" xml:space="preserve">
+    <value>Stradă cu așa Nume si Tip pentru localitatea dată deja există</value>
+  </data>
+  <data name="Error_DeleteData" xml:space="preserve">
+    <value>Nu puteți restabili datele care nu vă aparțin</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Nu</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Da</value>
+  </data>
+  <data name="PleaseSelect" xml:space="preserve">
+    <value>Selectați...</value>
+  </data>
+  <data name="Person_Age" xml:space="preserve">
+    <value>Vîrsta</value>
+  </data>
+  <data name="Person_Comments" xml:space="preserve">
+    <value>Comentariu</value>
+  </data>
+  <data name="CreateUserErrorRequired_GenderId" xml:space="preserve">
+    <value>Introduceți genul</value>
+  </data>
+  <data name="CreateUser_GenderId" xml:space="preserve">
+    <value>Genul</value>
+  </data>
+  <data name="Lookups_RegionNotAcceptStreets" xml:space="preserve">
+    <value>Nu e posibil ataşarea străzilor la localitatea selectată</value>
+  </data>
+  <data name="Address_RegionNotAcceptChangePollingStation" xml:space="preserve">
+    <value>Nu e posibil modificarea secțiilor de votare la localitatea selectată</value>
+  </data>
+  <data name="Address_RegionNotAcceptAdjustmentAddresses" xml:space="preserve">
+    <value>Nu e posibil ajustarea adresei la localitatea selectată</value>
+  </data>
+  <data name="Address_RegionNotAcceptUpdateGeolocation" xml:space="preserve">
+    <value>Nu e posibil geolocalizarea adresei la localitatea selectată</value>
+  </data>
+  <data name="Lookups_CircumscriptionAlreadyExist" xml:space="preserve">
+    <value>Numărul circumscripției deja există</value>
+  </data>
+  <data name="Address_RegionNotAcceptStreets" xml:space="preserve">
+    <value>Nu e posibil crearea adresei la localitatea selectată</value>
+  </data>
+  <data name="Account_IsBuiltInUsersNotDelete" xml:space="preserve">
+    <value>Utilizatorii de sistem (System si Administrator) nu pot fii sterși</value>
+  </data>
+  <data name="Account_UserNotSetRegions" xml:space="preserve">
+    <value>Administratorilor nu li se pot asocia localități</value>
+  </data>
+  <data name="AdministrativeBuildings" xml:space="preserve">
+    <value>Blocuri Administrative</value>
+  </data>
+  <data name="ApartmentBuildings" xml:space="preserve">
+    <value>Blocuri Locative</value>
+  </data>
+  <data name="mnuElections" xml:space="preserve">
+    <value>Alegeri</value>
+  </data>
+  <data name="Elections_TabTitle" xml:space="preserve">
+    <value>Alegeri</value>
+  </data>
+  <data name="ProblematicDataTab" xml:space="preserve">
+    <value>Dublarea secțiilor de votare</value>
+  </data>
+  <data name="ElectionGrid_Comments" xml:space="preserve">
+    <value>Comentarii</value>
+  </data>
+  <data name="ElectionGrid_AcceptAbroadDeclaration" xml:space="preserve">
+    <value>Acceptă declarații externe</value>
+  </data>
+  <data name="ElectionGrid_ElectionDate" xml:space="preserve">
+    <value>Data scrutinului</value>
+  </data>
+  <data name="ElectionGrid_ElectionType" xml:space="preserve">
+    <value>Tip de scrutin</value>
+  </data>
+  <data name="ElectionGrid_SaiseId" xml:space="preserve">
+    <value>SAISE ID</value>
+  </data>
+  <data name="UpdateElectionModel_Comments" xml:space="preserve">
+    <value>Comentarii</value>
+  </data>
+  <data name="UpdateElectionModel_AcceptAbroadDeclaration" xml:space="preserve">
+    <value>Acceptă declarații externe</value>
+  </data>
+  <data name="UpdateElectionModel_ElectionDate" xml:space="preserve">
+    <value>Data scrutinului</value>
+  </data>
+  <data name="UpdateElectionModel_ElectionType" xml:space="preserve">
+    <value>Tip scrutin</value>
+  </data>
+  <data name="UpdateElectionModel_SaiseId" xml:space="preserve">
+    <value>SAISE ID</value>
+  </data>
+  <data name="UpdateElectionModel_ElectionDateRequired" xml:space="preserve">
+    <value>'Data scrutinului' este obligatorie</value>
+  </data>
+  <data name="UpdateElectionModel_ElectionTypeRequired" xml:space="preserve">
+    <value>'Tipul scrutinului' este obligatoriu</value>
+  </data>
+  <data name="ButtonExecute" xml:space="preserve">
+    <value>Execută</value>
+  </data>
+  <data name="ListExportingModel_IsPollingStationSelection" xml:space="preserve">
+    <value>Selectarea manuală a secției de votare</value>
+  </data>
+  <data name="ListPrintingModel_Election" xml:space="preserve">
+    <value>Scrutinul</value>
+  </data>
+  <data name="ExportRsaToSaiseModel_Election" xml:space="preserve">
+    <value>Scrutinul</value>
+  </data>
+  <data name="ListExportingModel_Election" xml:space="preserve">
+    <value>Scrutinul</value>
+  </data>
+  <data name="ExportRsaToSaiseModel_ExportAll" xml:space="preserve">
+    <value>Exportă totul</value>
+  </data>
+  <data name="ListPrintingModel_PollingStation" xml:space="preserve">
+    <value>Secția de votare</value>
+  </data>
+  <data name="ListExportingModel_Circumscription" xml:space="preserve">
+    <value>Circumscripția</value>
+  </data>
+  <data name="ListExportingModel_PollingStation" xml:space="preserve">
+    <value>Secția de votare</value>
+  </data>
+  <data name="ListPrintingModel_FieldRequired" xml:space="preserve">
+    <value>Câmp necesar</value>
+  </data>
+  <data name="ListExportingModel_FieldRequired" xml:space="preserve">
+    <value>Câmp necesar</value>
+  </data>
+  <data name="StayStatement" xml:space="preserve">
+    <value>Declarație de ședere</value>
+  </data>
+  <data name="CreateStayStatement" xml:space="preserve">
+    <value>Creare Declarație de Ședere</value>
+  </data>
+  <data name="AddressOfResidence" xml:space="preserve">
+    <value>Viza de reședință</value>
+  </data>
+  <data name="DeclaredAddress" xml:space="preserve">
+    <value>Adresa de ședere (declarată)</value>
+  </data>
+  <data name="Personal_Data" xml:space="preserve">
+    <value>Date personale</value>
+  </data>
+  <data name="ElectionInfo" xml:space="preserve">
+    <value>Scrutin</value>
+  </data>
+  <data name="MissingData" xml:space="preserve">
+    <value>Datele lipsesc</value>
+  </data>
+  <data name="ObjectNotFound" xml:space="preserve">
+    <value>Obiectul nu a fost găsit</value>
+  </data>
+  <data name="SetGeolocationAdd_DialogTitle" xml:space="preserve">
+    <value>Setarea Geolocației</value>
+  </data>
+  <data name="StreetsNotSelectedAlertMessage" xml:space="preserve">
+    <value>Selectați măcar o stradă.</value>
+  </data>
+  <data name="GeoLocation" xml:space="preserve">
+    <value>GeoDate setat?</value>
+  </data>
+  <data name="GeoAddress" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Account_IsBuiltInRolesNotChange" xml:space="preserve">
+    <value>Rolul și statutul utilizatorilor de sistem (System si Administrator) nu poate fi modificat</value>
+  </data>
+  <data name="Account_ErrorNotChangeUsersStatus" xml:space="preserve">
+    <value>Statutul și rolul nu poate fi modificat</value>
+  </data>
+  <data name="AddressesApartment_HouseNumberNotValid" xml:space="preserve">
+    <value>Numărul casei trebuie să fie numeric</value>
+  </data>
+  <data name="VoterNotSelectedAlertMessage" xml:space="preserve">
+    <value>Selectați un alegător.</value>
+  </data>
+  <data name="QuarzAdmin_JobNotSelectedAlertMessage" xml:space="preserve">
+    <value>Selectați un job.</value>
+  </data>
+  <data name="QuartzJob_AlertMessage" xml:space="preserve">
+    <value>Selectați un job.</value>
+  </data>
+  <data name="Voters_RequireStatut" xml:space="preserve">
+    <value>Introduceți statutul</value>
+  </data>
+  <data name="Voters_PersonIdnp" xml:space="preserve">
+    <value>Introduceți Idnp-ul
+	</value>
+  </data>
+  <data name="Voters_IdnpNotFound" xml:space="preserve">
+    <value>Nu a fost găsit nici o înregistrare</value>
+  </data>
+  <data name="Voters_StatutNew" xml:space="preserve">
+    <value>Statutul nou</value>
+  </data>
+  <data name="Voters_CurrentStatus" xml:space="preserve">
+    <value>Statutul curent</value>
+  </data>
+  <data name="Voters_ConfirmationNew" xml:space="preserve">
+    <value>Document confirmativ</value>
+  </data>
+  <data name="Voters_Name" xml:space="preserve">
+    <value>Nume</value>
+  </data>
+  <data name="Voters_PrimaryDocument" xml:space="preserve">
+    <value>Document</value>
+  </data>
+  <data name="Voters_Idnp" xml:space="preserve">
+    <value>Idnp</value>
+  </data>
+  <data name="Voters_Address" xml:space="preserve">
+    <value>Adresă</value>
+  </data>
+  <data name="Voters_RequireConfirmationNew" xml:space="preserve">
+    <value>Introduceți document confirmativ
+	</value>
+  </data>
+  <data name="Voters_CurrentConfirmation" xml:space="preserve">
+    <value>Document confirmativ curent</value>
+  </data>
+  <data name="Voters_SelectRegionMessages" xml:space="preserve">
+    <value>Selectați localitatea</value>
+  </data>
+  <data name="Voters_SelectPollingStationMessages" xml:space="preserve">
+    <value>Selectați secția de votare</value>
+  </data>
+  <data name="StayStatements_Name" xml:space="preserve">
+    <value>Nume</value>
+  </data>
+  <data name="StayStatements_TabTitle" xml:space="preserve">
+    <value>Gestionarea declarațiilor de ședere </value>
+  </data>
+  <data name="StayStatementsDelete_Message" xml:space="preserve">
+    <value>Sunteți sigur că doriți să eliminați declarația selectată?</value>
+  </data>
+  <data name="StayStatement_Id" xml:space="preserve">
+    <value>Numărul</value>
+  </data>
+  <data name="StayStatement_Idnp" xml:space="preserve">
+    <value>Idnp</value>
+  </data>
+  <data name="StayStatement_PersonName" xml:space="preserve">
+    <value>Nume</value>
+  </data>
+  <data name="StayStatement_PersonDateOfBirth" xml:space="preserve">
+    <value>Data de naștere</value>
+  </data>
+  <data name="Person_DocIssuedBy" xml:space="preserve">
+    <value>Oficiul</value>
+  </data>
+  <data name="Person_DocIssuedDate" xml:space="preserve">
+    <value>Data eliberării</value>
+  </data>
+  <data name="Person_DocValidBy" xml:space="preserve">
+    <value>Valabil pînă la</value>
+  </data>
+  <data name="StayStatementErrorRequired_DeclaredStayAddress" xml:space="preserve">
+    <value>Introduceți adresa de ședere</value>
+  </data>
+  <data name="AdjustmentAddressesErrorRequired_RegionOfAddress" xml:space="preserve">
+    <value>Introduceți localitatea adresei ajustate</value>
+  </data>
+  <data name="AdjustmentAddressesErrorRequired_Address" xml:space="preserve">
+    <value>Introduceți adresa ajustată</value>
+  </data>
+  <data name="AdjustmentAddressesSameAddress" xml:space="preserve">
+    <value>Ați introdus aceeaşi adresă</value>
+  </data>
+  <data name="StayStatementError_SameAddress" xml:space="preserve">
+    <value>Nu este posibil de creat o declarație în aceeași localitate</value>
+  </data>
+  <data name="StayStatementError_SameRegion" xml:space="preserve">
+    <value>Nu este posibil de creat o declarație în aceeași localitate</value>
+  </data>
+  <data name="StayStatementErrorRequired_StayStatementRegionId" xml:space="preserve">
+    <value>Introduceți localitatea</value>
+  </data>
+  <data name="StayStatementErrorRequired_StayStatementPollingStationId" xml:space="preserve">
+    <value>Introduceți secția de votare</value>
+  </data>
+  <data name="StayStatementErrorUnique_Election" xml:space="preserve">
+    <value>Persoana dată are deja declarație de ședere pentru scrutinul selectat.</value>
+  </data>
+  <data name="StayStatementErrorRequired_Election" xml:space="preserve">
+    <value>Introduceți scrutinul.</value>
+  </data>
+  <data name="DeclarationNotSelectedAlertMessage" xml:space="preserve">
+    <value>Alegeți o declarație de ședere</value>
+  </data>
+  <data name="StayStatement_CreateDate" xml:space="preserve">
+    <value>Data Creării</value>
+  </data>
+  <data name="ListExportingModel_StartDate" xml:space="preserve">
+    <value>Data Creării</value>
+  </data>
+  <data name="ExportRsaToSaiseModel_StartDate" xml:space="preserve">
+    <value>Data Creării</value>
+  </data>
+  <data name="ListExportingModel_TotalPollingStationForExporting" xml:space="preserve">
+    <value>Numărul total a secțiilor de votare</value>
+  </data>
+  <data name="ListExportingModel_TotalPollingStationInPending" xml:space="preserve">
+    <value>Acțiuni în așteptare</value>
+  </data>
+  <data name="ListExportingModel_PollingStationFinished" xml:space="preserve">
+    <value>Numărul secțiilor de votare procesate</value>
+  </data>
+  <data name="ClearFilterButton" xml:space="preserve">
+    <value>Resetare filtre</value>
+  </data>
+  <data name="PollingStation_NotPermissionDeletePollingStation" xml:space="preserve">
+    <value>Nu puteți șterge o secția de votare la care sunt asociate blocuri locative. Mutați sau ștergeți blocurile asociate </value>
+  </data>
+  <data name="PersonAddressTypes_TabTitle" xml:space="preserve">
+    <value>Tipuri de adrese</value>
+  </data>
+  <data name="Person_AddressType" xml:space="preserve">
+    <value>Tipul adresei</value>
+  </data>
+  <data name="FieldError_CharacterValidation" xml:space="preserve">
+    <value>Se acceptă doar caractere latine</value>
+  </data>
+  <data name="FieldError_FormatterValidation" xml:space="preserve">
+    <value>Formatul este incorect</value>
+  </data>
+  <data name="PersonMaxNumCharacters_ApSuffix" xml:space="preserve">
+    <value>Întroduceți maxim 10 caractere</value>
+  </data>
+  <data name="ApSuffixError_CharacterValidation" xml:space="preserve">
+    <value>Întroduceți pentru Sufix doar caractere latine</value>
+  </data>
+  <data name="StayStatementsCancel_Message" xml:space="preserve">
+    <value>Sunteți sigur că doriți să anulați declarația selectată?</value>
+  </data>
+  <data name="Auto_Logoff_Warn_Title" xml:space="preserve">
+    <value>Sesiunea curentă va fi terminată curând!</value>
+  </data>
+  <data name="Auto_Logoff_Warn" xml:space="preserve">
+    <value>Sesiunea curentă va fi terminată în</value>
+  </data>
+  <data name="Auto_Logoff_Warn_Query" xml:space="preserve">
+    <value>Doriți să continuați lucrul?</value>
+  </data>
+  <data name="Auto_Logoff_Warn_Seconds" xml:space="preserve">
+    <value>secunde</value>
+  </data>
+  <data name="UpdateAddress_Name" xml:space="preserve">
+    <value>Nume</value>
+  </data>
+  <data name="UpdateAddress_CurrentAddress" xml:space="preserve">
+    <value>Adresa curentă</value>
+  </data>
+  <data name="UpdateAddress_NewAddress" xml:space="preserve">
+    <value>Adresa nouă</value>
+  </data>
+  <data name="UpdateAddress_NewApNumber" xml:space="preserve">
+    <value>Numărul apartamentului</value>
+  </data>
+  <data name="UpdateAddress_NewApSufix" xml:space="preserve">
+    <value>Sufix apartamentului</value>
+  </data>
+  <data name="UpdateAddressMaxNumCharacters_ApSuffix" xml:space="preserve">
+    <value>Întroduceți maxim 10 caractere</value>
+  </data>
+  <data name="Voters_NotDeletePermisions" xml:space="preserve">
+    <value>Nu este permisă modificarea declarației de ședere</value>
+  </data>
+  <data name="StayStatementErrorDuplicate_DeclaredStayAddress" xml:space="preserve">
+    <value>Nu puteți crea declarație de ședere cu adresa de reședință</value>
+  </data>
+  <data name="UpdateVotes_CurrentAddress" xml:space="preserve">
+    <value>Adresa curentă</value>
+  </data>
+  <data name="UpdateVotes_NewAddress" xml:space="preserve">
+    <value>Adresa nouă</value>
+  </data>
+  <data name="Notification" xml:space="preserve">
+    <value>Notificări</value>
+  </data>
+  <data name="Conflict_Resolution" xml:space="preserve">
+    <value>Rezolvarea Conflictelor</value>
+  </data>
+  <data name="Notification_Message" xml:space="preserve">
+    <value>Mesajul</value>
+  </data>
+  <data name="Notification_CreateDate" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="Notification_UserName" xml:space="preserve">
+    <value>Nume utilizator</value>
+  </data>
+  <data name="Notification_Type" xml:space="preserve">
+    <value>Tipul notificării</value>
+  </data>
+  <data name="ViewNotification" xml:space="preserve">
+    <value>Vizualizarea notificării</value>
+  </data>
+  <data name="ViewImportStatistics" xml:space="preserve">
+    <value>Vizualizarea statisticilor</value>
+  </data>
+  <data name="ViewConflict" xml:space="preserve">
+    <value>Vizualizarea conflictului</value>
+  </data>
+  <data name="NotificationMgmt" xml:space="preserve">
+    <value>Gestionarea notificărilor</value>
+  </data>
+  <data name="ImportStatisticsMgmt" xml:space="preserve">
+    <value>Gestionarea statisticilor pe import</value>
+  </data>
+  <data name="ViewPollingStationExport" xml:space="preserve">
+    <value>Vizualizarea secțiilor de votare</value>
+  </data>
+  <data name="ViewJobList" xml:space="preserve">
+    <value>Vizualizarea job-urilor</value>
+  </data>
+  <data name="SaiseExporter_ViewList" xml:space="preserve">
+    <value>Vizualizarea etapelor de exportare</value>
+  </data>
+  <data name="ConflictMgmt" xml:space="preserve">
+    <value>Gestionarea conflictelor</value>
+  </data>
+  <data name="Notification_IsRead" xml:space="preserve">
+    <value>Notificarea este citită?</value>
+  </data>
+  <data name="Notification_StayStatement_Cancellation" xml:space="preserve">
+    <value>Declarația nr. {0} a fost anulată pentru IDNP {1}.</value>
+  </data>
+  <data name="Voters_PersonIdnpError" xml:space="preserve">
+    <value>Idnp-ul {0} nu este valid</value>
+  </data>
+  <data name="Notification_StayStatement_Creation" xml:space="preserve">
+    <value>Declarația nr. {0} a fost creată pentru IDNP {1}.</value>
+  </data>
+  <data name="Notification_RspModificationData_StatusModification" xml:space="preserve">
+    <value>A fost soluționat conflictul cu nr. {0} pentru IDNP {1}, prin păstrarea statutului persoanei din Registrul Alegătorului.</value>
+  </data>
+  <data name="Notification_Conflict_RejectResolve" xml:space="preserve">
+    <value>Registratorul {0} a respins modificarea din Registrul Populației pentru conflictului cu nr. {1}.</value>
+  </data>
+  <data name="Notification_PersonAddress_Change" xml:space="preserve">
+    <value>Adresa curentă pentru IDNP {0} a fost schimbată;Adresa veche: {1};Adresa nouă: {2}</value>
+  </data>
+  <data name="Notification_PersonStatus_Change" xml:space="preserve">
+    <value>Statutul persoanei cu IDNP {0} a fost schimbat.
+Document confirmativ: {1}</value>
+  </data>
+  <data name="Notification_PollingStation_Create" xml:space="preserve">
+    <value>A fost creată secția de votare cu nr. {0} in {1}.</value>
+  </data>
+  <data name="Notification_PollingStation_Delete" xml:space="preserve">
+    <value>A fost ștearsă secția de votare cu nr. {0} din {1}.</value>
+  </data>
+  <data name="IdnpNotSelectedAlertMessage" xml:space="preserve">
+    <value>Selectați IDNP-ul</value>
+  </data>
+  <data name="Notification_TabTitle" xml:space="preserve">
+    <value>Gestionarea notificărilor</value>
+  </data>
+  <data name="Conflict_TabTitle" xml:space="preserve">
+    <value>Gestionarea conflictelor</value>
+  </data>
+  <data name="Reporting_TabTitle" xml:space="preserve">
+    <value>Rapoarte</value>
+  </data>
+  <data name="Reporting_Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="Reporting_HistoryExport" xml:space="preserve">
+    <value>Istoria exportului</value>
+  </data>
+  <data name="LoginError_NotRole" xml:space="preserve">
+    <value>Accesul nu este permis</value>
+  </data>
+  <data name="Address_Not_Assigned" xml:space="preserve">
+    <value>[Adresa lipsește]</value>
+  </data>
+  <data name="PollingStationAddEditeErrorNum_SaiseId" xml:space="preserve">
+    <value>Cîmpul SIAS ID trebuie să fie numeric</value>
+  </data>
+  <data name="Region_NotAcceptParentWithSameInstance" xml:space="preserve">
+    <value>Nu este permisă setarea aceleiași localități ca părinte</value>
+  </data>
+  <data name="Circumscription_RegionName" xml:space="preserve">
+    <value>Nume</value>
+  </data>
+  <data name="Circumscription_Number" xml:space="preserve">
+    <value>Numărul Circumscripției</value>
+  </data>
+  <data name="Address_HouseNumber" xml:space="preserve">
+    <value>Număr casă</value>
+  </data>
+  <data name="Address_PollingStation" xml:space="preserve">
+    <value>Secție de votare</value>
+  </data>
+  <data name="Address_StreetName" xml:space="preserve">
+    <value>Nume stradă</value>
+  </data>
+  <data name="Address_Suffix" xml:space="preserve">
+    <value>Sufix</value>
+  </data>
+  <data name="AddressAdministrativeAdd_DialogTitle" xml:space="preserve">
+    <value>Creare adresă administrativă</value>
+  </data>
+  <data name="AddressAdministrativeDelete_Message" xml:space="preserve">
+    <value>Sunteți sigur că doriți să eliminați adresa administrativă selectată?</value>
+  </data>
+  <data name="AddressAdministrativeEdit_DialogTitle" xml:space="preserve">
+    <value>Editare adresă administrativă</value>
+  </data>
+  <data name="AddressApartmentAdd_DialogTitle" xml:space="preserve">
+    <value>Creare adresă locativă</value>
+  </data>
+  <data name="AddressBuildingAdd_DialogTitle" xml:space="preserve">
+    <value>Creare adresă </value>
+  </data>
+  <data name="AddressApartmentDelete_Message" xml:space="preserve">
+    <value>Sunteți sigur că doriți să eliminați adresa locativă selectată?</value>
+  </data>
+  <data name="AddressBuildingDelete_Message" xml:space="preserve">
+    <value>Sunteți sigur că doriți să eliminați adresa selectată?</value>
+  </data>
+  <data name="AddressApartmentEdit_DialogTitle" xml:space="preserve">
+    <value>Editare adresă locativă</value>
+  </data>
+  <data name="AddressBuildingEdit_DialogTitle" xml:space="preserve">
+    <value>Editare adresă</value>
+  </data>
+  <data name="AddresseRequired_HouseNumber" xml:space="preserve">
+    <value>Introduceți numărul casei</value>
+  </data>
+  <data name="Addresse_HouseNumberNotValid" xml:space="preserve">
+    <value>Numărul casei trebuie să conțină maxim 5 cifre</value>
+  </data>
+  <data name="AddressRequired_Street" xml:space="preserve">
+    <value>Introduceți strada</value>
+  </data>
+  <data name="StayStatement_CancellationDenied_Message" xml:space="preserve">
+    <value>Nu aveți dreptul să anulați această Declarație</value>
+  </data>
+  <data name="FilterForVoters_PollingStation_MissingAddress" xml:space="preserve">
+    <value>[Adresa lipsește]</value>
+  </data>
+  <data name="ButtonPrint" xml:space="preserve">
+    <value>Imprimare</value>
+  </data>
+  <data name="ButtonClose" xml:space="preserve">
+    <value>Închide</value>
+  </data>
+  <data name="DialogTitle_ChangeAddress" xml:space="preserve">
+    <value>Modificare adresă</value>
+  </data>
+  <data name="DialogTitle_ChangeStatus" xml:space="preserve">
+    <value>Modificare statut</value>
+  </data>
+  <data name="DialogTitle_Confirmation" xml:space="preserve">
+    <value>Confirmare</value>
+  </data>
+  <data name="DialogTitle_Information" xml:space="preserve">
+    <value>Informație</value>
+  </data>
+  <data name="StayStatement_Notification" xml:space="preserve">
+    <value>Declarație de ședere</value>
+  </data>
+  <data name="Person_Notification" xml:space="preserve">
+    <value>Persoană</value>
+  </data>
+  <data name="PollingStation_Notification" xml:space="preserve">
+    <value>Secție de votare</value>
+  </data>
+  <data name="Statistics_PollingStationNumber" xml:space="preserve">
+    <value>Numărul secției de votare</value>
+  </data>
+  <data name="Statistics_PollingStationRegion" xml:space="preserve">
+    <value>Localitatea secției de votare </value>
+  </data>
+  <data name="Statistics_PollingStationVoters" xml:space="preserve">
+    <value>Numărul de alegători</value>
+  </data>
+  <data name="Account_Email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="Account_Comments" xml:space="preserve">
+    <value>Comentarii</value>
+  </data>
+  <data name="Account_Status" xml:space="preserve">
+    <value>Statut</value>
+  </data>
+  <data name="Address_NotPermittedDeletingDueToPerson" xml:space="preserve">
+    <value>Nu puteți elimina o adresa pentru care sunt asociate persoane. Mutați adresa persoanelor.</value>
+  </data>
+  <data name="Address_NotPermittedDeletingDueToPollingStation" xml:space="preserve">
+    <value>Nu puteți elimina o adresa pentru care sunt create secții de votare. Mutați sau ștergeți adresa secțiilor de votare.</value>
+  </data>
+  <data name="Street_NotPermittedDeleting" xml:space="preserve">
+    <value>Nu puteți elimina o stradă pentru care sunt create adrese. Mutați sau ștergeți adresele asociate</value>
+  </data>
+  <data name="HasReference_Error" xml:space="preserve">
+    <value>Ștergerea înregistrării nu este posibilă. Entitatea {0} este referentiata de {1}</value>
+  </data>
+  <data name="Region_HasStreets" xml:space="preserve">
+    <value>Are străzi</value>
+  </data>
+  <data name="Election_List_Nr" xml:space="preserve">
+    <value>Numărul în listă</value>
+  </data>
+  <data name="Person_PollingStation" xml:space="preserve">
+    <value>Secție de votare</value>
+  </data>
+  <data name="UpdateVotes_CurrentPollingStation" xml:space="preserve">
+    <value>Secția de votare curentă</value>
+  </data>
+  <data name="UpdateVotes_NewPollingStation" xml:space="preserve">
+    <value>Secția de votare nouă</value>
+  </data>
+  <data name="VotersErrorRequired_PollingStation" xml:space="preserve">
+    <value>Introduceți secția de votare</value>
+  </data>
+  <data name="Notification_PersonPollingStation_Change" xml:space="preserve">
+    <value>Secția de votare curentă pentru IDNP {0} a fost schimbată;Secția de votare veche: {1};Secția de votare nouă: {2}</value>
+  </data>
+  <data name="ChangeAddress_NotPermitted" xml:space="preserve">
+    <value>Localitatea curentă nu operează cu străzi/adrese. Pentru a muta alegătorul in altă secție de votare utilizați 'Schimbarea secției de votare'</value>
+  </data>
+  <data name="ChangePollingStation_NotPermitted" xml:space="preserve">
+    <value>Localitatea curentă operează cu străzi/adrese. Nu se permite schimbarea directă a secției de votare. Utilizați 'Modificarea Adresei'.</value>
+  </data>
+  <data name="Street" xml:space="preserve">
+    <value>Strada</value>
+  </data>
+  <data name="Voters_ChangeAddressError_NoPollingStation" xml:space="preserve">
+    <value>Nu puteți seta o adresă ce nu este alocată la o secție de votare. Alocați adresa la o secție de votare și reincercați schimbarea adresei sau selectați altă adresă.</value>
+  </data>
+  <data name="Lookups_StreetHousesNumber" xml:space="preserve">
+    <value>Numărul de case</value>
+  </data>
+  <data name="Address_UpdateErrore_RegionHasNoStreets" xml:space="preserve">
+    <value>Editarea adreselor nu este permisă pentru localitatea selectată</value>
+  </data>
+  <data name="Address_UnDeleteAddressError" xml:space="preserve">
+    <value>Restabilirea adresei nu este posibilă. Restabiliți strada asociată</value>
+  </data>
+  <data name="DialogTitle_ChangePersonPollingStation" xml:space="preserve">
+    <value>Modificarea Secției de Votare</value>
+  </data>
+  <data name="ButtonAccept" xml:space="preserve">
+    <value>Acceptă adresa</value>
+  </data>
+  <data name="ButtonCreate" xml:space="preserve">
+    <value>Crează adresa</value>
+  </data>
+  <data name="ResolveConflict_DialogTitle" xml:space="preserve">
+    <value>Rezolvarea conflictului</value>
+  </data>
+  <data name="ResolveConflict_PeopleAddress" xml:space="preserve">
+    <value>Adresa persoanei</value>
+  </data>
+  <data name="ResolveConflict_VoterAddress" xml:space="preserve">
+    <value>Adresa alegătorului</value>
+  </data>
+  <data name="VoterSelectedManyAlertMessage" xml:space="preserve">
+    <value>Selectați doar un alegător</value>
+  </data>
+  <data name="ChangeVotersData_NotPermitted" xml:space="preserve">
+    <value>Selectați alegători doar din aceeași regiune</value>
+  </data>
+  <data name="Conflict_DifferentRegion" xml:space="preserve">
+    <value>Selectați inregistrări doar din aceeași regiune</value>
+  </data>
+  <data name="Address_ChangePollingStation" xml:space="preserve">
+    <value>Modificare SV</value>
+  </data>
+  <data name="Address_AdjustmentAddresses" xml:space="preserve">
+    <value>Ajustare adrese</value>
+  </data>
+  <data name="Address_Geolicalization" xml:space="preserve">
+    <value>Geolocalizare</value>
+  </data>
+  <data name="Address_Add" xml:space="preserve">
+    <value>Adaugă rînd nou</value>
+  </data>
+  <data name="Address_Edit" xml:space="preserve">
+    <value>Modifică rîndul selectat</value>
+  </data>
+  <data name="Address_Delete" xml:space="preserve">
+    <value>Șterge rîndul selectat</value>
+  </data>
+  <data name="Address_NothingSelected" xml:space="preserve">
+    <value>Selectați măcar o înregistrare</value>
+  </data>
+  <data name="ChangePollingStation_DialogTitle" xml:space="preserve">
+    <value>Modificarea Secției de Votare</value>
+  </data>
+  <data name="TooManyRecordsSelected" xml:space="preserve">
+    <value>Selectați doar o înregistrare</value>
+  </data>
+  <data name="TooManyVotersSelectedAlertMessage" xml:space="preserve">
+    <value>Selectați doar un alegător</value>
+  </data>
+  <data name="Conflict_CitizenRm" xml:space="preserve">
+    <value>Cetațean </value>
+  </data>
+  <data name="Conflict_Dead" xml:space="preserve">
+    <value>Decedat</value>
+  </data>
+  <data name="Conflict_StatusConflict" xml:space="preserve">
+    <value>Tipul de conflict</value>
+  </data>
+  <data name="Conflict_RejectConflictCode" xml:space="preserve">
+    <value>Conflict Rejectat</value>
+  </data>
+  <data name="Person_DocumentType" xml:space="preserve">
+    <value>Tipul de document</value>
+  </data>
+  <data name="ResolveConflict_Notification" xml:space="preserve">
+    <value>Registrul Populației</value>
+  </data>
+  <data name="ButtonReject" xml:space="preserve">
+    <value>Respinge</value>
+  </data>
+  <data name="ConflictStatus_ResolveAccept_MessageConfirmation" xml:space="preserve">
+    <value>Sunteți sigur că doriți să acceptați versiunea di RSP?</value>
+  </data>
+  <data name="QuartzJob_Interrupt_ConfirmationMessage" xml:space="preserve">
+    <value>Sunteți sigur că doriți să întrerupeți execuția job-ului?</value>
+  </data>
+  <data name="ConflictStatus_ResolveReject_MessageConfirmation" xml:space="preserve">
+    <value>Sunteți sigur că doriți să păstrați versiunea di RSA? </value>
+  </data>
+  <data name="ConflictAddress_MapAddress_MessageConfirmation" xml:space="preserve">
+    <value>Sunteți sigur că doriți să asignați adresa selectată? </value>
+  </data>
+  <data name="ConflictAddress_MapPollingStation_MessageConfirmation" xml:space="preserve">
+    <value>Sunteți sigur că doriți să asignați secția de votare selectată? </value>
+  </data>
+  <data name="ConflictAddress_RejectAddress_MessageConfirmation" xml:space="preserve">
+    <value>Sunteți sigur că doriți să respingeți modificarea din Registrul Populației? </value>
+  </data>
+  <data name="Conflict_AddressNoStreet_NotSelectedAlertMessage" xml:space="preserve">
+    <value>Selectați cel puțin o inregistrare</value>
+  </data>
+  <data name="Conflict_Address_NotSelectedAlertMessage" xml:space="preserve">
+    <value>Selectați o inregistrare</value>
+  </data>
+  <data name="Conflict_Region_NotSelectedAlertMessage" xml:space="preserve">
+    <value>Selectați o regiune</value>
+  </data>
+  <data name="Conflict_PollingStation_NotSelectedAlertMessage" xml:space="preserve">
+    <value>Selectați o secție de votare</value>
+  </data>
+  <data name="Conflict_AddressToMatch" xml:space="preserve">
+    <value>Adresa din registrul Alegătorului</value>
+  </data>
+  <data name="Conflict_Address" xml:space="preserve">
+    <value>Adresa</value>
+  </data>
+  <data name="Conflict_AdministrativeCode" xml:space="preserve">
+    <value>Registru Id</value>
+  </data>
+  <data name="Conflict_ApNr" xml:space="preserve">
+    <value>Număr apartament</value>
+  </data>
+  <data name="Conflict_ApSuffix" xml:space="preserve">
+    <value>Sufix apartament</value>
+  </data>
+  <data name="Conflict_StreetCode" xml:space="preserve">
+    <value>Strada</value>
+  </data>
+  <data name="Conflict_DocType" xml:space="preserve">
+    <value>Tipul de doc.</value>
+  </data>
+  <data name="Conflict_IssueDate" xml:space="preserve">
+    <value>Data eliberării</value>
+  </data>
+  <data name="Conflict_Validity" xml:space="preserve">
+    <value>Valid</value>
+  </data>
+  <data name="Conflict_Region" xml:space="preserve">
+    <value>Regiunea</value>
+  </data>
+  <data name="Conflict_Locality" xml:space="preserve">
+    <value>Localitatea</value>
+  </data>
+  <data name="Conflict_ExpirationDate" xml:space="preserve">
+    <value>Valabil pînă la</value>
+  </data>
+  <data name="Conflict_CreateAddress_NoRegionExist_ErrorMessage" xml:space="preserve">
+    <value>Nu există localitatea respectivă in registrul alegătorului</value>
+  </data>
+  <data name="Conflict_NoPersonExistInRSV_ErrorMessage" xml:space="preserve">
+    <value>Nu există alegător cu asa Idnp in registrul alegătorului</value>
+  </data>
+  <data name="Voters_ChangeOfPollingStation" xml:space="preserve">
+    <value>Modificarea Secţiei de Votare</value>
+  </data>
+  <data name="Voters_ChangeOfAddress" xml:space="preserve">
+    <value>Modificarea Adresei</value>
+  </data>
+  <data name="Conflict_PollingStation" xml:space="preserve">
+    <value>Secție de votare</value>
+  </data>
+  <data name="Conflict_RejectRspStatus_comment" xml:space="preserve">
+    <value>Soluționat prin acceptarea statutului din Registrul Alegătorilor.</value>
+  </data>
+  <data name="Conflict_AcceptRspStatus_comment" xml:space="preserve">
+    <value>Soluționat prin acceptarea statutului din Registrul Populației.</value>
+  </data>
+  <data name="Conflict_MapAddress_comment" xml:space="preserve">
+    <value>Soluționat prin asignarea la o adresă din Registrul Alegatorilor.</value>
+  </data>
+  <data name="Conflict_ChangeLocality_AcceptAddress_comment" xml:space="preserve">
+    <value>Soluționat prin asignarea la o adresă din Registrul Alegatorilor.</value>
+  </data>
+  <data name="Conflict_AcceptRspAddress_comment" xml:space="preserve">
+    <value>Soluționat prin acceptarea adresei din Registrul Populației.</value>
+  </data>
+  <data name="Conflict_RejectRspAddress_comment" xml:space="preserve">
+    <value>Registratorul {0} a respins modificarea din Registrul Populației: {1}.</value>
+  </data>
+  <data name="AllAddressPerUser" xml:space="preserve">
+    <value>Adresele tuturor regiunilor accesibile</value>
+  </data>
+  <data name="Conflict_StatusConflict_PeronsNotFound" xml:space="preserve">
+    <value>Person with IDNP {0} wasn't found</value>
+  </data>
+  <data name="Conflict_RequiredError_Message" xml:space="preserve">
+    <value>Introduceți comentariu</value>
+  </data>
+  <data name="Conflict_StringLength_Message" xml:space="preserve">
+    <value>Introduceți maxim 150 caractere</value>
+  </data>
+  <data name="Conflict_RegionConflict_InfoMessage" xml:space="preserve">
+    <value>Localitatea cu CUATM {0} nu a putut fi localizată in Nomenclatorul Localităților. Creați o Localitate nouă si/sau asignați RegistruId {0} la Localitatea corespunzătoare, după care apăsați butonul 'Re-procesare'</value>
+  </data>
+  <data name="Conflict_RegionConflict_RetryMessage" xml:space="preserve">
+    <value>Conflict de localitate cauzat de CUATM cod trimis spre re-procesare</value>
+  </data>
+  <data name="Conflict_RegionConflict_StreetBlocNuExista" xml:space="preserve">
+    <value>Conflict de adresă: Nu a fost găsită adresa cu Strada = "{4}" (StreetCode = {0}),  în regiunea "{5}" (CUATM {1}) cu Num bloc {2} / ({3})</value>
+  </data>
+  <data name="Conflict_RegionConflict_StreetCodeInRegion" xml:space="preserve">
+    <value>Conflict de adresă: Nu a fost găsită strada {3} (StreetCode = {0}) în regiunea {1} (CUATM {2})</value>
+  </data>
+  <data name="Conflict_RegionConflict_StreetCodeNuExista" xml:space="preserve">
+    <value>Conflict de adresă: Nu a fost găsită strada {1} (StreetCode = {0})</value>
+  </data>
+  <data name="Conflict_RegoinConflict_RegionNuExista" xml:space="preserve">
+    <value>Conflict de adresă: Regiunea cu ID {0} nu a fost gasită</value>
+  </data>
+  <data name="QuartzAdmin" xml:space="preserve">
+    <value>Administrare Quartz</value>
+  </data>
+  <data name="SaiseExporter_ExistForProcessing" xml:space="preserve">
+    <value>Incercati mai tirziu.</value>
+  </data>
+  <data name="SaiseExporter_StageType" xml:space="preserve">
+    <value>Etapa</value>
+  </data>
+  <data name="Address_ChangePollingStation_MessageConfirmation" xml:space="preserve">
+    <value> Localitatea secției de votare alese nu coincide cu localitatea adresei. Sunteți sigur ca vreți să o asignați la adresa respectivă</value>
+  </data>
+  <data name="CronExpression_NotValid" xml:space="preserve">
+    <value>Introduceți o Expresia Cron validă</value>
+  </data>
+  <data name="QuartzAdmin_ErrorRequired_CronExpresion" xml:space="preserve">
+    <value>Introduceți expresia cron</value>
+  </data>
+  <data name="Auto_Logoff_Confirm_Button_Continue" xml:space="preserve">
+    <value>Da, continui</value>
+  </data>
+  <data name="Auto_Logoff_Confirm_Button_Exit" xml:space="preserve">
+    <value>Nu, ieșire</value>
+  </data>
+  <data name="Statistics_DataExecutionImport" xml:space="preserve">
+    <value>Data importării</value>
+  </data>
+  <data name="Statistics_RegionCount" xml:space="preserve">
+    <value>Regiuni afectate</value>
+  </data>
+  <data name="Reporting_PSBorders" xml:space="preserve">
+    <value>Raportul - Hotarele secțiilor de votare</value>
+  </data>
+  <data name="mnuReport_PSBorders" xml:space="preserve">
+    <value>Hotarele Secțiilor de Votare</value>
+  </data>
+  <data name="PSBordersModel_Region" xml:space="preserve">
+    <value>Localitate</value>
+  </data>
+  <data name="PSBordersModel_RegionRequired" xml:space="preserve">
+    <value>Selectați măcar o localitate</value>
+  </data>
+  <data name="Conflict_RegoinConflict" xml:space="preserve">
+    <value>Address conflict, Regiunea cu ID {0} este în conflict</value>
+  </data>
+  <data name="Conflict_PollingStationAmbigous" xml:space="preserve">
+    <value>Conflict de selectare a secției de votare pentru localitatea {0} (CUATM {1}) din reguinea {2}</value>
+  </data>
+  <data name="Conflict_MissingNoResidenceRegionError" xml:space="preserve">
+    <value>Eroare fatală, lipsește regiunea specială cu ID = -1</value>
+  </data>
+  <data name="Import_PersonAlreadyDeath" xml:space="preserve">
+    <value>Persoana deja decedata</value>
+  </data>
+  <data name="ConfigurationSetting_ApplicationName" xml:space="preserve">
+    <value>Nume Aplicație</value>
+  </data>
+  <data name="ConfigurationSetting_Name" xml:space="preserve">
+    <value>Nume parametru</value>
+  </data>
+  <data name="ConfigurationSetting_Value" xml:space="preserve">
+    <value>Valoare parametru</value>
+  </data>
+  <data name="ConfigurationSettingErrorRequired_Name" xml:space="preserve">
+    <value>Întroduceți numele parametrului</value>
+  </data>
+  <data name="ConfigurationSettingErrorRequired_Value" xml:space="preserve">
+    <value>Întroduceți valoarea parametrului</value>
+  </data>
+  <data name="ConfigurationSettingAdd_DialogTitle" xml:space="preserve">
+    <value>Adăugați un nou parametru</value>
+  </data>
+  <data name="ConfigurationSettingEdit_DialogTitle" xml:space="preserve">
+    <value>Modificați parametrul selectat</value>
+  </data>
+  <data name="ConfigurationSettingDelete_Message" xml:space="preserve">
+    <value>Sunteți sigur că doriți să eliminați înregistrarea selectată?</value>
+  </data>
+  <data name="QuartzAdmin_Actions" xml:space="preserve">
+    <value>Acțiuni</value>
+  </data>
+  <data name="QuartzAdmin_InterruptJob" xml:space="preserve">
+    <value>Întrerupe</value>
+  </data>
+  <data name="ExportFailed" xml:space="preserve">
+    <value>A avut loc o eroare</value>
+  </data>
+  <data name="ExportSucceeded" xml:space="preserve">
+    <value>Exportul a avut loc cu succes</value>
+  </data>
+  <data name="ExportUpdateRemained" xml:space="preserve">
+    <value>Pîna la următoarea actualizare au mai rămas</value>
+  </data>
+  <data name="Seconds" xml:space="preserve">
+    <value>secunde</value>
+  </data>
+  <data name="ZeroProgress" xml:space="preserve">
+    <value>0%  Complect</value>
+  </data>
+  <data name="DuplicatedConfigurationSetting" xml:space="preserve">
+    <value>Înregistrare cu așa Nume si Aplicație deja există. Întroduceți alte date</value>
+  </data>
+  <data name="ActionNotSupported" xml:space="preserve">
+    <value>Crearea parametrilor de configurare din IU nu se suportă.</value>
+  </data>
+  <data name="PSType" xml:space="preserve">
+    <value>Tip</value>
+  </data>
+  <data name="RSPAddressMappings" xml:space="preserve">
+    <value>Gestionare mapări adrese</value>
+  </data>
+  <data name="AddressMappingDelete_Message" xml:space="preserve">
+    <value>Sunteți sigur că doriți să eliminați maparea selectată?</value>
+  </data>
+  <data name="SrvRegion" xml:space="preserve">
+    <value>Regiune(RSA)</value>
+  </data>
+  <data name="SrvAddress" xml:space="preserve">
+    <value>Adresă(RSA)</value>
+  </data>
+  <data name="RspRegionCode" xml:space="preserve">
+    <value>Cod Regiune(RSP)</value>
+  </data>
+  <data name="RspRegion" xml:space="preserve">
+    <value>Regiune(RSP)</value>
+  </data>
+  <data name="RspStreet" xml:space="preserve">
+    <value>Strada(RSP)</value>
+  </data>
+  <data name="RspStreetCode" xml:space="preserve">
+    <value>Cod Strada(RSP)</value>
+  </data>
+  <data name="RspHouseNumber" xml:space="preserve">
+    <value>Număr Casă(RSP)</value>
+  </data>
+  <data name="RspHouseSuffix" xml:space="preserve">
+    <value>Bloc(RSP)</value>
+  </data>
+  <data name="QuarzAdmin_JobIsNotInterruptableMessage" xml:space="preserve">
+    <value>Job-ul selectat nu este interuptibil.</value>
+  </data>
+  <data name="StreetRSPClassifier" xml:space="preserve">
+    <value>Străzi Rsp</value>
+  </data>
+  <data name="Lookups_Namerus" xml:space="preserve">
+    <value>Nume rus</value>
+  </data>
+  <data name="StreetRspTypes_TabTitle" xml:space="preserve">
+    <value>Lista clasificatorilor de Stradă</value>
+  </data>
+  <data name="Lookups_RspStreetTypeCodeId" xml:space="preserve">
+    <value>RspStreetTypeCodeId</value>
+  </data>
+  <data name="ApplyToAllIdenticalAddresses" xml:space="preserve">
+    <value>Aplică pentru toate adresele similare</value>
+  </data>
+  <data name="Conflict_StatusConflictErrorMessage" xml:space="preserve">
+    <value>Status conflict, deja decedat</value>
+  </data>
+  <data name="PersonAddress_DateOfExpiration" xml:space="preserve">
+    <value>Expirare Domiciliu/Resedinta</value>
+  </data>
+  <data name="ElectionTypes_AcceptResidenceDoc" xml:space="preserve">
+    <value>Admite declaraţii de şedere</value>
+  </data>
+  <data name="ElectionTypes_AcceptVotingCert" xml:space="preserve">
+    <value>Admite certificate cu drept de vot</value>
+  </data>
+  <data name="ElectionTypes_AddDialogTitle" xml:space="preserve">
+    <value>Adăugare tip de scrutin</value>
+  </data>
+  <data name="ElectionTypes_AdministrativeUnits_Text" xml:space="preserve">
+    <value>Tipuri de unităţi administrative participante</value>
+  </data>
+  <data name="ElectionTypes_AdmiteVote_Text" xml:space="preserve">
+    <value>Admite votul la altă adresă decât cea de rezidență</value>
+  </data>
+  <data name="ElectionTypes_CircumscriptionList" xml:space="preserve">
+    <value>Lista circumscripții</value>
+  </data>
+  <data name="ElectionTypes_CircumscriptionList_Required" xml:space="preserve">
+    <value>Camp obligatoriu</value>
+  </data>
+  <data name="ElectionTypes_Code" xml:space="preserve">
+    <value>Cod</value>
+  </data>
+  <data name="ElectionTypes_Code_Required" xml:space="preserve">
+    <value>Câmp obligatoriu</value>
+  </data>
+  <data name="ElectionTypes_Description" xml:space="preserve">
+    <value>Descriere</value>
+  </data>
+  <data name="ElectionTypes_Description_MaxLength" xml:space="preserve">
+    <value>Câmpul Descriere nu poate depasi lungimea de 255 caractere</value>
+  </data>
+  <data name="ElectionTypes_Description_Required" xml:space="preserve">
+    <value>Câmp obligatoriu</value>
+  </data>
+  <data name="ElectionTypes_EditDialogTitle" xml:space="preserve">
+    <value>Editare tip de scrutin</value>
+  </data>
+  <data name="ElectionTypes_ElectionArea" xml:space="preserve">
+    <value>Forme de manifestare</value>
+  </data>
+  <data name="ElectionTypes_ElectionArea_Required" xml:space="preserve">
+    <value>Câmp obligatoriu</value>
+  </data>
+  <data name="ElectionTypes_ElectionCompetitorType" xml:space="preserve">
+    <value>Participanţi eligibili</value>
+  </data>
+  <data name="ElectionTypes_ElectionCompetitorType_Required" xml:space="preserve">
+    <value>Câmp obligatoriu</value>
+  </data>
+  <data name="ElectionTypes_ElectionRoundsNo" xml:space="preserve">
+    <value>Tururi</value>
+  </data>
+  <data name="ElectionTypes_ElectionRoundsNo_Limit" xml:space="preserve">
+    <value>Câmpul Număr tururi de scrutin poate lua valori între 0 si 255</value>
+  </data>
+  <data name="ElectionTypes_ElectionRoundsNo_Required" xml:space="preserve">
+    <value>Câmp obligatoriu</value>
+  </data>
+  <data name="ElectionTypes_ElectionRoundsNumber" xml:space="preserve">
+    <value>Număr tururi de scrutin</value>
+  </data>
+  <data name="ElectionTypes_Grid_AcceptResidenceDoc" xml:space="preserve">
+    <value>Declaraţii de şedere</value>
+  </data>
+  <data name="ElectionTypes_Grid_AcceptVotingCert" xml:space="preserve">
+    <value>Certificate cu drept de vot</value>
+  </data>
+  <data name="ElectionTypes_Name" xml:space="preserve">
+    <value>Denumire</value>
+  </data>
+  <data name="ElectionTypes_Name_MaxLength" xml:space="preserve">
+    <value>Lungimea maximă este de 50 caractere</value>
+  </data>
+  <data name="ElectionTypes_Name_Required" xml:space="preserve">
+    <value>Câmp obligatoriu</value>
+  </data>
+  <data name="ElectionTypes_Rank" xml:space="preserve">
+    <value>Rang localităţi desfăşurare</value>
+  </data>
+  <data name="ElectionTypes_AcceptAbroadDeclaration" xml:space="preserve">
+    <value>Admite înregistrarea prealabilă în afara țării</value>
+  </data>
+  <data name="ElectionTypes_Grid_AcceptAbroadDeclaration" xml:space="preserve">
+    <value>Înregistrarea prealabilă în afara țării</value>
+  </data>
+  <data name="Election" xml:space="preserve">
+    <value>Scrutin</value>
+  </data>
+  <data name="Election_Date" xml:space="preserve">
+    <value>Data alegeri (Tur 1)</value>
+  </data>
+  <data name="Election_Delete_Message" xml:space="preserve">
+    <value>Sunteți sigur că doriți să ştergeţi înregistrarea selectată ?</value>
+  </data>
+  <data name="Election_Description" xml:space="preserve">
+    <value>Descriere</value>
+  </data>
+  <data name="Election_Description_Required" xml:space="preserve">
+    <value>Câmpul Descriere este câmp obligatoriu</value>
+  </data>
+  <data name="Election_ElectionRoundParty" xml:space="preserve">
+    <value>Tur de scrutin</value>
+  </data>
+  <data name="Election_ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="Election_NoCircumscriptions_Warning" xml:space="preserve">
+    <value>Nu au fost definite circumscripții</value>
+  </data>
+  <data name="Election_NoCompetitors_Warning" xml:space="preserve">
+    <value>Nu au fost definiți competitori</value>
+  </data>
+  <data name="Election_NoPollingStations_Warning" xml:space="preserve">
+    <value>Nu au fost definite secții de vot</value>
+  </data>
+  <data name="Election_Party_Logo" xml:space="preserve">
+    <value>Sigla</value>
+  </data>
+  <data name="Election_Party_Name" xml:space="preserve">
+    <value>Denumire partid</value>
+  </data>
+  <data name="Election_Party_ShortName" xml:space="preserve">
+    <value>Abreviere</value>
+  </data>
+  <data name="Election_Phase" xml:space="preserve">
+    <value>Faza curentă</value>
+  </data>
+  <data name="Election_Status" xml:space="preserve">
+    <value>Stare curentă</value>
+  </data>
+  <data name="Election_Type" xml:space="preserve">
+    <value>Tip scrutin</value>
+  </data>
+  <data name="Circumscription_ListName" xml:space="preserve">
+    <value>Lista circumscripții</value>
+  </data>
+  <data name="ElectionRound" xml:space="preserve">
+    <value>Tur de scrutin</value>
+  </data>
+  <data name="ConflictAddress_Resolve_Address_Added_MessageNotification" xml:space="preserve">
+    <value>A fost soluționat conflictul de adresă cu nr. {0} pentru IDNP {1} prin adăugarea adresei : {2}</value>
+  </data>
+  <data name="ConflictAddress_Resolve_Address_Selected_MessageNotification" xml:space="preserve">
+    <value>A fost soluționat conflictul de adresă cu nr. {0} pentru IDNP {1} prin selectarea adresei : {2}</value>
+  </data>
+  <data name="ConflictShareReasons" xml:space="preserve">
+    <value>Motive partajare conflicte</value>
+  </data>
+  <data name="ConflictShareReasonsAdd_DialogTitle" xml:space="preserve">
+    <value>Adăugați o nouă înregistrare</value>
+  </data>
+  <data name="ConflictShareReasonsDelete_Message" xml:space="preserve">
+    <value>Sunteți sigur că doriți să eliminați înregistrarea selectată?</value>
+  </data>
+  <data name="ConflictShareReasonsEdit_DialogTitle" xml:space="preserve">
+    <value>Editare motiv partajare conflict</value>
+  </data>
+  <data name="ConflictShareReasons_TabTitle" xml:space="preserve">
+    <value>Gestionare motive partajare conflicte</value>
+  </data>
+  <data name="ConflictShare_DeleteNotPermited_DueToRegion" xml:space="preserve">
+    <value>Conflictul a fost partajat de regiunea '{0}', nu este parmisă anularea partajarii pentru regiunea '{1}'.</value>
+  </data>
+  <data name="ConflictShare_Note" xml:space="preserve">
+    <value>Nu există conflict partajat in regiunea '{0}', ConflictID:{1}</value>
+  </data>
+  <data name="ConflictShare_NotFound" xml:space="preserve">
+    <value>Nu există conflict partajat in regiunea '{0}', ConflictID:{1}</value>
+  </data>
+  <data name="Conflict_PollingStationAmbigous_StreetHouseNumber" xml:space="preserve">
+    <value>Conflict de selectare a sectiei de votare pentru Strada = "{3}"(StreetCode = {0}),  în regiunea "{4}"(CUATM {1}) cu Num bloc {2}</value>
+  </data>
+  <data name="ShareConflict_DestinationIsOwnRegion_ErrorMessage" xml:space="preserve">
+    <value>Nu puteti partaja conflictul catre regiunea proprie</value>
+  </data>
+  <data name="ShareConflict_ModalTitle" xml:space="preserve">
+    <value>Partajare Conflict</value>
+  </data>
+  <data name="ShareConflict_Notes" xml:space="preserve">
+    <value>Notă</value>
+  </data>
+  <data name="ShareConflict_ReasonLabel" xml:space="preserve">
+    <value>Motiv</value>
+  </data>
+  <data name="ShareConflict_RequiredNote" xml:space="preserve">
+    <value>Detaliați motivul partajării</value>
+  </data>
+  <data name="ShareConflict_RequiredReason" xml:space="preserve">
+    <value>Selectați motivul partajării</value>
+  </data>
+  <data name="Notification_RspModificationData_StatusModification_Accepted" xml:space="preserve">
+    <value>A fost soluționat conflictul cu nr. {0} pentru IDNP {1}, prin păstrarea statutului persoanei din Registrul Populației.</value>
+  </data>
+  <data name="Notification_RspModificationData_StatusModification_Rejected" xml:space="preserve">
+    <value>A fost soluționat conflictul cu nr. {0} pentru IDNP {1}, prin păstrarea statutului persoanei din Registrul Alegătorului.</value>
+  </data>
+  <data name="InstitutionAddEditeErrorNum_LegacyId" xml:space="preserve">
+    <value>Cîmpul ID trebuie să fie numeric</value>
+  </data>
+  <data name="InstitutionAddressError" xml:space="preserve">
+    <value>Selectați o adresă</value>
+  </data>
+  <data name="InstitutionAdd_DialogTitle" xml:space="preserve">
+    <value>Adăugați o nouă înregistrare</value>
+  </data>
+  <data name="InstitutionCreate_UniqueLegacyIdError" xml:space="preserve">
+    <value>Înregistrare cu ID-ul dat deja există</value>
+  </data>
+  <data name="InstitutionDelete_Message" xml:space="preserve">
+    <value>Sunteți sigur că doriți să eliminați înregistrarea selectată?</value>
+  </data>
+  <data name="InstitutionEdit_DialogTitle" xml:space="preserve">
+    <value>Editare instituție</value>
+  </data>
+  <data name="Institution_Address" xml:space="preserve">
+    <value>Adresa</value>
+  </data>
+  <data name="Institution_InteropSystem" xml:space="preserve">
+    <value>Sistem</value>
+  </data>
+  <data name="Institution_LegacyId" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="Institution_Region" xml:space="preserve">
+    <value>Regiune</value>
+  </data>
+  <data name="InteropController_SelectPersonStatus_Message" xml:space="preserve">
+    <value>Selectati statutul nou al persoanei dupa procesarea tranzactiilor</value>
+  </data>
+  <data name="InteropSystem_Add_DialogTitle" xml:space="preserve">
+    <value>Adăugați sistem interop</value>
+  </data>
+  <data name="InteropSystem_Edit_DialogTitle" xml:space="preserve">
+    <value>Editare sistem interop</value>
+  </data>
+  <data name="InteropSystem_PersonStatusConsignment" xml:space="preserve">
+    <value>Consemnare statut persoană</value>
+  </data>
+  <data name="InteropSystem_PersonStatusType" xml:space="preserve">
+    <value>Statut persoană</value>
+  </data>
+  <data name="InteropSystem_TemporaryAddressConsignment" xml:space="preserve">
+    <value>Consemnare adresă temporară</value>
+  </data>
+  <data name="InteropSystem_TransactionProcessingMode" xml:space="preserve">
+    <value>Mod procesare tranzacții</value>
+  </data>
+  <data name="Interop_Institutions" xml:space="preserve">
+    <value>Instituții</value>
+  </data>
+  <data name="Interop_InteropSystems" xml:space="preserve">
+    <value>Sisteme</value>
+  </data>
+  <data name="Voters_VoterProfile" xml:space="preserve">
+    <value>Profil alegător</value>
+  </data>
+  <data name="Transactions" xml:space="preserve">
+    <value>Tranzacții</value>
+  </data>
+  <data name="TransactionAdd_DialogTitle" xml:space="preserve">
+    <value>Adăugați o nouă înregistrare</value>
+  </data>
+  <data name="TransactionEdit_DialogTitle" xml:space="preserve">
+    <value>Editare tranzacție</value>
+  </data>
+  <data name="Transaction_IDNP" xml:space="preserve">
+    <value>IDNP</value>
+  </data>
+  <data name="Transaction_IDNP_Required" xml:space="preserve">
+    <value>IDNP este camp obligatoriu</value>
+  </data>
+  <data name="Transaction_LastName" xml:space="preserve">
+    <value>Nume</value>
+  </data>
+  <data name="Transaction_LastName_Required" xml:space="preserve">
+    <value>Nume este camp obligatoriu</value>
+  </data>
+  <data name="Transaction_FirstName" xml:space="preserve">
+    <value>Prenume</value>
+  </data>
+  <data name="Transaction_FirstName_Required" xml:space="preserve">
+    <value>Prenume este camp obligatoriu</value>
+  </data>
+  <data name="Transaction_Patronymic" xml:space="preserve">
+    <value>Patronimic</value>
+  </data>
+  <data name="Transaction_Comments" xml:space="preserve">
+    <value>Comentarii</value>
+  </data>
+  <data name="Transaction_DateOfBirth" xml:space="preserve">
+    <value>Data naștere</value>
+  </data>
+  <data name="Transaction_DateOfBirth_Required" xml:space="preserve">
+    <value>Data naștere este camp obligatoriu</value>
+  </data>
+  <data name="Transaction_System" xml:space="preserve">
+    <value>Sistem</value>
+  </data>
+  <data name="Transaction_Institution" xml:space="preserve">
+    <value>Instituție</value>
+  </data>
+  <data name="Transaction_Status" xml:space="preserve">
+    <value>Stare</value>
+  </data>
+  <data name="Transaction_StatusMessage" xml:space="preserve">
+    <value>Mesaj</value>
+  </data>
+  <data name="Transaction_Resolve" xml:space="preserve">
+    <value>Alocare la secţie de votare</value>
+  </data>
+  <data name="Transaction_DialogTitle_AssignPollingStation" xml:space="preserve">
+    <value>Asignare secție de vot</value>
+  </data>
+  <data name="Transaction_Undo" xml:space="preserve">
+    <value>Anulare</value>
+  </data>
+  <data name="Transaction_Undo_MessageConfirmation" xml:space="preserve">
+    <value>Sunteți sigur că doriți să anulați tranzacția(iile) selectată(e) ?</value>
+  </data>
+  <data name="Transaction_AssignPollingStation" xml:space="preserve">
+    <value>Asignare secție de vot</value>
+  </data>
+  <data name="Transaction_NotSelected" xml:space="preserve">
+    <value>Selectați cel puțin o tranzacție</value>
+  </data>
+  <data name="Voters_WithSame_SurnName" xml:space="preserve">
+    <value>Alegători cu același nume</value>
+  </data>
+  <data name="Conflict_Address_ApplyToTheFollowingSimilarConflicts_Message" xml:space="preserve">
+    <value>Aplică și pentru următoarele conflicte similare</value>
+  </data>
+  <data name="PollingStationVotersListOrderType" xml:space="preserve">
+    <value>Ordonare lista alegători</value>
+  </data>
+  <data name="PollingStationVotersListOrderType_Required" xml:space="preserve">
+    <value>Selectați tipul de ordonare lista alegători</value>
+  </data>
+  <data name="AddressWithoutPS_SelectFromSameRegion" xml:space="preserve">
+    <value>Vă rugăm să selectați adrese din aceeași regiune</value>
+  </data>
+  <data name="Address_AssignPollingStation" xml:space="preserve">
+    <value>Alocare la o Secție de Vot</value>
+  </data>
+  <data name="AddressWithoutPS_HouseNumber" xml:space="preserve">
+    <value>Numar casă</value>
+  </data>
+  <data name="AddressWithoutPS_ParentRegionId" xml:space="preserve">
+    <value>ID Regiune Părinte</value>
+  </data>
+  <data name="AddressWithoutPS_ParentRegionName" xml:space="preserve">
+    <value>Regiune Părinte</value>
+  </data>
+  <data name="AddressWithoutPS_Persons" xml:space="preserve">
+    <value>Număr persoane</value>
+  </data>
+  <data name="AddressWithoutPS_RegionId" xml:space="preserve">
+    <value>ID Regiune</value>
+  </data>
+  <data name="AddressWithoutPS_RegionName" xml:space="preserve">
+    <value>Regiune</value>
+  </data>
+  <data name="AddressWithoutPS_RegionType" xml:space="preserve">
+    <value>Tip Regiune</value>
+  </data>
+  <data name="AddressWithoutPS_Street" xml:space="preserve">
+    <value>Strada</value>
+  </data>
+  <data name="AddressWithoutPS_Suffix" xml:space="preserve">
+    <value>Sufix</value>
+  </data>
+  <data name="ElectionTypeGrid_AcceptStayDeclaration" xml:space="preserve">
+    <value>Acceptă declarații ședere</value>
+  </data>
+  <data name="UpdateElectionType_AcceptStayDeclaration" xml:space="preserve">
+    <value>Acceptă declarații ședere</value>
+  </data>
+  <data name="ApplyFilterButton" xml:space="preserve">
+    <value>Aplică filtre</value>
+  </data>
+  <data name="PersonAddress_DateOfRegistration" xml:space="preserve">
+    <value>Înregistrare Domiciliu/Reședinta</value>
+  </data>
+  <data name="PersonAddress_Type" xml:space="preserve">
+    <value>Tip</value>
+  </data>
+  <data name="Person_BlNumber" xml:space="preserve">
+    <value>Bl.Numar</value>
+  </data>
+  <data name="Person_Locality" xml:space="preserve">
+    <value>Localitate</value>
+  </data>
+  <data name="Person_Region" xml:space="preserve">
+    <value>Regiunea</value>
+  </data>
+  <data name="Person_Street" xml:space="preserve">
+    <value>Strada</value>
+  </data>
+  <data name="BtnShare" xml:space="preserve">
+    <value>Partajează</value>
+  </data>
+  <data name="Conflict_Type" xml:space="preserve">
+    <value>Tip conflict</value>
+  </data>
+  <data name="Person_DocValidDate" xml:space="preserve">
+    <value>Expiră</value>
+  </data>
+  <data name="ButtonUpdate" xml:space="preserve">
+    <value>Actualizați</value>
+  </data>
+  <data name="ButtonDeleteAllShares" xml:space="preserve">
+    <value>Anulați toate partajările</value>
+  </data>
+  <data name="PollingStation_Type" xml:space="preserve">
+    <value>Tipuri secții de votare</value>
+  </data>
+  <data name="ExportElectionResult" xml:space="preserve">
+    <value>Export Rapoarte rezultatele alegerilor</value>
+  </data>
+</root>

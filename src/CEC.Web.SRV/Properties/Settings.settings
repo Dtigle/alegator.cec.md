@@ -1,0 +1,33 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CEC.Web.SRV.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="AuthExpiration" Type="System.TimeSpan" Scope="Application">
+      <Value Profile="(Default)">14:00:00</Value>
+    </Setting>
+    <Setting Name="SessionPollingTimeSpan" Type="System.TimeSpan" Scope="Application">
+      <Value Profile="(Default)">00:00:05</Value>
+    </Setting>
+    <Setting Name="IdleTimeSpan" Type="System.TimeSpan" Scope="Application">
+      <Value Profile="(Default)">00:30:00</Value>
+    </Setting>
+    <Setting Name="ExportTempFolder" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">d:\temp\export</Value>
+    </Setting>
+    <Setting Name="RS_SRV_StayStatementForm" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/SRV/StayStatementForm</Value>
+    </Setting>
+    <Setting Name="RS_SRV_VotersList_ReportPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/SRV/VotersList_Verification</Value>
+    </Setting>
+    <Setting Name="RspUser" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">cecuser</Value>
+    </Setting>
+    <Setting Name="RspPass" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">cecuser</Value>
+    </Setting>
+    <Setting Name="RS_SRV_PSBordersReport" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">/SRV/PollingStationsBorders2</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

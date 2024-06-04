@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <!--Start Container-->
+    <div id="main" class="container-fluid">
+        <div class="row">
+            <!--Start Content-->
+            <div class="container-fluid">
+                <div id="page-login" class="row">
+                    <div class="col-xs-12 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+                        <div class="box">
+                            <div class="box-content">
+                                @RenderBody()
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End Content-->
+        </div>
+    </div>
+    <!--End Container-->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jquery.cookie")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/devoops")
+    @Scripts.Render("~/bundles/bootstrap-dialog")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

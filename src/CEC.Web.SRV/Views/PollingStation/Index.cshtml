@@ -1,0 +1,191 @@
+﻿@using CEC.Web.SRV.Resources
+
+@{
+    ViewBag.Title = MUI.PollingStation_TabTitle;
+}
+<div class="box-content">
+    <h4 class="page-header">@MUI.PollingStation_TabTitle</h4>
+    <div class="row">
+        <div class="col-sm-3">
+            @Html.Partial("_TreeViewLocalities")
+        </div>
+        <div class="col-sm-9">
+            @Html.Partial("_PollingStation")
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    (function ($) {
+        var currentRegion = 0;
+
+        $.onRegionSelect = function (regionId) {
+            currentRegion = regionId;
+            var pollingStationGrid = $('#pollingStation').jqGrid();
+            pollingStationGrid.jqGrid('setGridParam', { 'postData': { 'regionId': regionId } });
+            pollingStationGrid.trigger('reloadGrid', [{ page: 1 }]);
+        };
+
+        $.setCurrentRow = function (rowid) {
+            var rowKey = $("#pollingStation").jqGrid('getGridParam', "selrow");
+            var $trs = $("#pollingStation tbody tr").removeClass("last-sel");
+            $trs.filter("#" + rowKey).addClass("last-sel");     
+        };
+
+        $.getRegionId = function () {
+        	return { regionId: currentRegion };
+        };
+
+        $.CreateUpdatePollingStation = function (pollingStationId) {
+            var rowKey = $("#pollingStation").jqGrid('getGridParam', "selrow");
+            pollingStationId = rowKey;
+
+            if (pollingStationId == null) {
+                BootstrapDialog.alert({message: 'Selectați o secție de votare', title: '@MUI.DialogTitle_Information' });
+                return;
+            }
+
+            if (currentRegion == 0) {
+                BootstrapDialog.alert({message: '@MUI.RegionNotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+                return;
+            }
+            var url = '@Url.Action("CreateUpdatePollingStation","PollingStation")';
+
+            var pollingStationParam = '';
+            var dialogTitle = '@MUI.PollingStationAdd_DialogTitle';
+            if (pollingStationId != undefined) {
+                pollingStationParam = '&pollingStationId=' + pollingStationId;
+                dialogTitle = '@MUI.PollingStationEdite_DialogTitle';
+            }
+
+            $.openDialog($(this), {
+                url: url + '?regionId=' + currentRegion + pollingStationParam,
+                title: 'Setare adresă',
+                onSubmit: function () {
+                    $("#pollingStation").trigger('reloadGrid');
+                },
+
+            });
+
+        };
+
+        $.addElectionListNumber = function() {
+            var url = '@Url.Action("AddElectionNumberList")';
+            var message = $('<div class="popupWindows"><div/>');
+            var grid = $('#pollingStation');
+            var selectedRows = grid.jqGrid('getGridParam', 'selarrrow');
+            if (selectedRows.length === 0) {
+
+                    BootstrapDialog.alert({message: 'Selectați secția de votare', title: '@MUI.DialogTitle_Information' });
+                    return;
+
+            }
+
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function (content) {
+                    message.append(content);
+                    var dialog = new BootstrapDialog({
+                        title: 'Selectare tip de ordonare',
+                        message: message,
+                        buttons: [
+                            {
+                                label: 'Transmite',
+                                cssClass: 'btn btn-primary',
+                                action: function (dialog) {
+                                    var myForm = parseInt($('#first').select2('val'));
+                                    if (isNaN(myForm)) {
+                                        BootstrapDialog.alert({message: 'Criteriul de sortare obligatoriu', title: '@MUI.DialogTitle_Information' });
+                                        return;
+                                    }
+
+                                    var $button = this;
+                                    var data = {
+                                        SelectedAPSIds: selectedRows,
+                                        first: myForm
+                                    };
+                                    $button.disable();
+                                    dialog.getModalBody().html("Transmis cu succes.");
+                                    $.ajax({
+                                        type: "POST",
+                                        url: url,
+                                        data: data,
+                                        success: function () {
+                                        }
+                                    });
+                                }
+                            },
+                            {
+                                label: 'Închide',
+                                action: function (dialog) {
+                                    dialog.close();
+                                    $("#pollingStation").trigger('reloadGrid');
+                                }
+                            }]
+                    });
+                    dialog.open();
+                }
+            });
+        }
+
+
+        $.synkAdminPollingStation = function() {
+            var url = '@Url.Action("SynkAdminPollingStation")';
+            var message = $('<div class="popupWindows"><div/>');
+            var grid = $('#pollingStation');
+
+            var dialog = new BootstrapDialog({
+                title: 'Sînteți sigur ca doriți sa sincronizati adresele cu SAISE Admin?',
+                message: message,
+                buttons: [
+                    {
+                        label: 'Da',
+                        cssClass: 'btn btn-primary',
+                        action: function (dialog) {
+                            dialog.close();
+                            $.ajax({
+                                type: "POST",
+                                url: url,
+                                success: function () {
+                                }
+                            });
+                        }
+                    },
+                    {
+                        label: 'Închide',
+                        action: function (dialog) {
+                            dialog.close();
+                            $("#pollingStation").trigger('reloadGrid');
+                        }
+                    }]
+            });
+            dialog.open();
+
+        }
+
+        $.DeletePollingStation = function (pollingStationId) {
+            if (currentRegion == 0) {
+                BootstrapDialog.alert({message: '@MUI.RegionNotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+                return;
+            }
+            var url = '@Url.Action("DeletePollingStation","PollingStation")';
+
+            BootstrapDialog.confirm('@MUI.PollingStationDelete_Message', function (result) {
+                if (result) {
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        data: { pollingStationId: pollingStationId },
+                        success: function (returnData) {
+                            $("#pollingStation").trigger('reloadGrid');
+                        }
+                    });
+                }
+
+            });
+
+        };
+    })(jQuery);
+</script>

@@ -1,0 +1,77 @@
+2018-05-18 11:47:03.0296 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:0950510891927] 
+2018-05-18 11:49:58.2664 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:chrome, IDNP:2000005013333] 
+2018-05-18 11:52:21.4145 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 11:57:48.7692 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 12:01:36.7737 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 12:20:50.0700 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:chrome, IDNP:2000005013333] 
+2018-05-18 12:33:17.6957 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 12:42:55.3062 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 12:43:21.2650 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 12:47:05.5245 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 12:48:46.7774 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 12:53:40.0106 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 13:06:56.2239 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:chrome, IDNP:2000005013333] 
+2018-05-18 13:07:06.1828 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:chrome, IDNP:2000005013333] 
+2018-05-18 13:07:46.3162 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:chrome, IDNP:2000005013333] 
+2018-05-18 13:40:54.9724 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 13:47:46.4024 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 14:04:00.1932 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 14:05:30.4932 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 14:20:11.6681 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 14:26:39.3511 TRACE CEC.Web.Api.Controllers.PollingStationController+<GetAssigned>d__5.MoveNext One or more errors occurred. 
+2018-05-18 14:48:10.5886 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 14:50:22.8960 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 14:50:38.0803 TRACE CEC.Web.Api.Controllers.PollingStationController+<GetAssigned>d__5.MoveNext Error reading string. Unexpected token: StartArray. Path 'error-codes', line 3, position 19. 
+2018-05-18 14:50:40.3962 TRACE CEC.Web.Api.Controllers.PollingStationController+<GetAssigned>d__5.MoveNext Error reading string. Unexpected token: StartArray. Path 'error-codes', line 3, position 19. 
+2018-05-18 14:50:55.3105 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 14:50:57.0417 TRACE CEC.Web.Api.Controllers.PollingStationController+<GetAssigned>d__5.MoveNext Error reading string. Unexpected token: StartArray. Path 'error-codes', line 3, position 19. 
+2018-05-18 14:50:59.3348 TRACE CEC.Web.Api.Controllers.PollingStationController+<GetAssigned>d__5.MoveNext Error reading string. Unexpected token: StartArray. Path 'error-codes', line 3, position 19. 
+2018-05-18 14:51:17.7562 TRACE CEC.Web.Api.Controllers.PollingStationController+<GetAssigned>d__5.MoveNext Error reading string. Unexpected token: StartArray. Path 'error-codes', line 3, position 19. 
+2018-05-18 14:51:36.9315 TRACE CEC.Web.Api.Controllers.PollingStationController+<GetAssigned>d__5.MoveNext Error reading string. Unexpected token: StartArray. Path 'error-codes', line 3, position 19. 
+2018-05-18 14:51:52.1529 TRACE CEC.Web.Api.Controllers.PollingStationController+<GetAssigned>d__5.MoveNext Error reading string. Unexpected token: StartArray. Path 'error-codes', line 3, position 19. 
+2018-05-18 14:53:50.6578 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 14:54:24.1176 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 14:54:26.0281 TRACE CEC.Web.Api.Controllers.PollingStationController+<GetAssigned>d__5.MoveNext Error reading string. Unexpected token: StartArray. Path 'error-codes', line 3, position 19. 
+2018-05-18 14:54:29.9700 TRACE CEC.Web.Api.Controllers.PollingStationController+<GetAssigned>d__5.MoveNext Error reading string. Unexpected token: StartArray. Path 'error-codes', line 3, position 19. 
+2018-05-18 14:54:31.4642 TRACE CEC.Web.Api.Controllers.PollingStationController+<GetAssigned>d__5.MoveNext Error reading string. Unexpected token: StartArray. Path 'error-codes', line 3, position 19. 
+2018-05-18 14:54:33.2193 TRACE CEC.Web.Api.Controllers.PollingStationController+<GetAssigned>d__5.MoveNext Error reading string. Unexpected token: StartArray. Path 'error-codes', line 3, position 19. 
+2018-05-18 14:55:37.8764 TRACE CEC.Web.Api.Controllers.PollingStationController+<GetAssigned>d__5.MoveNext Error reading string. Unexpected token: StartArray. Path 'error-codes', line 3, position 19. 
+2018-05-18 14:56:12.6421 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 14:56:17.6049 TRACE CEC.Web.Api.Controllers.PollingStationController+<GetAssigned>d__5.MoveNext Error reading string. Unexpected token: StartArray. Path 'error-codes', line 3, position 19. 
+2018-05-18 14:57:59.3914 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 14:58:05.4402 TRACE CEC.Web.Api.Controllers.PollingStationController+<GetAssigned>d__5.MoveNext Error reading string. Unexpected token: StartArray. Path 'error-codes', line 3, position 19. 
+2018-05-18 14:58:26.8313 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 14:58:32.1505 TRACE CEC.Web.Api.Controllers.PollingStationController+<GetAssigned>d__5.MoveNext Error reading string. Unexpected token: StartArray. Path 'error-codes', line 3, position 19. 
+2018-05-18 14:58:58.5104 TRACE CEC.Web.Api.Controllers.PollingStationController+<GetAssigned>d__5.MoveNext Error reading string. Unexpected token: StartArray. Path 'error-codes', line 3, position 19. 
+2018-05-18 14:59:38.7865 TRACE CEC.Web.Api.Controllers.PollingStationController+<GetAssigned>d__5.MoveNext Error reading string. Unexpected token: StartArray. Path 'error-codes', line 3, position 19. 
+2018-05-18 14:59:52.7124 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 14:59:58.0137 TRACE CEC.Web.Api.Controllers.PollingStationController+<GetAssigned>d__5.MoveNext Error reading string. Unexpected token: StartArray. Path 'error-codes', line 3, position 19. 
+2018-05-18 15:00:07.6876 TRACE CEC.Web.Api.Controllers.PollingStationController+<GetAssigned>d__5.MoveNext Error reading string. Unexpected token: StartArray. Path 'error-codes', line 3, position 19. 
+2018-05-18 15:01:07.4957 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 15:01:18.5767 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 15:02:15.1384 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 15:02:18.3130 TRACE CEC.Web.Api.Controllers.PollingStationController+<GetAssigned>d__5.MoveNext Error reading string. Unexpected token: StartArray. Path 'error-codes', line 3, position 19. 
+2018-05-18 15:02:25.9050 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 15:07:06.2090 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 15:07:08.0997 TRACE CEC.Web.Api.Controllers.PollingStationController+<GetAssigned>d__5.MoveNext Error reading string. Unexpected token: StartArray. Path 'error-codes', line 3, position 19. 
+2018-05-18 15:07:13.7486 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 15:09:08.5223 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 15:09:14.5542 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 15:09:16.6588 TRACE CEC.Web.Api.Controllers.PollingStationController+<GetAssigned>d__5.MoveNext Error reading string. Unexpected token: StartArray. Path 'error-codes', line 3, position 19. 
+2018-05-18 15:09:21.4194 TRACE CEC.Web.Api.Controllers.PollingStationController+<GetAssigned>d__5.MoveNext Error reading string. Unexpected token: StartArray. Path 'error-codes', line 3, position 19. 
+2018-05-18 15:09:26.0623 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 15:20:29.1391 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 15:22:49.6218 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 15:22:55.0048 TRACE CEC.Web.Api.Controllers.PollingStationController+<GetAssigned>d__5.MoveNext Error reading string. Unexpected token: StartArray. Path 'error-codes', line 3, position 19. 
+2018-05-18 15:23:00.5782 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 15:23:51.6890 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 15:23:53.9906 TRACE CEC.Web.Api.Controllers.PollingStationController+<GetAssigned>d__5.MoveNext Error reading string. Unexpected token: StartArray. Path 'error-codes', line 3, position 19. 
+2018-05-18 15:24:00.6667 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 15:33:55.4232 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 15:33:57.8279 TRACE CEC.Web.Api.Controllers.PollingStationController+<GetAssigned>d__5.MoveNext Error reading string. Unexpected token: StartArray. Path 'error-codes', line 3, position 19. 
+2018-05-18 15:34:02.6060 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 15:47:34.4286 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 15:47:38.9954 TRACE CEC.Web.Api.Controllers.PollingStationController+<GetAssigned>d__5.MoveNext Error reading string. Unexpected token: StartArray. Path 'error-codes', line 3, position 19. 
+2018-05-18 15:47:47.8893 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 17:02:59.5487 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 
+2018-05-18 17:05:22.7683 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 

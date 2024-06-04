@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition">
+  <Description />
+  <DataSet Name="DS_District_RP">
+    <Query>
+      <DataSourceReference>DataSource_SAISE</DataSourceReference>
+      <DataSetParameters>
+        <DataSetParameter Name="@ElectionId">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>false</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>Int32</rd:DbType>
+        </DataSetParameter>
+      </DataSetParameters>
+      <CommandText>SELECT 
+	D_DistrictId
+	,D_RopUniqueId
+	,D_Nr 
+	,D_NameRo
+	,D_NameRu
+	,D_Name
+FROM         vDK_DistrictPerElection 
+WHERE     E_ElectionId = @ElectionId
+order by  D_Nr </CommandText>
+    </Query>
+    <Fields>
+      <Field Name="D_DistrictId">
+        <DataField>D_DistrictId</DataField>
+        <rd:TypeName>System.Int64</rd:TypeName>
+      </Field>
+      <Field Name="D_RopUniqueId">
+        <DataField>D_RopUniqueId</DataField>
+        <rd:TypeName>System.Int64</rd:TypeName>
+      </Field>
+      <Field Name="D_Nr">
+        <DataField>D_Nr</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="D_NameRo">
+        <DataField>D_NameRo</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="D_NameRu">
+        <DataField>D_NameRu</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="D_Name">
+        <DataField>D_Name</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="NameLkp">
+        <Value>=Fields!D_Name.Value
+	+ " [" + CStr(Fields!D_DistrictId.Value) + "]"</Value>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

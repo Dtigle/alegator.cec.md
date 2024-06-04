@@ -1,0 +1,112 @@
+2018-07-26 16:17:35.6350 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog An error occured in MapPersonToVoter for SRV.Person.Id: 392269 CEC.Web.SRV.EDayExport.ExporterBusinessException: Cannot find SRV.PollingStation with Id: 1319. Probably assignement to deleted PollingStation.
+   at CEC.Web.SRV.EDayExport.VoterExporter.GetSaisePollingStationBySRVPollingStation(Int64 srvPollingStaionId) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 388
+   at CEC.Web.SRV.EDayExport.VoterExporter.AssignPollingStation(Voter voter, Int64 srvPollingStaionId, Street street) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 356
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 325
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 208
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteOperationInternal(IList`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 56
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 136
+2018-07-26 16:23:36.5915 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog An error occured in MapPersonToVoter for SRV.Person.Id: 392269 CEC.Web.SRV.EDayExport.ExporterBusinessException: Cannot find SRV.PollingStation with Id: 1319. Probably assignement to deleted PollingStation.
+   at CEC.Web.SRV.EDayExport.VoterExporter.GetSaisePollingStationBySRVPollingStation(Int64 srvPollingStaionId) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 388
+   at CEC.Web.SRV.EDayExport.VoterExporter.AssignPollingStation(Voter voter, Int64 srvPollingStaionId, Street street) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 356
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 325
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 208
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteOperationInternal(IList`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 56
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 143
+2018-07-26 16:23:50.0726 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog An error occured in MapPersonToVoter for SRV.Person.Id: 392269 CEC.Web.SRV.EDayExport.ExporterBusinessException: Cannot find SRV.PollingStation with Id: 1319. Probably assignement to deleted PollingStation.
+   at CEC.Web.SRV.EDayExport.VoterExporter.GetSaisePollingStationBySRVPollingStation(Int64 srvPollingStaionId) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 388
+   at CEC.Web.SRV.EDayExport.VoterExporter.AssignPollingStation(Voter voter, Int64 srvPollingStaionId, Street street) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 356
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 325
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 208
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteOperationInternal(IList`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 56
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 136
+2018-07-26 16:24:00.6980 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog An error occured in MapPersonToVoter for SRV.Person.Id: 392269 CEC.Web.SRV.EDayExport.ExporterBusinessException: Cannot find SRV.PollingStation with Id: 1319. Probably assignement to deleted PollingStation.
+   at CEC.Web.SRV.EDayExport.VoterExporter.GetSaisePollingStationBySRVPollingStation(Int64 srvPollingStaionId) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 388
+   at CEC.Web.SRV.EDayExport.VoterExporter.AssignPollingStation(Voter voter, Int64 srvPollingStaionId, Street street) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 356
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 325
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 208
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteOperationInternal(IList`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 56
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 136
+2018-07-26 16:24:23.6519 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog An error occured in MapPersonToVoter for SRV.Person.Id: 392269 CEC.Web.SRV.EDayExport.ExporterBusinessException: Cannot find SRV.PollingStation with Id: 1319. Probably assignement to deleted PollingStation.
+   at CEC.Web.SRV.EDayExport.VoterExporter.GetSaisePollingStationBySRVPollingStation(Int64 srvPollingStaionId) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 388
+   at CEC.Web.SRV.EDayExport.VoterExporter.AssignPollingStation(Voter voter, Int64 srvPollingStaionId, Street street) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 356
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 325
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 208
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteOperationInternal(IList`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 56
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 143
+2018-07-26 16:24:34.1714 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog An error occured in MapPersonToVoter for SRV.Person.Id: 392269 CEC.Web.SRV.EDayExport.ExporterBusinessException: Cannot find SRV.PollingStation with Id: 1319. Probably assignement to deleted PollingStation.
+   at CEC.Web.SRV.EDayExport.VoterExporter.GetSaisePollingStationBySRVPollingStation(Int64 srvPollingStaionId) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 388
+   at CEC.Web.SRV.EDayExport.VoterExporter.AssignPollingStation(Voter voter, Int64 srvPollingStaionId, Street street) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 356
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 325
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 208
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteOperationInternal(IList`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 56
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 143
+2018-07-26 16:24:43.5801 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog An error occured in MapPersonToVoter for SRV.Person.Id: 392269 CEC.Web.SRV.EDayExport.ExporterBusinessException: Cannot find SRV.PollingStation with Id: 1319. Probably assignement to deleted PollingStation.
+   at CEC.Web.SRV.EDayExport.VoterExporter.GetSaisePollingStationBySRVPollingStation(Int64 srvPollingStaionId) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 388
+   at CEC.Web.SRV.EDayExport.VoterExporter.AssignPollingStation(Voter voter, Int64 srvPollingStaionId, Street street) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 356
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 325
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 208
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteOperationInternal(IList`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 56
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 150
+2018-07-26 16:24:43.5801 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog Unhandled exception occured: Cannot find SRV.PollingStation with Id: 1319. Probably assignement to deleted PollingStation. CEC.Web.SRV.EDayExport.ExporterBusinessException: Cannot find SRV.PollingStation with Id: 1319. Probably assignement to deleted PollingStation.
+   at CEC.Web.SRV.EDayExport.VoterExporter.GetSaisePollingStationBySRVPollingStation(Int64 srvPollingStaionId) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 388
+   at CEC.Web.SRV.EDayExport.VoterExporter.AssignPollingStation(Voter voter, Int64 srvPollingStaionId, Street street) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 356
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 325
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 208
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteOperationInternal(IList`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 56
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 150
+2018-07-26 16:24:56.9268 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog An error occured in MapPersonToVoter for SRV.Person.Id: 392269 CEC.Web.SRV.EDayExport.ExporterBusinessException: Cannot find SRV.PollingStation with Id: 1319. Probably assignement to deleted PollingStation.
+   at CEC.Web.SRV.EDayExport.VoterExporter.GetSaisePollingStationBySRVPollingStation(Int64 srvPollingStaionId) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 388
+   at CEC.Web.SRV.EDayExport.VoterExporter.AssignPollingStation(Voter voter, Int64 srvPollingStaionId, Street street) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 356
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 325
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 208
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteOperationInternal(IList`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 56
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 150
+2018-07-26 16:24:56.9268 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog Unhandled exception occured: Cannot find SRV.PollingStation with Id: 1319. Probably assignement to deleted PollingStation. CEC.Web.SRV.EDayExport.ExporterBusinessException: Cannot find SRV.PollingStation with Id: 1319. Probably assignement to deleted PollingStation.
+   at CEC.Web.SRV.EDayExport.VoterExporter.GetSaisePollingStationBySRVPollingStation(Int64 srvPollingStaionId) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 388
+   at CEC.Web.SRV.EDayExport.VoterExporter.AssignPollingStation(Voter voter, Int64 srvPollingStaionId, Street street) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 356
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 325
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 208
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteOperationInternal(IList`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 56
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 150
+2018-07-26 16:25:07.4046 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog An error occured in MapPersonToVoter for SRV.Person.Id: 392269 CEC.Web.SRV.EDayExport.ExporterBusinessException: Cannot find SRV.PollingStation with Id: 1319. Probably assignement to deleted PollingStation.
+   at CEC.Web.SRV.EDayExport.VoterExporter.GetSaisePollingStationBySRVPollingStation(Int64 srvPollingStaionId) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 388
+   at CEC.Web.SRV.EDayExport.VoterExporter.AssignPollingStation(Voter voter, Int64 srvPollingStaionId, Street street) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 356
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 325
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 208
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteOperationInternal(IList`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 56
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 150
+2018-07-26 16:25:07.4046 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog Unhandled exception occured: Cannot find SRV.PollingStation with Id: 1319. Probably assignement to deleted PollingStation. CEC.Web.SRV.EDayExport.ExporterBusinessException: Cannot find SRV.PollingStation with Id: 1319. Probably assignement to deleted PollingStation.
+   at CEC.Web.SRV.EDayExport.VoterExporter.GetSaisePollingStationBySRVPollingStation(Int64 srvPollingStaionId) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 388
+   at CEC.Web.SRV.EDayExport.VoterExporter.AssignPollingStation(Voter voter, Int64 srvPollingStaionId, Street street) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 356
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 325
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 208
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteOperationInternal(IList`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 56
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 150
+2018-07-26 17:06:46.8552 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog An error occured in MapPersonToVoter for SRV.Person.Id: 392269 CEC.Web.SRV.EDayExport.ExporterBusinessException: Cannot find SRV.PollingStation with Id: 1319. Probably assignement to deleted PollingStation.
+   at CEC.Web.SRV.EDayExport.VoterExporter.GetSaisePollingStationBySRVPollingStation(Int64 srvPollingStaionId) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 388
+   at CEC.Web.SRV.EDayExport.VoterExporter.AssignPollingStation(Voter voter, Int64 srvPollingStaionId, Street street) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 356
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 325
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 208
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteOperationInternal(IList`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 56
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 136
+2018-07-26 17:07:41.2929 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog An error occured in MapPersonToVoter for SRV.Person.Id: 392269 CEC.Web.SRV.EDayExport.ExporterBusinessException: Cannot find SRV.PollingStation with Id: 1319. Probably assignement to deleted PollingStation.
+   at CEC.Web.SRV.EDayExport.VoterExporter.GetSaisePollingStationBySRVPollingStation(Int64 srvPollingStaionId) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 388
+   at CEC.Web.SRV.EDayExport.VoterExporter.AssignPollingStation(Voter voter, Int64 srvPollingStaionId, Street street) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 356
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 325
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 208
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteOperationInternal(IList`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 56
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 143
+2018-07-26 17:16:04.9824 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog An error occured in MapPersonToVoter for SRV.Person.Id: 392269 CEC.Web.SRV.EDayExport.ExporterBusinessException: Cannot find SRV.PollingStation with Id: 1319. Probably assignement to deleted PollingStation.
+   at CEC.Web.SRV.EDayExport.VoterExporter.GetSaisePollingStationBySRVPollingStation(Int64 srvPollingStaionId) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 388
+   at CEC.Web.SRV.EDayExport.VoterExporter.AssignPollingStation(Voter voter, Int64 srvPollingStaionId, Street street) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 356
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 325
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 208
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteOperationInternal(IList`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 56
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 150
+2018-07-26 17:16:04.9824 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog Unhandled exception occured: Cannot find SRV.PollingStation with Id: 1319. Probably assignement to deleted PollingStation. CEC.Web.SRV.EDayExport.ExporterBusinessException: Cannot find SRV.PollingStation with Id: 1319. Probably assignement to deleted PollingStation.
+   at CEC.Web.SRV.EDayExport.VoterExporter.GetSaisePollingStationBySRVPollingStation(Int64 srvPollingStaionId) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 388
+   at CEC.Web.SRV.EDayExport.VoterExporter.AssignPollingStation(Voter voter, Int64 srvPollingStaionId, Street street) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 356
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 325
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 208
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteOperationInternal(IList`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 56
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 150

@@ -1,0 +1,29 @@
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+ALTER TABLE SRV.Elections ADD
+	nameRo nvarchar(255) NULL,
+	nameRu nvarchar(255) NULL,
+	description nvarchar(1000) NULL,
+	status tinyint NOT NULL CONSTRAINT DF_Elections_status DEFAULT 1,
+	statusDate datetimeoffset(7) NOT NULL CONSTRAINT DF_Elections_statusDate DEFAULT SYSDATETIMEOFFSET(),
+	statusReason nvarchar(255) NULL,
+	reportsPath nvarchar(255) NULL
+GO
+ALTER TABLE SRV.Elections
+	DROP CONSTRAINT DF__Elections__accep__2180FB33
+GO
+ALTER TABLE SRV.Elections
+	DROP COLUMN electionDate, saiseId, acceptAbroadDeclaration, comments
+GO
+ALTER TABLE SRV.Elections SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT

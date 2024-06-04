@@ -1,0 +1,234 @@
+﻿
+@using CEC.SRV.BLL
+@using CEC.SRV.Domain
+@using CEC.SRV.Domain.Constants
+@using CEC.SRV.Domain.Importer
+@using CEC.Web.SRV.Resources
+@model CEC.Web.SRV.Models.Conflict.ResolveAddressConflictModel
+
+
+<div class="row address_box">
+    <div class="control-label col-sm-3">
+        <label>@MUI.ResolveConflict_PeopleAddress</label>
+    </div>
+    @Html.DisplayFor(x => x.RspAddress, new { ReadOnly = true, HideLabel = true })
+    @Html.HiddenFor(x => x.RspId)
+    @Html.HiddenFor(x => x.RegionId)
+</div>
+
+<div id="rac-tabs" class="tab-pane">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="#rac-available-addresses" data-toggle="tab">Alocare adresă</a>
+        </li>
+        <li class="">
+            <a href="#rac-similar-conflicts" data-toggle="tab">Situații similare</a>
+        </li>
+    </ul>
+    <div class="tab-content" style="padding-top: 10px">
+        <div id="rac-available-addresses" class="tab-pane fade active in">
+            <div class="row all">
+                @Html.EditorFor(x => x.AllAddressPerUser)
+            </div>
+            <div class="row">
+                <div id="AddressesGridView"></div>
+            </div>
+        </div>
+        <div id="rac-similar-conflicts" class="tab-pane fade">
+            <div class="row all">
+                <div class="rsa-form-group">
+                    <div class="control-label col-sm-5">
+                        <label>@MUI.Conflict_Address_ApplyToTheFollowingSimilarConflicts_Message:</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div id="SimilarAddressesGridView"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row address_box" style="margin-top: 20px;">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="button" value="@MUI.ButtonAccept" class="btn btn-primary" id="map_address" />
+        <input type="button" value="@MUI.ButtonCreate" class="btn btn-primary" id="create_address" />
+        @if (SecurityHelper.LoggedUserIsInRole(Transactions.Registrator))
+        {
+            <input type="button" value="@MUI.ButtonReject" class="btn btn-primary" id="reject_address" />
+        }
+        <input type="button" value="@MUI.ButtonClose" class="btn btn-default" id="close_dialog" />
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $('.address_box .rsa-form-group > div.col-sm-4').removeClass('col-sm-4').addClass('col-sm-7');
+    $('.address_box .rsa-form-group > div.col-sm-2').removeClass('col-sm-2').addClass('col-sm-4');
+    $('.all .rsa-form-group > div.col-sm-4').removeClass('col-sm-4').addClass('col-sm-7');
+    $('.all .rsa-form-group > div.col-sm-2').removeClass('col-sm-2').addClass('col-sm-5');
+    $('.modal-content').attr('style', 'width:900px;');
+
+    //
+    // Helpers & event handlers for identical by address conflicts
+    //
+    $.identicalByAddressGrid = {
+
+        OnLoadComplete: function () {
+            $.identicalByAddressGrid.CheckAll("True" === "@Model.ApplyToAllIdenticalAddresses");
+        },
+
+        GetGridSelections: function () {
+            var selections = $("#identicalAddressConflicts").jqGrid('getGridParam', 'selarrrow');
+            return selections;
+        },
+
+        OnRowSelect: function () {
+            //console.log("OnRowSelect");
+            //console.log($.identicalByAddressGrid.GetGridSelections());
+        },
+
+        OnSelectAll: function (aRowids, status) {
+            //$("#ApplyToAllIdenticalAddresses").prop("checked", status);
+        },
+
+        //
+        // Check all rows
+        //
+        CheckAll: function (check) {
+            var allChecked = $("#cb_identicalAddressConflicts").is(":checked");
+            if (check && !allChecked || !check &&  allChecked) {
+                $("#cb_identicalAddressConflicts").trigger("click");
+            }
+        }
+    };
+
+    $(document).ready(function () {
+
+        LoadAddressesGrid('@Model.RegionId');
+
+        $('#AllAddressPerUser').change(function () {
+            var regionId = '';
+            if ($(this).is(':checked')) {
+                LoadAddressesGrid(regionId);
+            } else {
+                regionId = '@Model.RegionId';
+                LoadAddressesGrid(regionId);
+            }
+        });
+
+        $('#map_address').click(function () {
+            var selections = onAddressSelect();
+            //var applyToAllAlike = $('#ApplyToAllIdenticalAddresses').is(':checked');
+
+            if (selections == null || selections.length == 0) {
+                BootstrapDialog.alert({ message: '@MUI.Conflict_Address_NotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+                return;
+            }
+
+            BootstrapDialog.confirm('@MUI.ConflictAddress_MapAddress_MessageConfirmation', function (result) {
+                if (result) {
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("MapAddressConflict","Conflict")',
+                        data: {
+                            conflictId: '@Model.RspId',
+                            addressId: selections,
+                            //applyToAllEntries: applyToAllAlike,
+                            applyToConflicts: $.identicalByAddressGrid.GetGridSelections()
+                        },
+                        success: function () {
+                            $.clearViewConflict();
+                            BootstrapDialog.closeAll();
+                            $("#addressConflicts").trigger('reloadGrid');
+                        }
+                    });
+                }
+            });
+        });
+
+        $('#create_address').click(function () {
+            var dialogTitle = '@MUI.AddressBuildingAdd_DialogTitle';
+
+            var url = '@HttpUtility.JavaScriptStringEncode(Url.Action("CreateNewAddress", "Conflict", new { conflictId = Model.RspId, regionId = Model.RegionId }))';
+
+            $.openDialog($(this), {
+                url: url,
+                title: dialogTitle,
+                onSubmit: function () {
+                    $.clearViewConflict();
+                    BootstrapDialog.closeAll();
+                    $("#addressConflicts").trigger('reloadGrid');
+                },
+
+            });
+
+        });
+
+        $('#reject_address').click(function () {
+            var conflictId = '@Model.RspId';
+            var url = '@Url.Action("RejectAddressConflict", "Conflict")';
+            $.openDialog($(this), {
+                url: url,
+                title: 'Respingere modificare',
+                usePost: true,
+                postData: { conflictIds: conflictId, conflictStatus: '@ConflictStatusCode.AddressConflict' },
+                onSubmit: function () {
+                    BootstrapDialog.closeAll();
+                    $.clearViewConflict();
+                    $('#addressConflicts').trigger('reloadGrid');
+                }
+            });
+        });
+
+        $('#close_dialog').click(function () {
+            BootstrapDialog.closeAll();
+        });
+    });
+
+    $('#rac-tabs a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        var target = $(e.target).attr("href"); // activated tab
+
+        if (target === "#rac-similar-conflicts") {
+            LoadIdenticalAddressesGrid();
+        }
+
+        $(window).trigger("resize");
+    });
+
+    function onAddressSelect() {
+        var selections = $("#rsvAddresses").jqGrid('getGridParam', 'selrow');
+        return selections;
+    }
+
+    function LoadAddressesGrid(regionId) {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("LoadAddressGridList", "Conflict")',
+            data: { regionId: regionId },
+            success: function (data) {
+                $('#AddressesGridView').html(data);
+            }
+        });
+    }
+
+    var grid2Loaded = false;
+    function LoadIdenticalAddressesGrid() {
+        if (grid2Loaded) {
+            return;
+        };
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("LoadIdenticalAddressGridList", "Conflict")',
+            data: {
+                conflictId: '@Model.RspId'
+            },
+            success: function (data) {
+                $('#SimilarAddressesGridView').html(data);
+                grid2Loaded = true;
+            }
+        });
+    }
+</script>

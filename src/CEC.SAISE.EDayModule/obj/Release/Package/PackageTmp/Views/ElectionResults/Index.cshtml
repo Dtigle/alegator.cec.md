@@ -1,0 +1,1077 @@
+﻿@using CEC.SAISE.Domain
+@model CEC.SAISE.EDayModule.Models.ElectionResults.ElectionResultsModel
+@{
+    ViewBag.Title = "Procese verbale";
+}
+
+<div class="well">
+    <div class="row">
+        <div class="col-xm-12">
+            @Html.Partial("_Delimitator")
+        </div>
+    </div>
+</div>
+
+<div class="well">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="alert alert-danger" data-bind="visible: BallotPaperNotFound">
+                <p>
+                    <span class="glyphicon glyphicon-alert"></span>
+                    Procesul verbal nu a fost găsit. Adresați-vă administratorilor.
+                </p>
+            </div>
+
+            <div class="alert alert-danger" data-bind="visible: ModuleIsLockedOut">
+                <p>
+                    Atenție! Funcționalitatea 'Procese Verbale' nu este activată.
+                    <a href="#" class="checkActivation">Apăsați pentru verificarea activării.</a>
+                </p>
+            </div>
+
+            <div class="box" data-bind="visible: !BallotPaperNotFound() && BallotPaper() != null">
+                <div class="box-content" data-bind="with: BallotPaper">
+                    <div data-bind="template: {name: getStatusBarTemplate}, visible: ShowValidationErrors() || AlreadySent()"></div>
+
+                    <table class="table ">
+                        <tr>
+                            <td><span class="badge">a)</span> Numărul de alegători incluşi în listele electorale de bază</td>
+                            <td data-bind="validationElement: RegisteredVoters">
+                                <input class="form-control number" data-bind="value: RegisteredVoters, enable: AllowEdit" maxlength="4" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge">b)</span> Numărul de alegători incluşi în listele suplimentare</td>
+                            <td data-bind="validationElement: Supplementary">
+                                <input class="form-control number" data-bind="value: Supplementary, enable: AllowEdit" maxlength="4" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="badge">c)</span> Numărul de alegători care au primit buletine de vot
+                                <div data-bind="visible: !BallotsIssued.isValid() && !BallotsIssued_Rule1_Succeeded() && ShowValidationErrors()">
+                                    <div class="alert alert-danger">
+                                        <span>Regula:</span><code>c ≤ a + b</code><br />
+                                        <span class="text-danger" data-bind="validationMessage: BallotsIssued"></span>
+                                    </div>
+                                </div>
+                                <div data-bind="visible: !BallotsIssued.isValid() && !BallotsIssued_Rule2_Succeeded() && ShowValidationErrors()">
+                                    <div class="alert alert-danger">
+                                        <span>Regula:</span><code>c ≥ d</code><br />
+                                        <span class="text-danger" data-bind="validationMessage: BallotsIssued"></span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td data-bind="validationElement: BallotsIssued">
+                                <input class="form-control number" data-bind="value: BallotsIssued, enable: AllowEdit" maxlength="4" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="badge">d)</span> Numărul de alegători care au participat la votare (inclusiv pe lista suplimentară)
+                                <div data-bind="visible: !BallotsCasted.isValid() && ShowValidationErrors()">
+                                    <div class="alert alert-danger">
+                                        <span>Regula:</span><code>d = f + h</code><br />
+                                        <span class="text-danger" data-bind="validationMessage: BallotsCasted"></span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td data-bind="validationElement: BallotsCasted">
+                                <input class="form-control number" data-bind="value: BallotsCasted, enable: AllowEdit" maxlength="4" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="badge">e)</span> Cifra ce reflectă diferenţa dintre numărul buletinelor de vot primite de alegători şi numărul alegătorilor care au participat la votare
+                                <div data-bind="visible: !DifferenceIssuedCasted.isValid() && ShowValidationErrors()">
+                                    <div class="alert alert-danger">
+                                        <span>Regula:</span><code>e = c - d</code><br />
+                                        <span class="text-danger" data-bind="validationMessage: DifferenceIssuedCasted"></span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td data-bind="validationElement: DifferenceIssuedCasted">
+                                <input class="form-control number" data-bind="value: DifferenceIssuedCasted, enable: AllowEdit" maxlength="4" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge">f)</span> Numărul buletinelor de vot declarate nevalabile</td>
+                            <td data-bind="validationElement: BallotsSpoiled">
+                                <input class="form-control number" data-bind="value: BallotsSpoiled, enable: AllowEdit" maxlength="4" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="badge">h)</span> Numărul total de voturi valabil exprimate
+                                <div data-bind="visible: !BallotsValidVotes.isValid() && ShowValidationErrors()">
+                                    <div class="alert alert-danger">
+                                        <span>Regula:</span><code>h = g1 + g2 + g3 + ... + gn</code><br />
+                                        <span class="text-danger" data-bind="validationMessage: BallotsValidVotes"></span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td data-bind="validationElement: BallotsValidVotes">
+                                <input class="form-control number" data-bind="value: BallotsValidVotes, enable: AllowEdit" maxlength="4" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="badge">i)</span> Numărul buletinelor de vot primite de biroul electoral al secției de votare
+                                <div data-bind="visible: !BallotsReceived.isValid() && ShowValidationErrors()">
+                                    <div class="alert alert-danger">
+                                        <span>Regula:</span><code>i = c + j</code><br />
+                                        <span class="text-danger" data-bind="validationMessage: BallotsReceived"></span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td data-bind="validationElement: BallotsReceived">
+                                <input class="form-control number" data-bind="value: BallotsReceived, enable: AllowEdit" maxlength="4" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="badge">j)</span> Numărul de buletine de vot neutilizate şi anulate (inclusiv buletinele de vot completate greșit și anulate)<br />
+                                <strong>La numărul buletinelor de vot neutilizate și anulate <span class="badge">j</span> nu se includ buletinele de vot declarate nevalabile <span class="badge">f</span>***</strong>
+                                <div data-bind="visible: !BallotsUnusedSpoiled.isValid() && ShowValidationErrors()">
+                                    <div class="alert alert-danger">
+                                        <span class="text-danger" data-bind="validationMessage: BallotsUnusedSpoiled"></span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td data-bind="validationElement: BallotsUnusedSpoiled">
+                                <input class="form-control number" data-bind="value: BallotsUnusedSpoiled, enable: AllowEdit" maxlength="4" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge">g)</span> Numărul de voturi valabil exprimate pentru fiecare concurent electoral</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <table class="table ">
+                                    <thead>
+                                        <tr>
+                                            <th>Nr.ordine</th>
+                                            <th id="titleParty">Concurentul electoral</th>
+                                            <th>Cod</th>
+                                            <th>Numărul de voturi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody data-bind="foreach: CompetitorResults">
+                                        <tr>
+                                            <td class="col-xs-1 number"><span class="badge">g<span data-bind="text: BallotOrder"></span>)</span></td>
+                                            <td data-bind="template: {name: $parent.resolveTemplate(IsIndependent)}"></td>
+                                            <td class="col-xs-2" data-bind="text: PoliticalPartyCode"></td>
+                                            <td class="col-xs-2" data-bind="validationElement: BallotCount">
+                                                <input class="form-control number" maxlength="4"
+                                                       data-bind="value: BallotCount,
+                                                              disable: isWithdrawn() || !$parent.AllowEdit()" />
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+
+
+                    <div class="alert alert-success" data-bind="visible: $parent.InCallMode">
+                        Rugăm așteptați...
+                        <div class="progress progress-striped active">
+                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-warning">
+                        <div class="text-center">
+                            <div>Verificați corectitudinea întocmirii procesului-verbal după următoarele formule:</div>
+                            <div>
+                                <code>c≤a+b</code> <code>c≥d</code> <code>d=f+h</code> <code>e=c-d</code>
+                                <code>h=g1+g2+g3+….gn</code> <code>i=c+j</code><code>j=i-c</code>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div data-bind="template: {name: getStatusBarTemplate}, visible: ShowValidationErrors() || AlreadySent()"></div>
+
+                    <div class="well" data-bind="visible: !AlreadySent() && AllowSubmitResults()">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="col-xs-3">
+                                    <button type="button" class="btn-lg btn board-btn-lg btn-primary"
+                                            data-bind="click: Validate">
+                                        <span>Verifică <br /> procesul verbal</span>
+                                    </button>
+                                </div>
+
+                                <div class="col-xs-6 text-center">
+                                    <p data-bind="visible: isValid()">
+                                        Procesul verbal pentru scrutinul <b><span data-bind="text: $root.Delimitator().SelectedElection()"></span></b> este corect întocmit.<br>
+                                        Acum puteți expedia procesul verbal.<br>
+                                        Procesul verbal expediat nu va mai fi disponibil pentru modificare.
+                                    </p>
+                                </div>
+
+                                <div class="col-xs-3">
+                                    <input type="button" class="btn-lg btn pull-right board-btn-lg btn-danger"
+                                           value="Transmite"
+                                           data-bind="click: SubmitResults, disable: $parent.InCallMode() || !isValid()" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="well" data-bind="visible: AllowSubmitConfirmation()">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="col-xs-3">
+                                    <button type="button" class="btn-lg btn board-btn-lg btn-primary"
+                                            data-bind="click: Validate">
+                                        <span>Verifică <br /> procesul verbal</span>
+                                    </button>
+                                </div>
+
+                                <div class="col-xs-6 text-center">
+                                    @*<p data-bind="visible: isValid()">
+                                            Procesul verbal pentru scrutinul <b><span data-bind="text: $root.UserData().SelectedElection"></span></b> este corect întocmit.<br>
+                                            Acum puteți expedia procesul verbal.<br>
+                                            Procesul verbal expediat nu va mai fi disponibil pentru modificare.
+                                        </p>*@
+                                </div>
+
+                                <div class="col-xs-3">
+                                    <input type="button" class="btn-lg pull-right board-btn-lg btn"
+                                           value="Confirmare"
+                                           data-bind="visible: AllowSubmitConfirmation(), disable: $parent.InCallMode() || !isValid(), click: ConfirmResults" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="normalPartyTemplate">
+    <span data-bind="text: PoliticalPartyName"></span>
+    <span class="label label-danger pull-right" data-bind="visible: isWithdrawn">RETRAS</span>
+</script>
+
+<script type="text/html" id="uninominalTemplate">
+    <span data-bind="text: CandidateName"></span>
+    <span class="label label-danger pull-right" data-bind="visible: isWithdrawn">RETRAS</span>
+</script>
+
+
+<script type="text/html" id="independentCandidateTemplate">
+    <span data-bind="text: PoliticalPartyName"></span>
+    <br />
+    <span class="label label-danger pull-right" data-bind="visible: isWithdrawn">RETRAS</span>
+</script>
+
+<script type="text/html" id="referendumElectionTemplate">
+    <span data-bind="text: CandidateName"></span>
+</script>
+
+<script type="text/html" id="mayorElectionTemplate">
+    <span data-bind="text: CandidateName"></span>
+    <br />
+    <span data-bind="visible: IsIndependent">Candidat Independent</span>
+    <span data-bind="visible: !IsIndependent, text: PoliticalPartyName"></span>
+    <span class="label label-danger pull-right" data-bind="visible: isWithdrawn">RETRAS</span>
+</script>
+
+<script type="text/html" id="alreadySubmitedStatusBarTemplate">
+    <div class="alert alert-danger">
+        <p>
+            <span class="glyphicon glyphicon-alert"></span>
+            Procesul verbal a fost transmis la <span data-bind="text: ServerEditDate()"></span> de utilizatorul <span data-bind="text: EditUser"></span>
+            <div data-bind="if: IsResultsConfirmed">
+                Confirmat la <span data-bind="text: ServerConfirmationDate"></span> de utlizatorul cu ID-ul: <span data-bind="text: ConfirmationUserId"></span>
+            </div>
+        </p>
+    </div>
+</script>
+
+<script type="text/html" id="defaultStatusBarTemplate">
+</script>
+
+<script type="text/html" id="submitAllowedStatusBarTemplate">
+    <div class="alert alert-success">
+        <p>
+            Transmiterea rezultatelor este permisă.
+        </p>
+    </div>
+</script>
+
+<script type="text/html" id="updateSuccessStatusBarTemplate">
+    <div class="alert alert-success">
+        <p>
+            Transmis cu succes.
+        </p>
+    </div>
+</script>
+
+<script type="text/html" id="submitNotAllowedStatusBarTemplate">
+    <div class="alert alert-danger">
+        <p>
+            Transmiterea rezultatelor NU este permisă.
+        </p>
+    </div>
+</script>
+
+<script type="text/html" id="validationSummary">
+    <div class="alert alert-warning" role="alert">
+        <h4>Sumar validare:</h4>
+        <ul data-bind="foreach: { data: errors, as: 'error'}">
+            <li data-bind="html: error"></li>
+        </ul>
+    </div>
+</script>
+
+<script type="text/javascript">
+    var initialData = '@Html.Raw(Json.Encode(Model))';
+    var validationMsgs = {
+        isRequired: 'Câmp obligatoriu',
+        max3500: 'maximum 5000',
+        digitsExpected: 'Se așteaptă doar cifre',
+        C_GT_A_B_Rule_Failed: 'Numărul de alegători incluşi în listele electorale <span class="badge">a</span> şi în listele suplimentare <span class="badge">b</span> este mai mic decît numărul de alegători care au primit buletine de vot <span class="badge">c</span>.',
+        C_LT_D_Rule_Failed: 'Numărul de alegători care au participat la votare <span class="badge">d</span> este mai mare decît numărul de alegători care au primit buletine de vot <span class="badge">c</span>.',
+        E_NE_C_D_Rule_Failed: 'Сifra ce reflectă diferenţa dintre numărul buletinelor de vot primite de alegători şi numărul alegătorilor care au participat la votare <span class="badge">e</span> este indicată incorect.',
+        H_eq_Sum_of_g_Rule: 'Numărul total de voturi valabil exprimate <span class="badge">h</span> trebuie să fie egal cu suma voturilor tuturor concurenților electorali <span class="badge">g1</span>...<span class="badge">gn</span>.',
+        D_eq_F_H_Rule: 'Numărul de alegători care au participat la votare <span class="badge">d</span> trebuie să fie egal cu numărul de buletine nevalabile <span class="badge">f</span> plus numărul de buletine valabile <span class="badge">h</span>.',
+        I_eq_C_J_Rule: 'Numărul de buletine de vot primite de biroul electoral al secției de votare <span class="badge">i</span> trebuie să fie egal cu numărul de alegători care au primit buletine de vot <span class="badge">c</span> şi numărul de buletine neutilizate şi anulate <span class="badge">j</span>.',
+        J_eq_I_diff_C_Rule: 'La numărul buletinelor de vot neutilizate și anulate <span class="badge">j</span> nu se includ buletinele de vot declarate nevalabile <span class="badge">f</span>***',
+        isRequiredField: function(x) {
+            return '<span class="badge">' + x + '</span> este valoare obligatorie.';
+        },
+        filedMustBe_GT_Zero: function(x) {
+            return '<span class="badge">' + x + '</span> trebuie să fie mai mare ca 0';
+        },
+        gt_Zero_IfLocal : function(x, isLocal) {
+            if(isLocal){
+                return '<span class="badge">' + x + '</span> trebuie să fie mai mare ca 0';
+            } else {
+                return '<span class="badge">' + x + '</span> trebuie să fie mai mare sau egal ca 0';
+            }
+        }
+    };
+
+    var validationRules = {
+        C_GT_A_B_Rule: function(c, params) {
+            if (params.bp.RegisteredVoters == undefined || params.bp.Supplementary == undefined) {
+                return false;
+            }
+
+            var result = parseInt(c) <= (parseInt(params.bp.RegisteredVoters()) + parseInt(params.bp.Supplementary()));
+            params.bp.BallotsIssued_Rule1_Succeeded(result);
+            return result;
+        },
+        C_LT_D_Rule: function(c, params) {
+            if (params.bp.BallotsCasted == undefined) {
+                return false;
+            }
+
+            var result = parseInt(c) >= parseInt(params.bp.BallotsCasted());
+            params.bp.BallotsIssued_Rule2_Succeeded(result);
+            return result;
+        },
+        E_NE_C_D_Rule: function(e, params) {
+            if (params.bp.BallotsIssued == undefined || params.bp.BallotsCasted == undefined) {
+                return false;
+            }
+
+            var result = parseInt(e) === (parseInt(params.bp.BallotsIssued()) - parseInt(params.bp.BallotsCasted()));
+            return result;
+        },
+        D_eq_F_H_Rule: function(d, params) {
+            if (params.f == undefined || params.h == undefined) {
+                return false;
+            }
+
+            var result = parseInt(d) === (parseInt(params.f()) + parseInt(params.h()));
+            return result;
+        },
+        H_eq_Sum_of_g_Rule: function(h, params) {
+            var sumOfCompetitors = 0;
+
+            if (params.competitorsArray == undefined) {
+                return false;
+            }
+
+            $.map(params.competitorsArray(), function(c, i) {
+                sumOfCompetitors += parseInt(c.BallotCount());
+            });
+
+            var result = (parseInt(h) === sumOfCompetitors);
+            return result;
+        },
+        I_eq_C_J_Rule: function(i, params) {
+            if (params.c == undefined || params.j == undefined) {
+                return false;
+            }
+
+            var result = parseInt(i) === (parseInt(params.c()) + parseInt(params.j()));
+            return result;
+        },
+        J_eq_I_diff_C_Rule: function(j, params) {
+            //c: self.BallotsIssued, i: self.BallotsReceived
+
+            if (params.bp.BallotsIssued == undefined || params.bp.BallotsReceived == undefined) {
+                return false;
+            }
+
+            var result = parseInt(j) === (parseInt(params.bp.BallotsReceived()) - parseInt(params.bp.BallotsIssued()));
+            return result;
+        },
+        X_GT_Zero_Rule: function(x) {
+            var result = parseInt(x) > 0;
+            return result;
+        },
+
+        gt_Zero_IfLocal : function(x, params) {
+            var val = parseInt(x);
+            var result = (params.isLocal && !params.allowZero) ? val > 0 : val >= 0 ;
+            return result;
+        }
+    }
+
+    function DelimitatorChangedEvent(electionId, electionIsLocal, isMayorElection, circumscriptionId, regionId, pollingStationId) {
+        var self = this;
+
+        self.ElectionId = electionId;
+        self.ElectionIsLocal = electionIsLocal;
+        self.IsMayorElection = isMayorElection;
+        self.CircumscriptionId = circumscriptionId;
+        self.RegionId = regionId;
+        self.PollingStationId = pollingStationId;
+
+        self.isReady = function () {
+            return self.ElectionId != null &&
+                self.CircumscriptionId != null &&
+                self.RegionId != null &&
+                self.PollingStationId != null;
+        }
+    }
+
+    function DelimitatorVM() {
+        var self = this;
+
+        self.SelectedElectionId = ko.observable();
+        self.SelectedCircumscriptionId = ko.observable();
+        self.SelectedRegionId = ko.observable();
+        self.SelectedPollingStationId = ko.observable();
+        self.ElectionIsLocal = ko.observable();
+        self.IsMayorElection = ko.observable();
+        self.onChanged = ko.observable();
+
+        self.isReady = ko.pureComputed(function () {
+            return self.onChanged() != null && self.onChanged().isReady();
+        });
+
+        self.SelectedElection = function() {
+            return $('.electionsSelect').text().trim();
+        };
+
+        self.SelectedCircumscription = function() {
+            return $('.circumscriptionSelect').text().trim();
+        };
+
+        self.SelectedRegion = function() {
+            return $('.regionSelect').text().trim();
+        };
+
+        self.SelectedPollingStation = function() {
+            return $('.pollingStationSelect').text().trim();
+        };
+
+        self.enableElectionsSelector = function () {
+            var electionsSelect = $('.electionsSelect');
+            electionsSelect.select2("val", "");
+            electionsSelect.unbind('change');
+            var circumscriptionSelect = $('.circumscriptionSelect');
+            circumscriptionSelect.select2("val", "");
+
+            var regionSelect = $('.regionSelect');
+            regionSelect.select2("val", "");
+
+            var pollingStationSelect = $('.pollingStationSelect');
+            pollingStationSelect.select2("val", "");
+
+            $('.electionsSelect').select2({
+                placeholder: 'Selectați scrutinul...',
+                ajax: {
+                    url: '@Url.Action("SelectElections", "Selectors")',
+                    type: 'post',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    delay: 250,
+                    data: self._dataFunc,
+                    results: self._pageFunc,
+                    cache: true
+                }
+            }).on('change', function (e) {
+                self.selectionChanged(parseInt(e.val), null, null, null);
+                self.enableCircumscriptionsSelector();
+            });
+        };
+
+        self.enableCircumscriptionsSelector = function () {
+            var circumsctionSelect = $('.circumscriptionSelect');
+            circumsctionSelect.select2("val", "");
+            circumsctionSelect.unbind('change');
+            circumsctionSelect.select2({
+                placeholder: 'Selectați circumscripția...',
+                ajax: {
+                    url: '@Url.Action("SelectCircumscription", "Selectors")',
+                    type: 'post',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    delay: 250,
+                    data: function (term, page) {
+                        return {
+                            q: term,
+                            pageLimit: 10,
+                            page: page,
+                            electionId: self.SelectedElectionId()
+                        };
+                    },
+                    results: self._pageFunc,
+                    cache: true
+                }
+            }).on('change', function (e) {
+                self.selectionChanged(self.SelectedElectionId(), parseInt(e.val), null, null);
+                self.enableRegionSelector();
+            });
+        };
+
+        self.enableRegionSelector = function () {
+            var regionSelect = $('.regionSelect');
+            regionSelect.select2("val", "");
+            regionSelect.unbind('change');
+            regionSelect.select2({
+                placeholder: 'Selectați localitatea...',
+                ajax: {
+                    url: '@Url.Action("SelectRegions", "Selectors")',
+                    type: 'post',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    delay: 250,
+                    data: function (term, page) {
+                        return {
+                            q: term,
+                            pageLimit: 10,
+                            page: page,
+                            electionId: self.SelectedElectionId(),
+                            circumscriptionId: self.SelectedCircumscriptionId()
+                        };
+                    },
+                    results: self._pageFunc,
+                    cache: true
+                }
+            }).on('change', function (e) {
+                self.selectionChanged(self.SelectedElectionId(), self.SelectedCircumscriptionId(), parseInt(e.val), null);
+                self.enablePollingStationSelector();
+            });
+        };
+
+        self.enablePollingStationSelector = function () {
+            var pollingStationSelect = $('.pollingStationSelect');
+            pollingStationSelect.select2("val", "");
+            pollingStationSelect.unbind('change');
+            pollingStationSelect.select2({
+                placeholder: 'Selectați secţia de votare...',
+                ajax: {
+                    url: '@Url.Action("SelectPollingStations", "Selectors")',
+                    type: 'post',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    delay: 250,
+                    data: function (term, page) {
+                        return {
+                            q: term,
+                            pageLimit: 10,
+                            page: page,
+                            electionId: self.SelectedElectionId(),
+                            circumscriptionId: self.SelectedCircumscriptionId(),
+                            regionId: self.SelectedRegionId()
+                        };
+                    },
+                    results: self._pageFunc,
+                    cache: true
+                }
+            }).on('change', function (e) {
+                self.selectionChanged(self.SelectedElectionId(), self.SelectedCircumscriptionId(), self.SelectedRegionId(), parseInt(e.val));
+            });
+        };
+
+        self._dataFunc = function (term, page) {
+            return {
+                q: term,
+                pageLimit: 10,
+                page: page
+            };
+        };
+
+        self._pageFunc = function (data, page) {
+            var more = (page * 10) < data.Total;
+            return { results: data.Items, more: more };
+        };
+
+        self.selectionChanged = function (electionId, circumscriptionId, regionId, pollingStationId) {
+            self.SelectedElectionId(electionId);
+            self.SelectedCircumscriptionId(circumscriptionId);
+            self.SelectedRegionId(regionId);
+            self.SelectedPollingStationId(pollingStationId);
+
+            var eventData = new DelimitatorChangedEvent(electionId, self.ElectionIsLocal(), self.IsMayorElection(), circumscriptionId, regionId, pollingStationId);
+
+            self.onChanged(eventData);
+        };
+
+        self.getDelimitatorData = function () {
+            return {
+                ElectionId: self.SelectedElectionId(),
+                ElectionIsLocal: self.ElectionIsLocal(),
+                IsMayorElection: self.IsMayorElection(),
+                CircumscriptionId: self.SelectedCircumscriptionId(),
+                RegionId: self.SelectedRegionId(),
+                PollingStationId: self.SelectedPollingStationId()
+            };
+        }
+    }
+
+    var ElectionResultsVM = function(initialData) {
+        var self = this;
+
+        self.InCallMode = ko.observable();
+
+        self.UserData = ko.observable(new UserData(initialData.UserData));
+        self.ModuleIsLockedOut = ko.observable();
+        self.BallotPaper = ko.observable();
+        self.BallotPaperNotFound = ko.observable(false);
+
+        self.Delimitator = ko.observable(new DelimitatorVM());
+        self.Delimitator().onChanged.subscribe(function (e) {
+            self.BallotPaper(null);
+            if (e.isReady()) {
+                self.requestBallotPaper();
+            }
+        });
+
+        self.requestBallotPaper = function() {
+            var self = this;
+
+            self.BallotPaperNotFound(false);
+
+            $.ajax({
+                url: '@Url.Action("RetrieveBallotPaper")',
+                type: 'post',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: JSON.stringify({ delimitationData: self.Delimitator().getDelimitatorData() }),
+                success: function (result) {
+
+                    self.ModuleIsLockedOut(false);
+                    self.BallotPaper(new BallotPaper(result, self));
+                },
+                error: function(e) {
+                    self.ModuleIsLockedOut(false);
+                    if (e.status === 200 && e.responseText === '') {
+                        self.BallotPaperNotFound(true);
+                    } else if (e.status === 423) {
+                        self.ModuleIsLockedOut(true);
+                    } else {
+                        alert('error');
+                    }
+                }
+            }).done(function(data) {
+                $(".number").forceNumeric();
+            });
+        };
+
+        self.CallSubmitBallotPaper = function(ballotPaperData, action) {
+            var self = this;
+            self.InCallMode(true);
+            var url = '@Url.Action("SubmitResults")';
+
+            if (action === 2) {
+                url = '@Url.Action("ConfirmResults")';
+            }
+
+            $.ajax({
+                url: url,
+                type: 'post',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: JSON.stringify({ delimitation: self.Delimitator().getDelimitatorData(), model: ballotPaperData }),
+                success: function(data) {
+                    if (data.Success) {
+                        self.BallotPaper().setUpdateResult(data);
+                    } else {
+                        self.requestBallotPaper();
+                    }
+                },
+                error: function(e) {
+                    if (e.status == 423) {
+                        BootstrapDialog.show({
+                            draggable: true,
+                            cssClass: 'info-dialog',
+                            title: (typeof title != 'undefined') ? title : 'Info',
+                            message: 'Funcționalitatea dată a fost blocată.',
+                            closable: false,
+                            buttons: [
+                            {
+                                label: 'Închide',
+                                action: function(dialogItself) {
+                                    dialogItself.close();
+                                    window.location = '@Url.Action("Index")';
+                                }
+                            }]
+                        });
+
+                    } else{
+                        ShowAlert('A avut loc o eroare', 'Eroare', 'danger-dialog');
+                    }
+                }
+            }).done(function(data) {
+                self.InCallMode(false);
+            });
+        };
+    };
+
+    function UserData(UserData) {
+        this.SelectedElectionId = ko.observable();
+        this.SelectedElection = ko.observable();
+        this.AssignedElection = ko.observable(new KeyValue(UserData.AssignedElection));
+        this.AssignedCircumscription = ko.observable(new KeyValue(UserData.AssignedCircumscription));
+        this.AssignedRegion = ko.observable(new KeyValue(UserData.AssignedRegion));
+        this.AssignedPollingStation = ko.observable(new KeyValue(UserData.AssignedPollingStation));
+        this.IsAdmin = ko.observable(UserData.IsAdmin);
+    }
+
+    function BallotPaper(BallotPaper, parent) {
+        var self = this;
+        self.parent = parent;
+        //console.log(self)
+        self.BallotPaperId = BallotPaper.BallotPaperId;
+
+        self.OpeningVotersCount = BallotPaper.OpeningVotersCount;
+
+        self.CompetitorResults = ko.observableArray(ko.utils.arrayMap(BallotPaper.CompetitorResults, function(competitorResult) {
+            return new CompetitorResult(competitorResult);
+        }));
+
+        self.RegisteredVoters = ko.observable(BallotPaper.RegisteredVoters).extend(
+        {
+            required: { message: validationMsgs.isRequiredField('a') },
+            digit: { message: validationMsgs.digitsExpected },
+                max: { params: 5000, message: validationMsgs.max3500}
+            });
+
+        self.Supplementary = ko.observable(BallotPaper.Supplementary).extend({
+            required: { message: validationMsgs.isRequiredField('b') },
+            digit: {message: validationMsgs.digitsExpected},
+            max: { params: 5000, message: validationMsgs.max3500 }
+
+        });
+
+        self.BallotsSpoiled = ko.observable(BallotPaper.BallotsSpoiled).extend({
+            required: {message: validationMsgs.isRequired},
+            digit: {message: validationMsgs.digitsExpected}
+        });
+        self.BallotsValidVotes = ko.observable(BallotPaper.BallotsValidVotes).extend({
+            required: { message: validationMsgs.isRequiredField('h') },
+            digit: { message: validationMsgs.digitsExpected },
+            validation: {
+                validator: validationRules.H_eq_Sum_of_g_Rule,
+                message: validationMsgs.H_eq_Sum_of_g_Rule,
+                params: {competitorsArray: self.CompetitorResults}
+            }
+        });
+
+        self.BallotsCasted = ko.observable(BallotPaper.BallotsCasted).extend({
+            required: {message: validationMsgs.isRequiredField('d')},
+            digit: {message: validationMsgs.digitsExpected},
+            validation: {
+                validator: validationRules.D_eq_F_H_Rule,
+                message: validationMsgs.D_eq_F_H_Rule,
+                params: {f: self.BallotsSpoiled, h: self.BallotsValidVotes}
+            }
+        });
+
+        self.BallotsIssued_Rule1_Succeeded = ko.validatedObservable(true);
+        self.BallotsIssued_Rule2_Succeeded = ko.validatedObservable(true);
+        self.BallotsIssued = ko.observable(BallotPaper.BallotsIssued).extend({
+            required: { message: validationMsgs.isRequiredField('c') },
+            digit: { message: validationMsgs.digitsExpected },
+            validation: [{
+                validator: validationRules.C_GT_A_B_Rule,
+                message: validationMsgs.C_GT_A_B_Rule_Failed,
+                params: {bp: self}
+            }, {
+                validator: validationRules.C_LT_D_Rule,
+                message: validationMsgs.C_LT_D_Rule_Failed,
+                params: {bp: self}
+            }]
+        });
+
+        self.DifferenceIssuedCasted = ko.observable(BallotPaper.DifferenceIssuedCasted).extend({
+            required: {message: validationMsgs.isRequiredField('e')},
+            digit: {message: validationMsgs.digitsExpected},
+            validation: {
+                validator: validationRules.E_NE_C_D_Rule,
+                message: validationMsgs.E_NE_C_D_Rule_Failed,
+                params: {bp: self}
+            }
+        });
+
+        self.BallotsReceived = ko.observable(BallotPaper.BallotsReceived);
+        self.BallotsUnusedSpoiled = ko.observable(BallotPaper.BallotsUnusedSpoiled).extend({
+            required: {message: validationMsgs.isRequired},
+            digit: {message: validationMsgs.digitsExpected},
+            validation: {
+                validator: validationRules.J_eq_I_diff_C_Rule,
+                message: validationMsgs.J_eq_I_diff_C_Rule,
+                params: { bp: self }
+            }
+        });
+        self.BallotsReceived = ko.observable(BallotPaper.BallotsReceived).extend({
+            required: { message: validationMsgs.isRequiredField('i') },
+            digit: { message: validationMsgs.digitsExpected },
+            validation: [{
+                validator: validationRules.I_eq_C_J_Rule,
+                message: validationMsgs.I_eq_C_J_Rule,
+                params: { c: self.BallotsIssued, j: self.BallotsUnusedSpoiled }
+            }, {
+                validator: validationRules.X_GT_Zero_Rule,
+                message: validationMsgs.filedMustBe_GT_Zero('i')
+            }]
+        });
+
+        self.EditDate = ko.observable(BallotPaper.EditDate);
+        self.EditUser = ko.observable(BallotPaper.EditUser);
+        self.ServerEditDate = ko.observable(BallotPaper.ServerEditDate);
+        self.IsResultsConfirmed = ko.observable(BallotPaper.IsResultsConfirmed);
+        self.ConfirmationUserId = ko.observable(BallotPaper.ConfirmationUserId);
+        self.ConfirmationDate = ko.observable(BallotPaper.ConfirmationDate);
+        self.ServerConfirmationDate = ko.observable(BallotPaper.ServerConfirmationDate);
+        self.Status = ko.observable(BallotPaper.Status);
+        self.ElectionType = BallotPaper.ElectionType;
+
+        self.ShowValidationErrors = ko.observable(false);
+
+        self.AlreadySent = ko.observable(BallotPaper.AlreadySent);
+        self.AllowSubmitResults = ko.observable(BallotPaper.AllowSubmitResults);
+        self.AllowSubmitConfirmation = ko.observable(BallotPaper.AllowSubmitConfirmation);
+
+        self.Validate = function() {
+            self.ShowValidationErrors(true);
+        }
+
+        @*self.isMayorElection = ko.pureComputed(function() {
+            return self.ElectionType === @(ElectionType.Local_PrimarLocal) || self.ElectionType === @(ElectionType.Local_PrimarGeneral);
+        });*@
+
+        self.resolveTemplate = function(isIndependent) {
+            //if (self.isMayorElection()) {
+            //    return 'mayorElectionTemplate';
+            //}
+            if (self.ElectionType === 3) {
+                $('#titleParty').html(BallotPaper.CompetitorResults[0].PoliticalPartyName);
+                return 'referendumElectionTemplate';
+            }
+
+            if (isIndependent) {
+                return 'independentCandidateTemplate';
+            } else {
+                if (self.ElectionType === 1) {
+                    return 'uninominalTemplate';
+                }
+                return 'normalPartyTemplate';
+            }
+        };
+
+        self.hasBeenSent = ko.pureComputed(function() {
+            return self.Status > @((int)BallotPaperStatus.New) && self.ConfirmationUserId > 0;
+        });
+
+        self.getFormatedDate = function(date) {
+            return moment(date).format('DD.MM.YYYY HH:mm:ss');
+        };
+
+        self.getStatusBarTemplate = function () {
+            if (self.IsResultsConfirmed()) {
+                return 'alreadySubmitedStatusBarTemplate';
+            }
+            if (self.updateSuccess()) {
+                return 'updateSuccessStatusBarTemplate';
+            }
+
+            if (self.AllowSubmitConfirmation()) {
+                return 'alreadySubmitedStatusBarTemplate';
+            }
+
+            if (!self.AllowSubmitResults()) {
+                return 'submitNotAllowedStatusBarTemplate';
+            }
+
+            if (self.AlreadySent()) {
+                return 'alreadySubmitedStatusBarTemplate';
+            }
+
+            if (self.AllowSubmitResults() && self.isValid()) {
+                return 'submitAllowedStatusBarTemplate';
+            }
+
+            if (!self.isValid()) {
+                return 'validationSummary';
+            }
+
+            return 'defaultStatusBarTemplate';
+        };
+
+        self.AllowEdit = ko.pureComputed(function() {
+            return ((!self.AlreadySent() && self.AllowSubmitResults()) || self.AllowSubmitConfirmation()) && !self.parent.InCallMode();
+        });
+
+        self.errors = ko.validation.group(self, { deep: true, live: true });
+        self.updateSuccess = ko.observable(null);
+
+        self.__callSubmitBallotPaper = function(action) {
+            var self = this;
+
+            if (self.isValid()) {
+                var bp = self.getBallotPaperData();
+
+                self.parent.CallSubmitBallotPaper(bp, action);
+            } else {
+                self.ShowValidationErrors(true);
+            }
+        };
+
+        self.SubmitResults = function() {
+            self.__callSubmitBallotPaper(1);
+        };
+
+        self.ConfirmResults = function() {
+            self.__callSubmitBallotPaper(2);
+        };
+
+        self.setUpdateResult = function(data) {
+            if (data.Success) {
+                self.AlreadySent(true);
+                self.AllowSubmitResults(false);
+                self.updateSuccess(true);
+            }
+        };
+
+        self.getBallotPaperData = function() {
+            var result = {
+                BallotPaperId: self.BallotPaperId,
+                RegisteredVoters: self.RegisteredVoters(),
+                Supplementary: self.Supplementary(),
+                BallotsIssued: self.BallotsIssued(),
+                BallotsCasted: self.BallotsCasted(),
+                DifferenceIssuedCasted: self.DifferenceIssuedCasted(),
+                BallotsSpoiled: self.BallotsSpoiled(),
+                BallotsValidVotes: self.BallotsValidVotes(),
+                BallotsReceived: self.BallotsReceived(),
+                BallotsUnusedSpoiled: self.BallotsUnusedSpoiled(),
+                CompetitorResults: $.map(self.CompetitorResults(), function(x, i) {
+                    return { ElectionResultId: x.ElectionResultId, BallotCount: x.BallotCount() };
+                })
+            }
+
+            return result;
+        };
+    }
+
+    function KeyValue(data) {
+        this.Id = (data != null) ? data.Id : -1;
+        this.Name = (data != null) ? data.Name : "";
+    }
+
+    function CompetitorResult(CompetitorResult) {
+        var self = this;
+
+        self.ElectionResultId = CompetitorResult.ElectionResultId;
+        self.BallotOrder = CompetitorResult.BallotOrder;
+        self.PoliticalPartyCode = CompetitorResult.PoliticalPartyCode;
+        self.PoliticalPartyName = CompetitorResult.PoliticalPartyName;
+        self.CandidateName = CompetitorResult.CandidateName;
+        self.BallotCount = ko.observable(CompetitorResult.BallotCount).extend({
+            required: {message: validationMsgs.isRequired},
+            number: {message: validationMsgs.digitsExpected}
+        });
+        self.PartyStatus = CompetitorResult.PartyStatus;
+        self.IsIndependent = CompetitorResult.IsIndependent;
+
+        self.isWithdrawn = ko.pureComputed(function() {
+            return self.PartyStatus === @((int) PoliticalPartyStatus.Withdrawn);
+        });
+    }
+
+    var parsedJSON = $.parseJSON(initialData);
+    //console.log(initialData);
+    ko.validation.configure({
+        insertMessages: false,
+        errorsAsTitle: false,
+        decoratedElement: true,
+        allowHtmlMessages: true,
+        messagesOnModified: false,
+        errorElementClass: 'has-error',
+        errorMessageClass: 'help-block'
+    });
+
+    var electionResultsVM = new ElectionResultsVM(parsedJSON);
+    ko.applyBindingsWithValidation(electionResultsVM);
+
+    // forceNumeric() plug-in implementation
+    jQuery.fn.forceNumeric = function() {
+
+        return this.each(function() {
+            $(this).keydown(function(e) {
+                var key = e.which || e.keyCode;
+
+                if (!e.shiftKey && !e.altKey && !e.ctrlKey &&
+                    // numbers
+                    key >= 48 && key <= 57 ||
+                    // Numeric keypad
+                    key >= 96 && key <= 105 ||
+                    // comma, period and minus, . on keypad
+                    //key == 190 || key == 188 || key == 109 || key == 110 ||
+                    // Backspace and Tab and Enter
+                    key == 8 || key == 9 || key == 13 ||
+                    // Home and End
+                    key == 35 || key == 36 ||
+                    // left and right arrows
+                    key == 37 || key == 39 ||
+                    // Del and Ins
+                    key == 46 || key == 45)
+                    return true;
+
+                return false;
+            });
+        });
+    };
+
+    (function($) {
+        electionResultsVM.Delimitator().enableElectionsSelector();
+
+        $('body')
+            .on('focus', 'tr > td > input', function() {
+                $(this).closest('tr').addClass('alert-info');
+            })
+            .on('blur', 'tr > td > input', function() {
+                $(this).closest('tr').removeClass('alert-info');
+            })
+            .on('click', '.checkActivation', function() {
+                if (electionResultsVM.Delimitator().isReady()) {
+                    electionResultsVM.requestBallotPaper();
+                }
+            });
+    })(jQuery);
+</script>

@@ -1,0 +1,66 @@
+﻿@using CEC.Web.SRV.Resources
+@model CEC.Web.SRV.Models.Address.UpdateBuildingAddressModel
+
+<div class="clearfix">
+
+    @using (Html.BeginForm("SaveBuildingAddress", "Address", FormMethod.Post, new { @class = "form-horizontal" }))
+    {   
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(x => x.Id)
+        @Html.HiddenFor(x => x.RegionId)
+        <div class="form-group">
+            @Html.EditorFor(x => x.StreetId)
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(x => x.HouseNumber)
+        </div>
+	    <div class="form-group">
+		    @Html.EditorFor(x => x.Suffix)
+	    </div>
+
+		<div class="form-group">
+            @Html.EditorFor(x => x.PollingStationId)
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+	            <input type="submit" value="@MUI.ButtonSave" class="btn btn-primary" />
+            </div>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+    $('.rsa-form-group > div.col-sm-4').removeClass('col-sm-4').addClass('col-sm-6');
+    $('.rsa-form-group > div.col-sm-2').removeClass('col-sm-2').addClass('col-sm-4');
+    $('.select2Control').select2();
+    
+    function votersDataRequest(term, page, pageLimit) {
+    	return {
+    		q: term,
+    		pageLimit: pageLimit,
+    		page: page,
+    		regionId: null
+    	};
+    }
+
+    function votersResults(data, more) {
+    	return { results: data, more: more };
+    }
+
+    function addressDataRequest(term, page, pageLimit) {
+	    var regionId = $.getRegionId();
+	    
+    	return {
+    		q: term,
+    		pageLimit: pageLimit,
+    		page: page,
+    		regionId: regionId.regionId
+    	};
+    }
+
+    function addressResults(data, more) {
+    	return { results: data, more: more };
+    }
+</script>

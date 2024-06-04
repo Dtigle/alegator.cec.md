@@ -1,0 +1,216 @@
+﻿<div id="koMainMun">
+
+    <div class="row">
+        <div id="breadcrumb" class="col-md-12" />
+    </div>
+
+    <div class="row">
+        <div id="breadcrumb" class="col-md-12" />
+    </div>
+
+    <div class="row" data-bind="with: M1">
+        <div class="col-xs-12 col-sm-12 col-lg-12 text-center">
+            <div class="page-header" style="font-size: 58px; font-weight: bolder">Alegerea primarului general al mun. Chișinău (Turul II)</div>
+            <div style="font-size: 50px; font-weight: bolder">
+                <strong><span style="color: crimson">Rezultate preliminare</span></strong><br />
+                Procese verbale procesate <span data-bind="text: totalProcessedBallotPapers"></span> din
+                <span data-bind="text: totalBallotPapers"></span> (<span data-bind="text: percentProcessedBallotPapers"></span>)
+                <br />
+                Total voturi <strong><span data-bind="text: totalVotes"></span></strong> dintre care valabile
+                <strong><span data-bind="text: totalValidVotes"></span></strong> și nevalabile <strong><span data-bind="text: totalSpoiledVotes"></span></strong>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="row">
+        <div class="col-xs-3 col-sm-3 col-lg-3 text-center" data-bind="with: M1().leftConcurent">
+            <div class="center-block">
+                <img src="./img/candidates/candidat1.png" class="center-block" />
+            </div>
+            <div style="font-size: 40px; font-weight: bold">
+                Chirtoacă Dorin<br />
+                PL
+            </div>
+            <div style="font-size: 50px; font-weight: bold">
+                <span data-bind="text: CandidateResult"></span><br />
+                <span data-bind="text: CandidatePercentResultStr"></span>
+            </div>
+        </div>
+
+        <div class="col-xs-6 col-sm-6 col-lg-6 center-block">
+            <div id="chartM1"></div>
+        </div>
+
+        <div class="col-xs-3 col-sm-3 col-lg-3 text-center" data-bind="with: M1().rightConcurent">
+            <div class="center-block">
+                <img src="./img/candidates/candidat2b.png" class="center-block" />
+            </div>
+            <div style="font-size: 40px; font-weight: bold">
+                Greceanîi Zinaida<br />
+                PSRM
+            </div>
+            <div style="font-size: 50px; font-weight: bold">
+                <span data-bind="text: CandidateResult"></span><br />
+                <span data-bind="text: CandidatePercentResultStr"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    #content {
+        background: transparent
+    }
+</style>
+
+<script>
+    function ElectionResults(electionId, districtId, chartId) {
+        var self = this;
+
+        self.ElectionId = electionId;
+        self.DistrictId = districtId;
+
+        self.totalBallotPapers = ko.observable(0);
+        self.totalProcessedBallotPapers = ko.observable(0);
+        self.percentProcessedBallotPapers = ko.observable(0);
+        self.totalVotes = ko.observable(0);
+        self.totalValidVotes = ko.observable(0);
+        self.totalSpoiledVotes = ko.observable(0);
+
+        self.leftConcurent = ko.observable();
+        self.rightConcurent = ko.observable();
+
+        self.preliminary = [];
+
+        self.chartId = chartId;
+        self.chart = new google.visualization.ColumnChart(document.getElementById(chartId));
+
+        self.drawChart = function () {
+            var data = new google.visualization.arrayToDataTable([
+                ['Concurent', 'Voturi', { role: 'style' }],
+                ['1', self.leftConcurent() != null ? self.leftConcurent().CandidateResult : 0, 'blue'],
+                ['2', self.rightConcurent() != null ? self.rightConcurent().CandidateResult : 0, '#f64e54']
+            ]);
+
+            var formatter = new google.visualization.NumberFormat({ pattern: '###,###,###' });
+            formatter.format(data, 1);
+
+            var view = new google.visualization.DataView(data);
+            view.setColumns([0, 1, {
+                calc: "stringify",
+                sourceColumn: 1,
+                type: "string",
+                role: "annotation"
+            }, 2]);
+
+            var options = {
+                width: $('#' + self.chartId).parent().width(),
+                height: $('#' + self.chartId).closest('div.row').height(),
+                fontSize: 38,
+                legend: { position: 'none' },
+                bar: {groupWidth: '60%'},
+                backgroundColor: 'transparent',
+                animation: {
+                    duration: 1000,
+                    easing: 'out',
+                    startup: true
+                },
+                chartArea: {
+                    left: '20%'
+                },
+                vAxis: {
+                    title: 'Voturi',
+                    viewWindow: {
+                        min: 0
+                    }
+                },
+                is3D: true
+            };
+
+            self.chart.draw(view, options);
+        }
+
+        self.init = function (data) {
+            if (data != undefined) {
+                self.totalBallotPapers(data.TotalBallotPapers);
+                self.totalProcessedBallotPapers(data.TotalProcessedBallotPapers);
+                self.percentProcessedBallotPapers(data.PercentProcessedBallotPapers);
+                self.totalVotes(data.TotalVotes);
+                self.totalValidVotes(data.TotalValidVotes);
+                self.totalSpoiledVotes(data.TotalSpoiledVotes);
+                self.preliminary = data.Preliminary || [];
+
+                if (self.preliminary.length > 0) {
+                    self.leftConcurent(self.preliminary[0]);
+                    self.rightConcurent(self.preliminary[1]);
+                }
+
+                self.drawChart();
+            }
+
+            return self;
+        }
+    }
+
+    function VM2() {
+        var self = this;
+
+        self.M1 = ko.observable(new ElectionResults(60, 44, 'chartM1'));
+
+        self.init = function (data) {
+            if (data != undefined) {
+                var mm = [self.M1()];
+                for (var i = 0; i < data.length; i++) {
+                    var x = data[i];
+                    for (var j = 0; j < mm.length; j++) {
+                        var y = mm[j];
+                        if (x.ElectionId === y.ElectionId && x.DistrictId === y.DistrictId) {
+                            y.init(x.StatsInfo);
+                            break;
+                        }
+                    }
+                }
+            }
+
+            return self;
+        }
+
+    };
+
+    var xx2 = new VM2();
+    if (!ko.dataFor(document.getElementById("koMainMun"))) {
+        ko.applyBindings(xx2, document.getElementById("koMainMun"));
+    }
+
+    function ConnectWS() {
+        var webSocketLiveResults = new WebSocket(globalServerSocket + 'api/LiveMunicipalResults?pollId=0');
+
+        webSocketLiveResults.onerror = onWsError;
+        webSocketLiveResults.onmessage = onWsMessage;
+    }
+
+    function onWsError(event) {
+        ConnectWS();
+    }
+
+    function onWsMessage(event) {
+        var stringData = event.data;
+        var json = $.parseJSON(stringData);
+
+        if (json == undefined) {
+            console.log(event);
+        }
+
+        xx2.init(json);
+
+    }
+
+    $(document).ready(function () {
+        ConnectWS();
+    });
+
+
+</script>

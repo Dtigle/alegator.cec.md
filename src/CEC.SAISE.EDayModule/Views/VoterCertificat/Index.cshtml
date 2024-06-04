@@ -1,0 +1,202 @@
+﻿
+@using CEC.SAISE.EDayModule.Infrastructure.Grids
+@using CEC.SAISE.EDayModule.Models.VoterCertificate
+@using Lib.Web.Mvc.JQuery.JqGrid
+@using CEC.SAISE.EDayModule.Models.Voting
+
+@Scripts.Render("~/bundles/jqGrid")
+
+@{
+    var grid = Html.GridOptions<VoterCertificateGridModel>("votingStats", rowsPerPage: 100)
+         .SetOptions(x => x.MultiSelect = false)
+        .BuildGrid(Url.Action("GetAllCertificats", "VoterCertificat"), exportAction: "PopulateTable1", columnChooser: true)
+        .Navigator(new JqGridNavigatorOptions()
+        {
+            Add = false,
+            Edit = true,
+            Delete = true,
+            CloneToTop = true,
+            EditFunction = "$.CertificatView",
+            DeleteFunction = "$.DeleteCertificat",
+
+        })
+        .AddNavigatorButton("Editează certificat", onClick: "$.CertificatView");
+
+}
+
+
+
+<div>
+
+    @Html.Partial("_SearchVoter")
+    <div id="wait" class="loader" style="display: block;  position: absolute; top: 100%; left: 40%; padding: 2px;"></div>
+</div>
+
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-12">
+            @grid.GetHtml()
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    //$(window).resize(function () {
+    //    if ($(window).width() < 960) {
+    //        $("#votingStats").setGridParam({ AutoWidth: false }).trigger("reloadGrid");
+    //        $("#votingStats").setGridParam({ width: 960 }).trigger("reloadGrid");
+    //    }
+    //    else {
+          
+    //        $("#votingStats").setGridParam({ AutoWidth: true }).trigger("reloadGrid");
+    //    }
+    //});
+        $(document).ready(function () {
+        @grid.GetJavaScript();
+
+
+
+                var dateFormat = 'dd.mm.yy';
+                  $.validator.addMethod('date', function (value, element) {
+                    if (this.optional(element)) {
+                        return true;
+                    }
+
+                    try {
+                        $.datepicker.parseDate(dateFormat, value);
+                    } catch (err) {
+                        return false;
+                    }
+                    return true;
+            });
+              $(".datefield").datepicker({ dateFormat: dateFormat, changeYear: true });
+              $("#ReleaseDate").datepicker({ dateFormat: dateFormat, changeYear: true });
+              $("#gs_Created").datepicker({ dateFormat: dateFormat, changeYear: true });
+              $("#gs_Election").datepicker({ dateFormat: dateFormat, changeYear: true });
+              $("#gs_ReleaseDate").datepicker({ dateFormat: dateFormat, changeYear: true });
+
+    });
+
+    $.CertificatView = function (e) {
+        var message = $('<div class="popupWindows"><div/>');
+
+          var rowId = $("#votingStats").jqGrid('getGridParam', 'selrow');
+          var rowData = jQuery("#votingStats").getRowData(rowId);
+          var colData = rowData['CerificatID'];
+
+          if (rowId == null || rowId.length == 0) {
+            BootstrapDialog.alert({ message: 'Selectati rindul ', title: 'Eroare' });
+            return;
+          }
+
+         var url = '@Url.Action("ViewCertificat", "VoterCertificat")';
+         var dialogTitle = 'Editare  Certificat';
+         var adres = url + '?id=' + colData;
+
+         $.ajax({
+             url: adres,
+             type: 'GET',
+             success: function (content) {
+                 message.append(content);
+                 var dialog = new BootstrapDialog({
+                     title: dialogTitle,
+                     message: message,
+                     buttons: [
+                         {
+                             id:'EditCert',
+                             label: 'Salveaza',
+                             cssClass: 'btn btn-primary',
+                             action: function (dialog) {
+                                 var myForm = $('#certificatForm').serialize();
+                                 $.ajax({
+                                     type: "POST",
+                                     url: url,
+                                     data: myForm,
+                                     success: function (result) {
+                                         if (result == true) {
+                                             dialog.getModalBody().html("Modificat cu succes .");
+                                             $('#EditCert').attr("disabled", "disabled");
+                                             return;
+                                         }
+
+                                         if (result == false) {
+                                             dialog.getModalBody().html("Eronat mai incearcă");
+                                             $('#EditCert').attr("disabled", "disabled");
+                                             return;
+                                         }
+
+                                         dialog.getModalBody().html(result);
+
+
+                                     }
+
+                                 });
+
+                             }
+                         },
+                         {
+                             label: 'Închide',
+                             action: function (dialog) {
+                                 dialog.close();
+                             }
+                         }]
+                 });
+                 dialog.open();
+             }
+        });
+
+    };
+
+
+
+
+    $.DeleteCertificat = function (CerificatID) {
+
+		var url = '@Url.Action("DeleteCertificat")';
+        var message = 'Sunte-ți sigur ? ';
+        BootstrapDialog.show({
+            message: message,
+            buttons: [
+                {
+                    label: 'Da',
+                    action: function (dialogItself) {
+                        $.ajax({
+                            type: "POST",
+                            url: url,
+                            data: { id: CerificatID },
+                            success: function () {
+                                dialogItself.close();
+                                $("#votingStats").trigger('reloadGrid');
+
+                            }
+                        });
+                    }
+                },
+                {
+                    label: 'Nu',
+                    action: function (dialogItself) {
+                        dialogItself.close();
+                    }
+                }
+            ]
+        });
+
+    };
+
+
+    $(document).ajaxStart(function () {
+        $("#wait").css("display", "block");
+    });
+    $(document).ajaxComplete(function () {
+        $("#wait").css("display", "none");
+    });
+
+
+</script>
+
+
+
+

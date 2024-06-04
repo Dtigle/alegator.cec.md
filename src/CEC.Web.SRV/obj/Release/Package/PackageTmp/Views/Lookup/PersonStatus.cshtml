@@ -1,0 +1,80 @@
+﻿@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.Lookup
+@using CEC.Web.SRV.Resources
+@using Lib.Web.Mvc.JQuery.JqGrid
+
+@{
+    ViewBag.Title = MUI.PersonStatus_TabTitle;
+}
+
+@{
+    var grid = Html.GridOptions<PersonStatusGridModel>("personStatuses")
+        .BuildGrid(Url.Action("ListPersonStatusAjax"), null, null, null, null/*Url.Action("UnDeletePersonStatus")*/,
+            Url.Action("PersonStatusHistory", "History"), Url.Action("ExportPersonStatuses"))
+		.Navigator(new JqGridNavigatorOptions()
+		{
+			Add = false,
+			Edit = false,
+			Delete = false,
+			Search = true,
+			AddFunction = "$.CreateUpdatePersonStatus",
+			EditFunction = "$.CreateUpdatePersonStatus",
+			DeleteFunction = "$.DeletePersonStatus",
+            CloneToTop = true
+		});
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-content">
+                <h4 class="page-header">@MUI.PersonStatus_TabTitle</h4>
+                @grid.GetHtml()
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        @grid.GetJavaScript();
+        $('#personStatuses').jqGrid().remapColumns([1, 2, 3, 4, 5, 6, 7, 8, 0], true, false);
+    });
+    
+	$.CreateUpdatePersonStatus = function (personStatusId) {
+		var personStatusParam = null;
+		var url = '@Url.Action("CreateUpdatePersonStatus","Lookup")';
+		var dialogTitle = '@MUI.PersonStatusAdd_DialogTitle';
+		if (personStatusId != undefined) {
+			dialogTitle = '@MUI.PersonStatusEdite_DialogTitle';
+			personStatusParam = personStatusId;
+		}
+
+		$.openDialog($(this), {
+			url: url + '?personStatusId=' + personStatusParam,
+			title: dialogTitle,
+			onSubmit: function () {
+				$("#personStatuses").trigger('reloadGrid');
+			},
+		});
+	};
+
+	$.DeletePersonStatus = function (personStatusId) {
+		
+		var url = '@Url.Action("DeletePersonStatus")';
+
+		BootstrapDialog.confirm('@MUI.PersonStatusDelete_Message', function (result) {
+			if (result) {
+				$.ajax({
+					type: "POST",
+					url: url,
+					data: { id: personStatusId },
+					success: function () {
+						$("#personStatuses").trigger('reloadGrid');
+					}
+				});
+			}
+		});
+	};
+</script>

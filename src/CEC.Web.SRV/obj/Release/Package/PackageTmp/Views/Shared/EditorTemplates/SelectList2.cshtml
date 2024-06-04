@@ -1,0 +1,12 @@
+﻿@using CEC.Web.SRV.Resources
+
+<div class="col-sm-2 control-label">
+    @Html.Label("")
+</div>
+
+<div class="col-sm-4">
+    @{ var model = (Model as IEnumerable<SelectListItem>) ?? (IEnumerable<SelectListItem>)ViewData[ViewData.ModelMetadata.PropertyName]; }
+
+    @Html.DropDownList("", model, "", new { @class = "form-control" })
+</div>
+

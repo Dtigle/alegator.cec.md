@@ -1,0 +1,59 @@
+﻿@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.Voters
+@using CEC.Web.SRV.Resources
+@using Lib.Web.Mvc.JQuery.JqGrid
+@model CEC.Web.SRV.Models.Voters.VotersBySurnameModel
+
+@{
+    IJqGridHelper grid = Html.GridOptions<VotersGridModel>("modalVoterDataGrid", rowsPerPage: 10)
+        .SetOptions(x =>
+        {
+            x.PostDataScript = "{ 'idnp':'" + Model.IDNP + "', 'surname': '" + Model.SurName + "'}";
+            x.LoadComplete = "$.onLoadComplete";
+
+        })
+         .BuildGrid(Url.Action("ListVotersBySurname", "Voters"), showFilterToolbar: false)
+        .Navigator(new JqGridNavigatorOptions()
+            {
+                Add = false,
+                Edit = false,
+                Delete = false,
+                Search = false,
+                CloneToTop = false
+            });
+}
+
+<div class="box-content">
+    <div class="row form-group">
+        @Html.EditorFor(x => x.IDNP, new {ReadOnly = true})
+        @Html.EditorFor(x => x.SurName, new {ReadOnly = true})
+        @Html.EditorFor(x => x.FirstName, new {ReadOnly = true})
+        @Html.EditorFor(x => x.MiddleName, new {ReadOnly = true})
+    </div>
+</div>
+
+<div class="box-content">
+    @grid.GetHtml()
+</div>
+
+
+<style type="text/css">
+    .modal-dialog {
+        width: 1000px;
+    }
+</style>
+
+
+<script type="text/javascript">
+    $('.modal-content').attr('style', 'width:1080px;');
+
+    $.onLoadComplete = function() {
+        $(window).trigger("resize");
+    }
+
+    $(document).ready(function() {
+        var grid = @grid.GetJavaScript();
+        grid.jqGrid('setGridHeight', "100%", true);
+        $(window).trigger('resize');
+    });
+</script>

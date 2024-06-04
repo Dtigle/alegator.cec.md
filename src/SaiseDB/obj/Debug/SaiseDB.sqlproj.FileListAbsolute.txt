@@ -1,0 +1,5 @@
+D:\work\CEC\CEC.SRV\src\SaiseDB\bin\Debug\SaiseDB.dacpac
+D:\work\CEC\CEC.SRV\src\SaiseDB\bin\Debug\SaiseDB.dll
+D:\work\CEC\CEC.SRV\src\SaiseDB\bin\Debug\SaiseDB.pdb
+D:\work\CEC\CEC.SRV\src\SaiseDB\obj\Debug\SaiseDB.dll
+D:\work\CEC\CEC.SRV\src\SaiseDB\obj\Debug\SaiseDB.pdb

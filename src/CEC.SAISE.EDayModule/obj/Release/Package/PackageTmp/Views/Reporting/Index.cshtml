@@ -1,0 +1,68 @@
+﻿@{
+    ViewBag.Title = "Rapoarte";
+}
+<link type="text/css" rel="stylesheet" href="~/Content/mvcreportviewer-bootstrap.css" />
+<script type="text/javascript" src="~/Scripts/jquery.highlight-5.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('select').select2();
+
+        $("#Reports")
+            .on("change", function (e) {
+                waitingDialog.show('Așteptați...');
+                var data = { path: e.val };
+                $.post('/Reporting/ViewReport', data, function (responseData) {
+                    waitingDialog.hide();
+                    $("#pnlReport").html(responseData);
+                    reloadParameters();
+                }).fail(function () {
+                    waitingDialog.hide();
+                    hideLoadingProgress();
+                });
+            });
+
+
+        $.ajaxSetup({
+            error: function (xhr) {
+                waitingDialog.hide();
+                hideLoadingProgress();
+                var response = 'Raportul selectat nu poate fi încărcat.<br/> Verificati existenta raportului pe SQL Server Reporting Services!';
+                BootstrapDialog.show({
+                    title: 'Eroare',
+                    type: BootstrapDialog.TYPE_DANGER,
+                    message: response,
+                    buttons: [
+                        {
+                            label: 'OK',
+                            cssClass: 'btn-primary',
+                            hotkey: 13, // Enter.
+                            action: function (dialog) {
+                                dialog.close();
+                            }
+                        }
+                    ],
+                    draggable: true
+                });
+            }
+        });
+
+        $(window).unload(function () {
+            $('select option').remove();
+        });
+    });
+</script>
+<div class="row" style="margin-left: 0;margin-right: 0;">
+    <div style="float:left;margin:0 0 15px 0;width: 100%;">
+        <div style="float:left;padding-top:3px;" class="control-label">
+            <span></span>
+            <label for="Reports">Raport</label>
+        </div>
+        <div class="col-sm-3">
+            @Html.DropDownList("Reports", (ViewData["Reports"] as List<SelectListItem>))
+        </div>
+    </div>
+    <div id="pnlReport">
+        @Html.Partial("_ViewReport")
+    </div>
+</div>

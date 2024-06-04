@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>DataSource_ReportingServer</DataSourceReference>
+      <DataSetParameters>
+        <DataSetParameter Name="@ElectionDate">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>false</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>Object</rd:DbType>
+        </DataSetParameter>
+      </DataSetParameters>
+      <CommandText>SELECT 
+       [ElectionId]
+      ,[Type]
+      ,[DateOfElection]
+      ,[Comments]
+FROM [dbo].[Election]
+WHERE
+(@ElectionDate IS NULL OR @ElectionDate = '')
+OR (@ElectionDate IS NOT NULL AND 
+EXISTS (SELECT TOP 1 1 FROM [dbo].[ElectionRound]
+  WHERE
+  [ElectionDate] = CAST(@ElectionDate  AS DATE)  )
+)</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="ElectionId">
+        <DataField>ElectionId</DataField>
+        <rd:TypeName>System.Int64</rd:TypeName>
+      </Field>
+      <Field Name="Type">
+        <DataField>Type</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="DateOfElection">
+        <DataField>DateOfElection</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="Comments">
+        <DataField>Comments</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

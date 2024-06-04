@@ -1,0 +1,30 @@
+﻿@using CEC.Web.SRV.Resources
+@model  CEC.Web.SRV.Models.Conflict.ViewAddressConflictModel
+
+<div class="row messageBox">
+    @Html.DisplayFor(x => x.StatusMessage)
+</div>
+<div class="row messageBox">
+    @Html.DisplayFor(x => x.Address)
+</div>
+<div class="row messageBox" style="padding: 15px;">
+    @Html.Partial("_ShareConflictDetails")
+</div>
+
+<button type="button" class="btn btn-default" id="resolve_conflict">Rezolvă conflictul</button>
+
+<script type="text/javascript">
+    $('.messageBox .rsa-form-group > div.col-sm-2').removeClass('col-sm-2').addClass('col-sm-2');
+    $('.messageBox .rsa-form-group > div.col-sm-4').removeClass('col-sm-4').addClass('col-sm-9');
+    $(document).ready(function() {
+        $('#resolve_conflict').click(function () {
+            $.openDialog($(this), {
+                url: '@Url.Action("ResolveAddressConflict","Conflict", new {conflictId = Model.IdRSP})',
+                title: "@MUI.ResolveConflict_DialogTitle",
+                onSubmit: function () {
+                    $("#addressConflicts").trigger('reloadGrid');
+                }
+            });
+        });
+    });
+</script>

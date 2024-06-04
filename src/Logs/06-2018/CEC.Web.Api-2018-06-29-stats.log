@@ -1,0 +1,2 @@
+2018-06-29 12:07:47.2698 TRACE CEC.Web.Api.Controllers.PollingStationController+<GetAssigned>d__5.MoveNext Error reading string. Unexpected token: StartArray. Path 'error-codes', line 3, position 19. 
+2018-06-29 12:07:54.8718 TRACE CEC.Web.Api.Controllers.PollingStationController.LogClientInfo [IP:::1, BROWSER:firefox3plus, IDNP:2000005013333] 

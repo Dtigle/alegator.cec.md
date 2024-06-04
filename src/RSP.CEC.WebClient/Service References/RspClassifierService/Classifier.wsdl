@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:intf="classifier.services.soap.rpc.framework.server.registru.md" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns1="http://classifier.soap.rpc.framework.server.registru.md" xmlns:impl="classifier.services.soap.rpc.framework.server.registru.md" targetNamespace="classifier.services.soap.rpc.framework.server.registru.md" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://classifier.soap.rpc.framework.server.registru.md">
+      <xsd:import namespace="classifier.services.soap.rpc.framework.server.registru.md" />
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <xsd:complexType name="ClassifierDetails">
+        <xsd:sequence>
+          <xsd:element name="changeId" nillable="true" type="xsd:int" />
+          <xsd:element name="name" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ResultData">
+        <xsd:sequence>
+          <xsd:element name="errorText" nillable="true" type="xsd:string" />
+          <xsd:element name="resultCode" nillable="true" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ClassifierDetailsRequestData">
+        <xsd:sequence>
+          <xsd:element name="classifier" nillable="true" type="impl:ArrayOf_tns1_ClassifierDetails" />
+          <xsd:element name="result" nillable="true" type="tns1:ResultData" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Items">
+        <xsd:sequence>
+          <xsd:element name="fieldNames" nillable="true" type="xsd:string" />
+          <xsd:element name="values" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ClassifierRow">
+        <xsd:sequence>
+          <xsd:element name="items" nillable="true" type="impl:ArrayOf_tns1_Items" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ClassifierData">
+        <xsd:sequence>
+          <xsd:element name="changeId" nillable="true" type="xsd:int" />
+          <xsd:element name="row" nillable="true" type="impl:ArrayOf_tns1_ClassifierRow" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ClassifierRequestData">
+        <xsd:sequence>
+          <xsd:element name="classifier" nillable="true" type="tns1:ClassifierData" />
+          <xsd:element name="res" nillable="true" type="tns1:ResultData" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="classifier.services.soap.rpc.framework.server.registru.md">
+      <xsd:import namespace="http://classifier.soap.rpc.framework.server.registru.md" />
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <xsd:complexType name="ArrayOf_tns1_ClassifierDetails">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soapenc:Array">
+            <xsd:attribute wsdl:arrayType="tns1:ClassifierDetails[]" ref="soapenc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOf_tns1_Items">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soapenc:Array">
+            <xsd:attribute wsdl:arrayType="tns1:Items[]" ref="soapenc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOf_tns1_ClassifierRow">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soapenc:Array">
+            <xsd:attribute wsdl:arrayType="tns1:ClassifierRow[]" ref="soapenc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getClassifierResponse">
+    <wsdl:part name="getClassifierReturn" type="tns1:ClassifierRequestData" />
+  </wsdl:message>
+  <wsdl:message name="getClassifiersNamesResponse">
+    <wsdl:part name="getClassifiersNamesReturn" type="tns1:ClassifierDetailsRequestData" />
+  </wsdl:message>
+  <wsdl:message name="getClassifierRequest">
+    <wsdl:part name="signature" type="xsd:string" />
+    <wsdl:part name="classifiersName" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getClassifiersNamesRequest">
+    <wsdl:part name="signature" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:portType name="Classifier">
+    <wsdl:operation name="getClassifiersNames" parameterOrder="signature">
+      <wsdl:input name="getClassifiersNamesRequest" message="impl:getClassifiersNamesRequest" />
+      <wsdl:output name="getClassifiersNamesResponse" message="impl:getClassifiersNamesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getClassifier" parameterOrder="signature classifiersName">
+      <wsdl:input name="getClassifierRequest" message="impl:getClassifierRequest" />
+      <wsdl:output name="getClassifierResponse" message="impl:getClassifierResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ClassifierSoapBinding" type="impl:Classifier">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="getClassifiersNames">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getClassifiersNamesRequest">
+        <wsdlsoap:body use="encoded" namespace="classifier.services.soap.rpc.framework.server.registru.md" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="getClassifiersNamesResponse">
+        <wsdlsoap:body use="encoded" namespace="classifier.services.soap.rpc.framework.server.registru.md" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getClassifier">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getClassifierRequest">
+        <wsdlsoap:body use="encoded" namespace="classifier.services.soap.rpc.framework.server.registru.md" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output name="getClassifierResponse">
+        <wsdlsoap:body use="encoded" namespace="classifier.services.soap.rpc.framework.server.registru.md" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ClassifierService">
+    <wsdl:port name="Classifier" binding="impl:ClassifierSoapBinding">
+      <wsdlsoap:address location="http://172.17.145.14:8080/classifier/services/Classifier" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

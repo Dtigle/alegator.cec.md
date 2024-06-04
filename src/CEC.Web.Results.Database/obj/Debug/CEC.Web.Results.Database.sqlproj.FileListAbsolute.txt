@@ -1,0 +1,10 @@
+D:\work\CEC\CEC.SRV\src\CEC.Web.Results.Database\bin\Debug\CEC.Web.Results.Database.dacpac
+D:\work\CEC\CEC.SRV\src\CEC.Web.Results.Database\bin\Debug\CEC.Web.Results.Database.dll
+D:\work\CEC\CEC.SRV\src\CEC.Web.Results.Database\bin\Debug\CEC.Web.Results.Database.pdb
+D:\work\CEC\CEC.SRV\src\CEC.Web.Results.Database\obj\Debug\CEC.Web.Results.Database.sqlprojResolveAssemblyReference.cache
+D:\work\CEC\CEC.SRV\src\CEC.Web.Results.Database\obj\Debug\Model.xml
+D:\work\CEC\CEC.SRV\src\CEC.Web.Results.Database\obj\Debug\refactor.xml
+D:\work\CEC\CEC.SRV\src\CEC.Web.Results.Database\obj\Debug\postdeploy.sql
+D:\work\CEC\CEC.SRV\src\CEC.Web.Results.Database\obj\Debug\predeploy.sql
+D:\work\CEC\CEC.SRV\src\CEC.Web.Results.Database\obj\Debug\CEC.Web.Results.Database.dll
+D:\work\CEC\CEC.SRV\src\CEC.Web.Results.Database\obj\Debug\CEC.Web.Results.Database.pdb

@@ -1,0 +1,111 @@
+﻿.number {
+    text-align: right;
+}
+
+
+.no-leftright-padding {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+table.borderless td, table.borderless th{
+     border: none !important;
+}
+
+.btn-group-lg>.btn, .btn-lg {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+  border-radius: 6px;
+}
+
+.table tbody>tr>td.vert-align{
+    vertical-align: middle;
+}
+
+.board-btn {
+    white-space: normal;
+    width: 150px;
+}
+
+.board-btn-lg {
+    white-space: normal;
+    width: 200px;
+    font-size: medium
+}
+
+.info-dialog .modal-dialog {
+    top: 300px;
+    left: 50px;   
+}
+
+.error-dialog .modal-dialog {
+    top: 300px;
+    left: 50px;   
+}
+
+.confirm-dialog .modal-dialog {
+    top: 300px;
+    left: 50px;   
+}
+
+.warning-dialog .modal-dialog {
+    top: 300px;
+    left: 50px;   
+}
+
+.info-dialog .modal-header {
+    background-color: #5bc0de;
+
+}
+
+.error-dialog .modal-header {
+    background-color: #d9534f;
+}
+
+.confirm-dialog .modal-header {
+    background-color: #5cb85c;
+}
+
+.warning-dialog .modal-header {
+    background-color: #f0ad4e;
+}
+
+.modal .bootstrap-dialog  {
+    top: 300px;
+    left: 50px;
+}
+
+.ui-front {
+    z-index: 9000
+}
+
+.loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

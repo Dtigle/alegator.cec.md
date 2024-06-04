@@ -1,0 +1,105 @@
+﻿@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.Voters
+@using CEC.Web.SRV.Resources
+@using Lib.Web.Mvc.JQuery.JqGrid
+@{
+    var grid = Html.GridOptions<SearchVotersGridModel>("searchVoters", height: 40)
+        .SetOptions(x =>
+        {
+            x.Url = Url.Action("SearchVotersByIdnpAjax", "Voters");
+            x.Caption = @MUI.Voters_ResultLabel;
+            x.HiddenEnabled = true;
+            x.Hidden = true;
+            x.TopPager = false;
+        })
+        .BuildGrid()
+        .Navigator(new JqGridNavigatorOptions{Add = false, Edit = false, Delete = false, Search = false, Refresh = false, CloneToTop = true})
+        .AddNavigatorButton(MUI.StayStatement, onClick: "$.CreateStayStatement");
+    
+}
+
+<style type="text/css">
+    #searchVoters tr.ui-state-highlight {
+        background: #E4B5FF 50% 50% repeat-x
+    }
+</style>
+<div>
+    <div class="col-sm-3">
+        <input type="text" class="form-control hasMask" placeholder="IDNP – 13 cifre" id="IdnpValue" data-input-mask="9999999999999" />
+    </div>
+	<button type="button" class="btn btn-primary btn-label-left" id="searchIdnp">
+		<span>
+			<i class="fa fa-search"></i>
+		</span> @MUI.ButtonSearch
+	</button>
+	<button type="button" class="btn btn-default btn-label-left" id="resetIdnp" onclick="clearFilter()">
+       @MUI.ClearFilterButton
+    </button>
+
+    @grid.GetHtml()
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		
+        $('#searchIdnp').on('click', function () {
+            var idnp = $('#IdnpValue').val();
+            var searchVotersGrid = $('#searchVoters').jqGrid();
+            searchVotersGrid.jqGrid('setGridParam', { 'postData': { 'Idnp': idnp } });
+            searchVotersGrid.trigger('reloadGrid');
+
+            if (searchVotersGrid.jqGrid('getGridParam', 'gridstate') == "hidden") {
+            	$(".ui-jqgrid-titlebar-close", $('#searchVoters')[0].grid.cDiv).click();
+            }
+	        
+        });
+		
+		@grid.GetJavaScript();
+		
+        $('#IdnpValue').keypress(function(e) {
+            var keycode = (e.keyCode ? e.keyCode : e.which);
+            if (keycode == '13') {
+                $('#searchIdnp').click();
+            }
+        });
+    });
+
+    $.CreateStayStatement = function (e) {
+        var rowId = $("#searchVoters").jqGrid('getGridParam', 'selrow');
+
+        if (rowId == null || rowId.length == 0) {
+            BootstrapDialog.alert({message: '@MUI.IdnpNotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+		    return;
+		}
+
+        var url = '@Url.Action("CreateStayStatement", "Voters")';
+        var dialogTitle = '@MUI.CreateStayStatement';
+        $.openDialog($(this), {
+            url: url + '?personId=' + rowId,
+            title: dialogTitle,
+            onSubmit: function() {
+                $("#voters").trigger('reloadGrid');
+                $.getCountNotification();
+            },
+            onSuccessHandler: function(dialog, a, options, data) {
+                dialog.close();
+                options.onSubmit();
+                showUpdatedStayStatement(a, data.ssId);
+            }
+        });
+    };
+
+	function clearFilter() {
+		$('#searchVoters').jqGrid("clearGridData", true);
+		$('#IdnpValue').val("");
+		$("#searchVoters").jqGrid('setGridState', 'hidden');
+	}
+	
+    function showUpdatedStayStatement(element, rowId) {
+        var url = '@Url.Action("StayStatementView","Voters")';
+        $.openDialog($(element), {
+            title: 'Declarație de ședere',
+            url: url + '?id=' + rowId
+        });
+    }
+</script>

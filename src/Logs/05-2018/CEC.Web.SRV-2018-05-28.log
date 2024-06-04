@@ -1,0 +1,42 @@
+2018-05-28 13:44:51.9417 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog An error occured in MapPersonToVoter for SRV.Person.Id: 100840 NHibernate.Exceptions.GenericADOException: could not execute query
+[ SELECT this_.personStatusId as personSt1_59_1_, this_.confirmation as confirma2_59_1_, this_.isCurrent as isCurrent59_1_, this_.created as created59_1_, this_.modified as modified59_1_, this_.deleted as deleted59_1_, this_.personId as personId59_1_, this_.statusTypeId as statusTy8_59_1_, this_.createdById as createdB9_59_1_, this_.modifiedById as modifie10_59_1_, this_.deletedById as deleted11_59_1_, personstat2_.personStatusTypeId as personSt1_50_0_, personstat2_.isExcludable as isExclud2_50_0_, personstat2_.name as name50_0_, personstat2_.description as descript4_50_0_, personstat2_.created as created50_0_, personstat2_.modified as modified50_0_, personstat2_.deleted as deleted50_0_, personstat2_.createdById as createdB8_50_0_, personstat2_.modifiedById as modified9_50_0_, personstat2_.deletedById as deleted10_50_0_ FROM SRV.PersonStatuses this_ inner join Lookup.PersonStatusTypes personstat2_ on this_.statusTypeId=personstat2_.personStatusTypeId WHERE this_.personId = @p0 and this_.isCurrent = @p1 ]
+  Name:cp0 - Value:CEC.SRV.Domain.Person  Name:cp1 - Value:True
+[SQL: SELECT this_.personStatusId as personSt1_59_1_, this_.confirmation as confirma2_59_1_, this_.isCurrent as isCurrent59_1_, this_.created as created59_1_, this_.modified as modified59_1_, this_.deleted as deleted59_1_, this_.personId as personId59_1_, this_.statusTypeId as statusTy8_59_1_, this_.createdById as createdB9_59_1_, this_.modifiedById as modifie10_59_1_, this_.deletedById as deleted11_59_1_, personstat2_.personStatusTypeId as personSt1_50_0_, personstat2_.isExcludable as isExclud2_50_0_, personstat2_.name as name50_0_, personstat2_.description as descript4_50_0_, personstat2_.created as created50_0_, personstat2_.modified as modified50_0_, personstat2_.deleted as deleted50_0_, personstat2_.createdById as createdB8_50_0_, personstat2_.modifiedById as modified9_50_0_, personstat2_.deletedById as deleted10_50_0_ FROM SRV.PersonStatuses this_ inner join Lookup.PersonStatusTypes personstat2_ on this_.statusTypeId=personstat2_.personStatusTypeId WHERE this_.personId = @p0 and this_.isCurrent = @p1] ---> System.Data.SqlClient.SqlException: A transport-level error has occurred when receiving results from the server. (provider: TCP Provider, error: 0 - The semaphore timeout period has expired.) ---> System.ComponentModel.Win32Exception: The semaphore timeout period has expired
+   --- End of inner exception stack trace ---
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniSyncOverAsync()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadNetworkPacket()
+   at System.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadByte(Byte& value)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   at NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+   at NHibernate.Loader.Loader.GetResultSet(IDbCommand st, Boolean autoDiscoverTypes, Boolean callable, RowSelection selection, ISessionImplementor session)
+   at NHibernate.Loader.Loader.DoQuery(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies)
+   at NHibernate.Loader.Loader.DoQueryAndInitializeNonLazyCollections(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies)
+   at NHibernate.Loader.Loader.DoList(ISessionImplementor session, QueryParameters queryParameters)
+   --- End of inner exception stack trace ---
+   at NHibernate.Loader.Loader.DoList(ISessionImplementor session, QueryParameters queryParameters)
+   at NHibernate.Loader.Loader.ListIgnoreQueryCache(ISessionImplementor session, QueryParameters queryParameters)
+   at NHibernate.Loader.Loader.List(ISessionImplementor session, QueryParameters queryParameters, ISet`1 querySpaces, IType[] resultTypes)
+   at NHibernate.Impl.StatelessSessionImpl.List(CriteriaImpl criteria, IList results)
+   at NHibernate.Impl.CriteriaImpl.List(IList results)
+   at NHibernate.Impl.CriteriaImpl.UniqueResult[T]()
+   at NHibernate.Criterion.QueryOver`1.SingleOrDefault()
+   at NHibernate.Criterion.QueryOver`1.NHibernate.IQueryOver<TRoot>.SingleOrDefault()
+   at CEC.Web.SRV.EDayExport.VoterExporter.GetCurrentPersonStatus(Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 371
+   at CEC.Web.SRV.EDayExport.VoterExporter.GetVoterStatus(Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 296
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 251
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 188
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 99

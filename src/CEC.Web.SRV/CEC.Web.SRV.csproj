@@ -1,0 +1,1290 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C4AF37A8-133C-44A5-A8E1-FF0611F69BB0}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CEC.Web.SRV</RootNamespace>
+    <AssemblyName>CEC.Web.SRV</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Amdaris">
+      <HintPath>..\Infrastructure\Amdaris.dll</HintPath>
+    </Reference>
+    <Reference Include="Amdaris.Domain">
+      <HintPath>..\Infrastructure\Amdaris.Domain.dll</HintPath>
+    </Reference>
+    <Reference Include="Amdaris.Domain.Identity">
+      <HintPath>..\Infrastructure\Amdaris.Domain.Identity.dll</HintPath>
+    </Reference>
+    <Reference Include="Amdaris.NHibernateProvider">
+      <HintPath>..\Infrastructure\Amdaris.NHibernateProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="Amdaris.NHibernateProvider.Audit">
+      <HintPath>..\Infrastructure\Amdaris.NHibernateProvider.Audit.dll</HintPath>
+    </Reference>
+    <Reference Include="Amdaris.NHibernateProvider.Identity">
+      <HintPath>..\Infrastructure\Amdaris.NHibernateProvider.Identity.dll</HintPath>
+    </Reference>
+    <Reference Include="Amdaris.NHibernateProvider.Web">
+      <HintPath>..\Infrastructure\Amdaris.NHibernateProvider.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Amdaris.NLogProvider">
+      <HintPath>..\Infrastructure\Amdaris.NLogProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="Amdaris.UnityProvider">
+      <HintPath>..\Infrastructure\Amdaris.UnityProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="Amdaris.Web.Mvc">
+      <HintPath>..\Infrastructure\Amdaris.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper, Version=3.3.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\packages\FluentNHibernate.1.4.0.0\lib\net35\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\packages\Iesi.Collections.3.2.0.1001\lib\Net35\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="Inflector">
+      <HintPath>..\packages\Inflector.1.0.0.0\lib\net45\Inflector.dll</HintPath>
+    </Reference>
+    <Reference Include="Lib.Web.Mvc, Version=6.4.2.0, Culture=neutral, PublicKeyToken=92212eec0425916e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Lib.Web.Mvc.6.4.2\lib\net40\Lib.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.0.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.0.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.2.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration">
+      <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Mvc">
+      <HintPath>..\packages\Unity.Mvc.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention">
+      <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.Runtime.Common.12.0.2402.15\lib\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.Runtime.Common.12.0.2402.15\lib\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.Runtime.Common.12.0.2402.15\lib\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.Futures.5.0.0\lib\net40\Microsoft.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="MvcReportViewer">
+      <HintPath>..\Infrastructure\MvcReportViewer-0.4.1\MvcReportViewer.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=3.3.1.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NHibernate.3.3.4.4000\lib\Net35\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=3.2.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NLog.3.2.0.0\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.0\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.0\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.0\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.WebPages">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WebActivatorEx.2.0.5\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\AutoMapperConfig.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IoC.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\UnityConfig.cs" />
+    <Compile Include="App_Start\UnityMvcActivator.cs" />
+    <Compile Include="Connected Services\ElectionsServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\LoggingService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ReportServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AddressController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ClassifierSyncController.cs" />
+    <Compile Include="Controllers\ConflictController.cs" />
+    <Compile Include="Controllers\AppConfigurationController.cs" />
+    <Compile Include="Controllers\ExportController.cs" />
+    <Compile Include="Controllers\IdentitySynchController.cs" />
+    <Compile Include="Controllers\InteropController.cs" />
+    <Compile Include="Controllers\QuartzAdminController.cs" />
+    <Compile Include="Controllers\StatisticsController.cs" />
+    <Compile Include="Controllers\ElectionController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\HistoryController.cs" />
+    <Compile Include="Controllers\LookupController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NotificationController.cs" />
+    <Compile Include="Controllers\PollingStationController.cs" />
+    <Compile Include="Controllers\ReportingController.cs" />
+    <Compile Include="Controllers\VotersController.cs" />
+    <Compile Include="EDayExport\ConfigurationSettingManager.cs" />
+    <Compile Include="EDayExport\ExporterBusinessException.cs" />
+    <Compile Include="EDayExport\ExportStageExecuter.cs" />
+    <Compile Include="EDayExport\IConfigurationSettingManager.cs" />
+    <Compile Include="EDayExport\ProgressInfo.cs" />
+    <Compile Include="EDayExport\SaiseDatabaseFactoryProvider.cs" />
+    <Compile Include="EDayExport\SaiseRepository.cs" />
+    <Compile Include="EDayExport\VoterExporter.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Infrastructure\Const.cs" />
+    <Compile Include="Infrastructure\CultureHelper.cs" />
+    <Compile Include="Infrastructure\Encryption.cs" />
+    <Compile Include="Infrastructure\EnumHelper.cs" />
+    <Compile Include="Infrastructure\ExceptionHelper.cs" />
+    <Compile Include="Infrastructure\Export\CsvExporter.cs" />
+    <Compile Include="Infrastructure\Export\ExcelExporter.cs" />
+    <Compile Include="Infrastructure\Export\ExportFileInfo.cs" />
+    <Compile Include="Infrastructure\Export\ExportHelper.cs" />
+    <Compile Include="Infrastructure\Export\ExportType.cs" />
+    <Compile Include="Infrastructure\Export\GridExporter.cs" />
+    <Compile Include="Infrastructure\Grids\ConflictGridModelCustomVisibilityRules.cs" />
+    <Compile Include="Infrastructure\Grids\FilterValueAttribute.cs" />
+    <Compile Include="Infrastructure\Grids\HtmlGridExtensions.cs" />
+    <Compile Include="Infrastructure\Grids\IJqGridColumnCustomVisibilityRules.cs" />
+    <Compile Include="Infrastructure\Grids\PageRequestExtensions.cs" />
+    <Compile Include="Infrastructure\Grids\SearchDataAttribute.cs" />
+    <Compile Include="Infrastructure\Grids\SoftDeletableEntityAttribute.cs" />
+    <Compile Include="Infrastructure\HandleAndLogErrorAttribute.cs" />
+    <Compile Include="Infrastructure\KeepAliveOutputCacheAttribute.cs" />
+    <Compile Include="Infrastructure\LinkExtensions.cs" />
+    <Compile Include="Infrastructure\Logger\Events.cs" />
+    <Compile Include="Infrastructure\MenuCacheItem.cs" />
+    <Compile Include="Infrastructure\MenuHelper.cs" />
+    <Compile Include="Infrastructure\MenuItem.cs" />
+    <Compile Include="Infrastructure\LoggerUtil.cs" />
+    <Compile Include="Infrastructure\SyncHelper.cs" />
+    <Compile Include="Infrastructure\SearchableColumnsHelper.cs" />
+    <Compile Include="Infrastructure\Select2RemoteConfigAttribute.cs" />
+    <Compile Include="Infrastructure\SelectListItemExtension.cs" />
+    <Compile Include="Infrastructure\SyncItem.cs" />
+    <Compile Include="Models\Account\AccountStatus.cs" />
+    <Compile Include="Models\Account\AllocateRegionModel.cs" />
+    <Compile Include="Models\Account\ResetPasswordViewModel.cs" />
+    <Compile Include="Models\Account\CreateUserViewModel.cs" />
+    <Compile Include="Models\Account\LoginViewModel.cs" />
+    <Compile Include="Models\Account\RegisterViewModel.cs" />
+    <Compile Include="Models\Account\UpdateAccountModel.cs" />
+    <Compile Include="Models\Account\UpdateUserModel.cs" />
+    <Compile Include="Models\Account\UserProfileModel.cs" />
+    <Compile Include="Models\Account\UserGridModel.cs" />
+    <Compile Include="Models\Address\AddressApartmentGridModel.cs" />
+    <Compile Include="Models\Address\AddressAdministrativeGridModel.cs" />
+    <Compile Include="Models\Address\AddressGridModel.cs" />
+    <Compile Include="Models\Address\AddressBuildingsGridModel.cs" />
+    <Compile Include="Models\Address\ChangePollingStationForAddressModel.cs" />
+    <Compile Include="Models\Address\AdjustmentAddressesModel.cs" />
+    <Compile Include="Models\Address\PersonFullAdressGridModel.cs" />
+    <Compile Include="Models\Address\RspAddressMappingGridModel.cs" />
+    <Compile Include="Models\Address\UpdateBuildingAddressModel.cs" />
+    <Compile Include="Models\Address\UpdateApartmentAddressModel.cs" />
+    <Compile Include="Models\Address\UpdateAdministrativeAddressModel.cs" />
+    <Compile Include="Models\Address\UpdateAddressModel.cs" />
+    <Compile Include="Models\AppConfiguration\ConfigurationSettingsGridModel.cs" />
+    <Compile Include="Models\AppConfiguration\UpdateConfigurationSettingModel.cs" />
+    <Compile Include="Models\Conflict\AddressRSVGridModel.cs" />
+    <Compile Include="Models\Conflict\AddressConflict.cs" />
+    <Compile Include="Models\Conflict\AddressWithoutPollingStationGridModel.cs" />
+    <Compile Include="Models\Conflict\ConflictGridModel.cs" />
+    <Compile Include="Models\Conflict\ConflictShareViewModel.cs" />
+    <Compile Include="Models\Conflict\PollingStationListModel.cs" />
+    <Compile Include="Models\Conflict\ShareConflictModel.cs" />
+    <Compile Include="Models\Conflict\ViewLocalityConflictModel.cs" />
+    <Compile Include="Models\Conflict\ResolveLocalityConflictModel.cs" />
+    <Compile Include="Models\Conflict\RegionConflictModel.cs" />
+    <Compile Include="Models\Conflict\StatusMessageConflictModel.cs" />
+    <Compile Include="Models\Conflict\CreateAddressModel.cs" />
+    <Compile Include="Models\Conflict\RejectConflict.cs" />
+    <Compile Include="Models\Conflict\ViewAddressConflictModel.cs" />
+    <Compile Include="Models\Conflict\PeopleConflictModel.cs" />
+    <Compile Include="Models\Conflict\ResolveAddressConflictModel.cs" />
+    <Compile Include="Models\Conflict\ResolveAddressNoStreetConflictModel.cs" />
+    <Compile Include="Models\Conflict\ViewStatusConflictModel.cs" />
+    <Compile Include="Models\Conflict\VoterConflictGridModel.cs" />
+    <Compile Include="Models\Conflict\VoterConflictModel.cs" />
+    <Compile Include="Models\Election\ElectionRequest.cs" />
+    <Compile Include="Models\Export\SaiseExporterGridModel.cs" />
+    <Compile Include="Models\Export\PrintSessionsGridModel.cs" />
+    <Compile Include="Models\Export\SaiseExporterStageGridModel.cs" />
+    <Compile Include="Models\Export\ExportRsaToSaiseGridModel.cs" />
+    <Compile Include="Models\History\ConfigurationSettingHistoryGridModel.cs" />
+    <Compile Include="Models\Home\FilterForHomeModel.cs" />
+    <Compile Include="Models\Interop\AssignPollingStationModel.cs" />
+    <Compile Include="Models\Interop\InstitutionGridModel.cs" />
+    <Compile Include="Models\Interop\InteropHelper.cs" />
+    <Compile Include="Models\Interop\InteropSystemGridModel.cs" />
+    <Compile Include="Models\Interop\TransactionGridModel.cs" />
+    <Compile Include="Models\Interop\UpdateInstitutionModel.cs" />
+    <Compile Include="Models\Interop\UpdateInteropSystemModel.cs" />
+    <Compile Include="Models\Interop\UpdateTransactionModel.cs" />
+    <Compile Include="Models\Lookup\CircumscriptionGridModel.cs" />
+    <Compile Include="Models\Lookup\ClassifierGridModel.cs" />
+    <Compile Include="Models\Lookup\ElectionTypeGridModel.cs" />
+    <Compile Include="Models\Lookup\LinkedRegionsModel.cs" />
+    <Compile Include="Models\Lookup\LinkRegionsModel.cs" />
+    <Compile Include="Models\Lookup\RegionTreeViewModel.cs" />
+    <Compile Include="Models\Lookup\RegionGridViewModel.cs" />
+    <Compile Include="Models\Lookup\UpdateCircumscriptionModel.cs" />
+    <Compile Include="Models\Lookup\UpdateElectionTypeModel.cs" />
+    <Compile Include="Models\Notification\NotificationGridModel.cs" />
+    <Compile Include="Models\PollingStation\UpdatePollingStationModel.cs" />
+    <Compile Include="Models\QuartzAdmin\JobProgressModel.cs" />
+    <Compile Include="Models\QuartzAdmin\ProgressInfoModel.cs" />
+    <Compile Include="Models\QuartzAdmin\QuartzAdminModel.cs" />
+    <Compile Include="Models\QuartzAdmin\QuartzJobActionModel.cs" />
+    <Compile Include="Models\QuartzAdmin\QuartzJobModel.cs" />
+    <Compile Include="Models\QuartzAdmin\QuartzScheduledJobsGridModel.cs" />
+    <Compile Include="Models\QuartzAdmin\QuartzRunningJobsGridModel.cs" />
+    <Compile Include="Models\Export\ExportRsaToSaiseModel.cs" />
+    <Compile Include="Models\Export\ListExportingModel.cs" />
+    <Compile Include="Models\Export\ExportPollingStationsGridModel.cs" />
+    <Compile Include="Models\Reporting\PollingStationBordersModel.cs" />
+    <Compile Include="Models\Reporting\ReportingModel.cs" />
+    <Compile Include="Models\Statistics\ProblematicDataPollingStationGridModel.cs" />
+    <Compile Include="Models\Statistics\ImportStatisticsModel.cs" />
+    <Compile Include="Models\Statistics\ImportsGridModel.cs" />
+    <Compile Include="Models\Statistics\StatisticsPollingStationGridModel.cs" />
+    <Compile Include="Models\Synchronizer\SyncExporterViewModel.cs" />
+    <Compile Include="Models\Synchronizer\SynchPasswordViewModel.cs" />
+    <Compile Include="Models\Synchronizer\SynchRoleViewModel.cs" />
+    <Compile Include="Models\Synchronizer\SynchTransactionViewModel.cs" />
+    <Compile Include="Models\Synchronizer\SynchUserViewModel.cs" />
+    <Compile Include="Models\Voters\ChangePollingStationModel.cs" />
+    <Compile Include="Models\PollingStation\ElectionListNumSort.cs" />
+    <Compile Include="Models\PollingStation\ElectionNumberListOrderBy.cs" />
+    <Compile Include="Models\Voters\ModalDataModel.cs" />
+    <Compile Include="Models\Voters\RspInfoModel.cs" />
+    <Compile Include="Models\Voters\RegistrationDataModel.cs" />
+    <Compile Include="Models\Voters\RspCheckingModel.cs" />
+    <Compile Include="Models\Voters\PersonPollingStationModel.cs" />
+    <Compile Include="Models\Voters\StayStatementPrintingModel.cs" />
+    <Compile Include="Models\Voters\UpdateAddressModel.cs" />
+    <Compile Include="Models\Address\EditGeolocationModel.cs" />
+    <Compile Include="Models\History\AddressHistoryGridModel.cs" />
+    <Compile Include="Models\History\DocumentTypeHistoryGridModel.cs" />
+    <Compile Include="Models\History\ElectionHistoryGridModel.cs" />
+    <Compile Include="Models\History\HistoryGridRow.cs" />
+    <Compile Include="Models\History\LookupHistoryGridModel.cs" />
+    <Compile Include="Models\History\PersonStatusHistoryGridModel.cs" />
+    <Compile Include="Models\History\PollingStationHistoryGridModel.cs" />
+    <Compile Include="Models\History\RegionHistoryGridModel.cs" />
+    <Compile Include="Models\History\RegionTypeHistoryGridModel.cs" />
+    <Compile Include="Models\History\StreetsHistoryGridModel.cs" />
+    <Compile Include="Models\Election\ElectionGridModel.cs" />
+    <Compile Include="Models\Election\UpdateElectionModel.cs" />
+    <Compile Include="Models\Lookup\UpdateRegionTypesModel.cs" />
+    <Compile Include="Models\Lookup\UpdateDocumentTypesModel.cs" />
+    <Compile Include="Models\Lookup\UpdatePersonStatusModel.cs" />
+    <Compile Include="Models\Lookup\UpdateLookupModel.cs" />
+    <Compile Include="Models\PollingStation\PollingStationGridModel.cs" />
+    <Compile Include="Models\Grid\JqGridSoft.cs" />
+    <Compile Include="Models\Grid\JqGridTransformer.cs" />
+    <Compile Include="Models\Grid\JqGridRow.cs" />
+    <Compile Include="Models\Lookup\UpdateStreetModel.cs" />
+    <Compile Include="Models\Lookup\StreetsGridModel.cs" />
+    <Compile Include="Models\Lookup\DocumentTypeGridModel.cs" />
+    <Compile Include="Models\Lookup\LocalitiesTreeView.cs" />
+    <Compile Include="Models\Lookup\LookupGridModel.cs" />
+    <Compile Include="Models\Lookup\PersonStatusGridModel.cs" />
+    <Compile Include="Models\Lookup\RegionTypesGridModel.cs" />
+    <Compile Include="Models\Account\ChangePasswordViewModel.cs" />
+    <Compile Include="Models\Lookup\UpdateRegionModel.cs" />
+    <Compile Include="Models\Account\MultiSelectAccountEdit.cs" />
+    <Compile Include="Models\PollingStation\UpdatePollingStationBaseModel.cs" />
+    <Compile Include="Models\Reporting\ListPrintingModel.cs" />
+    <Compile Include="Models\Lookup\UpdatePublicAdministrationModel.cs" />
+    <Compile Include="Models\UnDelete\UnDeleteModel.cs" />
+    <Compile Include="Models\Voters\StayStatementViewModel.cs" />
+    <Compile Include="Models\Voters\StayStatementsGridModel.cs" />
+    <Compile Include="Models\Voters\PersonInfo.cs" />
+    <Compile Include="Models\Voters\CreateStayStatementModel.cs" />
+    <Compile Include="Models\Voters\ElectionModel.cs" />
+    <Compile Include="Models\Voters\FilterForVotersModel.cs" />
+    <Compile Include="Models\Voters\PersonAddressModel.cs" />
+    <Compile Include="Models\Voters\PersonModel.cs" />
+    <Compile Include="Models\Voters\SearchVotersGridModel.cs" />
+    <Compile Include="Models\Voters\StayStatementModel.cs" />
+    <Compile Include="Models\Voters\UpdateVotersStatusModel.cs" />
+    <Compile Include="Models\Voters\ViewVoterProfileModel.cs" />
+    <Compile Include="Models\Voters\VoterAdressModel.cs" />
+    <Compile Include="Models\Voters\VoterDocumentGridModel.cs" />
+    <Compile Include="Models\Voters\VoterPollingStationHistoryGridModel.cs" />
+    <Compile Include="Models\Voters\VoterProfileModel.cs" />
+    <Compile Include="Models\Voters\VotersBySurnameModel.cs" />
+    <Compile Include="Models\Voters\VotersGridModel.cs" />
+    <Compile Include="Profiles\AddressProfile.cs" />
+    <Compile Include="Profiles\ConflictProfile.cs" />
+    <Compile Include="Profiles\AppConfiguration.cs" />
+    <Compile Include="Profiles\InteropProfile.cs" />
+    <Compile Include="Profiles\ProblematicDataPollingStationStatisticsProfile.cs" />
+    <Compile Include="Profiles\RspCheckingProfile.cs" />
+    <Compile Include="Profiles\StatisticsProfile.cs" />
+    <Compile Include="Profiles\SaiseExporterProfile.cs" />
+    <Compile Include="Profiles\PrintSessionProfile.cs" />
+    <Compile Include="Profiles\SaiseExporterStageProfile.cs" />
+    <Compile Include="Profiles\ExportPollingStationsProfile.cs" />
+    <Compile Include="Profiles\ElectionProfile.cs" />
+    <Compile Include="Profiles\HistoryProfile.cs" />
+    <Compile Include="Profiles\LookupProfile.cs" />
+    <Compile Include="Profiles\IdentityUserProfile.cs" />
+    <Compile Include="Profiles\QuartzDataProfile.cs" />
+    <Compile Include="Profiles\SrvGridModelsProfile.cs" />
+    <Compile Include="Profiles\VotersProfile.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Startup.cs" />
+    <Compile Include="WebSecurityContext.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Connected Services\ElectionsServiceReference\CEC.Web.SRV.ElectionsServiceReference.ElectionCircumscriptionsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ElectionsServiceReference\CEC.Web.SRV.ElectionsServiceReference.ElectionCompetitors.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ElectionsServiceReference\CEC.Web.SRV.ElectionsServiceReference.ElectionMembers.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ElectionsServiceReference\CEC.Web.SRV.ElectionsServiceReference.ElectionObservers.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ElectionsServiceReference\CEC.Web.SRV.ElectionsServiceReference.ElectionRegions.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ElectionsServiceReference\CEC.Web.SRV.ElectionsServiceReference.ElectionRound.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ElectionsServiceReference\CEC.Web.SRV.ElectionsServiceReference.ElectionsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ElectionsServiceReference\CEC.Web.SRV.ElectionsServiceReference.ElectionPollingStationsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\ElectionsServiceReference\ElectionsService1.wsdl" />
+    <None Include="Connected Services\ElectionsServiceReference\ElectionsService6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ElectionsServiceReference\ElectionsService61.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ElectionsServiceReference\ElectionsService62.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ElectionsServiceReference\ElectionsService63.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ElectionsServiceReference\ElectionsService64.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ElectionsServiceReference\ElectionsService65.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\LoggingService\configuration91.svcinfo" />
+    <None Include="Connected Services\LoggingService\configuration.svcinfo" />
+    <None Include="Connected Services\LoggingService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\LoggingService\LoggingService.wsdl" />
+    <None Include="Connected Services\ElectionsServiceReference\configuration91.svcinfo" />
+    <None Include="Connected Services\ElectionsServiceReference\configuration.svcinfo" />
+    <None Include="Connected Services\ElectionsServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Connected Services\ReportServiceReference\CEC.Web.SRV.ReportServiceReference.ReportResultDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\ReportServiceReference\configuration91.svcinfo" />
+    <None Include="Connected Services\ReportServiceReference\configuration.svcinfo" />
+    <None Include="Connected Services\ReportServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrapValidator.css" />
+    <Content Include="Content\bootstrapValidator.min.css" />
+    <Content Include="Content\cec.app.css" />
+    <Content Include="Content\css\bootstrap-dialog.css" />
+    <Content Include="Content\css\bootstrap-dialog.min.css" />
+    <Content Include="Content\css\select2-spinner.gif" />
+    <Content Include="Content\css\select2.css" />
+    <Content Include="Content\css\select2.png" />
+    <Content Include="Content\css\select2x2.png" />
+    <Content Include="Content\img\CEC_logo.png" />
+    <Content Include="Content\img\chevron-left.png" />
+    <Content Include="Content\img\chevron-right.png" />
+    <Content Include="Content\img\devoops_getdata.gif" />
+    <Content Include="Content\img\devoops_pattern_b10.png" />
+    <Content Include="Content\img\getdata.gif" />
+    <Content Include="Content\img\logo-200.png" />
+    <Content Include="Content\img\logo.png" />
+    <Content Include="Content\img\map-pin.png" />
+    <Content Include="Content\img\sort-asc.png" />
+    <Content Include="Content\img\sort-desc.png" />
+    <Content Include="Content\img\sort.png" />
+    <Content Include="Content\img\times.png" />
+    <Content Include="Content\img\ui-accordion-down.png" />
+    <Content Include="Content\img\ui-accordion-right.png" />
+    <Content Include="Content\img\ui-left.png" />
+    <Content Include="Content\img\ui-right.png" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\css\style.min.css" />
+    <Content Include="Content\bootstrapValidator.scss" />
+    <Content Include="Content\jqGrid.bootstrap.css" />
+    <Content Include="Content\jquery-ui-timepicker-addon.css" />
+    <Content Include="Content\jquery-ui-timepicker-addon.min.css" />
+    <Content Include="Content\jquery.contextMenu.css" />
+    <Content Include="Content\jquery.jqGrid\ui.jqgrid.css" />
+    <Content Include="Configuration\SRV.Settings.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\jquery.terminal.css" />
+    <Content Include="Content\mvcreportviewer-bootstrap.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\docs\Registrator Guide.pdf" />
+    <Content Include="Content\docs\Administrator Guide.pdf" />
+    <Content Include="Configuration\quartz.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Connected Services\ReportServiceReference\ReportService.wsdl" />
+    <None Include="Connected Services\ReportServiceReference\ReportService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ReportServiceReference\ReportService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ReportServiceReference\ReportService2.wsdl" />
+    <None Include="Connected Services\ReportServiceReference\ReportService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ReportServiceReference\ReportService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ReportServiceReference\ReportService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ReportServiceReference\ReportService6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\PublishProfiles\CEC.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\Settings.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Content\themes\base\images\animated-overlay.gif" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.menu.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.spinner.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\jquery.ui.tooltip.css" />
+    <Content Include="Content\themes\base\minified\images\animated-overlay.gif" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.menu.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.spinner.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
+    <Content Include="MvcReportViewer.aspx" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Configuration\ConnectionString.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Configuration\NHibernate.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Scripts\bootstrap-dialog.js" />
+    <Content Include="Scripts\bootstrap-dialog.min.js" />
+    <Content Include="Scripts\bootstrap-select.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\bootstrapValidator.js" />
+    <Content Include="Scripts\bootstrapValidator.min.js" />
+    <Content Include="Scripts\cec.app.js" />
+    <Content Include="Scripts\dataTables.bootstrap.js" />
+    <Content Include="Scripts\devoops.js" />
+    <Content Include="Scripts\devoops.min.js" />
+    <Content Include="Scripts\i18n\grid.locale-ar.js" />
+    <Content Include="Scripts\i18n\grid.locale-bg.js" />
+    <Content Include="Scripts\i18n\grid.locale-bg1251.js" />
+    <Content Include="Scripts\i18n\grid.locale-cat.js" />
+    <Content Include="Scripts\i18n\grid.locale-cn.js" />
+    <Content Include="Scripts\i18n\grid.locale-cs.js" />
+    <Content Include="Scripts\i18n\grid.locale-da.js" />
+    <Content Include="Scripts\i18n\grid.locale-de.js" />
+    <Content Include="Scripts\i18n\grid.locale-dk.js" />
+    <Content Include="Scripts\i18n\grid.locale-el.js" />
+    <Content Include="Scripts\i18n\grid.locale-en.js" />
+    <Content Include="Scripts\i18n\grid.locale-es.js" />
+    <Content Include="Scripts\i18n\grid.locale-fa.js" />
+    <Content Include="Scripts\i18n\grid.locale-fi.js" />
+    <Content Include="Scripts\i18n\grid.locale-fr.js" />
+    <Content Include="Scripts\i18n\grid.locale-gl.js" />
+    <Content Include="Scripts\i18n\grid.locale-he.js" />
+    <Content Include="Scripts\i18n\grid.locale-hr.js" />
+    <Content Include="Scripts\i18n\grid.locale-hr1250.js" />
+    <Content Include="Scripts\i18n\grid.locale-hu.js" />
+    <Content Include="Scripts\i18n\grid.locale-id.js" />
+    <Content Include="Scripts\i18n\grid.locale-is.js" />
+    <Content Include="Scripts\i18n\grid.locale-it.js" />
+    <Content Include="Scripts\i18n\grid.locale-ja.js" />
+    <Content Include="Scripts\i18n\grid.locale-kr.js" />
+    <Content Include="Scripts\i18n\grid.locale-lt.js" />
+    <Content Include="Scripts\i18n\grid.locale-mne.js" />
+    <Content Include="Scripts\i18n\grid.locale-nl.js" />
+    <Content Include="Scripts\i18n\grid.locale-no.js" />
+    <Content Include="Scripts\i18n\grid.locale-pl.js" />
+    <Content Include="Scripts\i18n\grid.locale-pt-br.js" />
+    <Content Include="Scripts\i18n\grid.locale-pt.js" />
+    <Content Include="Scripts\i18n\grid.locale-ro.js" />
+    <Content Include="Scripts\i18n\grid.locale-ru.js" />
+    <Content Include="Scripts\i18n\grid.locale-sk.js" />
+    <Content Include="Scripts\i18n\grid.locale-sr-latin.js" />
+    <Content Include="Scripts\i18n\grid.locale-sr.js" />
+    <Content Include="Scripts\i18n\grid.locale-sv.js" />
+    <Content Include="Scripts\i18n\grid.locale-th.js" />
+    <Content Include="Scripts\i18n\grid.locale-tr.js" />
+    <Content Include="Scripts\i18n\grid.locale-tw.js" />
+    <Content Include="Scripts\i18n\grid.locale-ua.js" />
+    <Content Include="Scripts\i18n\grid.locale-vi.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-addon-i18n.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-addon-i18n.min.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-af.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-am.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-bg.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-ca.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-cs.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-da.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-de.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-el.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-es.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-et.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-eu.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-fi.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-fr.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-gl.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-he.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-hr.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-hu.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-id.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-it.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-ja.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-ko.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-lt.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-nl.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-no.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-pl.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-pt-BR.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-pt.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-ro.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-ru.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-sk.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-sr-RS.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-sr-YU.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-sv.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-th.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-tr.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-uk.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-vi.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-zh-CN.js" />
+    <Content Include="Scripts\i18n\jquery-ui-timepicker-zh-TW.js" />
+    <Content Include="Scripts\i18n\jquery.ui.datepicker-ro.js" />
+    <Content Include="Scripts\i18n\jquery.ui.datepicker-ru.js" />
+    <Content Include="Scripts\i18n\jquery.validator.messages_ro.js" />
+    <Content Include="Scripts\jqgrid-plugins\jQuery.jqGrid.setColWidth.js" />
+    <None Include="Scripts\jquery-2.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.1.js" />
+    <Content Include="Scripts\jquery-2.1.1.min.js" />
+    <Content Include="Scripts\jquery-multiselect\jquery.multiselect.css" />
+    <Content Include="Scripts\jquery-multiselect\jquery.multiselect.js" />
+    <Content Include="Scripts\jquery-ui-1.10.4.js" />
+    <Content Include="Scripts\jquery-ui-1.10.4.min.js" />
+    <Content Include="Scripts\jquery-ui-sliderAccess.js" />
+    <Content Include="Scripts\jquery-ui-timepicker-addon.js" />
+    <Content Include="Scripts\jquery-ui-timepicker-addon.min.js" />
+    <Content Include="Scripts\jquery.contextMenu.js" />
+    <Content Include="Scripts\jquery.cookie.js" />
+    <Content Include="Scripts\jquery.form.js" />
+    <Content Include="Scripts\jquery.form.min.js" />
+    <Content Include="Scripts\jquery.idletimeout.js" />
+    <Content Include="Scripts\jquery.idletimer.js" />
+    <Content Include="Scripts\jquery.jqGrid.min.js" />
+    <Content Include="Scripts\jquery.jqGrid.src.js" />
+    <Content Include="Scripts\jquery.maskedinput.min.js" />
+    <Content Include="Scripts\jquery.mousewheel.js" />
+    <Content Include="Scripts\jquery.terminal-0.8.8.js" />
+    <Content Include="Scripts\jquery.ui.position.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.7.2.js" />
+    <Content Include="Scripts\openlayers\img\blank.gif" />
+    <Content Include="Scripts\openlayers\img\cloud-popup-relative.png" />
+    <Content Include="Scripts\openlayers\img\drag-rectangle-off.png" />
+    <Content Include="Scripts\openlayers\img\drag-rectangle-on.png" />
+    <Content Include="Scripts\openlayers\img\east-mini.png" />
+    <Content Include="Scripts\openlayers\img\layer-switcher-maximize.png" />
+    <Content Include="Scripts\openlayers\img\layer-switcher-minimize.png" />
+    <Content Include="Scripts\openlayers\img\marker-blue.png" />
+    <Content Include="Scripts\openlayers\img\marker-gold.png" />
+    <Content Include="Scripts\openlayers\img\marker-green.png" />
+    <Content Include="Scripts\openlayers\img\marker.png" />
+    <Content Include="Scripts\openlayers\img\measuring-stick-off.png" />
+    <Content Include="Scripts\openlayers\img\measuring-stick-on.png" />
+    <Content Include="Scripts\openlayers\img\north-mini.png" />
+    <Content Include="Scripts\openlayers\img\panning-hand-off.png" />
+    <Content Include="Scripts\openlayers\img\panning-hand-on.png" />
+    <Content Include="Scripts\openlayers\img\slider.png" />
+    <Content Include="Scripts\openlayers\img\south-mini.png" />
+    <Content Include="Scripts\openlayers\img\west-mini.png" />
+    <Content Include="Scripts\openlayers\img\zoom-minus-mini.png" />
+    <Content Include="Scripts\openlayers\img\zoom-plus-mini.png" />
+    <Content Include="Scripts\openlayers\img\zoom-world-mini.png" />
+    <Content Include="Scripts\openlayers\img\zoombar.png" />
+    <Content Include="Scripts\openlayers\OpenLayers.js" />
+    <Content Include="Scripts\openlayers\theme\default\framedCloud.css" />
+    <Content Include="Scripts\openlayers\theme\default\google.css" />
+    <Content Include="Scripts\openlayers\theme\default\ie6-style.css" />
+    <Content Include="Scripts\openlayers\theme\default\img\add_point_off.png" />
+    <Content Include="Scripts\openlayers\theme\default\img\add_point_on.png" />
+    <Content Include="Scripts\openlayers\theme\default\img\blank.gif" />
+    <Content Include="Scripts\openlayers\theme\default\img\close.gif" />
+    <Content Include="Scripts\openlayers\theme\default\img\drag-rectangle-off.png" />
+    <Content Include="Scripts\openlayers\theme\default\img\drag-rectangle-on.png" />
+    <Content Include="Scripts\openlayers\theme\default\img\draw_line_off.png" />
+    <Content Include="Scripts\openlayers\theme\default\img\draw_line_on.png" />
+    <Content Include="Scripts\openlayers\theme\default\img\draw_point_off.png" />
+    <Content Include="Scripts\openlayers\theme\default\img\draw_point_on.png" />
+    <Content Include="Scripts\openlayers\theme\default\img\draw_polygon_off.png" />
+    <Content Include="Scripts\openlayers\theme\default\img\draw_polygon_on.png" />
+    <Content Include="Scripts\openlayers\theme\default\img\editing_tool_bar.png" />
+    <Content Include="Scripts\openlayers\theme\default\img\move_feature_off.png" />
+    <Content Include="Scripts\openlayers\theme\default\img\move_feature_on.png" />
+    <Content Include="Scripts\openlayers\theme\default\img\navigation_history.png" />
+    <Content Include="Scripts\openlayers\theme\default\img\overview_replacement.gif" />
+    <Content Include="Scripts\openlayers\theme\default\img\pan-panel-NOALPHA.png" />
+    <Content Include="Scripts\openlayers\theme\default\img\pan-panel.png" />
+    <Content Include="Scripts\openlayers\theme\default\img\panning-hand-off.png" />
+    <Content Include="Scripts\openlayers\theme\default\img\panning-hand-on.png" />
+    <Content Include="Scripts\openlayers\theme\default\img\pan_off.png" />
+    <Content Include="Scripts\openlayers\theme\default\img\pan_on.png" />
+    <Content Include="Scripts\openlayers\theme\default\img\remove_point_off.png" />
+    <Content Include="Scripts\openlayers\theme\default\img\remove_point_on.png" />
+    <Content Include="Scripts\openlayers\theme\default\img\ruler.png" />
+    <Content Include="Scripts\openlayers\theme\default\img\save_features_off.png" />
+    <Content Include="Scripts\openlayers\theme\default\img\save_features_on.png" />
+    <Content Include="Scripts\openlayers\theme\default\img\view_next_off.png" />
+    <Content Include="Scripts\openlayers\theme\default\img\view_next_on.png" />
+    <Content Include="Scripts\openlayers\theme\default\img\view_previous_off.png" />
+    <Content Include="Scripts\openlayers\theme\default\img\view_previous_on.png" />
+    <Content Include="Scripts\openlayers\theme\default\img\zoom-panel-NOALPHA.png" />
+    <Content Include="Scripts\openlayers\theme\default\img\zoom-panel.png" />
+    <Content Include="Scripts\openlayers\theme\default\style.css" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_ar.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_az.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_bg.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_ca.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_cs.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_da.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_de.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_el.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_es.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_et.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_eu.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_fa.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_fi.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_fr.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_gl.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_he.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_hr.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_hu.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_id.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_is.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_it.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_ja.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_ka.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_ko.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_lt.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_lv.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_mk.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_ms.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_nl.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_pl.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_pt-BR.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_pt-PT.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_ro.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_rs.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_ru.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_sk.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_sv.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_th.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_tr.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_ua.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_uk.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_vi.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_zh-CN.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_zh-TW.js" />
+    <Content Include="Scripts\select2.js" />
+    <Content Include="Scripts\select2.min.js" />
+    <Content Include="Scripts\TableTools.js" />
+    <Content Include="Scripts\ZeroClipboard.js" />
+    <None Include="Scripts\_references.js" />
+    <Content Include="VideoMenu.html" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\_Layout.cshtml" />
+    <Content Include="Views\Shared\_MenuItems.cshtml" />
+    <Content Include="Views\Voters\Index.cshtml" />
+    <Content Include="Views\Account\Users.cshtml" />
+    <Content Include="Views\Account\CreateUser.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\_Template.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Password.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\SelectList.cshtml" />
+    <Content Include="Views\Account\UserProfile.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\String.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Date.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\MultilineText.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\_Template.cshtml" />
+    <Content Include="Views\Lookup\StreetTypes.cshtml" />
+    <Content Include="Views\Lookup\RegionTypes.cshtml" />
+    <Content Include="Views\Lookup\ManagerTypes.cshtml" />
+    <Content Include="Views\Lookup\PersonStatus.cshtml" />
+    <Content Include="Views\Account\_ResetPasswordPassword.cshtml" />
+    <Content Include="Views\Shared\_Select.cshtml" />
+    <Content Include="Views\Shared\_BreadcrumbMenu.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
+    <Content Include="Views\Lookup\Genders.cshtml" />
+    <Content Include="Views\Lookup\Streets.cshtml" />
+    <Content Include="Views\Lookup\DocumentTypes.cshtml" />
+    <Content Include="Views\Lookup\ElectionTypes.cshtml" />
+    <Content Include="Views\Shared\_TreeViewLocalities.cshtml" />
+    <Content Include="Views\Lookup\_Streets.cshtml" />
+    <Content Include="Views\Lookup\_RegionsGridView.cshtml" />
+    <Content Include="Views\Lookup\RegionsTree.cshtml" />
+    <Content Include="Views\Lookup\_CreateStreetPartial.cshtml" />
+    <Content Include="Views\Address\ApartmentBuildings.cshtml" />
+    <Content Include="Views\Address\_AddressesApartment.cshtml" />
+    <Content Include="Views\Account\_MultiSelectEdit.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Int64.cshtml" />
+    <Content Include="Views\Account\_SetRegions.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\SelectMulti.cshtml" />
+    <Content Include="Views\PollingStation\Index.cshtml" />
+    <Content Include="Views\PollingStation\_PollingStation.cshtml" />
+    <Content Include="Views\PollingStation\_CreateUpdatePollingStationPartial.cshtml" />
+    <Content Include="Views\Lookup\_PublicAdministrativeInfoPartial.cshtml" />
+    <Content Include="Views\Voters\_SearchIdnp.cshtml" />
+    <Content Include="Views\Voters\_VotersList.cshtml" />
+    <Content Include="Views\Account\_UpdateUserPartial.cshtml" />
+    <Content Include="Views\Lookup\_UpdateManagerTypePartial.cshtml" />
+    <Content Include="Views\Voters\_FilterForVoters.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\SelectList2.cshtml" />
+    <Content Include="Views\Lookup\_CreateRegionPartial.cshtml" />
+    <Content Include="Views\Lookup\_UpdatePersonStatusPartial.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Checkbox.cshtml" />
+    <Content Include="Views\Lookup\_UpdateGenderPartial.cshtml" />
+    <Content Include="Views\Lookup\_UpdateDocumentTypesPartial.cshtml" />
+    <Content Include="Views\Lookup\_UpdateElectionTypePartial.cshtml" />
+    <Content Include="Views\Lookup\_UpdateRegionTypePartial.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Int32.cshtml" />
+    <Content Include="Views\Lookup\_UpdateStreetTypePartial.cshtml" />
+    <Content Include="Views\History\ManagerTypeHistory.cshtml" />
+    <Content Include="Views\History\GenderHistory.cshtml" />
+    <Content Include="Views\History\ElectionTypeHistory.cshtml" />
+    <Content Include="Views\History\StreetTypeHistory.cshtml" />
+    <Content Include="Views\History\PersonStatusHistory.cshtml" />
+    <Content Include="Views\History\DocumentTypeHistory.cshtml" />
+    <Content Include="Views\History\RegionTypeHistory.cshtml" />
+    <Content Include="Views\History\RegionHistory.cshtml" />
+    <Content Include="Views\History\StreetHistory.cshtml" />
+    <Content Include="Views\History\PollingStationHistory.cshtml" />
+    <Content Include="Views\History\AddressHistory.cshtml" />
+    <Content Include="Views\Reporting\ListPrinting.cshtml" />
+    <Content Include="Views\Address\AdministrativeBuildings.cshtml" />
+    <Content Include="Views\Address\_AddressesAdministrative.cshtml" />
+    <Content Include="Views\Election\Index.cshtml" />
+    <Content Include="Views\Election\_UpdateElectionPartial.cshtml" />
+    <Content Include="Views\History\ElectionHistory.cshtml" />
+    <Content Include="Views\Voters\CreateStayStatement.cshtml" />
+    <Content Include="Views\Address\_UpdateGeolocation.cshtml" />
+    <Content Include="Views\Voters\_UpdateVotersStatus.cshtml" />
+    <Content Include="Views\Voters\_PersonInfo.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Select2.cshtml" />
+    <Content Include="Views\Voters\StayStatements.cshtml" />
+    <Content Include="Views\Lookup\PersonAddressTypes.cshtml" />
+    <Content Include="Views\Lookup\_UpdateAddressTypePartial.cshtml" />
+    <Content Include="Views\History\PersonAddressTypeHistory.cshtml" />
+    <Content Include="Views\Voters\StayStatementView.cshtml" />
+    <Content Include="Views\Voters\_UpdateAddress.cshtml" />
+    <Content Include="Views\Notification\Index.cshtml" />
+    <Content Include="Views\Notification\_NotificationList.cshtml" />
+    <Content Include="Views\Notification\_ViewMessage.cshtml" />
+    <Content Include="Views\Shared\_NotificationItems.cshtml" />
+    <Content Include="Views\Address\_UpdateAdministrativeAddressPartial.cshtml" />
+    <Content Include="Views\Address\_UpdateApartmentAddressPartial.cshtml" />
+    <Content Include="Views\Lookup\Circumscriptions.cshtml" />
+    <Content Include="Views\Lookup\_UpdateCircumscription.cshtml" />
+    <Content Include="Views\Statistics\_InfoTab.cshtml" />
+    <Content Include="Views\Statistics\_AgeDistributionTab.cshtml" />
+    <Content Include="Views\Statistics\_ProblematicDataTab.cshtml" />
+    <Content Include="Views\Statistics\_StatisticsFromImportTab.cshtml" />
+    <Content Include="Views\Voters\StayStatementPrinting.cshtml" />
+    <Content Include="Views\Statistics\_StatisticsForPollingStationTab.cshtml" />
+    <Content Include="Views\Address\Buildings.cshtml" />
+    <Content Include="Views\Address\_AddressesBuildings.cshtml" />
+    <Content Include="Views\Address\_UpdateBuildingAddressPartial.cshtml" />
+    <Content Include="Views\PollingStation\_CreateUpdatePollingStationNoAddressPartial.cshtml" />
+    <Content Include="Views\Voters\_ChangePollingStation.cshtml" />
+    <Content Include="Views\Conflict\_StatusConflictList.cshtml" />
+    <Content Include="Views\Conflict\_ViewAddressConflict.cshtml" />
+    <Content Include="Views\Conflict\Index.cshtml" />
+    <Content Include="Views\Conflict\_ResolveAddressConflict.cshtml" />
+    <Content Include="Views\Export\_CreatingPrintSessions.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Select2Multiple.cshtml" />
+    <Content Include="Views\Export\ExportList.cshtml" />
+    <Content Include="Views\Export\_ListExporting.cshtml" />
+    <Content Include="Views\Address\_ChangePollingStation.cshtml" />
+    <Content Include="Views\Conflict\_ViewStatusConflict.cshtml" />
+    <Content Include="Views\Conflict\_AddressConflictList.cshtml" />
+    <Content Include="Views\Conflict\_AddressNoStreetConflictList.cshtml" />
+    <Content Include="Views\Conflict\_ViewAddressNoStreetConflict.cshtml" />
+    <Content Include="Views\Conflict\_AddressRSVList.cshtml" />
+    <Content Include="Views\Conflict\_CreateNewAddressPartial.cshtml" />
+    <Content Include="Views\Conflict\_ResolveAddressNoStreetConflict.cshtml" />
+    <Content Include="Views\Lookup\RegionsGrid.cshtml" />
+    <Content Include="Views\Conflict\RejectAddressConflict.cshtml" />
+    <Content Include="Views\Conflict\_RegionConflictList.cshtml" />
+    <Content Include="Views\Conflict\_ViewRegionConflict.cshtml" />
+    <Content Include="Views\QuartzAdmin\Index.cshtml" />
+    <Content Include="Views\QuartzAdmin\_QuartzJobs.cshtml" />
+    <Content Include="Views\QuartzAdmin\_QuartzRunningJobs.cshtml" />
+    <Content Include="Views\QuartzAdmin\_JobActions.cshtml" />
+    <Content Include="Views\Export\ExportRsaToSaise.cshtml" />
+    <Content Include="Views\Export\_CreatingSaiseExporter.cshtml" />
+    <Content Include="Views\Export\_SaiseExporterList.cshtml" />
+    <Content Include="Views\Export\HistoryExportList.cshtml" />
+    <Content Include="Views\Export\HistoryExportRsaToSaise.cshtml" />
+    <Content Include="Views\Address\_AdjustmentAddresses.cshtml" />
+    <Content Include="Views\Statistics\_ImportsList.cshtml" />
+    <Content Include="Views\Statistics\_ViewImportStatistics.cshtml" />
+    <Content Include="Views\Lookup\LinkRegions.cshtml" />
+    <Content Include="Views\Voters\RspChecking.cshtml" />
+    <Content Include="Views\Voters\ViewRspInfo.cshtml" />
+    <Content Include="Views\Conflict\_LocalityConflictList.cshtml" />
+    <Content Include="Views\Conflict\_ViewLocalityConflict.cshtml" />
+    <Content Include="Views\Conflict\_ResolveLocalityConflict.cshtml" />
+    <Content Include="Views\Conflict\_PollingStationList.cshtml" />
+    <Content Include="Views\Conflict\_StreetConflictList.cshtml" />
+    <Content Include="Views\Conflict\_ViewStreetConflict.cshtml" />
+    <Content Include="Views\Reporting\PollingStationsBorders.cshtml" />
+    <Content Include="Views\AppConfiguration\Index.cshtml" />
+    <Content Include="Views\AppConfiguration\_CreateUpdateConfigurationSetting.cshtml" />
+    <Content Include="Views\History\ConfigurationSettingHistory.cshtml" />
+    <Content Include="Views\Address\RspAddressMappings.cshtml" />
+    <Content Include="Views\Lookup\StreetRspTypes.cshtml" />
+    <Content Include="Views\Reporting\Index.cshtml" />
+    <Content Include="Views\Reporting\_ViewReport.cshtml" />
+    <Content Include="Views\Voters\_ElectionNumberList.cshtml" />
+    <Content Include="Views\PollingStation\_SortingVotersBy.cshtml" />
+    <Content Include="Views\PollingStation\_HasNoStreetsMessage.cshtml" />
+    <Content Include="Views\Interop\Dashboard.cshtml" />
+    <Content Include="Views\Interop\Institutions.cshtml" />
+    <Content Include="Views\Interop\InteropSystems.cshtml" />
+    <Content Include="Views\Interop\Transactions.cshtml" />
+    <Content Include="Views\Interop\_AssignPollingStation.cshtml" />
+    <Content Include="Views\Interop\_UpdateInstitutionPartial.cshtml" />
+    <Content Include="Views\Interop\_UpdateInteropSystemPartial.cshtml" />
+    <Content Include="Views\Interop\_UpdateTransactionPartial.cshtml" />
+    <Content Include="Views\Voters\_ImplementationMissing.cshtml" />
+    <Content Include="Views\Voters\ModalDataGrid.cshtml" />
+    <Content Include="Views\Voters\VotersBySurname.cshtml" />
+    <Content Include="Views\Voters\_VoterNotFound.cshtml" />
+    <Content Include="Views\Conflict\_AddressesWithoutPollingStationList.cshtml" />
+    <Content Include="Views\Conflict\_AddressIdenticalList.cshtml" />
+    <Content Include="Views\Conflict\_RegionsTreeViewForConflictSharing.cshtml" />
+    <Content Include="Views\Conflict\_ShareConflict.cshtml" />
+    <Content Include="Views\Conflict\_ShareConflictDetails.cshtml" />
+    <Content Include="Scripts\jquery-2.1.1.min.map" />
+    <Content Include="Views\Voters\CreateVoterProfile.cshtml" />
+    <Content Include="Views\Lookup\_UpdateConflictShareReasonPartial.cshtml" />
+    <Content Include="Views\Lookup\ConflictShareReasons.cshtml" />
+    <Content Include="Views\History\ConflictShareReasonHistory.cshtml" />
+    <Content Include="Views\Home\_FilterForHome.cshtml" />
+    <Content Include="Views\Shared\_ConflictItems.cshtml" />
+    <Content Include="Views\Export\ExportElectionResult.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Code\" />
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\UserProfile\" />
+    <Folder Include="Scripts\locales\" />
+    <Folder Include="Views\Base\" />
+    <Folder Include="Views\UserProfile\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CEC.QuartzServer.Jobs\CEC.QuartzServer.Jobs.csproj">
+      <Project>{703a22e0-5722-42a9-94df-544f60b0261d}</Project>
+      <Name>CEC.QuartzServer.Jobs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CEC.SRV.BLL\CEC.SRV.BLL.csproj">
+      <Project>{e46cd8a4-bf92-4309-aa5b-7da68cab10c4}</Project>
+      <Name>CEC.SRV.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CEC.SRV.Domain.NHibernateMappings\CEC.SRV.Domain.NHibernateMappings.csproj">
+      <Project>{5dbebbd6-4df7-40f1-99d9-5a6c5b6fee21}</Project>
+      <Name>CEC.SRV.Domain.NHibernateMappings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CEC.SRV.Domain\CEC.SRV.Domain.csproj">
+      <Project>{53b47a01-32d5-48bd-ab7e-64a255f8463c}</Project>
+      <Name>CEC.SRV.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CEC.Web.SRV.Resources\CEC.Web.SRV.Resources.csproj">
+      <Project>{bc52dc9d-b91f-428e-9cdf-73641e905013}</Project>
+      <Name>CEC.Web.SRV.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure\SoftTehnica.MvcReportViewer\SoftTehnica.MvcReportViewer.csproj">
+      <Project>{319c1302-6331-4d5c-9558-d1e2b3f1db82}</Project>
+      <Name>SoftTehnica.MvcReportViewer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RSP.CEC.WebClient\RSP.CEC.WebClient.csproj">
+      <Project>{361504E0-3BA0-404F-894A-E89FF0285A03}</Project>
+      <Name>RSP.CEC.WebClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SAISE\SAISE.Domain.NHibernateMappings\SAISE.Domain.NHibernateMappings.csproj">
+      <Project>{46614e0a-d3b9-4bc7-b858-016fd2524aa6}</Project>
+      <Name>SAISE.Domain.NHibernateMappings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SAISE\SAISE.Domain\SAISE.Domain.csproj">
+      <Project>{3b2efc6d-3202-46ba-83c7-f906d5ef7002}</Project>
+      <Name>SAISE.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\ElectionsServiceReference\" />
+    <WCFMetadataStorage Include="Connected Services\LoggingService\" />
+    <WCFMetadataStorage Include="Connected Services\ReportServiceReference\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>1902</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:1902/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

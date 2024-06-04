@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition">
+  <Description />
+  <DataSet Name="DS_Election_RP">
+    <Query>
+      <DataSourceReference>DataSource_SAISE</DataSourceReference>
+      <CommandText>SELECT     E_ElectionId, E_ElectionType, E_DateOfElection, E_ElectionName, E_DescriptionRo
+FROM         vDK_Election</CommandText>
+      <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+    </Query>
+    <Fields>
+      <Field Name="E_ElectionId">
+        <DataField>E_ElectionId</DataField>
+        <rd:TypeName>System.Int64</rd:TypeName>
+      </Field>
+      <Field Name="E_ElectionType">
+        <DataField>E_ElectionType</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="E_DateOfElection">
+        <DataField>E_DateOfElection</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+      <Field Name="E_ElectionName">
+        <DataField>E_ElectionName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="E_DescriptionRo">
+        <DataField>E_DescriptionRo</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="ElectionNameLkp">
+        <Value>=Fields!E_ElectionName.Value + " [" + CStr(Fields!E_ElectionId.Value) + "]"</Value>
+      </Field>
+    </Fields>
+    <Filters>
+      <Filter>
+        <FilterExpression>=Fields!E_ElectionId.Value</FilterExpression>
+        <Operator>In</Operator>
+        <FilterValues>
+          <FilterValue>=new Integer(){54,55,56,57,58}</FilterValue>
+        </FilterValues>
+      </Filter>
+    </Filters>
+  </DataSet>
+  <rd:ReportServerUrl>http://dev/ReportServer_SQL2008R2</rd:ReportServerUrl>
+</SharedDataSet>

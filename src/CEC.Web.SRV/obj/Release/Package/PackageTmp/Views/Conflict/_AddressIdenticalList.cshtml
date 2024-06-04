@@ -1,0 +1,30 @@
+﻿@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.Conflict
+@using Lib.Web.Mvc.JQuery.JqGrid
+@model long?
+
+@{
+    var grid = Html.GridOptions<ConflictGridModel>("identicalAddressConflicts", width: 860)
+        .SetOptions(x =>
+        {
+            x.LoadComplete = "$.identicalByAddressGrid.OnLoadComplete";
+            x.OnSelectRow = "$.identicalByAddressGrid.OnRowSelect";
+            x.MultiSelect = true;
+            x.OnSelectAll = "$.identicalByAddressGrid.OnSelectAll";
+         })
+        .BuildGrid(Url.Action("ListIdenticalAddressesAjax", new { conflictId = Model }))
+        .Navigator(new JqGridNavigatorOptions()
+        {
+            Add = false, Edit = false, Delete = false, CloneToTop = true
+        });
+}
+<div class="col-sm-12">
+    @grid.GetHtml()
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        @grid.GetJavaScript();
+        $.forEachGrid($.removeClonedGridButtons);
+    });
+</script>

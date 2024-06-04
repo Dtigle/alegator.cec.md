@@ -1,0 +1,90 @@
+﻿@model CEC.Web.SRV.Models.Account.UserProfileModel
+@using CEC.Web.SRV.Infrastructure
+@using CEC.Web.SRV.Resources
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<div class="row">
+    <div class="col-xs-12 col-sm-8">
+        <div class="box">
+            <div class="box-content">
+                <h4 class="page-header">@MUI.ProfileTitle</h4>
+                @using (Html.BeginForm("UpdateProfile", "Account", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    @Html.HiddenFor(m => m.UserId)
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        @Html.DisplayFor(m => m.LoginName)
+                    </div>
+                    <div class="form-group">
+                        @Html.DisplayFor(m => m.LastLogin)
+                    </div>
+                    <div class="form-group">
+                        @Html.DisplayFor(m => m.LoginCreationDate)
+                    </div>
+                    <div class="form-group">
+                        @Html.EditorFor(m => m.FirstName)
+                    </div>
+	                <div class="form-group">
+		                @Html.EditorFor(m => m.LastName)
+	                </div>
+					 <div class="form-group">
+                        @Html.EditorFor(m => m.GenderId)
+                    </div>
+                    <div class="form-group">
+                        @Html.EditorFor(m => m.DateOfBirth)
+                    </div>
+                    <div class="form-group">
+                        @Html.EditorFor(m => m.Email)
+                    </div>
+                    <div class="form-group">
+                        @Html.EditorFor(m => m.LandlinePhone)
+                    </div>
+                    <div class="form-group">
+                        @Html.EditorFor(m => m.MobilePhone)
+                    </div>
+                    <div class="form-group">
+                        @Html.EditorFor(m => m.WorkInfo)
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-8">
+                            <input type="submit" class="btn btn-primary" value="@MUI.ButtonSave">
+                            <span></span>
+                            <input type="button" onclick="window.location.href='@Request.UrlReferrer'" class="btn btn-default" value="@MUI.ButtonCancel">
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-4">
+        <div class="box">
+            <div class="box-content">
+	            <h4 class="page-header">@MUI.ProfileBox1Title</h4>
+	            @if (Model.IsCurrentUser)
+	            {
+		            <a href="@Url.Action("ChangePassword", "Account")" class="managePass" data-window-title="@MUI.ChangePassword_Title" >@MUI.ActionChPassword</a>
+	            }
+	            else
+	            {
+					@Html.SecureActionLink(null, @MUI.ActionResPassword, "ResetPassword", "Account", 
+                                            new RouteValueDictionary(new {userId = Model.UserId}),
+                                            new Dictionary<string, object> {{"class", "managePass"}, {"data-window-title", @MUI.ActionResPassword}})
+	            }
+            </div>
+        </div>
+    </div>
+</div>*@
+
+<script type="text/javascript">
+    $('.rsa-form-group > div.col-sm-4').removeClass('col-sm-4').addClass('col-sm-6');
+    $('.rsa-form-group > div.col-sm-2').removeClass('col-sm-2').addClass('col-sm-4');
+
+    $('.managePass').click(function (e) {
+        e.preventDefault();
+        $.openDialog($(this));
+    });
+</script>

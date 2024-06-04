@@ -1,0 +1,26 @@
+﻿@if (!ViewData.ModelMetadata.HideSurroundingHtml)
+{
+    <div class="rsa-form-group">
+        @if (ViewBag.HideLabel == null)
+        {
+            <div class="col-sm-2 control-label">
+                @if (ViewData.ModelMetadata.IsRequired)
+                {
+                    <span>*</span>
+                }
+                @Html.Label("")
+            </div>
+
+        }
+        <div class="col-sm-4">
+            @RenderSection("Data")
+            <div class="has-error">
+                @Html.ValidationMessage("", new { @class = "help-block" })
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    @RenderSection("Data")
+}

@@ -1,0 +1,86 @@
+﻿@using CEC.SAISE.EDayModule.Infrastructure.Grids;
+@using CEC.SAISE.EDayModule.Models.EDaySync;
+@using Lib.Web.Mvc.JQuery.JqGrid;
+@{
+    ViewBag.Title = "Ajustare date";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var status = (EDaySyncStatus)ViewBag.EDaySyncStatus;
+}
+
+@Scripts.Render("~/bundles/jqGrid")
+
+@{
+    var grid = Html.GridOptions<EDayStageGridModel>("edayStages", height: 540)
+         .SetOptions(x => x.MultiSelect = false)
+         .SetOptions(x => x.Pager = false)
+         .SetOptions(x => x.TopPager = false)
+        .BuildGrid(Url.Action("GetAllEDayStages", "Sync"), columnChooser: true)
+        .Navigator(new JqGridNavigatorOptions()
+        {
+            Add = false,
+            Edit = false,
+            Delete = false,
+            CloneToTop = false
+        });
+
+}
+
+@using (Html.BeginForm("Index", "Sync", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="well">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row padding-15">
+                    @if (status == EDaySyncStatus.InProgress)
+                    {
+                        <div class="col-xs-10">
+                            <h4>
+                                Sincronizarea datelor este in process, pentru a ajusta datele, asteptati finisarea etapelor de sincronizare.
+                            </h4>
+                        </div>
+                    }
+                    else if (status == EDaySyncStatus.Done)
+                    {
+                        <div class="col-xs-2">
+                            <strong>Inițiaza ajustarea datelor</strong>
+                        </div>
+                        <div class="col-xs-2">
+
+                            <input type="submit" value="Start" class="btn btn-primary" />
+
+                        </div>
+                    }
+                    else if (status == EDaySyncStatus.MissingConnection)
+                    {
+                        <div class="col-xs-10">
+                            <h4>
+                                Eroare de conectare la Serviciul Web de sincronizare SAISE Admin
+                            </h4>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="well">
+    <div class="row">
+        <h4 style="padding: 0 0 10px 10px;">
+            Vizualizarea etapelor de sincronizare
+        </h4>
+    </div>
+    <div class="row">
+        @grid.GetHtml()
+    </div>
+</div>
+
+<script type="text/javascript">
+        $(document).ready(function () {
+        @grid.GetJavaScript();
+            setInterval(function () {
+                $('#edayStages').trigger("reloadGrid", [{ current: true }]);
+            }, 10000);
+    });
+</script>

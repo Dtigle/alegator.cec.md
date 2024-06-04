@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>CEC_Admin</DataSourceReference>
+      <CommandText>SELECT
+*
+FROM
+(SELECT 
+       [circumscriptionId]
+      ,[number]
+      ,[nameRo]
+FROM [Lookup].[Circumscriptions]
+WHERE   circumscriptionListId = 16
+UNION ALL
+SELECT
+0,
+'0',
+N'- Toate circumscripțiile -') as circ
+ORDER BY CAST(N'/' + LTrim(RTrim(circ.number)) + N'/' AS HIERARCHYID)</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="circumscriptionId">
+        <DataField>circumscriptionId</DataField>
+        <rd:TypeName>System.Int64</rd:TypeName>
+      </Field>
+      <Field Name="number">
+        <DataField>number</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="nameRo">
+        <DataField>nameRo</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

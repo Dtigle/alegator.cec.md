@@ -1,0 +1,93 @@
+﻿<div class="row">
+
+    <div id="breadcrumb" class="col-md-12">
+
+    </div>
+</div>
+
+
+<div class="row">
+        
+    <div class="col-xs-8 col-sm-8">
+        <div class="box">
+            <div class="box-content">
+                <div id="googleMap"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-8 col-sm-6 ">
+
+           <div class="box">
+                <div class="box-content">
+                    <div id="datatable" />
+                    <div id="datatableError" class="error-text"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-8 col-sm-6 ">
+
+            <div class="box">
+                <div class="box-content">
+                    <div id="chart" style="height: 350px;"></div>
+                    <div id="chartError" class="error-text"></div>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <div class="col-xs-8 col-sm-8">
+            <div class="box">
+                <div class="box-content">                    
+                    <div id="chart_div" style="width: inherit;"></div>
+                </div>
+            </div>
+        </div>
+   </div>
+</div>
+
+<script type='text/javascript' src='http://www.google.com/jsapi'></script>
+
+<style>
+    /* cluster */
+    .cluster {
+        color: #FFFFFF;
+        text-align: center;
+        font-family: 'Arial, Helvetica';
+        font-size: 11px;
+        font-weight: bold;
+    }
+
+    .cluster-1 {
+        background-image: url(Content/img/m1.png);
+        line-height: 53px;
+        width: 53px;
+        height: 53px;
+    }
+
+    .cluster-2 {
+        background-image: url(Content/img/m2.png);
+        line-height: 53px;
+        width: 56px;
+        height: 55px;
+    }
+
+    .cluster-3 {
+        background-image: url(Content/img/m3.png);
+        line-height: 66px;
+        width: 66px;
+        height: 65px;
+    }
+</style>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        initChartStatistics();
+        setTimeout(function () {
+            Init3();
+            drawChart();
+        }, 1000);
+    });
+
+</script>

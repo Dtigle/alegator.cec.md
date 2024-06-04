@@ -1,0 +1,39 @@
+﻿@*@using CEC.Web.SRV.Infrastructure
+@using CEC.Web.SRV.Models.Voters
+@using CEC.Web.SRV.Resources
+@model CEC.Web.SRV.Models.Voters.ElectionNumberListOrderBy
+
+
+
+
+@using (Html.BeginForm("AddElectionNumberList", "Voters", FormMethod.Post, new { @class = "form-horizontal", id = "electionList" }))
+{
+    
+    <div class="row">
+        <div class="form-group">
+            <div class="control-label col-sm-2">
+                <label>Criteriile de sortare</label>
+            </div>
+            @Html.EditorFor(o => o.first, "Select2", new { HideLabel = true})
+        </div>
+    </div>
+}
+<script type="text/javascript">
+
+    function electionListDataRequest(term, page, pageLimit) {
+        return {
+            q: term,
+            pageLimit: pageLimit,
+            page: page
+        };
+    }
+
+    function electionListResults(data, more) {
+        return { results: data, more: more };
+    }
+</script>
+<style>
+    #s2id_first {
+        width: 450px;
+    }
+</style>*@

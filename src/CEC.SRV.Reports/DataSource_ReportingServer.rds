@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="DataSource_ReportingServer">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=192.168.1.142;Initial Catalog=SAISE.ReportingServer</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>fc35a870-3891-4a0c-94c3-59984a5ce3ef</DataSourceID>
+</RptDataSource>

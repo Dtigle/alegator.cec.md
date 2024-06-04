@@ -1,0 +1,175 @@
+2018-05-25 12:08:50.8590 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog Unhandled exception occured: could not insert: [SAISE.Domain.Voter][SQL: INSERT INTO VoterSRV (NameRo, LastNameRo, PatronymicRo, DateOfBirth, PlaceOfBirth, PlaceOfResidence, Gender, DateOfRegistration, Idnp, DocumentNumber, DateOfIssue, DateOfExpiry, Status, StreetId, StreetName, StreetNumber, StreetSubNumber, BlockNumber, BlockSubNumber, PollingStationId, RegionId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); select SCOPE_IDENTITY()] NHibernate.Exceptions.GenericADOException: could not insert: [SAISE.Domain.Voter][SQL: INSERT INTO VoterSRV (NameRo, LastNameRo, PatronymicRo, DateOfBirth, PlaceOfBirth, PlaceOfResidence, Gender, DateOfRegistration, Idnp, DocumentNumber, DateOfIssue, DateOfExpiry, Status, StreetId, StreetName, StreetNumber, StreetSubNumber, BlockNumber, BlockSubNumber, PollingStationId, RegionId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); select SCOPE_IDENTITY()] ---> System.Data.SqlClient.SqlException: A transport-level error has occurred when receiving results from the server. (provider: TCP Provider, error: 0 - An existing connection was forcibly closed by the remote host.) ---> System.ComponentModel.Win32Exception: An existing connection was forcibly closed by the remote host
+   --- End of inner exception stack trace ---
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniSyncOverAsync()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadNetworkPacket()
+   at System.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadByte(Byte& value)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   at NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+   at NHibernate.Id.IdentityGenerator.InsertSelectDelegate.ExecuteAndExtract(IDbCommand insert, ISessionImplementor session)
+   at NHibernate.Id.Insert.AbstractReturningDelegate.PerformInsert(SqlCommandInfo insertSQL, ISessionImplementor session, IBinder binder)
+   --- End of inner exception stack trace ---
+   at NHibernate.Id.Insert.AbstractReturningDelegate.PerformInsert(SqlCommandInfo insertSQL, ISessionImplementor session, IBinder binder)
+   at NHibernate.Persister.Entity.AbstractEntityPersister.Insert(Object[] fields, Boolean[] notNull, SqlCommandInfo sql, Object obj, ISessionImplementor session)
+   at NHibernate.Persister.Entity.AbstractEntityPersister.Insert(Object[] fields, Object obj, ISessionImplementor session)
+   at NHibernate.Impl.StatelessSessionImpl.Insert(String entityName, Object entity)
+   at NHibernate.Impl.StatelessSessionImpl.Insert(Object entity)
+   at CEC.Web.SRV.EDayExport.SaiseRepository.SaveOrUpdate(SaiseEntity entity) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\SaiseRepository.cs:line 53
+   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+   at CEC.Web.SRV.EDayExport.SaiseRepository.InsertVotersInTemporaryTable(List`1 voters) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\SaiseRepository.cs:line 153
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 103
+2018-05-25 13:57:07.4980 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog An error occured in MapPersonToVoter for SRV.Person.Id: 89635 NHibernate.Exceptions.GenericADOException: could not execute query
+[ SELECT this_.personAddressId as personAd1_58_1_, this_.apSuffix as apSuffix58_1_, this_.dateOfRegistration as dateOfRe3_58_1_, this_.dateOfExpiration as dateOfEx4_58_1_, this_.apNumber as apNumber58_1_, this_.isEligible as isEligible58_1_, this_.created as created58_1_, this_.modified as modified58_1_, this_.deleted as deleted58_1_, this_.personId as personId58_1_, this_.addressId as addressId58_1_, this_.personAddressTypeId as personA12_58_1_, this_.createdById as created13_58_1_, this_.modifiedById as modifie14_58_1_, this_.deletedById as deleted15_58_1_, address2_.addressId as addressId35_0_, address2_.buildingType as building2_35_0_, address2_.houseNumber as houseNum3_35_0_, address2_.suffix as suffix35_0_, address2_.created as created35_0_, address2_.modified as modified35_0_, address2_.deleted as deleted35_0_, address2_.streetId as streetId35_0_, address2_.pollingStationId as pollingS9_35_0_, address2_.createdById as created10_35_0_, address2_.modifiedById as modifie11_35_0_, address2_.deletedById as deleted12_35_0_, address2_.geolatitude as geolati13_35_0_, address2_.geolongitude as geolong14_35_0_ FROM SRV.PersonAddresses this_ inner join SRV.Addresses address2_ on this_.addressId=address2_.addressId WHERE this_.personId = @p0 and this_.isEligible = @p1 ]
+  Name:cp0 - Value:CEC.SRV.Domain.Person  Name:cp1 - Value:True
+[SQL: SELECT this_.personAddressId as personAd1_58_1_, this_.apSuffix as apSuffix58_1_, this_.dateOfRegistration as dateOfRe3_58_1_, this_.dateOfExpiration as dateOfEx4_58_1_, this_.apNumber as apNumber58_1_, this_.isEligible as isEligible58_1_, this_.created as created58_1_, this_.modified as modified58_1_, this_.deleted as deleted58_1_, this_.personId as personId58_1_, this_.addressId as addressId58_1_, this_.personAddressTypeId as personA12_58_1_, this_.createdById as created13_58_1_, this_.modifiedById as modifie14_58_1_, this_.deletedById as deleted15_58_1_, address2_.addressId as addressId35_0_, address2_.buildingType as building2_35_0_, address2_.houseNumber as houseNum3_35_0_, address2_.suffix as suffix35_0_, address2_.created as created35_0_, address2_.modified as modified35_0_, address2_.deleted as deleted35_0_, address2_.streetId as streetId35_0_, address2_.pollingStationId as pollingS9_35_0_, address2_.createdById as created10_35_0_, address2_.modifiedById as modifie11_35_0_, address2_.deletedById as deleted12_35_0_, address2_.geolatitude as geolati13_35_0_, address2_.geolongitude as geolong14_35_0_ FROM SRV.PersonAddresses this_ inner join SRV.Addresses address2_ on this_.addressId=address2_.addressId WHERE this_.personId = @p0 and this_.isEligible = @p1] ---> System.Data.SqlClient.SqlException: A transport-level error has occurred when receiving results from the server. (provider: TCP Provider, error: 0 - The semaphore timeout period has expired.) ---> System.ComponentModel.Win32Exception: The semaphore timeout period has expired
+   --- End of inner exception stack trace ---
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniSyncOverAsync()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadNetworkPacket()
+   at System.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadByte(Byte& value)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   at NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+   at NHibernate.Loader.Loader.GetResultSet(IDbCommand st, Boolean autoDiscoverTypes, Boolean callable, RowSelection selection, ISessionImplementor session)
+   at NHibernate.Loader.Loader.DoQuery(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies)
+   at NHibernate.Loader.Loader.DoQueryAndInitializeNonLazyCollections(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies)
+   at NHibernate.Loader.Loader.DoList(ISessionImplementor session, QueryParameters queryParameters)
+   --- End of inner exception stack trace ---
+   at NHibernate.Loader.Loader.DoList(ISessionImplementor session, QueryParameters queryParameters)
+   at NHibernate.Loader.Loader.ListIgnoreQueryCache(ISessionImplementor session, QueryParameters queryParameters)
+   at NHibernate.Loader.Loader.List(ISessionImplementor session, QueryParameters queryParameters, ISet`1 querySpaces, IType[] resultTypes)
+   at NHibernate.Impl.StatelessSessionImpl.List(CriteriaImpl criteria, IList results)
+   at NHibernate.Impl.CriteriaImpl.List(IList results)
+   at NHibernate.Impl.CriteriaImpl.UniqueResult[T]()
+   at NHibernate.Criterion.QueryOver`1.SingleOrDefault()
+   at NHibernate.Criterion.QueryOver`1.NHibernate.IQueryOver<TRoot>.SingleOrDefault()
+   at CEC.Web.SRV.EDayExport.VoterExporter.GetPersonEligibleAddress(Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 357
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 247
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 182
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 98
+2018-05-25 13:57:07.5072 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog Unhandled exception occured: could not execute query
+[ SELECT this_.personAddressId as personAd1_58_1_, this_.apSuffix as apSuffix58_1_, this_.dateOfRegistration as dateOfRe3_58_1_, this_.dateOfExpiration as dateOfEx4_58_1_, this_.apNumber as apNumber58_1_, this_.isEligible as isEligible58_1_, this_.created as created58_1_, this_.modified as modified58_1_, this_.deleted as deleted58_1_, this_.personId as personId58_1_, this_.addressId as addressId58_1_, this_.personAddressTypeId as personA12_58_1_, this_.createdById as created13_58_1_, this_.modifiedById as modifie14_58_1_, this_.deletedById as deleted15_58_1_, address2_.addressId as addressId35_0_, address2_.buildingType as building2_35_0_, address2_.houseNumber as houseNum3_35_0_, address2_.suffix as suffix35_0_, address2_.created as created35_0_, address2_.modified as modified35_0_, address2_.deleted as deleted35_0_, address2_.streetId as streetId35_0_, address2_.pollingStationId as pollingS9_35_0_, address2_.createdById as created10_35_0_, address2_.modifiedById as modifie11_35_0_, address2_.deletedById as deleted12_35_0_, address2_.geolatitude as geolati13_35_0_, address2_.geolongitude as geolong14_35_0_ FROM SRV.PersonAddresses this_ inner join SRV.Addresses address2_ on this_.addressId=address2_.addressId WHERE this_.personId = @p0 and this_.isEligible = @p1 ]
+  Name:cp0 - Value:CEC.SRV.Domain.Person  Name:cp1 - Value:True
+[SQL: SELECT this_.personAddressId as personAd1_58_1_, this_.apSuffix as apSuffix58_1_, this_.dateOfRegistration as dateOfRe3_58_1_, this_.dateOfExpiration as dateOfEx4_58_1_, this_.apNumber as apNumber58_1_, this_.isEligible as isEligible58_1_, this_.created as created58_1_, this_.modified as modified58_1_, this_.deleted as deleted58_1_, this_.personId as personId58_1_, this_.addressId as addressId58_1_, this_.personAddressTypeId as personA12_58_1_, this_.createdById as created13_58_1_, this_.modifiedById as modifie14_58_1_, this_.deletedById as deleted15_58_1_, address2_.addressId as addressId35_0_, address2_.buildingType as building2_35_0_, address2_.houseNumber as houseNum3_35_0_, address2_.suffix as suffix35_0_, address2_.created as created35_0_, address2_.modified as modified35_0_, address2_.deleted as deleted35_0_, address2_.streetId as streetId35_0_, address2_.pollingStationId as pollingS9_35_0_, address2_.createdById as created10_35_0_, address2_.modifiedById as modifie11_35_0_, address2_.deletedById as deleted12_35_0_, address2_.geolatitude as geolati13_35_0_, address2_.geolongitude as geolong14_35_0_ FROM SRV.PersonAddresses this_ inner join SRV.Addresses address2_ on this_.addressId=address2_.addressId WHERE this_.personId = @p0 and this_.isEligible = @p1] NHibernate.Exceptions.GenericADOException: could not execute query
+[ SELECT this_.personAddressId as personAd1_58_1_, this_.apSuffix as apSuffix58_1_, this_.dateOfRegistration as dateOfRe3_58_1_, this_.dateOfExpiration as dateOfEx4_58_1_, this_.apNumber as apNumber58_1_, this_.isEligible as isEligible58_1_, this_.created as created58_1_, this_.modified as modified58_1_, this_.deleted as deleted58_1_, this_.personId as personId58_1_, this_.addressId as addressId58_1_, this_.personAddressTypeId as personA12_58_1_, this_.createdById as created13_58_1_, this_.modifiedById as modifie14_58_1_, this_.deletedById as deleted15_58_1_, address2_.addressId as addressId35_0_, address2_.buildingType as building2_35_0_, address2_.houseNumber as houseNum3_35_0_, address2_.suffix as suffix35_0_, address2_.created as created35_0_, address2_.modified as modified35_0_, address2_.deleted as deleted35_0_, address2_.streetId as streetId35_0_, address2_.pollingStationId as pollingS9_35_0_, address2_.createdById as created10_35_0_, address2_.modifiedById as modifie11_35_0_, address2_.deletedById as deleted12_35_0_, address2_.geolatitude as geolati13_35_0_, address2_.geolongitude as geolong14_35_0_ FROM SRV.PersonAddresses this_ inner join SRV.Addresses address2_ on this_.addressId=address2_.addressId WHERE this_.personId = @p0 and this_.isEligible = @p1 ]
+  Name:cp0 - Value:CEC.SRV.Domain.Person  Name:cp1 - Value:True
+[SQL: SELECT this_.personAddressId as personAd1_58_1_, this_.apSuffix as apSuffix58_1_, this_.dateOfRegistration as dateOfRe3_58_1_, this_.dateOfExpiration as dateOfEx4_58_1_, this_.apNumber as apNumber58_1_, this_.isEligible as isEligible58_1_, this_.created as created58_1_, this_.modified as modified58_1_, this_.deleted as deleted58_1_, this_.personId as personId58_1_, this_.addressId as addressId58_1_, this_.personAddressTypeId as personA12_58_1_, this_.createdById as created13_58_1_, this_.modifiedById as modifie14_58_1_, this_.deletedById as deleted15_58_1_, address2_.addressId as addressId35_0_, address2_.buildingType as building2_35_0_, address2_.houseNumber as houseNum3_35_0_, address2_.suffix as suffix35_0_, address2_.created as created35_0_, address2_.modified as modified35_0_, address2_.deleted as deleted35_0_, address2_.streetId as streetId35_0_, address2_.pollingStationId as pollingS9_35_0_, address2_.createdById as created10_35_0_, address2_.modifiedById as modifie11_35_0_, address2_.deletedById as deleted12_35_0_, address2_.geolatitude as geolati13_35_0_, address2_.geolongitude as geolong14_35_0_ FROM SRV.PersonAddresses this_ inner join SRV.Addresses address2_ on this_.addressId=address2_.addressId WHERE this_.personId = @p0 and this_.isEligible = @p1] ---> System.Data.SqlClient.SqlException: A transport-level error has occurred when receiving results from the server. (provider: TCP Provider, error: 0 - The semaphore timeout period has expired.) ---> System.ComponentModel.Win32Exception: The semaphore timeout period has expired
+   --- End of inner exception stack trace ---
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniSyncOverAsync()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadNetworkPacket()
+   at System.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadByte(Byte& value)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   at NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+   at NHibernate.Loader.Loader.GetResultSet(IDbCommand st, Boolean autoDiscoverTypes, Boolean callable, RowSelection selection, ISessionImplementor session)
+   at NHibernate.Loader.Loader.DoQuery(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies)
+   at NHibernate.Loader.Loader.DoQueryAndInitializeNonLazyCollections(ISessionImplementor session, QueryParameters queryParameters, Boolean returnProxies)
+   at NHibernate.Loader.Loader.DoList(ISessionImplementor session, QueryParameters queryParameters)
+   --- End of inner exception stack trace ---
+   at NHibernate.Loader.Loader.DoList(ISessionImplementor session, QueryParameters queryParameters)
+   at NHibernate.Loader.Loader.ListIgnoreQueryCache(ISessionImplementor session, QueryParameters queryParameters)
+   at NHibernate.Loader.Loader.List(ISessionImplementor session, QueryParameters queryParameters, ISet`1 querySpaces, IType[] resultTypes)
+   at NHibernate.Impl.StatelessSessionImpl.List(CriteriaImpl criteria, IList results)
+   at NHibernate.Impl.CriteriaImpl.List(IList results)
+   at NHibernate.Impl.CriteriaImpl.UniqueResult[T]()
+   at NHibernate.Criterion.QueryOver`1.SingleOrDefault()
+   at NHibernate.Criterion.QueryOver`1.NHibernate.IQueryOver<TRoot>.SingleOrDefault()
+   at CEC.Web.SRV.EDayExport.VoterExporter.GetPersonEligibleAddress(Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 357
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 247
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 182
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 98
+2018-05-25 14:14:42.2869 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog Unhandled exception occured: Begin failed with SQL exception NHibernate.TransactionException: Begin failed with SQL exception ---> System.Data.SqlClient.SqlException: Cannot open database "SAISE.ElectionDay20180522" requested by the login. The login failed.
+Login failed for user 'sa'.
+   at System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling, SqlAuthenticationProviderManager sqlAuthProviderManager)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at NHibernate.Connection.DriverConnectionProvider.GetConnection()
+   at NHibernate.AdoNet.ConnectionManager.GetConnection()
+   at NHibernate.Impl.StatelessSessionImpl.get_Connection()
+   at NHibernate.Transaction.AdoTransaction.Begin(IsolationLevel isolationLevel)
+   --- End of inner exception stack trace ---
+   at NHibernate.Transaction.AdoTransaction.Begin(IsolationLevel isolationLevel)
+   at NHibernate.Impl.StatelessSessionImpl.BeginTransaction(IsolationLevel isolationLevel)
+   at NHibernate.Impl.StatelessSessionImpl.BeginTransaction()
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 101
+2018-05-25 14:43:00.5508 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog Unhandled exception occured: could not insert: [SAISE.Domain.Voter][SQL: INSERT INTO VoterSRV (NameRo, LastNameRo, PatronymicRo, DateOfBirth, PlaceOfBirth, PlaceOfResidence, Gender, DateOfRegistration, Idnp, DocumentNumber, DateOfIssue, DateOfExpiry, Status, StreetId, StreetName, StreetNumber, StreetSubNumber, BlockNumber, BlockSubNumber, PollingStationId, RegionId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); select SCOPE_IDENTITY()] NHibernate.Exceptions.GenericADOException: could not insert: [SAISE.Domain.Voter][SQL: INSERT INTO VoterSRV (NameRo, LastNameRo, PatronymicRo, DateOfBirth, PlaceOfBirth, PlaceOfResidence, Gender, DateOfRegistration, Idnp, DocumentNumber, DateOfIssue, DateOfExpiry, Status, StreetId, StreetName, StreetNumber, StreetSubNumber, BlockNumber, BlockSubNumber, PollingStationId, RegionId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); select SCOPE_IDENTITY()] ---> System.Data.SqlClient.SqlException: A transport-level error has occurred when receiving results from the server. (provider: TCP Provider, error: 0 - An existing connection was forcibly closed by the remote host.) ---> System.ComponentModel.Win32Exception: An existing connection was forcibly closed by the remote host
+   --- End of inner exception stack trace ---
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniSyncOverAsync()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadNetworkPacket()
+   at System.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadByte(Byte& value)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   at NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+   at NHibernate.Id.IdentityGenerator.InsertSelectDelegate.ExecuteAndExtract(IDbCommand insert, ISessionImplementor session)
+   at NHibernate.Id.Insert.AbstractReturningDelegate.PerformInsert(SqlCommandInfo insertSQL, ISessionImplementor session, IBinder binder)
+   --- End of inner exception stack trace ---
+   at NHibernate.Id.Insert.AbstractReturningDelegate.PerformInsert(SqlCommandInfo insertSQL, ISessionImplementor session, IBinder binder)
+   at NHibernate.Persister.Entity.AbstractEntityPersister.Insert(Object[] fields, Boolean[] notNull, SqlCommandInfo sql, Object obj, ISessionImplementor session)
+   at NHibernate.Persister.Entity.AbstractEntityPersister.Insert(Object[] fields, Object obj, ISessionImplementor session)
+   at NHibernate.Impl.StatelessSessionImpl.Insert(String entityName, Object entity)
+   at NHibernate.Impl.StatelessSessionImpl.Insert(Object entity)
+   at CEC.Web.SRV.EDayExport.SaiseRepository.SaveOrUpdate(SaiseEntity entity) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\SaiseRepository.cs:line 53
+   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+   at CEC.Web.SRV.EDayExport.SaiseRepository.InsertVotersInTemporaryTable(List`1 voters) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\SaiseRepository.cs:line 153
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 103

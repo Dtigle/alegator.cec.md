@@ -1,0 +1,41 @@
+﻿ <div class="row">
+     <div id="breadcrumb" class="col-md-12" />
+ </div>
+
+<div id="chartCec3" class="col-md-12 box-content">
+   
+    <div id="preliminaryInfo" class="col-md-12">
+        <div id="infoMessage"></div>
+        <div id="helpPage"></div>
+    </div>
+    
+    <div id="preliminaryResults" >
+        <div class="col-xs-12" >
+            <h3 class="page-header">Rezultatele preliminare ale alegerilor
+                <span id="preCalculatTotal"></span></h3>
+        </div>
+
+        <div id="morris-chart-cec-3" class="cec-chart-3"> </div>
+        
+        <table align="center">
+            <tr >
+                <td >
+                    <div id="morris-chart-cec-3-legend" class="col-md-12"></div>  
+                
+                </td>
+            </tr>
+        </table>
+        
+    </div>
+
+</div>
+
+<script >
+
+    $(document).ready(function () {
+
+        reloadCharts();
+
+    });
+
+</script>

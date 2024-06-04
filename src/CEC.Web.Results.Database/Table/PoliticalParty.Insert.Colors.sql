@@ -1,0 +1,10 @@
+﻿/*
+UPDATE [dbo].[POLITICALPARTY] SET [COLOR] = '#CF0000' WHERE [PoliticalPartyId] = 5;
+UPDATE [dbo].[POLITICALPARTY] SET [COLOR] = '#14283D' WHERE [PoliticalPartyId] = 10;
+UPDATE [dbo].[POLITICALPARTY] SET [COLOR] = '#00BFF3' WHERE [PoliticalPartyId] = 3;
+UPDATE [dbo].[POLITICALPARTY] SET [COLOR] = '#28AE4C' WHERE [PoliticalPartyId] = 9;
+UPDATE [dbo].[POLITICALPARTY] SET [COLOR] = '#EC1224' WHERE [PoliticalPartyId] = 65;
+UPDATE [dbo].[POLITICALPARTY] SET [COLOR] = '#806C2C' WHERE [PoliticalPartyId] = 29;
+UPDATE [dbo].[POLITICALPARTY] SET [COLOR] = '#4B1013' WHERE [PoliticalPartyId] = 2;
+UPDATE [dbo].[POLITICALPARTY] SET [COLOR] = '#EC1224' WHERE [PoliticalPartyId] = 60;
+*/

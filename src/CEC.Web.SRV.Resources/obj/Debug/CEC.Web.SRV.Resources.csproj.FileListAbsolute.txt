@@ -1,0 +1,11 @@
+D:\work\CEC\CEC.SRV\src\CEC.Web.SRV.Resources\bin\Debug\CEC.Web.SRV.Resources.dll
+D:\work\CEC\CEC.SRV\src\CEC.Web.SRV.Resources\bin\Debug\CEC.Web.SRV.Resources.pdb
+D:\work\CEC\CEC.SRV\src\CEC.Web.SRV.Resources\bin\Debug\ru\CEC.Web.SRV.Resources.resources.dll
+D:\work\CEC\CEC.SRV\src\CEC.Web.SRV.Resources\obj\Debug\CEC.Web.SRV.Resources.MUI.resources
+D:\work\CEC\CEC.SRV\src\CEC.Web.SRV.Resources\obj\Debug\CEC.Web.SRV.Resources.MUI.ru.resources
+D:\work\CEC\CEC.SRV\src\CEC.Web.SRV.Resources\obj\Debug\CEC.Web.SRV.Resources.csproj.GenerateResource.cache
+D:\work\CEC\CEC.SRV\src\CEC.Web.SRV.Resources\obj\Debug\ru\CEC.Web.SRV.Resources.resources.dll
+D:\work\CEC\CEC.SRV\src\CEC.Web.SRV.Resources\obj\Debug\CEC.Web.SRV.Resources.dll
+D:\work\CEC\CEC.SRV\src\CEC.Web.SRV.Resources\obj\Debug\CEC.Web.SRV.Resources.pdb
+D:\work\CEC\CEC.SRV\src\CEC.Web.SRV.Resources\obj\Debug\CEC.Web.SRV.Resources.csproj.CoreCompileInputs.cache
+D:\work\CEC\CEC.SRV\src\CEC.Web.SRV.Resources\obj\Debug\CEC.Web.SRV.Resources.csproj.AssemblyReference.cache

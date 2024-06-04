@@ -1,0 +1,105 @@
+﻿@using CEC.Web.SRV.Resources
+@model CEC.Web.SRV.Models.Voters.RspInfoModel
+
+@{
+	ViewBag.Title = MUI.RspChecking;
+}
+
+<div class="box-content">
+	<h4 class="page-header">@MUI.PersonalData</h4>
+
+	<div class="row form-group">
+		<div class="box_fields">
+			@Html.EditorFor(x=>x.Idnp, new {ReadOnly = true})
+		</div>
+	</div>
+
+	<div class="row form-group">
+		<div class="box_fields">
+			<div class="form-group">
+				@Html.EditorFor(x=>x.FirstName, new {ReadOnly = true})
+				@Html.EditorFor(x=>x.LastName, new {ReadOnly = true})
+				@Html.EditorFor(x=>x.SecondName, new {ReadOnly = true})
+			</div>
+		</div>
+	</div>
+	
+	<div class="row form-group">
+		<div class="box_fields">
+			@Html.EditorFor(x=>x.BirthDate, new {ReadOnly = true})
+			@Html.EditorFor(x=>x.Sex, new {ReadOnly = true})
+		</div>
+	</div>
+	
+	<div class="row form-group">
+		<div class="box_fields">
+			@Html.EditorFor(x=>x.CitizenRm, new {ReadOnly = true})
+			@Html.EditorFor(x=>x.Dead, new {ReadOnly = true})
+		</div>
+	</div>
+	
+	<div class="row form-group">
+		<div class="box_fields">
+			@Html.EditorFor(x=>x.Series, new {ReadOnly = true})
+			@Html.EditorFor(x=>x.Number, new {ReadOnly = true})
+			@Html.EditorFor(x=>x.DocType, new {ReadOnly = true})
+		</div>
+	</div>
+
+	<div class="row form-group">
+		<div class="box_fields">
+			@Html.EditorFor(x=>x.IssueDate, new {ReadOnly = true})
+			@Html.EditorFor(x=>x.ExpirationDate, new {ReadOnly = true})
+			@Html.EditorFor(x=>x.IssueLocation, new {ReadOnly = true})
+		</div>
+	</div>
+	
+	<div class="row form-group">
+		<div class="box_fields">
+			@Html.EditorFor(x=>x.Validity, new {ReadOnly = true})
+		</div>
+	</div>
+</div>
+
+
+@foreach (var registration in Model.Registration)
+{
+	<div class="box-content">
+		<h4 class="page-header">@MUI.RspInfo_Address</h4>
+		<div class="form-horizontal bootstrap-validator-form">
+			<div class="box_fields">
+				<div class="form-group">
+					@Html.EditorFor(x=>registration.RegType, new {ReadOnly = true})
+					@Html.EditorFor(x=>registration.RegDate, new {ReadOnly = true})
+					@Html.EditorFor(x=>registration.ExpirationDateAddress, new {ReadOnly = true})
+				</div>
+			</div>
+			<div class="box_fields">
+				<div class="form-group">
+					@Html.EditorFor(x=>registration.Region, new {ReadOnly = true})
+					@Html.EditorFor(x=>registration.Locality, new {ReadOnly = true})
+					@Html.EditorFor(x=>registration.AdministrativCode, new {ReadOnly = true})
+				</div>
+			</div>
+			<div class="box_fields">
+				<div class="form-group">
+					@Html.EditorFor(x=>registration.Street, new {ReadOnly = true})
+					@Html.EditorFor(x=>registration.StreetCode, new {ReadOnly = true})
+					@Html.EditorFor(x=>registration.StreetAddress, new {ReadOnly = true})
+				</div>
+			</div>
+			<div class="box_fields">
+				<div class="form-group">
+					@Html.EditorFor(x=>registration.House, new {ReadOnly = true})
+					@Html.EditorFor(x=>registration.Block, new {ReadOnly = true})
+					@Html.EditorFor(x=>registration.Flat, new {ReadOnly = true})
+				</div>
+			</div>
+		</div>
+	</div>
+}
+
+<script type="text/javascript">
+	$('.box_fields .rsa-form-group > div.col-sm-4').removeClass('col-sm-4').addClass('col-sm-3');
+	$('.box_fields .rsa-form-group > div.col-sm-2').removeClass('col-sm-2').addClass('col-sm-1');
+</script>

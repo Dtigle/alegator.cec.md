@@ -1,0 +1,11 @@
+﻿@using CEC.Web.SRV.Infrastructure
+@using CEC.Web.SRV.Resources
+@model System.Web.Mvc.HandleErrorInfo
+
+@{
+	ViewBag.Title = MUI.Error_TabTitle;
+}
+
+<h1 class="text-danger">@MUI.Error_TabTitle</h1>
+<h2 class="text-danger">@Model.Exception.GetLocalizedMessage()</h2>
+

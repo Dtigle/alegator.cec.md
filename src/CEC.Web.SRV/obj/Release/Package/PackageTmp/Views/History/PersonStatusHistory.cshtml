@@ -1,0 +1,22 @@
+﻿@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.History
+@using Lib.Web.Mvc.JQuery.JqGrid
+@model long
+
+@{
+    var grid = Html.GridOptions<PersonStatusHistoryGridModel>("personStatusHistory", width: 800)
+        .BuildGrid(Url.Action("ListPersonStatusHistoryAjax", new {id = Model}),columnChooser:false,showFilterToolbar:false)
+		.Navigator(new JqGridNavigatorOptions {Add = false, Edit = false, Delete = false, Search = false});
+}
+
+<div class="clearfix">
+    @grid.GetHtml()
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        @grid.GetJavaScript();
+        $('#personStatusHistory').jqGrid().remapColumns([1, 2, 0, 3, 4, 5, 6, 7, 8], true, false);
+        $('.modal-content').attr('style', 'width:840px;');
+    });
+</script>

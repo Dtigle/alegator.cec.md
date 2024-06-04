@@ -1,0 +1,79 @@
+﻿@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.Lookup
+@using CEC.Web.SRV.Resources
+@using Lib.Web.Mvc.JQuery.JqGrid
+
+@{
+    ViewBag.Title = @MUI.RegionTypes_TabTitle;
+}
+
+@{
+    var grid = Html.GridOptions<RegionTypesGridModel>("regionTypes")
+        .BuildGrid(Url.Action("ListRegionTypesAjax"), null, null, null, null /*Url.Action("UnDeleteRegionType")*/,
+            Url.Action("RegionTypeHistory", "History"), Url.Action("ExportRegionTypes"))
+        .Navigator(new JqGridNavigatorOptions()
+        {
+            Add = false,
+            Edit = false,
+            Delete = false,
+            Search = true,
+            AddFunction = "$.CreateUpdateRegionType",
+            EditFunction = "$.CreateUpdateRegionType",
+            DeleteFunction = "$.DeleteRegionType",
+            CloneToTop = true
+        });
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-content">
+                <h4 class="page-header">@MUI.RegionTypes_TabTitle</h4>
+                @grid.GetHtml()
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        @grid.GetJavaScript();
+        $('#regionTypes').jqGrid().remapColumns([1, 2, 0, 3, 4, 5, 6, 7, 8], true, false);
+    });
+    
+	$.CreateUpdateRegionType = function (regionTypeId) {
+		var regionTypeParam = null;
+		var url = '@Url.Action("CreateUpdateRegionType","Lookup")';
+		var dialogTitle = '@MUI.RegionTypeAdd_DialogTitle';
+		if (regionTypeId != undefined) {
+			dialogTitle = '@MUI.RegionTypeEdite_DialogTitle';
+			regionTypeParam = regionTypeId;
+		}
+
+		$.openDialog($(this), {
+			url: url + '?regionTypeId=' + regionTypeParam,
+			title: dialogTitle,
+			onSubmit: function () {
+				$("#regionTypes").trigger('reloadGrid');
+			},
+		});
+	};
+
+	$.DeleteRegionType = function (regionTypeId) {
+
+		var url = '@Url.Action("DeleteRegionType")';
+
+		BootstrapDialog.confirm('@MUI.RegionTypeDelete_Message', function (result) {
+			if (result) {
+				$.ajax({
+					type: "POST",
+					url: url,
+					data: { id: regionTypeId },
+					success: function () {
+						$("#regionTypes").trigger('reloadGrid');
+					}
+				});
+			}
+		});
+	};
+</script>

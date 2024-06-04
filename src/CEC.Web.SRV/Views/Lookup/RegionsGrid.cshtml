@@ -1,0 +1,153 @@
+﻿@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.Lookup
+@using CEC.Web.SRV.Resources
+@using Lib.Web.Mvc.JQuery.JqGrid
+
+@{
+    ViewBag.Title = MUI.mnuRegions;
+}
+
+@{
+    var grid = Html.GridOptions<RegionGridViewModel>("regionsGriView")
+        //.SetOptions(x =>
+        //{
+        //	x.ColumnsRemaping = new List<int> { 4, 9, 10, 1, 0, 2, 3, 5, 11, 12, 13, 7, 6, 8 };
+        //})
+        .BuildGrid(Url.Action("ListRegionsGridAjax"), null, null, null,
+                    null /*Url.Action("UnDeleteRegion", "Lookup")*/,
+                    Url.Action("RegionHistory", "History"),
+                    Url.Action("ExportRegions")
+                    )
+        .Navigator(new JqGridNavigatorOptions
+        {
+            Add = false,
+            Edit = false,
+            Delete = false,
+            Search = true,
+            AddFunction = "$.CreateUpdateRegion",
+            EditFunction = "$.CreateUpdateRegion",
+            DeleteFunction = "$.DeleteRegion",
+            CloneToTop = true
+        })
+        //.AddNavigatorButton("Crează legătură", onClick: "$.linkRegions")
+        .AddNavigatorButton("Administrația", onClick:"$.UpdateAdministrativeInfo");
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-content">
+                <h4 class="page-header">@MUI.mnuRegions</h4>
+                @grid.GetHtml()
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		@grid.GetJavaScript();
+		$('#regionsGriView').jqGrid().remapColumns([4, 9, 10, 1, 0, 5, 2, 3, 11, 12, 13, 7, 6, 8], true, false);
+	});
+
+	$.CreateUpdateRegion = function(regionId) {
+		var url = '@Url.Action("CreateUpdateRegion", "Lookup")';
+		if (regionId == 1) {
+			BootstrapDialog.alert({ message: '@MUI.RegioneCountryNotModifichePermission', title: '@MUI.DialogTitle_Information' });
+			return;
+		}
+		var dialogTitle = '@MUI.RegionAdd_DialogTitle';
+		if (regionId != undefined) {
+			dialogTitle = '@MUI.RegionEdite_DialogTitle';
+		}
+
+		$.openDialog($(this), {
+			url: url + '?parentId=' + 1 + '&regionId=' + regionId,
+			title: dialogTitle,
+			onSubmit: function() {
+				$("#regionsGriView").trigger('reloadGrid');
+			},
+		});
+	};
+	
+	$.DeleteRegion = function(regionId) {
+
+		var url = '@Url.Action("DeleteRegion", "Lookup")';
+
+		BootstrapDialog.confirm('@MUI.RegionDelete_Message', function (result) {
+		 		if (result) {
+		 			$.ajax({
+		 				type: "POST",
+		 				url: url,
+		 				data: { id: regionId },
+		 				success: function () {
+		 					$("#regionsGriView").trigger('reloadGrid');
+		 				}
+		 			});
+		 		}
+		 	});
+	};
+	
+	$.UpdateAdministrativeInfo = function () {
+			var url = '@Url.Action("UpdateAdministrativeInfo","Lookup")';
+			var selectedRegionId = $("#regionsGriView").jqGrid('getGridParam', 'selrow');
+			if (selectedRegionId == undefined) {
+				BootstrapDialog.alert({ message: '@MUI.RegionNotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+		    	return;
+		    }
+
+			$.openDialog($(this), {
+				url: url + '?regionId=' + selectedRegionId,
+				title: '@MUI.PublicAdministration_DialogTitle',
+		        onSubmit: function () {
+		        	$("#regionsGriView").trigger('reloadGrid');
+		        },
+
+		    });
+	};
+	
+	$('body').on("change", "#Parent", function () {
+		$(this).find("option:selected").each(function () {
+				var regionId = $(this).val();
+				$.ajax({
+					url: "@Url.Action("SelectRegionType", "Lookup")",
+		    	type: "POST",
+		    	data: { regionId: regionId }
+		    }).done(function (regionsType) {
+		    	var regionTypeEl = $('#RegionType');
+		    	var selectedOption = regionTypeEl.val();
+		    	var options = $(regionsType).children().clone();
+		    	var optionExists = false;
+		    	for (var i = 0; i < options.length; i++) {
+		    		optionExists = optionExists || ($(options.get(i)).val() == selectedOption);
+		    	}
+		    	regionTypeEl.empty();
+		    	regionTypeEl.append(options);
+		    	if (optionExists) {
+		    		regionTypeEl.val(selectedOption);
+		    	}
+		    });
+		});
+	});
+	
+    $.linkRegions = function () {
+        var url = '@Url.Action("LinkRegions","Lookup")';
+        var selectedRegionId = $("#regionsGriView").jqGrid('getGridParam', 'selrow');
+	    if (selectedRegionId == undefined) {
+	        BootstrapDialog.alert({ message: '@MUI.RegionNotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+		        return;
+		    }
+
+	    $.openDialog($(this), {
+	        url: url + '?regionId=' + selectedRegionId,
+	        title: '@MUI.LinkedRegions_DialogTitle',
+		        onSubmit: function () {
+		            $("#regionsGriView").trigger('reloadGrid');
+		        },
+
+		    });
+	};
+</script>
+
+

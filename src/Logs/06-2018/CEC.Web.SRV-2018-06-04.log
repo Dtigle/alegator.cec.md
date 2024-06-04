@@ -1,0 +1,103 @@
+2018-06-04 14:55:05.6060 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog An error occured in MapPersonToVoter for SRV.Person.Id: 1 System.NullReferenceException: Object reference not set to an instance of an object.
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 289
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 189
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 99
+2018-06-04 14:56:11.2105 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog An error occured in MapPersonToVoter for SRV.Person.Id: 1 System.NullReferenceException: Object reference not set to an instance of an object.
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 289
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 189
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 138
+   at CEC.Web.SRV.EDayExport.ExportStageExecuter.ExecuteState() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\ExportStageExecuter.cs:line 60
+   at CEC.Web.SRV.Controllers.ClassifierSyncController.Post(SyncItem entity) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\Controllers\ClassifierSyncController.cs:line 158
+   at lambda_method(Closure , Object , Object[] )
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.<>c__DisplayClassc.<GetExecutor>b__6(Object instance, Object[] methodParameters)
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.Execute(Object instance, Object[] arguments)
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ExecuteAsync(HttpControllerContext controllerContext, IDictionary`2 arguments, CancellationToken cancellationToken)
+2018-06-04 14:57:00.0512 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog An error occured in MapPersonToVoter for SRV.Person.Id: 1 System.NullReferenceException: Object reference not set to an instance of an object.
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 289
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 189
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 99
+2018-06-04 15:00:20.7021 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog An error occured in MapPersonToVoter for SRV.Person.Id: 1 System.NullReferenceException: Object reference not set to an instance of an object.
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 289
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 189
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 138
+   at CEC.Web.SRV.EDayExport.ExportStageExecuter.ExecuteState() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\ExportStageExecuter.cs:line 60
+   at CEC.Web.SRV.Controllers.ClassifierSyncController.Post(SyncItem entity) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\Controllers\ClassifierSyncController.cs:line 158
+   at lambda_method(Closure , Object , Object[] )
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.<>c__DisplayClassc.<GetExecutor>b__6(Object instance, Object[] methodParameters)
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.Execute(Object instance, Object[] arguments)
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ExecuteAsync(HttpControllerContext controllerContext, IDictionary`2 arguments, CancellationToken cancellationToken)
+2018-06-04 15:00:58.1771 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog An error occured in MapPersonToVoter for SRV.Person.Id: 1 System.NullReferenceException: Object reference not set to an instance of an object.
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 289
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 189
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 99
+2018-06-04 15:01:01.0405 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog An error occured in MapPersonToVoter for SRV.Person.Id: 1 System.NullReferenceException: Object reference not set to an instance of an object.
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 289
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 189
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 138
+   at CEC.Web.SRV.EDayExport.ExportStageExecuter.ExecuteState() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\ExportStageExecuter.cs:line 60
+   at CEC.Web.SRV.Controllers.ClassifierSyncController.Post(SyncItem entity) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\Controllers\ClassifierSyncController.cs:line 158
+   at lambda_method(Closure , Object , Object[] )
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.<>c__DisplayClassc.<GetExecutor>b__6(Object instance, Object[] methodParameters)
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ActionExecutor.Execute(Object instance, Object[] arguments)
+   at System.Web.Http.Controllers.ReflectedHttpActionDescriptor.ExecuteAsync(HttpControllerContext controllerContext, IDictionary`2 arguments, CancellationToken cancellationToken)
+2018-06-04 15:03:03.9289 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog An error occured in MapPersonToVoter for SRV.Person.Id: 1 System.NullReferenceException: Object reference not set to an instance of an object.
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 289
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 189
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 99
+2018-06-04 15:25:12.1011 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog An error occured in MapPersonToVoter for SRV.Person.Id: 1 System.NullReferenceException: Object reference not set to an instance of an object.
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 289
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 189
+2018-06-04 15:29:20.7352 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog Unhandled exception occured: could not execute native bulk manipulation query:truncate table VoterSRV[SQL: truncate table VoterSRV] NHibernate.Exceptions.GenericADOException: could not execute native bulk manipulation query:truncate table VoterSRV[SQL: truncate table VoterSRV] ---> System.Data.SqlClient.SqlException: Cannot find the object "VoterSRV" because it does not exist or you do not have permissions.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at NHibernate.AdoNet.AbstractBatcher.ExecuteNonQuery(IDbCommand cmd)
+   at NHibernate.Engine.Query.NativeSQLQueryPlan.PerformExecuteUpdate(QueryParameters queryParameters, ISessionImplementor session)
+   --- End of inner exception stack trace ---
+   at NHibernate.Engine.Query.NativeSQLQueryPlan.PerformExecuteUpdate(QueryParameters queryParameters, ISessionImplementor session)
+   at NHibernate.Impl.StatelessSessionImpl.ExecuteNativeUpdate(NativeSQLQuerySpecification nativeSQLQuerySpecification, QueryParameters queryParameters)
+   at NHibernate.Impl.SqlQueryImpl.ExecuteUpdate()
+   at CEC.Web.SRV.EDayExport.SaiseRepository.ExecuteQuery(String query) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\SaiseRepository.cs:line 365
+   at CEC.Web.SRV.EDayExport.SaiseRepository.ClearVoterTemporaryTable() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\SaiseRepository.cs:line 359
+   at CEC.Web.SRV.EDayExport.SaiseRepository.InsertVotersInTemporaryTable(List`1 voters) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\SaiseRepository.cs:line 151
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 104
+2018-06-04 15:34:32.2592 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog Unhandled exception occured: could not execute native bulk manipulation query:truncate table VoterSRV[SQL: truncate table VoterSRV] NHibernate.Exceptions.GenericADOException: could not execute native bulk manipulation query:truncate table VoterSRV[SQL: truncate table VoterSRV] ---> System.Data.SqlClient.SqlException: Cannot find the object "VoterSRV" because it does not exist or you do not have permissions.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at NHibernate.AdoNet.AbstractBatcher.ExecuteNonQuery(IDbCommand cmd)
+   at NHibernate.Engine.Query.NativeSQLQueryPlan.PerformExecuteUpdate(QueryParameters queryParameters, ISessionImplementor session)
+   --- End of inner exception stack trace ---
+   at NHibernate.Engine.Query.NativeSQLQueryPlan.PerformExecuteUpdate(QueryParameters queryParameters, ISessionImplementor session)
+   at NHibernate.Impl.StatelessSessionImpl.ExecuteNativeUpdate(NativeSQLQuerySpecification nativeSQLQuerySpecification, QueryParameters queryParameters)
+   at NHibernate.Impl.SqlQueryImpl.ExecuteUpdate()
+   at CEC.Web.SRV.EDayExport.SaiseRepository.ExecuteQuery(String query) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\SaiseRepository.cs:line 365
+   at CEC.Web.SRV.EDayExport.SaiseRepository.ClearVoterTemporaryTable() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\SaiseRepository.cs:line 359
+   at CEC.Web.SRV.EDayExport.SaiseRepository.InsertVotersInTemporaryTable(List`1 voters) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\SaiseRepository.cs:line 151
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 104
+2018-06-04 15:37:18.6842 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog Unhandled exception occured: could not execute native bulk manipulation query:truncate table VoterSRV[SQL: truncate table VoterSRV] NHibernate.Exceptions.GenericADOException: could not execute native bulk manipulation query:truncate table VoterSRV[SQL: truncate table VoterSRV] ---> System.Data.SqlClient.SqlException: Cannot find the object "VoterSRV" because it does not exist or you do not have permissions.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at NHibernate.AdoNet.AbstractBatcher.ExecuteNonQuery(IDbCommand cmd)
+   at NHibernate.Engine.Query.NativeSQLQueryPlan.PerformExecuteUpdate(QueryParameters queryParameters, ISessionImplementor session)
+   --- End of inner exception stack trace ---
+   at NHibernate.Engine.Query.NativeSQLQueryPlan.PerformExecuteUpdate(QueryParameters queryParameters, ISessionImplementor session)
+   at NHibernate.Impl.StatelessSessionImpl.ExecuteNativeUpdate(NativeSQLQuerySpecification nativeSQLQuerySpecification, QueryParameters queryParameters)
+   at NHibernate.Impl.SqlQueryImpl.ExecuteUpdate()
+   at CEC.Web.SRV.EDayExport.SaiseRepository.ExecuteQuery(String query) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\SaiseRepository.cs:line 365
+   at CEC.Web.SRV.EDayExport.SaiseRepository.ClearVoterTemporaryTable() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\SaiseRepository.cs:line 359
+   at CEC.Web.SRV.EDayExport.SaiseRepository.InsertVotersInTemporaryTable(List`1 voters) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\SaiseRepository.cs:line 151
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 104

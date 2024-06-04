@@ -1,0 +1,166 @@
+﻿@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.QuartzAdmin
+@using CEC.Web.SRV.Resources
+@using Lib.Web.Mvc.JQuery.JqGrid
+@{
+    var grid = Html.GridOptions<QuartzRunningJobsGridModel>("quartzRunningJobs", rowsPerPage: 10, height: 200)
+         .SetOptions(x =>
+         {
+             x.OnSelectRow = "onRowSelect";
+             x.SubgridEnabled = true;
+             x.SubGridRowExpanded = "showStagesProgress";
+         })
+         .BuildGrid(null, columnChooser: false, showFilterToolbar: false)
+        .Navigator(new JqGridNavigatorOptions() { Add = false, Edit = false, Delete = false, CloneToTop = true })
+        .AddNavigatorButton(new JqGridNavigatorButtonOptions { Caption = MUI.QuartzAdmin_InterruptJob, OnClick = "gridInterruptJobAction", Id = "interruptRunningJob" });
+}
+@grid.GetHtml()
+
+<div class="contextMenu" id="runningJobsMnu" style="display: none">
+    <ul style="width: initial !important">
+        <li class="mnuInterruptJob">
+            <span class="fa fa-pencil-square-o" style="float: left"></span>
+            <span style="font-size: 11px; font-family: Verdana; padding-left: 10px;"> @MUI.QuartzAdmin_InterruptJob</span>
+        </li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        @grid.GetJavaScript();
+
+        $('#quartzRunningJobs').jqGrid().remapColumns([0, 4, 5, 6, 7, 8, 1, 2, 3], true, false);
+
+        var grid = $('#quartzRunningJobs');
+        grid.contextMenu('runningJobsMnu', {
+            onContextMenu: function (e) {
+                var rowId = $(e.target).closest("tr.jqgrow").attr("id");
+                if (!rowId) {
+                    return false;
+                }
+
+                return true;
+            }
+        });
+    });
+
+    $.originalGridData = {};
+
+    function onRowSelect() {
+        var grid = $(this);
+        var selection = grid.jqGrid('getGridParam', 'selrow');
+        var rowData = grid.jqGrid('getRowData', selection);
+        if (!rowData.IsInterruptable) {
+            $('#interruptRunningJob').hide();
+        }
+    }
+
+    function gridInterruptJobAction() {
+        interruptJobActions($(this));
+    }
+
+    $('.mnuInterruptJob').click(function () {
+        $('#jqContextMenu').hide().next().hide();
+        interruptJobActions($('#quartzRunningJobs'));
+    });
+
+    function progressFormatter(cellvalue, options, rowObject) {
+        var content = "<div class=\"meter\">" + cellvalue + "</div>";
+
+        return content;
+    }
+
+    function progressUnFormatter(cellValue, options, rowdata, action) {
+        return cellValue;
+    }
+
+    function updateProgress(grid) {
+        grid.find("div.meter").each(function () {
+            var value = parseFloat($(this).text());
+            $(this).text('').progressbar({ value: value });
+        });
+    }
+
+    function showStagesProgress(subgridDivId, rowId) {
+        var found = $.grep($.originalGridData, function (item) {
+            return item.Id === rowId;
+        });
+
+        if ($.isEmptyObject(found)) {
+            return;
+        }
+
+        var stagesData = found[0].Progress.StageInfos;
+
+        var divContent = createContent(stagesData);
+        $("#" + subgridDivId).html(divContent);
+        updateSubgrids();
+    }
+
+    function createContent(stages) {
+        if (stages.length === 0) {
+            return "";
+        }
+
+        var table = document.createElement("table");
+        table.setAttribute("class", "table");
+        $.each(stages, function (index, item) {
+            var tr = document.createElement("tr");
+            $(tr).attr("id", item.Id);
+            var td1 = document.createElement("td");
+            td1.appendChild(document.createTextNode(item.Comments));
+            td1.setAttribute("class", "stageName");
+            var td2 = document.createElement("td");
+            td2.setAttribute("class", "stageRatio");
+            var progress = createProgress(item);
+            td2.appendChild(progress);
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+
+            table.appendChild(tr);
+        });
+
+        return table;
+    }
+
+    function createProgress(progressData) {
+        if (progressData == undefined) {
+            return "";
+        }
+
+        var progressDiv = document.createElement('div');
+        var progressBarDiv = document.createElement('div');
+        progressBarDiv.setAttribute('class', 'progress-bar progress-bar-success');
+        progressBarDiv.setAttribute('role', 'progressbar');
+        progressDiv.appendChild(progressBarDiv);
+
+        updateProgressBar(progressBarDiv, progressData);
+
+        return progressDiv;
+    }
+
+    function updateProgressBar(element, progressData, message) {
+        element.setAttribute('aria-valuenow', progressData.Ratio);
+        element.setAttribute('aria-valuemin', '0');
+        element.setAttribute('aria-valuemax', '100');
+        element.setAttribute('style', 'width: ' + progressData.Ratio + '%');
+
+        if (message == undefined || message === '') {
+            return;
+        }
+
+        element.innerHTML = '<span>' + message + ' (' + progressData.Ratio.toFixed(2) + '%)' + '</span>';
+    }
+
+    function updateSubgrids() {
+        $.each($.originalGridData, function (index, item) {
+            $.each(item.Progress.StageInfos, function(i, si) {
+                var ratioCell = $('tr[id="' + si.Id + '"] div.progress-bar');
+                if (ratioCell.length > 0) {
+                    updateProgressBar(ratioCell.get(0), si, si.Value + ' din ' + si.Maximum);
+                }
+            });
+        });
+    }
+
+</script>

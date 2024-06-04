@@ -1,0 +1,9 @@
+D:\work\CEC\CEC.SRV\src\CEC.SRV.Database\bin\Release\CEC.SRV.Database.dacpac
+D:\work\CEC\CEC.SRV\src\CEC.SRV.Database\bin\Release\CEC.SRV.Database.dll
+D:\work\CEC\CEC.SRV\src\CEC.SRV.Database\bin\Release\CEC.SRV.Database.pdb
+D:\work\CEC\CEC.SRV\src\CEC.SRV.Database\obj\Release\Model.xml
+D:\work\CEC\CEC.SRV\src\CEC.SRV.Database\obj\Release\refactor.xml
+D:\work\CEC\CEC.SRV\src\CEC.SRV.Database\obj\Release\postdeploy.sql
+D:\work\CEC\CEC.SRV\src\CEC.SRV.Database\obj\Release\predeploy.sql
+D:\work\CEC\CEC.SRV\src\CEC.SRV.Database\obj\Release\CEC.SRV.Database.dll
+D:\work\CEC\CEC.SRV\src\CEC.SRV.Database\obj\Release\CEC.SRV.Database.pdb

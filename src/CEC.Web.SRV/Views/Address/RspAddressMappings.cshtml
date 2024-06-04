@@ -1,0 +1,61 @@
+﻿@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.Address
+@using CEC.Web.SRV.Models.AppConfiguration
+@using CEC.Web.SRV.Resources
+@using Lib.Web.Mvc.JQuery.JqGrid
+
+@{
+    ViewBag.Title = MUI.RSPAddressMappings;
+}
+
+@{
+    var grid = Html.GridOptions<RspAddressMappingGridModel>("rspAddressMappings")
+        .BuildGrid(Url.Action("ListRspAddressMappingsAjax"), null, null, null, null,
+            null, Url.Action("ExportRspAddressMappings"))
+        .Navigator(new JqGridNavigatorOptions()
+        {
+            Add = false,
+            Edit = false,
+            Delete = true,
+            Search = true,
+            DeleteFunction = "$.DeleteRspAddressMappings",
+            CloneToTop = true
+        });
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-content">
+                <h4 class="page-header">@MUI.RSPAddressMappings</h4>
+                @grid.GetHtml()
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    (function ($) {
+        $(document).ready(function () {
+            @grid.GetJavaScript();
+        });
+
+        $.DeleteRspAddressMappings = function (addressMappingId) {
+            var url = '@Url.Action("DeleteRspAddressMappings", "Address")';
+
+            BootstrapDialog.confirm('@MUI.AddressMappingDelete_Message', function (result) {
+                if (result) {
+                    $.ajax({
+                        type: 'POST',
+                        url: url,
+                        data: { addressMappingId: addressMappingId },
+                        success: function () {
+                            $('#rspAddressMappings').trigger('reloadGrid');
+                        }
+                    });
+                }
+
+            });
+        };
+    })(jQuery);
+</script>

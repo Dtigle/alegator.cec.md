@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <!--<Operation Name="Rename Refactor" Key="a1826982-b8ca-4190-b3d0-610e0e1375ae" ChangeDateTime="06/06/2014 19:15:49">
+    <Property Name="ElementName" Value="[Lookup].[PersonStatuses].[shortDescription]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[Lookup].[PersonStatuses]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="name" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="70349ee1-b266-4df0-9e37-0313f611c8ea" ChangeDateTime="06/12/2014 07:28:56">
+    <Property Name="ElementName" Value="[Lookup].[StreetTypes].[streetTypeId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[Lookup].[StreetTypes]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="managerTypeId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ef87f964-e814-4709-aa4c-5aea0da3b231" ChangeDateTime="06/13/2014 12:54:38">
+    <Property Name="ElementName" Value="[Access].[IdentityUsers].[buitIn]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[Access].[IdentityUsers]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="builtIn" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="d08850ca-65fe-4d1b-89e4-d3ba90ce49d4" ChangeDateTime="06/16/2014 13:00:15">
+    <Property Name="ElementName" Value="[SRV].[AdditionalUserInfos]" />
+    <Property Name="ElementType" Value="SqlTable" />
+    <Property Name="ParentElementName" Value="[SRV]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[SRVIdentityUsers]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="4fb456f3-312d-4e05-8838-a9adbe940dda" ChangeDateTime="06/29/2014 17:24:55">
+    <Property Name="ElementName" Value="[SRV].[Addresses].[sufix]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[SRV].[Addresses]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="suffix" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="2411b365-f51f-4e0e-aa45-f049d126535d" ChangeDateTime="06/30/2014 07:46:17">
+    <Property Name="ElementName" Value="[SRV].[Addresses].[IsAdministrativ]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[SRV].[Addresses]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IsAdministrative" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="119b1761-b707-4451-83ce-197a1c428784" ChangeDateTime="06/30/2014 07:49:14">
+    <Property Name="ElementName" Value="[SRV].[Addresses].[IsAdministrative]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[SRV].[Addresses]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="isAdministrative" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="0c588ce2-1440-479d-88e7-8fd0262625b3" ChangeDateTime="06/30/2014 08:36:02">
+    <Property Name="ElementName" Value="[SRV].[Addresses].[isAdministrative]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[SRV].[Addresses]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="buildingTypesId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="555caedf-e665-4e2d-a9c6-9f556b743001" ChangeDateTime="06/30/2014 09:28:19">
+    <Property Name="ElementName" Value="[SRV].[Addresses].[buildingTypesId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[SRV].[Addresses]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="buildingType" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="157b558a-5132-4534-b29d-3a2af401937d" ChangeDateTime="06/30/2014 13:22:38">
+    <Property Name="ElementName" Value="[Lookup].[Regions].[description]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[Lookup].[Regions]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="surname" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="81586bcf-b75d-493d-a3cf-6f65b3e63b2b" ChangeDateTime="06/30/2014 13:22:58">
+    <Property Name="ElementName" Value="[Lookup].[Regions].[parentId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[Lookup].[Regions]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="managerId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="1b2dee87-6d60-40a6-9516-238be69de1b9" ChangeDateTime="07/01/2014 14:41:03">
+    <Property Name="ElementName" Value="[SRV].[People].[houseNumber]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[SRV].[People]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="appartmentNumber" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="20ef856a-a289-4a73-84a2-0f3eccec3c67" ChangeDateTime="07/01/2014 14:41:22">
+    <Property Name="ElementName" Value="[SRV].[People].[appartmentNumber]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[SRV].[People]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="apartmentNumber" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="5307be8b-8c97-4458-944a-573b82a5a18b" ChangeDateTime="07/01/2014 14:58:07">
+    <Property Name="ElementName" Value="[SRV].[People].[apartmentNumber]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[SRV].[People]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="apNumber" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="021181eb-e899-4862-b979-e777370ad2ef" ChangeDateTime="07/01/2014 14:58:11">
+    <Property Name="ElementName" Value="[SRV].[People].[suffix]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[SRV].[People]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="apsuffix" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c909ea65-7fee-4bc0-849a-a5355b985577" ChangeDateTime="07/01/2014 14:58:16">
+    <Property Name="ElementName" Value="[SRV].[People].[apsuffix]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[SRV].[People]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="apSuffix" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="8ef01978-07e8-4cc5-be4e-679e040968dc" ChangeDateTime="07/02/2014 07:01:31">
+    <Property Name="ElementName" Value="[SRV].[PersonAddresses].[apartment]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[SRV].[PersonAddresses]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="apNumber" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="911f3078-9007-4c04-968e-19cb5ab4db0d" ChangeDateTime="07/17/2014 08:43:16">
+    <Property Name="ElementName" Value="[SRV].[AdditionalUserInfos].[denderId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[SRV].[AdditionalUserInfos]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="genderId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="1b31c9a8-9e51-484e-abb1-4d85a06531fc" ChangeDateTime="07/17/2014 09:20:30">
+    <Property Name="ElementName" Value="[SRV].[AdditionalUserInfos].[genderId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[SRV].[AdditionalUserInfos]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="gender" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="f6528952-c3bd-4ddf-8510-0a9b2fd1a161" ChangeDateTime="07/17/2014 09:37:16">
+    <Property Name="ElementName" Value="[SRV].[AdditionalUserInfos].[gender]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[SRV].[AdditionalUserInfos]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="genderId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="d36f0c2a-cf7b-452e-9cae-2f972da87323" ChangeDateTime="07/17/2014 11:36:08">
+    <Property Name="ElementName" Value="[SRV].[AdditionalUserInfos].[genderId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[SRV].[AdditionalUserInfos]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="gender" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="0c7fdd8a-8cca-49fc-bb11-257b9adf4336" ChangeDateTime="07/17/2014 11:38:58">
+    <Property Name="ElementName" Value="[SRV].[AdditionalUserInfos].[gender]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[SRV].[AdditionalUserInfos]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="genderId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="e26b4789-263a-41c0-bedc-d4dea7ef7f8e" ChangeDateTime="08/01/2014 09:14:00">
+    <Property Name="ElementName" Value="[SRV].[PersonAddresses].[personAddressTypeId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[SRV].[PersonAddresses]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="personAddressTypeId" />
+  </Operation>-->
+  <Operation Name="Rename Refactor" Key="791105b1-a93c-48ff-8811-091b9c4540af" ChangeDateTime="09/11/2014 08:27:54">
+    <Property Name="ElementName" Value="[Exporter].[PrintSessions].[identityUserId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[Exporter].[PrintSessions]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="createdBy" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="934a8672-cded-435b-b1d3-a3f399b26cbd" ChangeDateTime="09/11/2014 08:28:09">
+    <Property Name="ElementName" Value="[Exporter].[PrintSessions].[createdBy]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[Exporter].[PrintSessions]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="createdById" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="671fa8d1-4d61-446f-bf68-fdfb61fd443c" ChangeDateTime="10/07/2014 11:05:54">
+    <Property Name="ElementName" Value="[SRV].[NotificationReceivers].[IX_NotificationReceivers_Column]" />
+    <Property Name="ElementType" Value="SqlIndex" />
+    <Property Name="ParentElementName" Value="[SRV].[NotificationReceivers]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[IX_NotificationReceivers_User_IsRead]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b07063e0-591a-48f5-b22b-d2ca8f1cbbcd" ChangeDateTime="10/15/2014 07:26:32">
+    <Property Name="ElementName" Value="[Importer].[ImportStatistics].[regionId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[Importer].[ImportStatistics]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="region" />
+  </Operation>
+</Operations>

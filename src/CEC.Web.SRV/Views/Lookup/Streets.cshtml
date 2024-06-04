@@ -1,0 +1,77 @@
+﻿@using CEC.Web.SRV.Resources
+
+@{
+    ViewBag.Title = MUI.Streets;
+}
+
+<div class="box-content">
+	<h4 class="page-header">@MUI.Streets</h4>
+	<div class="row">
+        <div class="col-sm-3">
+			@Html.Partial("_TreeViewLocalities" )
+		</div>
+		<div class="col-sm-9">
+	        @Html.Partial("_Streets" )
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+    (function ($) {
+        var currentRegion = 0;
+        
+        $.onRegionSelect = function (regionId) {
+            currentRegion = regionId;
+            var streetGrid = $('#streets').jqGrid();
+            streetGrid.jqGrid('setGridParam', { 'postData': { 'regionId': regionId } });
+            streetGrid.trigger('reloadGrid', [{ page: 1 }]);
+        };
+
+        
+        $.CreateUpdateStreet = function (streetId) {
+            if (currentRegion == 0) {
+                BootstrapDialog.alert({message: '@MUI.RegionNotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+                return;
+            }
+            var url = '@Url.Action("CreateUpdateStreet","Lookup")';
+
+            var streetParam = '';
+            var dialogTitle = '@MUI.StreetAdd_DialogTitle';
+            if (streetId != undefined) {
+                streetParam = '&streetId=' + streetId;
+                dialogTitle = '@MUI.StreetEdite_DialogTitle';
+            } 
+            
+            $.openDialog($(this), {
+                url: url + '?regionId=' + currentRegion + streetParam,
+                title: dialogTitle,
+                onSubmit: function () {
+                    $("#streets").trigger('reloadGrid', [{ current: true }]);
+                },
+                
+            });
+            
+        };
+        
+        $.DeleteStreet = function (streetId) {
+            if (currentRegion == 0) {
+                BootstrapDialog.alert({message: '@MUI.RegionNotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+                return;
+            }
+            var url = '@Url.Action("DeleteStreet","Lookup")';
+
+            BootstrapDialog.confirm('@MUI.StreetDelete_Message', function (result) {
+                if (result) {
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        data: { streetId: streetId },
+                        success: function(returnData) {
+                            $("#streets").trigger('reloadGrid', [{ current: true }]);
+                        }
+                    });
+                }
+            });          
+        };
+    })(jQuery);
+</script>

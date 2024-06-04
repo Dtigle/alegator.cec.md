@@ -1,0 +1,51 @@
+﻿@using System.Reflection
+@using System.Web.Mvc.Html
+@using CEC.Web.SRV.Infrastructure
+
+
+@{
+    Layout = "_Template.cshtml";
+}
+
+@{
+    var containerType = ViewData.ModelMetadata.ContainerType;
+    var propertyName = ViewData.ModelMetadata.PropertyName;
+    var property = containerType.GetProperty(propertyName);
+    var select2RemoteConfig = property.GetCustomAttribute<Select2RemoteConfigAttribute>();
+}
+
+
+@section Data
+{
+   @Html.HiddenFor(x => Model)
+        <script type="text/javascript">
+        	$(document).ready(function (e) {
+        		$('#@ViewData.TemplateInfo.GetFullHtmlFieldId("")').select2({
+                    multiple: true,
+                    closeOnSelect: false,
+            		ajax: {
+            			url: '@Url.Action(select2RemoteConfig.AjaxAction, select2RemoteConfig.AjaxController)',
+            		    dataType: '@select2RemoteConfig.AjaxDataType',
+            		    quietMillis: 200,
+            			type: 'POST',
+                	 	data: function (term, page) {
+                	 		var dataFuncName = '@select2RemoteConfig.AjaxData_JsFuncName';
+                        	if (typeof window[dataFuncName] === 'function') {
+                        		return window[dataFuncName](term, page, '@select2RemoteConfig.PageLimit');
+                            } else {
+                            	return {};
+                            }
+                        },
+                	 	results: function (data, page) {
+                	 		var resultsFuncName = '@select2RemoteConfig.AjaxResults_JsFuncName';
+                        	if (typeof window[resultsFuncName] === 'function') {
+                        		var more = (page * 10) < data.Total;
+                        		return window[resultsFuncName](data.Items, more);
+                        	}
+                        	return { results: data };
+                        }
+                	 }
+            	});
+        	})
+        </script>
+}

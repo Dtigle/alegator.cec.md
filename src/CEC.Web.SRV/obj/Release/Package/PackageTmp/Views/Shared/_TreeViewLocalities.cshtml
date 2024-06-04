@@ -1,0 +1,73 @@
+﻿@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.Lookup
+@using Lib.Web.Mvc.JQuery.JqGrid
+
+@{
+    
+    var grid = Html.GridOptions<LocalitiesTreeView>("regionsGrid", 464)
+        .SetOptions(x =>
+        {
+            x.AutoWidth = true;
+            x.OnCellSelect = "onCellSelect";
+            x.ExpandColumn = "Name";
+            x.Url = Url.Action("ListTreeViewRegionsAjax", "Lookup");
+            x.MultiSelect = true;
+            x.GridComplete = "treeGridComplete";
+        })
+        .BuildTree();
+}
+
+@grid.GetHtml()
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        @grid.GetJavaScript()
+    });
+
+    function treeGridComplete() {
+        var treeGrid = $(this);
+        var data = treeGrid.jqGrid('getGridParam', 'data');
+        if (data[0]) {
+            setTimeout(function() {
+                treeGrid.expandRow(data[0]);
+                treeGrid.expandNode(data[0]);
+            }, 0);
+        }
+    }
+
+    function onCellSelect(rowid, iCol, cellcontent) {
+            
+        if ($.onRegionSelect && typeof ($.onRegionSelect) == "function"){
+            
+            $.onRegionSelect.call(this, rowid, iCol, cellcontent);
+        }
+    }
+  
+</script>
+
+<style>
+
+    #gbox_regionsGrid .ui-jqgrid-hdiv {
+        display: none;
+    }
+    #gbox_regionsGrid .ui-jqgrid {
+        border-right-width: 0px;
+        border-left-width: 0px;
+    }
+    #gbox_regionsGrid .ui-jqgrid {
+        border-width: 0px;
+    }
+        #gbox_regionsGrid .ui-jqgrid tr.ui-row-ltr td {
+            border-right-color: transparent;
+        }
+    #gbox_regionsGrid th.ui-th-column {
+        border-right-color: transparent !important;
+    }
+    #gbox_regionsGrid .ui-jqgrid-labels .ui-th-column {
+        border-right-color: transparent;
+    }
+    #gbox_regionsGrid .ui-jqgrid-bdiv {
+        max-height: 600px;
+    }
+</style>
+

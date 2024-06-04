@@ -1,0 +1,82 @@
+﻿
+@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.Interop
+@using CEC.Web.SRV.Models.Lookup
+@using CEC.Web.SRV.Models.UnDelete
+@using CEC.Web.SRV.Resources
+@using Lib.Web.Mvc.JQuery.JqGrid
+
+@{
+    ViewBag.Title = MUI.Interop_InteropSystems;
+}
+
+@{
+    var grid = Html.GridOptions<InteropSystemGridModel>("interopSystems")
+        .BuildGrid(Url.Action("ListInteropSystemsAjax"), null, null, null, Url.Action("UnDeleteInteropSystem"), null)
+        .Navigator(new JqGridNavigatorOptions()
+        {
+            Add = true,
+            Edit = true,
+            Delete = true,
+            Search = true,
+            AddFunction = "$.CreateUpdateInteropSystem",
+            EditFunction = "$.CreateUpdateInteropSystem",
+            DeleteFunction = "$.DeleteInteropSystem",
+            CloneToTop = true
+        });
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-content">
+                <h4 class="page-header">@MUI.Interop_InteropSystems</h4>
+                @grid.GetHtml()
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        @grid.GetJavaScript();
+    });
+
+    $.CreateUpdateInteropSystem = function (interopSystemId) {
+
+        var idParam = null;
+        var url = '@Url.Action("CreateUpdateInteropSystem", "Interop")';
+        var dialogTitle = '@MUI.InteropSystem_Add_DialogTitle';
+        if (interopSystemId != undefined) {
+            dialogTitle = '@MUI.InteropSystem_Edit_DialogTitle';
+            idParam = interopSystemId;
+        }
+
+        $.openDialog($(this), {
+            url: url + '?itemId=' + idParam,
+            title: dialogTitle,
+            onSubmit: function () {
+                $("#interopSystems").trigger('reloadGrid');
+            }
+        });
+    };
+
+    $.DeleteInteropSystem = function (institutionId) {
+
+        var url = '@Url.Action("DeleteInteropSystem")';
+
+        BootstrapDialog.confirm('@MUI.InstitutionDelete_Message', function (result) {
+            if (result) {
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: { id: institutionId },
+                    success: function () {
+                        $("#interopSystems").trigger('reloadGrid');
+                    }
+                });
+            }
+        });
+    };
+</script>

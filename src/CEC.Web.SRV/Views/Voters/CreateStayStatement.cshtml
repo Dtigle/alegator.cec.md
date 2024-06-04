@@ -1,0 +1,189 @@
+﻿@using CEC.SRV.Domain
+@using CEC.Web.SRV.Resources
+@model CEC.Web.SRV.Models.Voters.StayStatementModel
+
+@using (Html.BeginForm("CreateStayStatement", "Voters", FormMethod.Post, new { @class = "form-horizontal", id = "stayStatmentForm" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(x => x.Id)
+	@Html.HiddenFor(x => x.HasStreets)
+	@Html.HiddenFor(x => x.RegionStreetsType)
+    <div class="box" id="box1">
+        <div class="box-content">
+            <h5 class="page-header">@Html.LabelFor(x => x.PersonInfo)</h5>
+            <div class="row form-group">
+                @Html.HiddenFor(x => x.PersonInfo.PersonId)
+                @Html.EditorFor(x => x.PersonInfo.FullName, new { ReadOnly = true })
+                @Html.EditorFor(x => x.PersonInfo.DateOfBirth, new { ReadOnly = true })
+            </div>
+            <div class="row form-group">
+                @Html.EditorFor(x => x.PersonInfo.IDNP, new { ReadOnly = true })
+                <div class="control-label col-sm-2">
+                    <label>@Html.DisplayTextFor(x => x.PersonInfo.DocType)</label>
+                </div>
+                @Html.EditorFor(x => x.PersonInfo.DocNumber, new { HideLabel = true, ReadOnly = true })
+            </div>
+            <div class="row form-group">
+                @Html.EditorFor(x => x.PersonInfo.DocIssuedDate, new { ReadOnly = true })
+                @Html.EditorFor(x => x.PersonInfo.DocIssuedBy, new { ReadOnly = true })
+            </div>
+            <div class="row form-group">
+                @Html.EditorFor(x => x.PersonInfo.DocValidBy, new { ReadOnly = true })
+            </div>
+        </div>
+    </div>
+
+    <div class="box" id="box2">
+        <div class="box-content">
+            <h5 class="page-header">@Html.LabelFor(x => x.BaseAddressInfo)</h5>
+            <div class="form-group">
+                <div class="control-label col-sm-2">
+                    <label>@MUI.Person_Address</label>
+                </div>
+                @Html.HiddenFor(x => x.BaseAddressInfo.PersonAddressId)
+                @Html.EditorFor(x => x.BaseAddressInfo.FullAddress, new { HideLabel = true, ReadOnly = true})
+            </div>
+        </div>
+    </div>
+
+    <div class="box" id="box3">
+        <div class="box-content">
+	        <h5 class="page-header">@Html.LabelFor(x => x.DeclaredStayAddressInfo)</h5>
+	        <div class="form-group">
+		        @Html.EditorFor(x => x.StayStatementRegionId)
+	        </div>
+			 <div class="form-group isWithoutStreets"  style="display: none" >
+		        @Html.EditorFor(x => x.StayStatementPollingStationId)
+	        </div>
+	        <div class="form-group isWithStreets"  style="display: none" >
+		        @Html.EditorFor(x => x.DeclaredStayAddressInfo.AddressId)
+	        </div>
+	        <div class="form-group isWithStreets"  style="display: none" >
+		        @Html.EditorFor(x => x.DeclaredStayAddressInfo.ApNumber)
+	        </div>
+	        <div class="form-group isWithStreets"  style="display: none" >
+		        @Html.EditorFor(x => x.DeclaredStayAddressInfo.ApSuffix)
+	        </div>
+        </div>
+    </div>
+
+    <div class="box" id="box4">
+        <div class="box-content">
+            <h5 class="page-header">@Html.LabelFor(x => x.ElectionInfo)</h5>
+            <div class="form-group">
+                @Html.EditorFor(x => x.ElectionInfo.ElectionId)
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="@MUI.ButtonSave" class="btn btn-primary" />
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    $('#box2 .rsa-form-group > div.col-sm-4').removeClass('col-sm-4').addClass('col-sm-8');
+    $('#box3 .rsa-form-group > div.col-sm-4').removeClass('col-sm-4').addClass('col-sm-8');
+    $('#box4 .rsa-form-group > div.col-sm-4').removeClass('col-sm-4').addClass('col-sm-8');
+    $('.modal-content').attr('style', 'width:780px;');
+    
+    $(document).ready(function () {
+	    
+    	if ('@Model.RegionStreetsType' == '@RegionStreetsType.WithoutStreets') {
+    		$('.isWithoutStreets').show();
+    	} else if ('@Model.RegionStreetsType' == '@RegionStreetsType.WithStreets') {
+    		$('.isWithStreets').show();
+    	}
+
+    	$('#StayStatementRegionId').on('change', function () {
+    		
+    		$('#StayStatementPollingStationId').select2('data', null);
+    		$('#s2id_DeclaredStayAddressInfo_AddressId').select2('data', null);
+    		
+    		var url = '@Url.Action("GetRegionStreetsType","Voters")';
+    		var regionId = $('#StayStatementRegionId').val();
+    		$.ajax({
+    			type: "POST",
+    			url: url,
+    			data: { regionId: regionId },
+    			success: function (data) {
+    				if (data == "True") {
+    					$('.isWithoutStreets').hide();
+    					$('.isWithStreets').show();
+    					$('#HasStreets').val(true);
+    				} else {
+    					$('.isWithoutStreets').show();
+    					$('.isWithStreets').hide();
+    					$('#HasStreets').val(false);
+    				}
+    			}
+    		});
+    	});
+
+    });
+
+	function addressDataRequest(term, page, pageLimit) {
+		var regionId = null;
+		if ($('#StayStatementRegionId').val() != null) {
+			regionId = $('#StayStatementRegionId').val();
+		}
+        return {
+        	q: term,
+        	pageLimit: pageLimit,
+        	page: page,
+        	regionId: regionId
+        };
+    }
+    function addressResults(data, more) {
+    	return { results: data, more: more };
+    }
+    
+    $('span.fa-calendar').each(function () {
+        var parent = $(this).closest('div');
+        parent.addClass('has-feedback');
+    });
+    
+    function regionDataRequestStayStatement(term, page, pageLimit) {
+    	return {
+    		q: term,
+    		pageLimit: pageLimit,
+    		page: page
+    	};
+    }
+
+    function regionResultsStayStatement(data, more) {
+    	return { results: data, more: more };
+    }
+    
+    function votersDataRequestStayStatement(term, page, pageLimit) {
+	    var regionId = null;
+    	if ($('#StayStatementRegionId').val() != null) {
+    		regionId = $('#StayStatementRegionId').val();
+    	}
+    	return {
+    		regionId: regionId,
+    		q: term,
+    		pageLimit: pageLimit,
+    		page: page
+    	};
+    }
+
+    function votersResultsStayStatement(data, more) {
+    	return { results: data, more: more };
+    }
+    
+    function electionsDataRequest(term, page, pageLimit) {
+    	return {
+    		q: term,
+    		pageLimit: pageLimit,
+    		page: page
+    	};
+    }
+
+    function electionsResults(data, more) {
+    	return { results: data, more: more };
+    }
+</script>

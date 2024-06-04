@@ -1,0 +1,61 @@
+﻿@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.Notification
+@using CEC.Web.SRV.Resources
+@using Lib.Web.Mvc.JQuery.JqGrid
+
+
+@{
+	var grid = Html.GridOptions<NotificationGridModel>("notificationMessage")
+		 .SetOptions(x =>
+		 {
+			 x.OnCellSelect = "onCellSelect";
+			 x.AfterInsertRow = "rowInserted";
+		 } )
+		 .BuildGrid(Url.Action("ListNotificationAjax", "Notification"), exportAction: Url.Action("ExportNotifications"))
+		 .Navigator(new JqGridNavigatorOptions() {Add = false, Edit = false, Delete = false, CloneToTop = true });
+}
+
+@grid.GetHtml()
+
+<script type="text/javascript">
+	$(document).ready(function () {
+	    @grid.GetJavaScript();
+	    $('#notificationMessage').jqGrid().remapColumns([3, 0, 2, 1, 4, 5, 6, 7, 8, 9, 10], true, false);
+	});
+
+	function onCellSelect(rowId) {
+		document.getElementById('viewMessage').innerHTML = $('#notificationMessage  tr[id =' + rowId + '] td:eq(2)').html();
+		if ($('#notificationMessage  tr[id =' + rowId + '] td:eq(4) :checkbox').val() == "false") {
+			updateIsRead(rowId);
+		}
+	}
+
+	function updateIsRead(rowId) {
+		var url = '@Url.Action("UpdateIsRead","Notification")';
+		$.ajax({
+			type: "POST",
+			url: url,
+			data: { notificationId: rowId },
+			success: function () {			
+				$("#notificationMessage").jqGrid('setCell', rowId, 'NotificationIsRead', true);
+				$.getCountNotification();
+				$('#notificationMessage tr[id =' + rowId + '] td').css("font-weight", "normal");
+			}
+		});
+	}
+	
+	$.messageFormatter = function (cellvalue, data) {
+		var cellvalueformated = '';
+		var arr = cellvalue.split(';');
+		for (var i = 0; i < arr.length; i++) {
+			cellvalueformated += arr[i] + '<br />';
+		}
+		return cellvalueformated;
+	};
+
+	function rowInserted(rowid, rowdata, rowelement) {
+		if (!rowdata.NotificationIsRead) {
+			$('#notificationMessage tr[id =' + rowid + '] td').css("font-weight", "bold");
+		}
+	}
+</script>

@@ -1,0 +1,8 @@
+﻿@using CEC.Web.SRV.Resources
+@model CEC.Web.SRV.Models.Export.ListExportingModel
+
+@{
+    ViewBag.Title = MUI.Reporting_Export;
+}
+
+@(!Model.IsProgress ? Html.Partial("_CreatingPrintSessions") : Html.Partial("_ListExporting"))

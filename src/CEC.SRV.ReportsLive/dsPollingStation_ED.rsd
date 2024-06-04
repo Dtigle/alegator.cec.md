@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>EdayDatatSource</DataSourceReference>
+      <DataSetParameters>
+        <DataSetParameter Name="@AssignedCircumscriptionId">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>false</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>Object</rd:DbType>
+        </DataSetParameter>
+      </DataSetParameters>
+      <CommandText>SELECT 
+       aps.[AssignedPollingStationId],
+       aps.[PollingStationId],
+       aps.[AssignedCircumscriptionId],
+       CONCAT(ps.Number, ' ', ps.[NameRo]) as Name
+FROM 
+  [dbo].[AssignedPollingStation] as aps
+  INNER JOIN  [dbo].[PollingStation] as ps ON aps.PollingStationId = ps.PollingStationId
+WHERE
+  aps.[AssignedCircumscriptionId] = @AssignedCircumscriptionId
+ORDER BY ps.Number ASC</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="AssignedPollingStationId">
+        <DataField>AssignedPollingStationId</DataField>
+        <rd:TypeName>System.Int64</rd:TypeName>
+      </Field>
+      <Field Name="PollingStationId">
+        <DataField>PollingStationId</DataField>
+        <rd:TypeName>System.Int64</rd:TypeName>
+      </Field>
+      <Field Name="AssignedCircumscriptionId">
+        <DataField>AssignedCircumscriptionId</DataField>
+        <rd:TypeName>System.Int64</rd:TypeName>
+      </Field>
+      <Field Name="Name">
+        <DataField>Name</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

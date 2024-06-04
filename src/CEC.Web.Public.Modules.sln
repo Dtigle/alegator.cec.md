@@ -1,0 +1,147 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BLL", "BLL", "{CBAAC21D-A835-4FE8-AC34-D381F4FD9A5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CEC.SRV.BLL", "CEC.SRV.BLL\CEC.SRV.BLL.csproj", "{E46CD8A4-BF92-4309-AA5B-7DA68CAB10C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CEC.SRV.BLL.Tests", "CEC.SRV.BLL.Tests\CEC.SRV.BLL.Tests.csproj", "{E7022089-0298-454D-BD7F-9DD6986F0820}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{F163BCE1-F844-4B77-8739-4B95E2997D2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CEC.Web.Api", "CEC.Web.Api\CEC.Web.Api.csproj", "{B050FE8F-3ED2-4166-9661-6BA72C4CF14B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{2142ED88-7A8F-40F0-A529-EDDC740C32EE}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CEC.Web.Public.Modules", "http://localhost:15644", "{05E9FCD4-42A3-458C-8A90-0E0E32C83A69}"
+	ProjectSection(WebsiteProperties) = preProject
+		SccProjectName = "SAK"
+		SccAuxPath = "SAK"
+		SccLocalPath = "SAK"
+		SccProvider = "SAK"
+		UseIISExpress = "true"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		ProjectReferences = ""
+		Debug.AspNetCompiler.VirtualPath = "/localhost_15644"
+		Debug.AspNetCompiler.PhysicalPath = "CEC.Web.Public.Modules\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_15644\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_15644"
+		Release.AspNetCompiler.PhysicalPath = "CEC.Web.Public.Modules\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_15644\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "CEC.Web.Public.Modules\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{1C55EB30-E7AA-47D5-85EF-A0CA4849C226}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CEC.SRV.Domain", "CEC.SRV.Domain\CEC.SRV.Domain.csproj", "{53B47A01-32D5-48BD-AB7E-64A255F8463C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CEC.SRV.Domain.NHibernateMappings", "CEC.SRV.Domain.NHibernateMappings\CEC.SRV.Domain.NHibernateMappings.csproj", "{5DBEBBD6-4DF7-40F1-99D9-5A6C5B6FEE21}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CEC.Web.Results.Api", "CEC.Web.Results.Api\CEC.Web.Results.Api.csproj", "{C3042534-D9B8-4DF6-B63F-29B6726A987F}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "CEC.Web.Results.Database", "CEC.Web.Results.Database\CEC.Web.Results.Database.sqlproj", "{5A2977B5-9E0B-4533-96CC-7E1261A8F853}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 9
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://rsa-app:8080/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = CEC.SRV.BLL\\CEC.SRV.BLL.csproj
+		SccProjectTopLevelParentUniqueName1 = CEC.Web.Public.Modules.sln
+		SccProjectName1 = CEC.SRV.BLL
+		SccLocalPath1 = CEC.SRV.BLL
+		SccProjectUniqueName2 = CEC.SRV.BLL.Tests\\CEC.SRV.BLL.Tests.csproj
+		SccProjectTopLevelParentUniqueName2 = CEC.Web.Public.Modules.sln
+		SccProjectName2 = CEC.SRV.BLL.Tests
+		SccLocalPath2 = CEC.SRV.BLL.Tests
+		SccProjectUniqueName3 = CEC.Web.Api\\CEC.Web.Api.csproj
+		SccProjectTopLevelParentUniqueName3 = CEC.Web.Public.Modules.sln
+		SccProjectName3 = CEC.Web.Api
+		SccLocalPath3 = CEC.Web.Api
+		SccWebProject4 = true
+		SccProjectUniqueName4 = http://localhost:15644
+		SccProjectTopLevelParentUniqueName4 = CEC.Web.Public.Modules.sln
+		SccProjectName4 = CEC.Web.Public.Modules
+		SccLocalPath4 = CEC.Web.Public.Modules
+		SccProjectEnlistmentChoice4 = 2
+		SccProjectUniqueName5 = CEC.SRV.Domain\\CEC.SRV.Domain.csproj
+		SccProjectTopLevelParentUniqueName5 = CEC.Web.Public.Modules.sln
+		SccProjectName5 = CEC.SRV.Domain
+		SccLocalPath5 = CEC.SRV.Domain
+		SccProjectUniqueName6 = CEC.SRV.Domain.NHibernateMappings\\CEC.SRV.Domain.NHibernateMappings.csproj
+		SccProjectTopLevelParentUniqueName6 = CEC.Web.Public.Modules.sln
+		SccProjectName6 = CEC.SRV.Domain.NHibernateMappings
+		SccLocalPath6 = CEC.SRV.Domain.NHibernateMappings
+		SccProjectUniqueName7 = CEC.Web.Results.Api\\CEC.Web.Results.Api.csproj
+		SccProjectTopLevelParentUniqueName7 = CEC.Web.Public.Modules.sln
+		SccProjectName7 = CEC.Web.Results.Api
+		SccLocalPath7 = CEC.Web.Results.Api
+		SccProjectUniqueName8 = CEC.Web.Results.Database\\CEC.Web.Results.Database.sqlproj
+		SccProjectTopLevelParentUniqueName8 = CEC.Web.Public.Modules.sln
+		SccProjectName8 = CEC.Web.Results.Database
+		SccLocalPath8 = CEC.Web.Results.Database
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E46CD8A4-BF92-4309-AA5B-7DA68CAB10C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E46CD8A4-BF92-4309-AA5B-7DA68CAB10C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E46CD8A4-BF92-4309-AA5B-7DA68CAB10C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E46CD8A4-BF92-4309-AA5B-7DA68CAB10C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7022089-0298-454D-BD7F-9DD6986F0820}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7022089-0298-454D-BD7F-9DD6986F0820}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7022089-0298-454D-BD7F-9DD6986F0820}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7022089-0298-454D-BD7F-9DD6986F0820}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B050FE8F-3ED2-4166-9661-6BA72C4CF14B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B050FE8F-3ED2-4166-9661-6BA72C4CF14B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B050FE8F-3ED2-4166-9661-6BA72C4CF14B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B050FE8F-3ED2-4166-9661-6BA72C4CF14B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05E9FCD4-42A3-458C-8A90-0E0E32C83A69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05E9FCD4-42A3-458C-8A90-0E0E32C83A69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05E9FCD4-42A3-458C-8A90-0E0E32C83A69}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{05E9FCD4-42A3-458C-8A90-0E0E32C83A69}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{53B47A01-32D5-48BD-AB7E-64A255F8463C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53B47A01-32D5-48BD-AB7E-64A255F8463C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53B47A01-32D5-48BD-AB7E-64A255F8463C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53B47A01-32D5-48BD-AB7E-64A255F8463C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DBEBBD6-4DF7-40F1-99D9-5A6C5B6FEE21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DBEBBD6-4DF7-40F1-99D9-5A6C5B6FEE21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DBEBBD6-4DF7-40F1-99D9-5A6C5B6FEE21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DBEBBD6-4DF7-40F1-99D9-5A6C5B6FEE21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3042534-D9B8-4DF6-B63F-29B6726A987F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3042534-D9B8-4DF6-B63F-29B6726A987F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3042534-D9B8-4DF6-B63F-29B6726A987F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3042534-D9B8-4DF6-B63F-29B6726A987F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A2977B5-9E0B-4533-96CC-7E1261A8F853}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A2977B5-9E0B-4533-96CC-7E1261A8F853}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A2977B5-9E0B-4533-96CC-7E1261A8F853}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{5A2977B5-9E0B-4533-96CC-7E1261A8F853}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A2977B5-9E0B-4533-96CC-7E1261A8F853}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A2977B5-9E0B-4533-96CC-7E1261A8F853}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E46CD8A4-BF92-4309-AA5B-7DA68CAB10C4} = {CBAAC21D-A835-4FE8-AC34-D381F4FD9A5C}
+		{E7022089-0298-454D-BD7F-9DD6986F0820} = {CBAAC21D-A835-4FE8-AC34-D381F4FD9A5C}
+		{B050FE8F-3ED2-4166-9661-6BA72C4CF14B} = {F163BCE1-F844-4B77-8739-4B95E2997D2D}
+		{C3042534-D9B8-4DF6-B63F-29B6726A987F} = {F163BCE1-F844-4B77-8739-4B95E2997D2D}
+		{5A2977B5-9E0B-4533-96CC-7E1261A8F853} = {F163BCE1-F844-4B77-8739-4B95E2997D2D}
+		{05E9FCD4-42A3-458C-8A90-0E0E32C83A69} = {2142ED88-7A8F-40F0-A529-EDDC740C32EE}
+		{53B47A01-32D5-48BD-AB7E-64A255F8463C} = {1C55EB30-E7AA-47D5-85EF-A0CA4849C226}
+		{5DBEBBD6-4DF7-40F1-99D9-5A6C5B6FEE21} = {1C55EB30-E7AA-47D5-85EF-A0CA4849C226}
+	EndGlobalSection
+EndGlobal

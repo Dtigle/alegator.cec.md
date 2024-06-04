@@ -1,0 +1,71 @@
+﻿@using CEC.SRV.BLL.Quartz
+@using CEC.Web.SRV.Resources
+@model CEC.Web.SRV.Models.QuartzAdmin.QuartzJobActionModel
+
+<div class="clearfix">
+    @using (Html.BeginForm("PerformAction", "QuartzAdmin", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(x => x.JobDetails.Id)
+        @Html.HiddenFor(x => x.JobDetails.JobName)
+        @Html.HiddenFor(x => x.JobDetails.GroupName)
+        @Html.HiddenFor(x => x.JobDetails.TriggerName)
+        @Html.HiddenFor(x => x.JobDetails.TriggerGroup)
+        @Html.HiddenFor(x => x.JobDetails.HasCronTrigger)
+
+        <div class="form-group">
+            @Html.DisplayFor(x => x.JobDetails.JobName)
+        </div>
+        <div class="form-group">
+            @Html.DisplayFor(x => x.JobDetails.JobDescription)
+        </div>
+        <div class="form-group">
+            @Html.DisplayFor(x => x.JobDetails.PreviousFireTime)
+        </div>
+        <div class="form-group">
+            @Html.DisplayFor(x => x.JobDetails.NextFireTime)
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(x => x.SelectedAction)
+        </div>
+
+        if (Model.JobDetails.HasCronTrigger)
+        {
+            <div class="form-group">
+                @Html.EditorFor(x => x.JobDetails.CronExpression, new {ReadOnly = true})
+            </div>
+        }
+        @*
+        <div class="form-group">
+            @Html.EditorFor(x => x.ReasonComment)
+        </div>*@
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="@MUI.BtnExecute" class="btn btn-primary" />
+            </div>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+    $('.rsa-form-group > div.col-sm-4').removeClass('col-sm-4').addClass('col-sm-6');
+    $('.rsa-form-group > div.col-sm-2').removeClass('col-sm-2').addClass('col-sm-4');
+
+    $(document).ready(function () {
+        makeEditEnable();
+        $('#SelectedAction').change(function () {
+            makeEditEnable();
+        });
+       
+        function makeEditEnable() {
+            var selection = $('#SelectedAction option:selected');
+            var actionSelected = selection.text();
+            if (actionSelected == '@JobAction.ReSchedule') {
+                $('#JobDetails_CronExpression').removeAttr('readonly', false);
+            } else {
+                $('#JobDetails_CronExpression').attr('readonly', true);
+            }
+        }
+    });
+</script>

@@ -1,0 +1,34 @@
+﻿@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.Lookup
+@using Lib.Web.Mvc.JQuery.JqGrid
+
+@{
+    var grid = Html.GridOptions<RegionTreeViewModel>("regionsFlatGrid")
+        .BuildGrid(Url.Action("ListRegionsTreeAjax"), null, null, null,
+                    null/*Url.Action("UnDeleteRegion", "Lookup")*/,
+                    Url.Action("RegionHistory", "History"),
+                    Url.Action("ExportRegions")
+                    )
+        .Navigator(new JqGridNavigatorOptions
+        {
+            Add = false,
+            Edit = false,
+            Delete = false,
+            Search = true,
+            AddFunction = "$.CreateUpdateRegion",
+            EditFunction = "$.CreateUpdateRegion",
+            DeleteFunction = "$.DeleteRegion",
+            CloneToTop = true
+        })
+        //.AddNavigatorButton("Crează legătură", onClick:"$.linkRegions")
+        .AddNavigatorButton("Administrația", onClick:"$.UpdateAdministrativeInfo");
+}
+
+@grid.GetHtml()
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        @grid.GetJavaScript();
+    	$('#regionsFlatGrid').jqGrid().remapColumns([3, 8, 9, 0, 4, 1, 2, 10, 11, 12, 5, 7, 6], true, false);
+    });
+</script>

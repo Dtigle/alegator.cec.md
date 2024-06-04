@@ -1,0 +1,3293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataSchemaModel FileFormatVersion="1.2" SchemaVersion="2.4" DspName="Microsoft.Data.Tools.Schema.Sql.Sql100DatabaseSchemaProvider" CollationLcid="1033" CollationCaseSensitive="False" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+	<Header>
+		<CustomData Category="AnsiNulls">
+			<Metadata Name="AnsiNulls" Value="True" />
+		</CustomData>
+		<CustomData Category="QuotedIdentifier">
+			<Metadata Name="QuotedIdentifier" Value="True" />
+		</CustomData>
+		<CustomData Category="CompatibilityMode">
+			<Metadata Name="CompatibilityMode" Value="100" />
+		</CustomData>
+		<CustomData Category="Reference" Type="Assembly">
+			<Metadata Name="LogicalName" Value="CEC.Web.Results.Database.dll" />
+			<Metadata Name="FileName" Value="D:\WORK\CEC\CEC.SRV\SRC\CEC.WEB.RESULTS.DATABASE\OBJ\DEBUG\CEC.WEB.RESULTS.DATABASE.DLL" />
+			<Metadata Name="AssemblyName" Value="CEC.Web.Results.Database" />
+			<Metadata Name="PermissionSet" Value="SAFE" />
+			<Metadata Name="Owner" Value="" />
+			<Metadata Name="GenerateSqlClrDdl" Value="True" />
+			<Metadata Name="IsVisible" Value="True" />
+			<Metadata Name="IsModelAware" Value="True" />
+			<Metadata Name="SkipCreationIfEmpty" Value="True" />
+			<Metadata Name="AssemblySymbolsName" Value="D:\work\CEC\CEC.SRV\src\CEC.Web.Results.Database\obj\Debug\CEC.Web.Results.Database.pdb" />
+		</CustomData>
+		<CustomData Category="SqlCmdVariables" Type="SqlCmdVariable" />
+	</Header>
+	<Model>
+		<Element Type="SqlDatabaseOptions">
+			<Property Name="Collation" Value="SQL_Latin1_General_CP1_CI_AS" />
+			<Property Name="IsAnsiNullDefaultOn" Value="True" />
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Property Name="IsAnsiWarningsOn" Value="True" />
+			<Property Name="IsArithAbortOn" Value="True" />
+			<Property Name="IsConcatNullYieldsNullOn" Value="True" />
+			<Property Name="IsTornPageProtectionOn" Value="False" />
+			<Property Name="IsFullTextEnabled" Value="True" />
+			<Property Name="PageVerifyMode" Value="3" />
+			<Relationship Name="DefaultFilegroup">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[PRIMARY]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[CEC_AssignedPollingStation]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+	SET NOCOUNT ON;
+	
+	select  aps.AssignedPollingStationId
+			,aps.ElectionId
+			,aps.OpeningVoters
+			,ps.PollingStationId
+			,d.number
+			,ps.number
+			,ps.LocationLatitude
+			,ps.LocationLongitude
+			,(select count(*) from [dbo].[AssignedVoter] where ElectionId = aps.ElectionId and PollingStationId = aps.PollingStationId and [Status] >= 5000 and [Status] < 9000) as VotersReceivedBallots
+			,(select count(*) from [dbo].[AssignedVoter] where ElectionId = aps.ElectionId and PollingStationId = aps.PollingStationId and [Status] in (5001,5002)) as VotersInSupplimentaryList
+			,d.NameRo as Circumscription
+			,v.NameRo as Locality
+	from [dbo].[AssignedPollingStation] aps
+	inner join [dbo].[PollingStation] ps on aps.PollingStationId = ps.PollingStationId
+	inner join [dbo].Village v on ps.VillageId = v.VillageId
+	inner join [dbo].[District] d on v.DistrictId = d.DistrictId
+	where [ElectionId] = @ElectionId
+
+	order by d.number, ps.[Number]
+	
+	 
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry>
+					<References Name="[dbo].[CEC_AssignedPollingStation].[@ElectionId]" />
+				</Entry>
+				<Entry />
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CEC_AssignedPollingStation].[@ElectionId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="1061" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[CEC_AssignedPollingStation] &#xD;&#xA;    @ElectionId int&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[CEC_CountOfVotersInSupplimentaryList]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+	SET NOCOUNT ON;
+	
+	select count(*)
+	from [dbo].[AssignedVoter] 
+	where ElectionId = @ElectionId
+	  and PollingStationId = @PollingStationId
+	  and [Status] in (5001, 5002, 5020)	
+	 
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry />
+				<Entry />
+				<Entry>
+					<References Name="[dbo].[CEC_CountOfVotersInSupplimentaryList].[@ElectionId]" />
+				</Entry>
+				<Entry />
+				<Entry>
+					<References Name="[dbo].[CEC_CountOfVotersInSupplimentaryList].[@PollingStationId]" />
+				</Entry>
+				<Entry />
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CEC_CountOfVotersInSupplimentaryList].[@ElectionId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CEC_CountOfVotersInSupplimentaryList].[@PollingStationId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bigint]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="318" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[CEC_CountOfVotersInSupplimentaryList] &#xD;&#xA;    @ElectionId int,&#xD;&#xA;&#x9;@PollingStationId bigint&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[CEC_CountOfVotersReceivedBallots]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+	SET NOCOUNT ON;
+	
+	select count(*)
+	from [dbo].[AssignedVoter] 
+	where ElectionId = @ElectionId
+	  and PollingStationId = @PollingStationId
+	  and [Status] >= 5000 
+	  --removing dead, no citizens and other people without voting rights
+	  and [Status] not in (9010, 9002, 9004)	
+	 
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry />
+				<Entry />
+				<Entry>
+					<References Name="[dbo].[CEC_CountOfVotersReceivedBallots].[@ElectionId]" />
+				</Entry>
+				<Entry />
+				<Entry>
+					<References Name="[dbo].[CEC_CountOfVotersReceivedBallots].[@PollingStationId]" />
+				</Entry>
+				<Entry />
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CEC_CountOfVotersReceivedBallots].[@ElectionId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CEC_CountOfVotersReceivedBallots].[@PollingStationId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bigint]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="414" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].CEC_CountOfVotersReceivedBallots &#xD;&#xA;    @ElectionId int,&#xD;&#xA;&#x9;@PollingStationId bigint&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[CEC_ElectionDayById]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+
+	SET NOCOUNT ON;
+
+	SELECT  DateOfElection
+      FROM  Election
+     WHERE  ElectionId=@ElectionId
+   
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry>
+					<References Name="[dbo].[CEC_ElectionDayById].[@ElectionId]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CEC_ElectionDayById].[@ElectionId]">
+						<Property Name="DefaultExpressionScript">
+							<Value><![CDATA[0]]></Value>
+						</Property>
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="193" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[CEC_ElectionDayById] &#xD;&#xA;&#x9;@ElectionId int = 0&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[CEC_GeneralOnTimeAddResults]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+	SET NOCOUNT ON;
+	  
+	if(@StartHour is null)
+	   raiserror('invalid parameter: @StartHour', 18, 0);
+	if(@EndHour is null)
+	   raiserror('invalid parameter: @EndHour', 18, 0);
+	    
+	select  a1.hr1 ora, 
+			a1.mn1 as minuta,
+			COUNT(*) voters
+	from
+	(SELECT 
+		   datepart(hh, [EditDate]) as hr1
+		   ,@interval  * (datepart(N, [EditDate]) / @interval)  as mn1      
+	 FROM [dbo].[AssignedVoter]
+	 where [EditDate] between @starthour and DATEADD(minute, @interval, @endhour)
+	   AND [ElectionId] = @ElectionId
+	   AND ([Status] = 5001 OR [Status] = 5002 OR [Status] = 5020)) a1   
+	 group by a1.hr1, a1.mn1
+	 order by ora, minuta;
+	 
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[CEC_GeneralOnTimeAddResults].[@StartHour]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CEC_GeneralOnTimeAddResults].[@EndHour]" />
+				</Entry>
+				<Entry />
+				<Entry />
+				<Entry>
+					<References Name="[dbo].[CEC_GeneralOnTimeAddResults].[@interval]" />
+				</Entry>
+				<Entry />
+				<Entry>
+					<References Name="[dbo].[CEC_GeneralOnTimeAddResults].[@ElectionId]" />
+				</Entry>
+				<Entry />
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CEC_GeneralOnTimeAddResults].[@ElectionId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CEC_GeneralOnTimeAddResults].[@StartHour]">
+						<Property Name="DefaultExpressionScript">
+							<Value><![CDATA[null]]></Value>
+						</Property>
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[datetime]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CEC_GeneralOnTimeAddResults].[@EndHour]">
+						<Property Name="DefaultExpressionScript">
+							<Value><![CDATA[null]]></Value>
+						</Property>
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[datetime]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CEC_GeneralOnTimeAddResults].[@interval]">
+						<Property Name="DefaultExpressionScript">
+							<Value><![CDATA[20]]></Value>
+						</Property>
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="179" />
+				<Property Name="Length" Value="1005" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="&#xD;&#xA;-- =============================================&#xD;&#xA;-- Create date: 04-08-2014&#xD;&#xA;-- Description:&#x9;Get voting results per interval&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE [dbo].[CEC_GeneralOnTimeAddResults] &#xD;&#xA;    @ElectionId int,&#xD;&#xA;&#x9;@StartHour datetime = null, &#xD;&#xA;&#x9;@EndHour datetime = null,&#xD;&#xA;&#x9;@interval int = 20&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[CEC_GeneralOnTimeResults]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+	SET NOCOUNT ON;
+	  
+	if(@StartHour is null)
+	   raiserror('invalid parameter: @StartHour', 18, 0);
+	if(@EndHour is null)
+	   raiserror('invalid parameter: @EndHour', 18, 0);
+	    
+	select  a1.hr1 ora, 
+			a1.mn1 as minuta,
+			COUNT(*) voters
+	from
+	(SELECT 
+		   datepart(hh, [EditDate]) as hr1
+		   ,@interval  * (datepart(N, [EditDate]) / @interval)  as mn1      
+	 FROM [dbo].[AssignedVoter]
+	 where [EditDate] between @starthour and DATEADD(minute, @interval, @endhour)
+	   AND [ElectionId] = @ElectionId
+		   AND [Status] >= 5000) a1   
+	 group by a1.hr1, a1.mn1
+	 order by ora, minuta;
+   
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[CEC_GeneralOnTimeResults].[@StartHour]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CEC_GeneralOnTimeResults].[@EndHour]" />
+				</Entry>
+				<Entry />
+				<Entry />
+				<Entry>
+					<References Name="[dbo].[CEC_GeneralOnTimeResults].[@interval]" />
+				</Entry>
+				<Entry />
+				<Entry>
+					<References Name="[dbo].[CEC_GeneralOnTimeResults].[@ElectionId]" />
+				</Entry>
+				<Entry />
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CEC_GeneralOnTimeResults].[@ElectionId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CEC_GeneralOnTimeResults].[@StartHour]">
+						<Property Name="DefaultExpressionScript">
+							<Value><![CDATA[null]]></Value>
+						</Property>
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[datetime]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CEC_GeneralOnTimeResults].[@EndHour]">
+						<Property Name="DefaultExpressionScript">
+							<Value><![CDATA[null]]></Value>
+						</Property>
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[datetime]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CEC_GeneralOnTimeResults].[@interval]">
+						<Property Name="DefaultExpressionScript">
+							<Value><![CDATA[20]]></Value>
+						</Property>
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="179" />
+				<Property Name="Length" Value="965" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="&#xD;&#xA;-- =============================================&#xD;&#xA;-- Create date: 04-08-2014&#xD;&#xA;-- Description:&#x9;Get voting results per interval&#xD;&#xA;-- =============================================&#xD;&#xA;CREATE PROCEDURE [dbo].[CEC_GeneralOnTimeResults] &#xD;&#xA;    @ElectionId int,&#xD;&#xA;&#x9;@StartHour datetime = null, &#xD;&#xA;&#x9;@EndHour datetime = null,&#xD;&#xA;&#x9;@interval int = 20&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[CEC_GeneralPartidResults]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+
+	SET NOCOUNT ON;
+	
+	SELECT er.[PoliticalPartyId] ppId,
+		   (select pp.Code from PoliticalParty pp where pp.PoliticalPartyId = er.[PoliticalPartyId]) ppName, 
+		   (select pp.Color from PoliticalParty pp where pp.PoliticalPartyId = er.[PoliticalPartyId]) ppColor, 
+		   sum(er.[BallotCount]) ppTotal,
+		   (select pp.PartyType from PoliticalParty pp where pp.PoliticalPartyId = er.[PoliticalPartyId]) ppPartyType
+		   ,er.BallotOrder
+	  FROM [dbo].[ElectionResult] er, [dbo].[BallotPaper] bp
+	 WHERE er.BallotPaperId = bp.BallotPaperId
+	   AND bp.ElectionId = @ElectionId
+	GROUP BY er.[PoliticalPartyId], er.BallotOrder
+	
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry>
+					<References Name="[dbo].[CEC_GeneralPartidResults].[@ElectionId]" />
+				</Entry>
+				<Entry />
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CEC_GeneralPartidResults].[@ElectionId]">
+						<Property Name="DefaultExpressionScript">
+							<Value><![CDATA[0]]></Value>
+						</Property>
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="724" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[CEC_GeneralPartidResults]&#xD;&#xA;&#x9;@ElectionId int = 0&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[CEC_GeneralTotal]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+	SET NOCOUNT ON;
+	  
+	SELECT COUNT(*) voters
+	 FROM  [dbo].[AssignedVoter]
+	 where [ElectionId] = @ElectionId
+	   
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry />
+				<Entry />
+				<Entry>
+					<References Name="[dbo].[CEC_GeneralTotal].[@ElectionId]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CEC_GeneralTotal].[@ElectionId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="CreateOffset" Value="3" />
+				<Property Name="Length" Value="200" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value=" &#xD;&#xA;CREATE PROCEDURE [dbo].[CEC_GeneralTotal] &#xD;&#xA;&#x9;@ElectionId int&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[CEC_LogoByCandidateId]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	select pp.Logo
+	  from PoliticalParty pp 
+	 where pp.PoliticalPartyId = @CandidateId;
+
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry>
+					<References Name="[dbo].[CEC_LogoByCandidateId].[@CandidateId]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CEC_LogoByCandidateId].[@CandidateId]">
+						<Property Name="DefaultExpressionScript">
+							<Value><![CDATA[0]]></Value>
+						</Property>
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="343" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[CEC_LogoByCandidateId]&#xD;&#xA;&#x9;@CandidateId int = 0&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[CEC_TotalBallots]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+
+	SET NOCOUNT ON;
+
+	SELECT	count(*) totalBallotPapers
+			, sum(case when bp.[Status] = 1 then 1 else 0 end) totalProcessedBallotPapers
+	from BallotPaper bp
+	inner join AssignedPollingStation aps on bp.PollingStationId = aps.PollingStationId and bp.ElectionId = aps.ElectionId
+	where bp.ElectionId = @ElectionId
+
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry>
+					<References Name="[dbo].[CEC_TotalBallots].[@ElectionId]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CEC_TotalBallots].[@ElectionId]">
+						<Property Name="DefaultExpressionScript">
+							<Value><![CDATA[0]]></Value>
+						</Property>
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="400" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[CEC_TotalBallots]&#xD;&#xA;&#x9;@ElectionId int = 0&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[CEC_TotalVotes]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+
+	SET NOCOUNT ON;
+
+	select sum(bp.BallotsValidVotes) totalValidVotes,
+			sum (bp.BallotsSpoiled) totalNonValidVotes,
+			sum(bp.BallotsCasted) totalVotes 
+
+	from BallotPaper bp 			
+	inner join AssignedPollingStation aps on aps.PollingStationId = bp.PollingStationId
+	where bp.ElectionId = aps.ElectionId 
+	and bp.ElectionId = @ElectionId
+
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry>
+					<References Name="[dbo].[CEC_TotalVotes].[@ElectionId]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[CEC_TotalVotes].[@ElectionId]">
+						<Property Name="DefaultExpressionScript">
+							<Value><![CDATA[0]]></Value>
+						</Property>
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="427" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[CEC_TotalVotes]&#xD;&#xA;&#x9;@ElectionId int = 0&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlMultiStatementTableValuedFunction" Name="[dbo].[fn_GetBallotPapersNonLocal]">
+			<Property Name="ReturnTableVariable" Value="@Table_Var" />
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[bigint]" />
+				</Entry>
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry>
+					<References Name="[dbo].[fn_GetBallotPapersNonLocal].[@electionId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[fn_GetBallotPapersNonLocal].[@districtId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[fn_GetBallotPapersNonLocal].[ballotPaperId]" />
+				</Entry>
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry>
+					<References Name="[dbo].[fn_GetBallotPapersNonLocal].[@villageId]" />
+				</Entry>
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry>
+					<References Name="[dbo].[fn_GetBallotPapersNonLocal].[@pollingStationid]" />
+				</Entry>
+				<Entry />
+				<Entry />
+			</Relationship>
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[fn_GetBallotPapersNonLocal].[ballotPaperId]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bigint]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="FunctionBody">
+				<Entry>
+					<Element Type="SqlScriptFunctionImplementation">
+						<Property Name="BodyScript">
+							<Value><![CDATA[
+BEGIN
+	declare @electionType bigint
+
+	select @electionType = e.[Type] from Election e
+	inner join ElectionType et on e.[Type] = et.ElectionTypeId
+	where e.ElectionId = @electionId
+
+	if @electionType & 2 = 2 -- checking for local election. if so, throw error.
+	begin
+		--'use non local elections with this function'
+		return
+	end
+
+	-- Fill the table variable with the rows for your result set
+	if @districtId is null
+	begin
+		insert into @Table_Var (ballotPaperId)
+		select bp.BallotPaperId from BallotPaper bp 
+		inner join AssignedPollingStation aps on bp.PollingStationId = aps.PollingStationId and bp.ElectionId = aps.ElectionId
+		where bp.ElectionId=@electionId
+	end
+	else
+	begin
+		if @villageId is null
+		begin
+			insert into @Table_Var (ballotPaperId)
+			select bp.BallotPaperId from BallotPaper bp 
+			inner join PollingStation ps on bp.PollingStationId = ps.PollingStationId
+			inner join AssignedPollingStation aps on ps.PollingStationId = aps.PollingStationId and bp.ElectionId = aps.ElectionId
+			inner join Village v on ps.VillageId = v.VillageId
+			where bp.ElectionId=@electionId and v.DistrictId = @districtId
+		end
+		else
+		begin
+			if @pollingStationId is null
+			begin
+				insert into @Table_Var (ballotPaperId)
+				select bp.BallotPaperId from BallotPaper bp
+				inner join PollingStation ps on bp.PollingStationId = ps.PollingStationId
+				inner join AssignedPollingStation aps on ps.PollingStationId = aps.PollingStationId  and bp.ElectionId = aps.ElectionId
+				where bp.ElectionId=@electionId and ps.VillageId = @villageId
+			end
+			else
+			begin
+				insert into @Table_Var (ballotPaperId)
+				select bp.BallotPaperId from BallotPaper bp 
+				inner join AssignedPollingStation aps on bp.PollingStationId = aps.PollingStationId  and bp.ElectionId = aps.ElectionId
+				where bp.ElectionId=@electionId and bp.PollingStationId = @pollingStationId
+			end
+		end
+	end
+
+	RETURN 
+END]]></Value>
+						</Property>
+						<Annotation Type="SysCommentsObjectAnnotation">
+							<Property Name="CreateOffset" Value="161" />
+							<Property Name="Length" Value="2453" />
+							<Property Name="StartLine" Value="1" />
+							<Property Name="StartColumn" Value="1" />
+							<Property Name="HeaderContents" Value="-- =============================================&#xD;&#xA;-- Author:&#x9;&#x9;Amdaris SRL&#xD;&#xA;-- Create date: &#xD;&#xA;-- Description:&#x9;&#xD;&#xA;-- =============================================&#xD;&#xA;create FUNCTION [dbo].[fn_GetBallotPapersNonLocal] &#xD;&#xA;(&#xD;&#xA;&#x9;-- Add the parameters for the function here&#xD;&#xA;&#x9;@electionId bigint, &#xD;&#xA;&#x9;@districtId bigint = null,&#xD;&#xA;&#x9;@villageId bigint = null,&#xD;&#xA;&#x9;@pollingStationid bigint = null&#xD;&#xA;)&#xD;&#xA;RETURNS &#xD;&#xA;@Table_Var TABLE &#xD;&#xA;(&#xD;&#xA;&#x9;-- Add the column definitions for the TABLE variable here&#xD;&#xA;&#x9;ballotPaperId bigint &#xD;&#xA;)&#xD;&#xA;AS" />
+						</Annotation>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[fn_GetBallotPapersNonLocal].[@electionId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bigint]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[fn_GetBallotPapersNonLocal].[@districtId]">
+						<Property Name="DefaultExpressionScript">
+							<Value><![CDATA[null]]></Value>
+						</Property>
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bigint]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[fn_GetBallotPapersNonLocal].[@villageId]">
+						<Property Name="DefaultExpressionScript">
+							<Value><![CDATA[null]]></Value>
+						</Property>
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bigint]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[fn_GetBallotPapersNonLocal].[@pollingStationid]">
+						<Property Name="DefaultExpressionScript">
+							<Value><![CDATA[null]]></Value>
+						</Property>
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bigint]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+	/* ==========================================================================================
+	INPUT PARAMETERS:
+		@ElectionId
+		@DistrictId
+		@VillageId
+		@PollingStationId
+		
+		@DataSource - [1|2]
+			1 - Operative data source
+			2 - Fixed data source (Not implemented)
+			
+		@Mode - [1|2]
+			1 - Standard ouput (Election results for partyes per EDVS)
+			2 - Mandate allocation output (Mandates allocation for candidates per partyes and per EDV)
+			
+	OUTPUT PARAMETERS: None
+	
+	OUTPUT COLUMNS:
+		[ResultStatus] = 
+			0 - Unknown			(for Consilieri & Primar)
+			1 - Looser			(for Consilieri & Primar)
+			2 - VotingRound II  (for Primar only)
+			3 - Winner			(for Primar only)
+
+		[DrawStatus] = 
+			0 - Unknown
+			1 - Winner			(Last mandate winner or winner to voting round 2)
+
+
+	PERSONAL ERRORS:
+	0 = No errors
+	700000    -- Unintercepted error. Check your code. @ErrorException = %d
+	700001    -- Invalid argument: %s. 
+	700003    -- Cannot continue work. %s.
+
+	USAGE EXAMPLE:
+
+	begin tran
+	declare @return_status int
+
+	exec @return_status = dbo.pDK_ElectionResultPerEDVS_DS_Local
+			 
+	select [@return_status] = @return_status
+	if @return_status != 0
+	begin
+	  rollback
+	end
+	else 
+	  commit tran
+  
+	============================================================================================ */
+
+	set nocount on
+
+	-- get election description for report caption
+	declare @E_DescriptionRo nvarchar(200)
+	declare @E_ElectionId bigint 
+	declare @E_DateOfElection datetime 
+	declare @E_ElectionType int 
+	declare @E_TypeName nvarchar(200)
+	select 
+		@E_ElectionId = E.E_ElectionId,
+		@E_DescriptionRo = E.E_DescriptionRo,
+		@E_DateOfElection = E.E_DateOfElection,
+		@E_ElectionType = E.E_ElectionType,
+		@E_TypeName = E.E_TypeName
+	from vDK_Election as E where E.E_ElectionId = @ElectionId
+
+	--select @E_DescriptionRo = et.DescriptionRo
+	--from ElectionType et 
+	--inner join Election e on et.ElectionTypeId = e.Type
+	--where e.ElectionId = @ElectionId
+
+	declare @results table(
+		RowNumber bigint 
+		,CountCompetitors_PerEDVS int
+		,SelectionType int 
+		,CountBP_Total_PerEDVS bigint 
+		,CountBP_Filled_PerEDVS bigint 
+		,Sum_Ballots_RegisteredVoters_Total_PerEDVS bigint 
+		,Sum_Ballots_Supplementary_Total_PerEDVS bigint 
+		,Ratio_CountBP_Processed float 
+		,Sum_Ballots_BallotsIssued_Total_PerEDVS bigint 
+		,Sum_Ballots_BallotsCasted_Total_PerEDVS bigint 
+		,Sum_Ballots_RatioParticipation_Total_PerEDVS float 
+		,ER_PoliticalPartyId bigint 
+		,PP_PoliticalPartyId bigint 
+		,Sum_Ballots_DifferenceIssuedCasted_Total_PerEDVS bigint 
+		,ER_Sum_BallotCount bigint 
+		,Sum_Ballots_BallotsSpoiled_Total_PerEDVS bigint 
+		,Ratio_BallotCount float 
+		,Ratio_BallotCountDisp float 
+		,Sum_Ballots_ValidVotes_Total_PerEDVS bigint 
+		,Sum_Ballots_ValidVotes_TotalER_PerEDVS bigint
+		,ST_MandateColumnIsActual bit
+		,Sum_Ballots_BallotsReceived_Total_PerEDVS bigint
+		,ST_PP_MandateCount bigint
+		,ST_ResultStatus tinyint
+		,ST_DrawExists bit
+		,Sum_Ballots_BallotsUnusedSpoiled_Total_PerEDVS bigint
+		,ST_IsDrawed bit
+		,C_CandidateId bigint
+		,C_LastNameRo nvarchar(200)
+		,C_LastNameRu nvarchar(200)
+		,C_NameRo nvarchar(200)
+		,C_NameRu nvarchar(200)
+		,ST_DrawStatus tinyint
+		,ST_DrawId bigint
+		,ST_DrawDescription nvarchar(200)
+		,PP_Code nvarchar(50)
+		,PP_NameRo nvarchar(200)
+		,PP_NameRu nvarchar(200)
+		,PP_DisplayFromNameRo nvarchar(200)
+		,PP_DisplayFromNameRu nvarchar(200)
+		,MNumberCount int
+		,PP_IsIndependent bit not null
+		,E_ElectionId bigint
+		,E_ElectionType int
+		,E_TypeName nvarchar(200)
+		,E_DateOfElection datetime
+		,E_DescriptionRo nvarchar(200)
+		,PP_RepDisp_NameRO nvarchar(200)
+		,PP_RepDisp_NameRU nvarchar(200)
+		,C_RepDisp_NameRO nvarchar(200)
+		,C_RepDisp_NameRU nvarchar(200)
+		,D_DistrictId bigint
+		,D_Nr int
+		,D_NamePropRo nvarchar(200)
+		,D_NamePropRu nvarchar(200)
+		,D_MapName nvarchar(200)
+		,D_DistrictCouncilSeats tinyint
+		,V_VillageId bigint
+		,V_Nr int
+		,V_Type int
+		,V_TypeDisplayRo nvarchar(200)
+		,V_TypeDisplayRU nvarchar(200)
+		,V_NamePropRo nvarchar(200)
+		,V_NamePropRu nvarchar(200)
+		,V_LocalCouncilSeats tinyint
+		,PS_PollingStationId bigint
+		,PS_Type int
+		,PS_Nr int
+		,PS_NameRo nvarchar(200)
+		,PS_NameRU nvarchar(200)
+		,ER_BallotOrder int
+	);
+
+	declare @CountBP_Total_PerEDVS bigint
+	declare @CountBP_Filled_PerEDVS bigint
+	declare @Ratio_CountBP_Processed float
+	declare @Sum_Ballots_RegisteredVoters_Total_PerEDVS bigint
+	declare @Sum_Ballots_Supplementary_Total_PerEDVS bigint
+	declare @Sum_Ballots_BallotsIssued_Total_PerEDVS bigint
+	declare @Sum_Ballots_BallotsCasted_Total_PerEDVS bigint
+	declare @Sum_Ballots_RatioParticipation_Total_PerEDVS float
+	declare @Sum_Ballots_DifferenceIssuedCasted_Total_PerEDVS bigint
+	declare @Sum_Ballots_BallotsSpoiled_Total_PerEDVS bigint
+	declare @Sum_Ballots_ValidVotes_Total_PerEDVS bigint
+	declare @Sum_Ballots_BallotsReceived_Total_PerEDVS bigint
+	declare @Sum_Ballots_BallotsUnusedSpoiled_Total_PerEDVS bigint
+	-- Определяем ОБЩЕЕ количество протоколов по EDVS
+		select 
+			@CountBP_Total_PerEDVS = count(BP.BallotPaperId),
+			@CountBP_Filled_PerEDVS = sum(case when bp.Status = 1 then 1 else 0 end),
+			@Ratio_CountBP_Processed = case when @CountBP_Total_PerEDVS <> 0 then cast(@CountBP_Filled_PerEDVS as float) / @CountBP_Total_PerEDVS else 0 end,
+			@Sum_Ballots_RegisteredVoters_Total_PerEDVS = sum(bp.RegisteredVoters),
+			@Sum_Ballots_Supplementary_Total_PerEDVS = sum(bp.Supplementary),
+			@Sum_Ballots_BallotsIssued_Total_PerEDVS = SUM(BP.BallotsIssued),
+			@Sum_Ballots_BallotsCasted_Total_PerEDVS = SUM(BP.BallotsCasted),
+			@Sum_Ballots_RatioParticipation_Total_PerEDVS = 
+				case when (@Sum_Ballots_RegisteredVoters_Total_PerEDVS + @Sum_Ballots_Supplementary_Total_PerEDVS) <> 0 then
+					cast(@Sum_Ballots_BallotsIssued_Total_PerEDVS as float)/(@Sum_Ballots_RegisteredVoters_Total_PerEDVS + @Sum_Ballots_Supplementary_Total_PerEDVS)
+				else 0
+				end,
+			
+			
+			@Sum_Ballots_DifferenceIssuedCasted_Total_PerEDVS = SUM(BP.DifferenceIssuedCasted),
+			@Sum_Ballots_BallotsSpoiled_Total_PerEDVS = SUM(BP.BallotsSpoiled),
+			
+			-- Определяем ОБЩЕЕ количество валидных ГОЛОСОВ в ОБРАБОТАННЫХ протоколах по EDVS
+			@Sum_Ballots_ValidVotes_Total_PerEDVS = SUM(BP.BallotsValidVotes),
+			@Sum_Ballots_BallotsReceived_Total_PerEDVS = SUM(BP.BallotsReceived),
+			@Sum_Ballots_BallotsUnusedSpoiled_Total_PerEDVS = SUM(BP.BallotsUnusedSpoiled)
+		from BallotPaper bp
+		where bp.BallotPaperId in (select ballotPaperId from fn_GetBallotPapersNonLocal(@electionId, @districtId, @villageId, @pollingStationId))
+
+		declare @D_DistrictId bigint
+		declare @D_Nr int 
+		declare @D_NamePropRo nvarchar(200)
+		declare @D_NamePropRu nvarchar(200)
+		declare @D_MapName nvarchar(200)
+		select 
+			@D_DistrictId = d.D_DistrictId,
+			@D_Nr = d.D_Nr,
+			@D_NamePropRo = d.D_NameRo,
+			@D_NamePropRu = d.D_NameRu,
+			@D_MapName = d.D_MapName
+		from vDK_District d where d.D_DistrictId = @DistrictId
+
+		declare @V_VillageId bigint 
+		declare @V_Type int 
+		declare @V_Nr int 
+		declare @V_NamePropRo nvarchar(200) 
+		declare @V_NamePropRu nvarchar(200)
+		select 
+			@V_VillageId = V.V_VillageId,
+			@V_Type = V.V_Type,
+			@V_Nr = V.V_Nr,
+			@V_NamePropRo = V.V_NamePropRo,
+			@V_NamePropRu = V.V_NamePropRu
+			from vDK_Village as V where V.V_VillageId = @VillageId
+
+		declare @V_TypeDisplayRo nvarchar(200)
+		declare @V_TypeDisplayRu nvarchar(200)
+		set @V_TypeDisplayRo = dbo.fDK_GetVillageDisplayType(@V_Type, 1)
+		set @V_TypeDisplayRu = dbo.fDK_GetVillageDisplayType(@V_Type, 2)
+
+		declare @PS_PollingStationId bigint 
+		declare @PS_Type int 
+		declare @PS_Nr int 
+		declare @PS_NameRo nvarchar(200) 
+		declare @PS_NameRu nvarchar(200)
+		select 
+			@PS_PollingStationId = PS.PS_PollingStationId,
+			@PS_Type = PS.PS_Type,
+			@PS_Nr = PS.PS_Nr,
+			@PS_NameRo = PS.PS_NameRo,
+			@PS_NameRu = PS.PS_NameRu
+		from vDK_PollingStation as PS where PS.PS_PollingStationId = @PollingStationId
+
+		declare @ST_MandateColumnIsActual bit
+		set @ST_MandateColumnIsActual = case when @DistrictId  is null then 1 else 0 end
+
+	insert into @results 
+			(RowNumber  
+			,CountCompetitors_PerEDVS 
+			,SelectionType  
+			,CountBP_Total_PerEDVS  
+			,CountBP_Filled_PerEDVS  
+			,Sum_Ballots_RegisteredVoters_Total_PerEDVS  
+			,Sum_Ballots_Supplementary_Total_PerEDVS  
+			,Ratio_CountBP_Processed  
+			,Sum_Ballots_BallotsIssued_Total_PerEDVS  
+			,Sum_Ballots_BallotsCasted_Total_PerEDVS  
+			,Sum_Ballots_RatioParticipation_Total_PerEDVS  
+			,ER_PoliticalPartyId  
+			,PP_PoliticalPartyId  
+			,Sum_Ballots_DifferenceIssuedCasted_Total_PerEDVS  
+			,ER_Sum_BallotCount  
+			,Sum_Ballots_BallotsSpoiled_Total_PerEDVS  
+			,Ratio_BallotCount  
+			,Ratio_BallotCountDisp  
+			,Sum_Ballots_ValidVotes_Total_PerEDVS  
+			,Sum_Ballots_ValidVotes_TotalER_PerEDVS 
+			,ST_MandateColumnIsActual 
+			,Sum_Ballots_BallotsReceived_Total_PerEDVS 
+			,ST_PP_MandateCount 
+			,ST_ResultStatus 
+			,ST_DrawExists 
+			,Sum_Ballots_BallotsUnusedSpoiled_Total_PerEDVS 
+			,ST_IsDrawed 
+			,C_CandidateId 
+			,C_LastNameRo 
+			,C_LastNameRu 
+			,C_NameRo 
+			,C_NameRu 
+			,ST_DrawStatus 
+			,ST_DrawId 
+			,ST_DrawDescription 
+			,PP_Code
+			,PP_NameRo 
+			,PP_NameRu 
+			,PP_DisplayFromNameRo 
+			,PP_DisplayFromNameRu 
+			,MNumberCount 
+			,PP_IsIndependent  
+			,E_ElectionId 
+			,E_ElectionType 
+			,E_TypeName 
+			,E_DateOfElection 
+			,E_DescriptionRo 
+			,PP_RepDisp_NameRO 
+			,PP_RepDisp_NameRU 
+			,C_RepDisp_NameRO 
+			,C_RepDisp_NameRU 
+			,D_DistrictId 
+			,D_Nr 
+			,D_NamePropRo 
+			,D_NamePropRu 
+			,D_MapName 
+			,D_DistrictCouncilSeats 
+			,V_VillageId 
+			,V_Nr 
+			,V_Type 
+			,V_TypeDisplayRo 
+			,V_TypeDisplayRU 
+			,V_NamePropRo 
+			,V_NamePropRu 
+			,V_LocalCouncilSeats 
+			,PS_PollingStationId 
+			,PS_Type 
+			,PS_Nr 
+			,PS_NameRo 
+			,PS_NameRU 
+			,ER_BallotOrder)
+	select	x.BallotOrder, 
+			-1, --CountCompetitors_PerEDVS 
+			-1, --SelectionType  
+			@CountBP_Total_PerEDVS, --CountBP_Total_PerEDVS  
+			@CountBP_Filled_PerEDVS, --CountBP_Filled_PerEDVS  
+			@Sum_Ballots_RegisteredVoters_Total_PerEDVS, --Sum_Ballots_RegisteredVoters_Total_PerEDVS  
+			@Sum_Ballots_Supplementary_Total_PerEDVS, --Sum_Ballots_Supplementary_Total_PerEDVS  
+			@Ratio_CountBP_Processed, --Ratio_CountBP_Processed  
+			@Sum_Ballots_BallotsIssued_Total_PerEDVS, --Sum_Ballots_BallotsIssued_Total_PerEDVS  
+			@Sum_Ballots_BallotsCasted_Total_PerEDVS, --Sum_Ballots_BallotsCasted_Total_PerEDVS  
+			@Sum_Ballots_RatioParticipation_Total_PerEDVS, --Sum_Ballots_RatioParticipation_Total_PerEDVS  
+			x.PoliticalPartyId, --ER_PoliticalPartyId  
+			x.PoliticalPartyId, --PP_PoliticalPartyId  
+			@Sum_Ballots_DifferenceIssuedCasted_Total_PerEDVS, --Sum_Ballots_DifferenceIssuedCasted_Total_PerEDVS  
+			x.BallotCountTotal, --ER_Sum_BallotCount  
+			@Sum_Ballots_BallotsSpoiled_Total_PerEDVS, --Sum_Ballots_BallotsSpoiled_Total_PerEDVS  
+			-1, --Ratio_BallotCount  
+			case when x.BallotsValidVotes > 0 then cast(x.BallotCountTotal as float) / x.BallotsValidVotes else 0 end, --Ratio_BallotCountDisp  
+			@Sum_Ballots_ValidVotes_Total_PerEDVS, --Sum_Ballots_ValidVotes_Total_PerEDVS  
+			-1, --Sum_Ballots_ValidVotes_TotalER_PerEDVS 
+			@ST_MandateColumnIsActual, --ST_MandateColumnIsActual 
+			@Sum_Ballots_BallotsReceived_Total_PerEDVS, --Sum_Ballots_BallotsReceived_Total_PerEDVS 
+			0, --ST_PP_MandateCount 
+			0, --ST_ResultStatus 
+			0, --ST_DrawExists 
+			@Sum_Ballots_BallotsUnusedSpoiled_Total_PerEDVS, --Sum_Ballots_BallotsUnusedSpoiled_Total_PerEDVS 
+			0, --ST_IsDrawed 
+			-1, --C_CandidateId 
+			-1, --C_LastNameRo 
+			-1, --C_LastNameRu 
+			-1, --C_NameRo 
+			-1, --C_NameRu 
+			0, --ST_DrawStatus 
+			-1, --ST_DrawId 
+			-1, --ST_DrawDescription 
+			-1, --PP_Code
+			-1, --PP_NameRo 
+			-1, --PP_NameRu 
+			-1, --PP_DisplayFromNameRo 
+			-1, --PP_DisplayFromNameRu 
+			101, --MNumberCount 
+			x.IsIndependent, --PP_IsIndependent  
+			@E_ElectionId, --E_ElectionId 
+			@E_ElectionType, --E_ElectionType 
+			@E_TypeName, --E_TypeName 
+			@E_DateOfElection, --E_DateOfElection 
+			@E_DescriptionRo, --E_DescriptionRo 
+			x.NameRo, --PP_RepDisp_NameRO 
+			x.NameRo, --PP_RepDisp_NameRU 
+			'', --C_RepDisp_NameRO 
+			'', --C_RepDisp_NameRU 
+			@D_DistrictId, --D_DistrictId 
+			@D_Nr, --D_Nr 
+			@D_NamePropRo, --D_NamePropRo 
+			@D_NamePropRu, --D_NamePropRu 
+			@D_MapName, --D_MapName 
+			0, --D_DistrictCouncilSeats 
+			@V_VillageId, --V_VillageId 
+			@V_Nr, --V_Nr 
+			@V_Type, --V_Type 
+			@V_TypeDisplayRo, --V_TypeDisplayRo 
+			@V_TypeDisplayRU, --V_TypeDisplayRU 
+			@V_NamePropRo, --V_NamePropRo 
+			@V_NamePropRu, --V_NamePropRu 
+			0, --V_LocalCouncilSeats 
+			@PS_PollingStationId, --PS_PollingStationId 
+			@PS_Type, --PS_Type 
+			@PS_Nr, --PS_Nr 
+			@PS_NameRo, --PS_NameRo 
+			@PS_NameRU, --PS_NameRU 
+			x.BallotOrder --ER_BallotOrder
+	from(
+	select
+		pp.PoliticalPartyId, pp.IsIndependent, pp.Status, pp.Code, pp.NameRo, pp.BallotOrder, 
+		sum(pp.BallotCountTotal) as BallotCountTotal,
+		sum(pp.BallotsValidVotes) as BallotsValidVotes
+	from 
+	(
+		select pp.PoliticalPartyId, pp.IsIndependent, pp.Status, pp.Code, pp.NameRo, er.BallotOrder, 
+				bp.BallotsValidVotes, er.BallotCount as BallotCountTotal
+		from ElectionResult er
+		inner join BallotPaper bp on er.BallotPaperId = bp.BallotPaperId
+		inner join PoliticalParty pp on er.PoliticalPartyId = pp.PoliticalPartyId
+		left outer join Candidate c on er.CandidateId = c.CandidateId
+		where bp.ElectionId = @electionId and er.BallotPaperId in (select ballotPaperId from fn_GetBallotPapersNonLocal(@electionId, @districtId, @villageId, @pollingStationId))
+	) pp
+	group by pp.PoliticalPartyId, pp.IsIndependent, pp.Status, pp.Code, pp.NameRo, pp.BallotOrder
+	) x
+	order by x.BallotOrder
+
+	if @Mode = 2
+	BEGIN
+		/*
+		 Create mandates
+		*/
+		 declare @totalMandates bigint = 101
+		 declare @totalMandatesRes bigint = 101
+		 declare @individualThreshold bigint = 2
+		 declare @politicalPartyThreshold bigint = 4
+		 declare @numberOfIndependentPassed bigint = 0
+		 declare @numberVotesOfIndependentPassed bigint = 0
+		 declare @totalNumberOfVotes bigint = 0
+		 declare @electoralCoefficient float = 0.0
+		 declare @totalValidVotesRes bigint = 0;
+
+		declare @row bigint
+
+		DECLARE db_cursor CURSOR FOR  
+		SELECT RowNumber
+		FROM @results
+		 where PP_IsIndependent = 1 and Ratio_BallotCountDisp >= 0.02  
+
+		OPEN db_cursor  
+		FETCH NEXT FROM db_cursor INTO @row  
+
+		WHILE @@FETCH_STATUS = 0  
+		BEGIN  
+				--// Article 87 (1)
+			   set @numberOfIndependentPassed = @numberOfIndependentPassed + 1
+			   update @results set ST_PP_MandateCount = 1 where RowNumber =@row
+			   --// Article 87 (2)
+			   set @totalMandatesRes = @totalMandatesRes - 1
+
+			   --// Article 87 (3)
+			   update @results set Sum_Ballots_ValidVotes_Total_PerEDVS -= Ratio_BallotCount where RowNumber = @row
+
+			   set @numberVotesOfIndependentPassed = @numberVotesOfIndependentPassed + (select Ratio_BallotCount from @results where RowNumber = @row)
+			   --print '@numberVotesOfIndependentPassed ' + cast(@numberVotesOfIndependentPassed as nvarchar(200))
+			   FETCH NEXT FROM db_cursor INTO @row  
+		END  
+		CLOSE db_cursor  
+		DEALLOCATE db_cursor
+
+
+
+		--// Article 87 (3)
+		--// Electoral Coefficient
+		set @electoralCoefficient = (cast(@totalNumberOfVotes as float) - cast(@numberVotesOfIndependentPassed as float))/ (@totalMandates - @numberOfIndependentPassed)
+		--print '@electoralCoefficient ' + cast(@electoralCoefficient as nvarchar(200))
+
+
+
+		DECLARE db_cursor CURSOR FOR  
+		SELECT RowNumber
+		FROM @results
+		 where PP_IsIndependent = 0 and Ratio_BallotCountDisp >= 0.04    
+
+		OPEN db_cursor  
+		FETCH NEXT FROM db_cursor INTO @row  
+
+		WHILE @@FETCH_STATUS = 0  
+		BEGIN  
+			   --// Article 87 (4)
+			   --// FO: Rounding needed	
+			   declare @Ratio_BallotCountDisp bigint
+			   select @Ratio_BallotCountDisp = cast(Ratio_BallotCountDisp as float)/ @electoralCoefficient from @results where RowNumber = @row
+			   update @results set ST_PP_MandateCount = cast(Ratio_BallotCountDisp as float)/ @electoralCoefficient where RowNumber = @row
+			   set @totalMandatesRes = @totalMandatesRes - @Ratio_BallotCountDisp
+			   --print '@totalMandatesRes ' + cast(@totalMandatesRes as nvarchar(200))
+
+			   FETCH NEXT FROM db_cursor INTO @row  
+		END  
+		CLOSE db_cursor  
+		DEALLOCATE db_cursor 
+
+		while @totalMandatesRes > 0
+		begin
+			DECLARE db_cursor CURSOR FOR  
+			SELECT RowNumber
+			FROM @results
+			 where PP_IsIndependent = 0 and Ratio_BallotCountDisp >= 0.04 order by ST_PP_MandateCount desc  
+
+			OPEN db_cursor  
+			FETCH NEXT FROM db_cursor INTO @row  
+
+			WHILE (@@FETCH_STATUS = 0 and @totalMandatesRes > 0)
+			BEGIN  	   
+				   update @results set ST_PP_MandateCount = ST_PP_MandateCount + 1 where RowNumber = @row
+				   set @totalMandatesRes = @totalMandatesRes - 1
+				   --print '@totalMandatesRes ' + cast(@totalMandatesRes as nvarchar(200))
+
+				   FETCH NEXT FROM db_cursor INTO @row  
+			END  
+			CLOSE db_cursor  
+			DEALLOCATE db_cursor 
+			if @totalMandatesRes < 1 begin break end
+		end
+	END
+	select * from @results
+	--select RowNumber, ST_PP_MandateCount, Ratio_BallotCountDisp, Ratio_BallotCount, cast(Ratio_BallotCountDisp as float)/ @electoralCoefficient from @results where ST_PP_MandateCount > -1
+	--select * from @results where PP_IsIndependent = 1 and Ratio_BallotCountDisp >= 0.02
+	--select * from @results where PP_IsIndependent = 0 and Ratio_BallotCountDisp >= 0.04
+	
+END -- CREATE PROCEDURE]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[bigint]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[datetime]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[bigint]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[bigint]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[float]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[bigint]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[bigint]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[bigint]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[bigint]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[float]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[bigint]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[bigint]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[bigint]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[bigint]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[bigint]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[bigint]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[bigint]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[bigint]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[int]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[bit]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[bigint]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[bigint]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[bigint]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[bigint]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[bigint]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[bigint]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[bigint]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[float]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[bigint]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[bigint]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[bigint]" />
+				</Entry>
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@ElectionId]" />
+				</Entry>
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[float]" />
+				</Entry>
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[float]" />
+				</Entry>
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@DistrictId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@VillageId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@PollingStationId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[fn_GetBallotPapersNonLocal]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[fn_GetBallotPapersNonLocal].[ballotPaperId]" />
+				</Entry>
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[RowNumber]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[CountCompetitors_PerEDVS]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[SelectionType]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[CountBP_Total_PerEDVS]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[CountBP_Filled_PerEDVS]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[Sum_Ballots_RegisteredVoters_Total_PerEDVS]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[Sum_Ballots_Supplementary_Total_PerEDVS]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[Ratio_CountBP_Processed]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[Sum_Ballots_BallotsIssued_Total_PerEDVS]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[Sum_Ballots_BallotsCasted_Total_PerEDVS]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[Sum_Ballots_RatioParticipation_Total_PerEDVS]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[ER_PoliticalPartyId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[PP_PoliticalPartyId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[Sum_Ballots_DifferenceIssuedCasted_Total_PerEDVS]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[ER_Sum_BallotCount]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[Sum_Ballots_BallotsSpoiled_Total_PerEDVS]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[Ratio_BallotCount]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[Ratio_BallotCountDisp]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[Sum_Ballots_ValidVotes_Total_PerEDVS]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[Sum_Ballots_ValidVotes_TotalER_PerEDVS]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[ST_MandateColumnIsActual]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[Sum_Ballots_BallotsReceived_Total_PerEDVS]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[ST_PP_MandateCount]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[ST_ResultStatus]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[ST_DrawExists]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[Sum_Ballots_BallotsUnusedSpoiled_Total_PerEDVS]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[ST_IsDrawed]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[C_CandidateId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[C_LastNameRo]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[C_LastNameRu]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[C_NameRo]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[C_NameRu]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[ST_DrawStatus]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[ST_DrawId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[ST_DrawDescription]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[PP_Code]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[PP_NameRo]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[PP_NameRu]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[PP_DisplayFromNameRo]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[PP_DisplayFromNameRu]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[MNumberCount]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[PP_IsIndependent]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[E_ElectionId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[E_ElectionType]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[E_TypeName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[E_DateOfElection]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[E_DescriptionRo]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[PP_RepDisp_NameRO]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[PP_RepDisp_NameRU]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[C_RepDisp_NameRO]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[C_RepDisp_NameRU]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[D_DistrictId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[D_Nr]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[D_NamePropRo]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[D_NamePropRu]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[D_MapName]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[D_DistrictCouncilSeats]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[V_VillageId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[V_Nr]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[V_Type]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[V_TypeDisplayRo]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[V_TypeDisplayRU]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[V_NamePropRo]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[V_NamePropRu]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[V_LocalCouncilSeats]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[PS_PollingStationId]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[PS_Type]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[PS_Nr]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[PS_NameRo]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[PS_NameRU]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[ER_BallotOrder]" />
+				</Entry>
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry>
+					<References Name="[dbo].[fn_GetBallotPapersNonLocal]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[fn_GetBallotPapersNonLocal].[ballotPaperId]" />
+				</Entry>
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry />
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[float]" />
+				</Entry>
+				<Entry />
+				<Entry />
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@Mode]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[Ratio_BallotCount]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[RowNumber]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[float]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[float]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[float]" />
+				</Entry>
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[float]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="DynamicObjects">
+				<Entry>
+					<Element Type="SqlDynamicColumnSource" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results]">
+						<Relationship Name="Columns">
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[RowNumber]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[bigint]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[CountCompetitors_PerEDVS]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[int]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[SelectionType]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[int]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[CountBP_Total_PerEDVS]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[bigint]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[CountBP_Filled_PerEDVS]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[bigint]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[Sum_Ballots_RegisteredVoters_Total_PerEDVS]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[bigint]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[Sum_Ballots_Supplementary_Total_PerEDVS]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[bigint]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[Ratio_CountBP_Processed]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Property Name="Precision" Value="53" />
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[float]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[Sum_Ballots_BallotsIssued_Total_PerEDVS]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[bigint]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[Sum_Ballots_BallotsCasted_Total_PerEDVS]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[bigint]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[Sum_Ballots_RatioParticipation_Total_PerEDVS]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Property Name="Precision" Value="53" />
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[float]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[ER_PoliticalPartyId]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[bigint]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[PP_PoliticalPartyId]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[bigint]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[Sum_Ballots_DifferenceIssuedCasted_Total_PerEDVS]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[bigint]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[ER_Sum_BallotCount]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[bigint]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[Sum_Ballots_BallotsSpoiled_Total_PerEDVS]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[bigint]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[Ratio_BallotCount]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Property Name="Precision" Value="53" />
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[float]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[Ratio_BallotCountDisp]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Property Name="Precision" Value="53" />
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[float]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[Sum_Ballots_ValidVotes_Total_PerEDVS]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[bigint]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[Sum_Ballots_ValidVotes_TotalER_PerEDVS]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[bigint]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[ST_MandateColumnIsActual]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[bit]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[Sum_Ballots_BallotsReceived_Total_PerEDVS]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[bigint]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[ST_PP_MandateCount]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[bigint]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[ST_ResultStatus]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[tinyint]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[ST_DrawExists]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[bit]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[Sum_Ballots_BallotsUnusedSpoiled_Total_PerEDVS]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[bigint]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[ST_IsDrawed]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[bit]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[C_CandidateId]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[bigint]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[C_LastNameRo]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Property Name="Length" Value="200" />
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[C_LastNameRu]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Property Name="Length" Value="200" />
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[C_NameRo]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Property Name="Length" Value="200" />
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[C_NameRu]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Property Name="Length" Value="200" />
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[ST_DrawStatus]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[tinyint]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[ST_DrawId]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[bigint]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[ST_DrawDescription]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Property Name="Length" Value="200" />
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[PP_Code]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Property Name="Length" Value="50" />
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[PP_NameRo]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Property Name="Length" Value="200" />
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[PP_NameRu]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Property Name="Length" Value="200" />
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[PP_DisplayFromNameRo]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Property Name="Length" Value="200" />
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[PP_DisplayFromNameRu]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Property Name="Length" Value="200" />
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[MNumberCount]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[int]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[PP_IsIndependent]">
+									<Property Name="IsNullable" Value="False" />
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[bit]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[E_ElectionId]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[bigint]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[E_ElectionType]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[int]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[E_TypeName]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Property Name="Length" Value="200" />
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[E_DateOfElection]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[datetime]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[E_DescriptionRo]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Property Name="Length" Value="200" />
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[PP_RepDisp_NameRO]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Property Name="Length" Value="200" />
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[PP_RepDisp_NameRU]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Property Name="Length" Value="200" />
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[C_RepDisp_NameRO]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Property Name="Length" Value="200" />
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[C_RepDisp_NameRU]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Property Name="Length" Value="200" />
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[D_DistrictId]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[bigint]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[D_Nr]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[int]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[D_NamePropRo]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Property Name="Length" Value="200" />
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[D_NamePropRu]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Property Name="Length" Value="200" />
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[D_MapName]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Property Name="Length" Value="200" />
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[D_DistrictCouncilSeats]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[tinyint]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[V_VillageId]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[bigint]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[V_Nr]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[int]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[V_Type]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[int]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[V_TypeDisplayRo]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Property Name="Length" Value="200" />
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[V_TypeDisplayRU]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Property Name="Length" Value="200" />
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[V_NamePropRo]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Property Name="Length" Value="200" />
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[V_NamePropRu]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Property Name="Length" Value="200" />
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[V_LocalCouncilSeats]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[tinyint]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[PS_PollingStationId]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[bigint]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[PS_Type]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[int]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[PS_Nr]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[int]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[PS_NameRo]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Property Name="Length" Value="200" />
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[PS_NameRU]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Property Name="Length" Value="200" />
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[nvarchar]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+							<Entry>
+								<Element Type="SqlSimpleColumn" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@results].[ER_BallotOrder]">
+									<Relationship Name="TypeSpecifier">
+										<Entry>
+											<Element Type="SqlTypeSpecifier">
+												<Relationship Name="Type">
+													<Entry>
+														<References ExternalSource="BuiltIns" Name="[int]" />
+													</Entry>
+												</Relationship>
+											</Element>
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@ElectionId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bigint]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@DistrictId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bigint]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@VillageId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bigint]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@PollingStationId]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[bigint]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[p_ElectionResultPerEDVS_DS_Parliamentary].[@Mode]">
+						<Property Name="DefaultExpressionScript">
+							<Value><![CDATA[1]]></Value>
+						</Property>
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="18073" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[p_ElectionResultPerEDVS_DS_Parliamentary]&#xD;&#xA;&#x9;@ElectionId&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;bigint,&#xD;&#xA;&#x9;@DistrictId&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;bigint,&#xD;&#xA;&#x9;@VillageId&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;bigint,&#xD;&#xA;&#x9;@PollingStationId&#x9;&#x9;&#x9;&#x9;bigint,&#xD;&#xA;&#x9;@Mode&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;int = 1&#xD;&#xA;&#x9;&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+	</Model>
+</DataSchemaModel>

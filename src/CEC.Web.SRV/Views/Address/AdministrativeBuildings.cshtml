@@ -1,0 +1,83 @@
+﻿@using CEC.Web.SRV.Resources
+
+@{
+    ViewBag.Title = MUI.Buildings;
+}
+
+<div class="box-content">
+	<h4 class="page-header">@MUI.AdministrativeBuildings</h4>
+	<div class="row">
+		<div class="col-sm-3">
+			@Html.Partial("_TreeViewLocalities" )
+		</div>
+		<div class="col-sm-9">
+			@Html.Partial("_AddressesAdministrative" )
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+    (function ($) {
+        var currentRegionId = 0;
+        $.onRegionSelect = function (regionId) {
+            currentRegionId = regionId;
+            var streetGrid = $('#addresses').jqGrid();
+            streetGrid.jqGrid('setGridParam', { 'postData': { 'regionId': regionId } });
+            streetGrid.trigger('reloadGrid');
+        };
+        
+        $.getRegionId = function () {
+            return { regionId: currentRegionId };
+        };
+        
+
+        $.SaveAdministrativeAddress = function (addressId) {
+            if (currentRegionId == 0) {
+                BootstrapDialog.alert({message: '@MUI.RegionNotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+                return;
+            }
+            var url = '@Url.Action("SaveAdministrativeAddress","Address")';
+
+            var addressParam = '';
+            var dialogTitle = '@MUI.AddressAdministrativeAdd_DialogTitle';
+                if (addressId != undefined) {
+                    addressParam = '&addressId=' + addressId;
+                    dialogTitle = '@MUI.AddressAdministrativeEdit_DialogTitle';
+                }
+
+            $.openDialog($(this), {
+                url: url + '?regionId=' + currentRegionId + addressParam,
+                title: dialogTitle,
+                onSubmit: function () {
+                    $("#addresses").trigger('reloadGrid');
+                },
+
+            });
+
+        };
+
+        $.DeleteAddress = function (addressId) {
+            if (currentRegionId == 0) {
+                BootstrapDialog.alert({message: '@MUI.RegionNotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+                return;
+            }
+            var url = '@Url.Action("DeleteAddress","Address")';
+
+            BootstrapDialog.confirm('@MUI.AddressAdministrativeDelete_Message', function (result) {
+                if (result) {
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        data: { addressId: addressId },
+                        success: function (returnData) {
+                            $("#addresses").trigger('reloadGrid');
+                        }
+                    });
+                }
+
+            });
+
+        };
+
+    })(jQuery);
+</script>

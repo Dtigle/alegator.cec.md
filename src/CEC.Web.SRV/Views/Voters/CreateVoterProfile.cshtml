@@ -1,0 +1,397 @@
+﻿@using CEC.SRV.BLL
+@using CEC.SRV.Domain
+@using CEC.SRV.Domain.Constants
+@using CEC.Web.SRV.Models.Voters
+@using CEC.Web.SRV.Resources
+@model CEC.Web.SRV.Models.Voters.ViewVoterProfileModel
+
+<div>
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(x => x.Id)
+    @Html.HiddenFor(x => x.HasStreets)
+    @Html.HiddenFor(x => x.RegionStreetsType)
+    @Html.HiddenFor(x => x.BaseAddressInfo.AddressId)
+    @Html.HiddenFor(x => x.BaseAddressInfo.RegionId)
+    @Html.HiddenFor(x => x.BaseAddressInfo.LocalityId)
+    @Html.HiddenFor(x => x.BaseAddressInfo.StreetId)
+
+    <div class="box-content col-sm-2" style="width: 215px;">
+        <ul id="modalNav" class="nav">
+
+            <h5 class="page-header"> <b> Stare curenta </b> </h5>
+            <li class="selected">
+                <a id="General" data-section="@ViewVoterProfileModel.Section.General">
+                    <span class="hidden-xs">Date generale</span>
+                </a>
+            </li>
+            <li>
+                <a data-section="@ViewVoterProfileModel.Section.Conflicts">
+                    <span class="hidden-xs">Conflicte de date</span>
+                </a>
+
+            </li>
+            <h5 class="page-header"> <b>Istoric</b> </h5>
+            <li>
+                <a data-section="@ViewVoterProfileModel.Section.Addresses">
+                    <span class="hidden-xs">Adrese</span>
+                </a>
+            </li>
+            <li>
+                <a data-section="@ViewVoterProfileModel.Section.VotingInterdictions">
+                    <span class="hidden-xs">Interdictii vot</span>
+                </a>
+            </li>
+            <li>
+                <a data-section="@ViewVoterProfileModel.Section.Certificates">
+                    <span class="hidden-xs">Certificate de vot</span>
+                </a>
+            </li>
+            <li>
+                <a data-section="@ViewVoterProfileModel.Section.StayDeclaration">
+                    <span class="hidden-xs">Declaratii de sedere</span>
+                </a>
+            </li>
+
+            <li>
+                <a data-section="@ViewVoterProfileModel.Section.VotingStation">
+                    <span class="hidden-xs">Sectii de vot</span>
+                </a>
+            </li>
+
+            <li>
+                <a data-section="@ViewVoterProfileModel.Section.IdentityDocuments">
+                    <span class="hidden-xs">Documente de identitate</span>
+                </a>
+            </li>
+
+            @if (SecurityHelper.LoggedUserIsInRole(Transactions.Administrator))
+            {
+                <li>
+                    <a data-section="@ViewVoterProfileModel.Section.Voting">
+                        <span class="hidden-xs">Prezenta la vot</span>
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+
+    <div class="row" id="box1" style="overflow: hidden; padding-left: 10px;">
+        <div class="box-content">
+            <h5 class="page-header">@Html.LabelFor(x => x.PersonInfo)</h5>
+            <div class="row form-group">
+                @Html.HiddenFor(x => x.PersonInfo.PersonId)
+                @Html.EditorFor(x => x.PersonInfo.IDNP, new {ReadOnly = true})
+                @Html.EditorFor(x => x.PersonInfo.FirstName, new { ReadOnly = true })
+                @Html.EditorFor(x => x.PersonInfo.SurName, new {ReadOnly = true})
+                @Html.EditorFor(x => x.PersonInfo.MiddleName, new {ReadOnly = true})
+            </div>
+            <div class="row form-group">
+                @Html.EditorFor(x => x.BaseAddressInfo.Region, new {ReadOnly = true})
+                @Html.EditorFor(x => x.BaseAddressInfo.Street, new {ReadOnly = true})
+                @Html.EditorFor(x => x.BaseAddressInfo.Locality, new {ReadOnly = true})
+                @Html.EditorFor(x => x.BaseAddressInfo.BlNumber, new {ReadOnly = true})
+
+                <div style="visibility: hidden">
+                    @Html.EditorFor(x => x.BaseAddressInfo.BlNumber, new {ReadOnly = true})
+                </div>
+                
+                <div id="two-merged">
+                    @Html.EditorFor(x => x.BaseAddressInfo.ApNumber, new {ReadOnly = true})
+                    @Html.EditorFor(x => x.BaseAddressInfo.ApSuffix, new {ReadOnly = true})
+                </div>
+            </div>
+            
+            <div class="row form-group">
+                @Html.EditorFor(x => x.PersonInfo.DateOfBirth, new { ReadOnly = true })
+                @Html.EditorFor(x => x.PersonInfo.Age, new {ReadOnly = true})
+                <div class="control-label col-sm-2">
+                    <label>@Html.DisplayTextFor(x => x.PersonInfo.DocType)</label>
+                </div>
+                @Html.EditorFor(x => x.PersonInfo.DocNumber, new { HideLabel = true, ReadOnly = true })
+                @Html.EditorFor(x => x.PersonInfo.Sex, new { ReadOnly = true })
+            </div>
+            <div class="row form-group">
+                @Html.EditorFor(x => x.PersonInfo.Status, new { ReadOnly = true })
+            </div>
+            <div class="row form-group">
+                @Html.EditorFor(x => x.PersonInfo.ModifiedBy, new { ReadOnly = true })
+                @Html.EditorFor(x => x.PersonInfo.Modified, new { ReadOnly = true })
+            </div>
+        </div>
+    </div>
+
+    <div class="row hidden" id="box2" style="padding-top: 14px; padding-left: 10px;">
+        <div class="box-content">
+            <h5 id="modal-header" class="page-header"> Incarcare... </h5>
+            <div id="partialView">
+@*                @Html.Partial("ModalDataGrid", new ModalDataModel {Page = "ListVotersAjax", Controller = "Voters", ModelType = typeof(VotersGridModel), PersonId = "0"})*@
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="box-content">
+        <input type="submit" id="datagridClose" value="@MUI.ButtonClose" class="btn btn-default"/>
+    </div>
+</div>
+
+<style type="text/css">
+    .selected {
+        background: #efefef; 
+    }
+
+    .region-search {
+        color: #428bca;
+        cursor: pointer;
+    }
+
+    .modal-dialog {
+        width: 1000px;
+    }
+
+    .nav a {
+        cursor: pointer;
+    }
+</style>
+
+<script type="text/javascript">
+    $('.modal-content').attr('style', 'width:1080px;');
+    $('#two-merged div.col-sm-4').removeClass('col-sm-4').addClass('col-xs-2');
+    $("label[for='BaseAddressInfo_ApSuffix']").parent().removeClass('col-sm-2').addClass('col-sm-1');
+    $('#BaseAddressInfo_ApSuffix').parent().removeClass('col-sm-2').addClass('col-sm-1');
+    
+    var metadata = {
+        BaseAddressInfo_Region:{
+            title: "Alegători din aceeași regiune",
+            tooltip: "Vizualizare alegători din aceeași regiune",
+            filter: function (postData) {
+                postData.regionId = $("#BaseAddressInfo_RegionId").val();
+            }
+        },
+
+        BaseAddressInfo_Locality: {
+            title: "Alegători din aceeași localitate",
+            tooltip: "Vizualizare alegători din aceeași localitate",
+            filter: function(postData) {
+                postData.localityId = $("#BaseAddressInfo_LocalityId").val();
+            }
+        },
+
+        BaseAddressInfo_Street: {
+            title: "Alegători de pe aceeași stradă",
+            tooltip: "Vizualizare alegători de pe aceeași stradă",
+            filter: function (postData) {
+                postData.localityId = $("#BaseAddressInfo_LocalityId").val();
+                postData.streetId = $("#BaseAddressInfo_StreetId").val();
+            }
+        },
+
+        BaseAddressInfo_BlNumber: {
+            title: "Alegători din același bloc (număr)",
+            tooltip: "Vizualizare alegători din același bloc (număr)",
+            filter: function (postData) {
+                postData.addressId = $("#BaseAddressInfo_AddressId").val();
+                postData.houseNumber = $("#BaseAddressInfo_BlNumber").val();
+            }
+        },
+
+        BaseAddressInfo_ApNumber: {
+            title: "Alegători din acelaș apartament",
+            tooltip: "Vizualizare alegători din acelaș apartament",
+            filter: function (postData) {
+                postData.addressId = $("#BaseAddressInfo_AddressId").val();
+                postData.apNumber = $("#BaseAddressInfo_ApNumber").val();
+            }
+        },
+
+        BaseAddressInfo_ApSuffix: {
+            title: "Alegători din acelaș apartament (sufix)",
+            tooltip: "Vizualizare alegători din acelaș apartament (sufix)",
+            filter: function (postData) {
+                postData.addressId = $("#BaseAddressInfo_AddressId").val();
+                postData.apNumber = $("#BaseAddressInfo_ApNumber").val();
+                postData.apSuffix = $("#BaseAddressInfo_ApSuffix").val();
+            }
+            
+        }
+    };
+
+    $(document)
+        .ready(function () {
+            $('.fa-calendar').addClass('hidden');
+
+            if ('@Model.RegionStreetsType' == '@RegionStreetsType.WithoutStreets') {
+                $('.isWithoutStreets').show();
+            } else if ('@Model.RegionStreetsType' == '@RegionStreetsType.WithStreets') {
+                $('.isWithStreets').show();
+            }
+
+            $('#datagridClose')
+                .click(function() {
+                    BootstrapDialog.closeAll();
+                });
+
+            function showModalDataGrid(title, postData) {
+                $('#box2').removeClass('hidden');
+                $('#modal-header').html("<b>" + title + "</b>");
+                
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("ModalDataGrid", "Voters")',
+                    data: postData,
+                    success: function (data) {
+                        $('#partialView').html(data);
+                        $(window).trigger('resize');
+                    }
+                });
+            }
+
+            function hideModalDataGrid() {
+                $('#box2').addClass('hidden');
+            }
+
+            $('#modalNav li a')
+                .click(
+                    function(e) {
+                        $(this).closest('ul').find('.selected').removeClass('selected');
+                        $(this).parent().addClass('selected');
+
+                        var selected = $(this).closest('ul').find('.selected').find('a').attr('data-section');
+                        var text = $(this).closest('ul').find('.selected').find('a').find('span').html();
+
+                        if (selected === undefined) return;
+
+                        if (selected === "@ViewVoterProfileModel.Section.General") {
+                            hideModalDataGrid();
+                        } else {
+                            showModalDataGrid(text, {
+                                data: selected,
+                                personId: '@Model.PersonInfo.PersonId'
+                            });
+                        }
+                }
+            );
+
+            $("label[for^='BaseAddressInfo']")
+                .each(function (index) {
+                    var forAttr = $(this).attr('for');
+                    var m = metadata[forAttr];
+                    if (!m) return;
+
+                    $(this).addClass('region-search');
+                    $(this).attr("title", m.tooltip);
+
+                    $(this)
+                        .click(function () {
+                            
+                            var forAttr = $(this).attr('for');
+                            var value = $("#" + forAttr).val();
+                            
+                            $(window).trigger('resize');
+                            
+                            var postData = {
+                                data: "@ViewVoterProfileModel.Section.General"
+                            };
+
+                            m.filter(postData);
+
+                            showModalDataGrid(m.title + " : " + value, postData);
+                        });
+                });
+
+            $('#StayStatementRegionId')
+                .on('change',
+                    function() {
+
+                        $('#StayStatementPollingStationId').select2('data', null);
+                        $('#s2id_DeclaredStayAddressInfo_AddressId').select2('data', null);
+
+                        var url = '@Url.Action("GetRegionStreetsType", "Voters")';
+                        var regionId = $('#StayStatementRegionId').val();
+                        $.ajax({
+                            type: "POST",
+                            url: url,
+                            data: { regionId: regionId },
+                            success: function(data) {
+                                if (data == "True") {
+                                    $('.isWithoutStreets').hide();
+                                    $('.isWithStreets').show();
+                                    $('#HasStreets').val(true);
+                                } else {
+                                    $('.isWithoutStreets').show();
+                                    $('.isWithStreets').hide();
+                                    $('#HasStreets').val(false);
+                                }
+                            }
+                        });
+                    });
+
+        });
+
+    function addressDataRequest(term, page, pageLimit) {
+        var regionId = null;
+        if ($('#StayStatementRegionId').val() != null) {
+            regionId = $('#StayStatementRegionId').val();
+        }
+        return {
+            q: term,
+            pageLimit: pageLimit,
+            page: page,
+            regionId: regionId
+        };
+    }
+
+    function addressResults(data, more) {
+        return { results: data, more: more };
+    }
+
+    $('span.fa-calendar')
+        .each(function() {
+            var parent = $(this).closest('div');
+            parent.addClass('has-feedback');
+        });
+
+    function regionDataRequestStayStatement(term, page, pageLimit) {
+        return {
+            q: term,
+            pageLimit: pageLimit,
+            page: page
+        };
+    }
+
+    function regionResultsStayStatement(data, more) {
+        return { results: data, more: more };
+    }
+
+    function votersDataRequestStayStatement(term, page, pageLimit) {
+        var regionId = null;
+        if ($('#StayStatementRegionId').val() != null) {
+            regionId = $('#StayStatementRegionId').val();
+        }
+        return {
+            regionId: regionId,
+            q: term,
+            pageLimit: pageLimit,
+            page: page
+        };
+    }
+
+    function votersResultsStayStatement(data, more) {
+        return { results: data, more: more };
+    }
+
+    function electionsDataRequest(term, page, pageLimit) {
+        return {
+            q: term,
+            pageLimit: pageLimit,
+            page: page
+        };
+    }
+
+    function electionsResults(data, more) {
+        return { results: data, more: more };
+    }
+</script>
+댄
+댄

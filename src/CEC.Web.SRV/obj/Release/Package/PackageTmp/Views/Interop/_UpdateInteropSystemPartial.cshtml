@@ -1,0 +1,46 @@
+﻿@using CEC.SRV.BLL
+@using CEC.SRV.Domain
+@using CEC.Web.SRV.Resources
+@model CEC.Web.SRV.Models.Interop.UpdateInteropSystemModel
+
+<div class="clearfix">
+
+    @using (Html.BeginForm("CreateUpdateInteropSystem", "Interop", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(x => x.Id)
+        <div class="form-group">
+            @Html.EditorFor(x => x.Name)
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(x => x.Description)
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(x => x.TransactionProcessingType)
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(x => x.PersonStatusConsignment)
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(x => x.StatusId)
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(x => x.TemporaryAddressConsignment)
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="@MUI.ButtonSave" class="btn btn-primary" />
+            </div>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+    $('.rsa-form-group > div.col-sm-4').removeClass('col-sm-4').addClass('col-sm-6');
+    $('.rsa-form-group > div.col-sm-2').removeClass('col-sm-2').addClass('col-sm-5');
+    $('.modal-content').attr('style', 'width: 700px;');
+</script>
+
+

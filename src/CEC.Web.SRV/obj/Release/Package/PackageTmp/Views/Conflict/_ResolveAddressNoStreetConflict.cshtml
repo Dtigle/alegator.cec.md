@@ -1,0 +1,87 @@
+﻿@using CEC.SRV.BLL
+@using CEC.SRV.Domain
+@using CEC.SRV.Domain.Constants
+@using CEC.SRV.Domain.Importer
+@using CEC.Web.SRV.Resources
+@model CEC.Web.SRV.Models.Conflict.ResolveAddressNoStreetConflictModel
+
+<div class="clearfix">
+
+    @using (Html.BeginForm("MapAddressNoStreetConflict", "Conflict", FormMethod.Post, new { @class = "form-horizontal" }))
+    {   
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        for (var i = 0; i < Model.RspIds.Count; i++)
+        {
+            @Html.HiddenFor(x=>x.RspIds[i])
+        }
+        @Html.HiddenFor(x => x.RegionId)
+
+        <h6>Vor fi rezolvate @Model.RspIds.Count conflicte</h6>
+        
+        <div class="form-group address_box">
+            @Html.EditorFor(x => x.NewPollingStation.PStationId)
+        </div>
+
+        <div class="form-group address_box">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="@MUI.ButtonSave" class="btn btn-primary" id="map_address"/>
+                 @if (SecurityHelper.LoggedUserIsInRole(Transactions.Registrator))
+                 {
+                     <input type="button" value="@MUI.ButtonReject" class="btn btn-primary" id="reject_address"/>
+                 }
+                <input type="button" value="@MUI.ButtonClose" class="btn btn-default" id="close_dialog" />
+            </div>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+    $('.address_box .rsa-form-group > div.col-sm-4').removeClass('col-sm-4').addClass('col-sm-7');
+    $('.address_box .rsa-form-group > div.col-sm-2').removeClass('col-sm-2').addClass('col-sm-4');
+    $('#PollingStationId').select2();
+    $(document).ready(function () {
+        
+        $('#reject_address').click(function () {
+            var arr = [];
+            var j = 1;
+            for (var i = 0; i < j; i++)
+            {    
+                var conflictId = $('#RspIds_' + i + '_').val();
+                if (conflictId != undefined )
+                {
+                    arr.push(conflictId);
+                    j++;
+                }
+            }
+            var url = '@Url.Action("RejectAddressConflict", "Conflict")';
+            $.openDialog($(this), {
+                url: url,
+                title: 'Respingere modificare',
+                usePost: true,
+                postData: { conflictIds: arr, conflictStatus: '@ConflictStatusCode.PollingStationConflict' },
+                onSubmit: function () {
+                    BootstrapDialog.closeAll();
+                    $.clearViewConflict();
+                    $('#addressNoStreetConflicts').trigger('reloadGrid');
+                }
+            });
+        });
+        $('#close_dialog').click(function () {
+            BootstrapDialog.closeAll();
+        });
+    });
+
+    function votersDataRequest(term, page, pageLimit) {
+        return {
+            regionId: null,
+            q: term,
+            pageLimit: pageLimit,
+            page: page
+        };
+    }
+
+    function votersResults(data, more) {
+        return { results: data, more: more };
+    }
+</script>

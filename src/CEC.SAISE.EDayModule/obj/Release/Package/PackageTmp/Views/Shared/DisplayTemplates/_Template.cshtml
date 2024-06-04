@@ -1,0 +1,19 @@
+﻿@if (!ViewData.ModelMetadata.HideSurroundingHtml)
+{
+    <div class="rsa-form-group">
+        @if (ViewBag.HideLabel == null)
+        {
+            <div class="col-sm-2 control-label">
+                @Html.Label("")
+            </div>
+        }
+
+        <div class="col-sm-4 control-display-value" id="@ViewData.ModelMetadata.PropertyName">
+            @RenderSection("Data")
+        </div>
+    </div>
+}
+else
+{
+    @RenderSection("Data")
+}

@@ -1,0 +1,126 @@
+﻿@using System.Activities.Expressions
+@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.Address
+@using CEC.Web.SRV.Resources
+@using Lib.Web.Mvc.JQuery.JqGrid
+
+@{
+    ViewBag.Title = MUI.StreetTypes_TabTitle;
+}
+
+@{
+    var grid = Html.GridOptions<AddressApartmentGridModel>("addresses")
+        .BuildGrid(Url.Action("ListAddressesApartmentAjax"),
+            deleteAction: null,
+            addAction: null,
+            editAction: null,
+            unDeleteAction: Url.Action("UnDeleteAddress", "Address"),
+            historyAction: Url.Action("AddressHistory", "History"))
+        .Navigator(new JqGridNavigatorOptions()
+        {
+            
+            Add = true, Edit = true, Delete = true, CloneToTop = true,
+            AddFunction = "$.SaveApartmentAddress",
+            EditFunction = "$.SaveApartmentAddress",
+            DeleteFunction = "$.DeleteAddress",
+            
+        })
+        ;
+       
+}
+
+@grid.GetHtml()
+
+<script type="text/javascript">
+
+	$(document).ready(function() {
+		@grid.GetJavaScript();
+
+		$("#gs_PollingStation").autocomplete({
+			source: function (request, response) {
+				getGetPollingStations(request, response);
+			},			
+			max: 10,
+			scroll: true
+		});
+
+		$('#addresses').jqGrid('bindKeys');
+		$('#addresses').jqGrid().remapColumns([1, 2, 3, 0, 4, 5, 6, 7, 8, 9], true, false);
+	    
+		$("#addresses").jqGrid({
+		    // some parameters
+		    toppager: true,
+		    // some other paremeters
+		}).jqGrid('navGrid', '#addressesPager', { cloneToTop: true });
+		//var topPagerDiv = $("#addresses_toppager")[0];
+		//$("#addresses_toppager_center", topPagerDiv).remove();
+	    //$(".ui-paging-info", topPagerDiv).remove();
+
+		var bottomPagerDiv = $("div#addressesPager")[0];
+		$("#del_addresses", bottomPagerDiv).remove();
+		$("#search_addresses", bottomPagerDiv).remove();
+		$("#refresh_addresses", bottomPagerDiv).remove();
+		$("#add_addresses", bottomPagerDiv).remove();
+		$("#edit_addresses", bottomPagerDiv).remove();
+	});
+	
+
+	function getGetPollingStations(request, response) {
+		var url = '@Url.Action("GetPollingStationsByFilter","Address")';
+		var regionId = $.getRegionId().regionId;
+		$.ajax({
+			type: "POST",
+			url: url,
+			dataType: 'json',
+			data: { regionId: regionId == null?null:parseInt(regionId)},
+			success: function (data) {
+				response($.ui.autocomplete.filter(data, request.term));		
+			}
+		});
+	}
+
+
+	function getVal(value, options) {
+		//var showedElement = $('<input role="textbox" class="editable ui-autocomplete-input" style="width: 98%;" type="text" id="' + options.id + '" name="' + options.name + '">');
+		var showedElement = $('<input role="textbox" class="editable ui-autocomplete-input" style="width: 98%;" type="text" id="' + options.id + '">');
+		var hiddenInput = $('<input type="hidden" id="' + options.id + '_hidden" name="' + options.name + '">');
+
+		showedElement.val(value);
+
+		$(showedElement).autocomplete({
+			source: options.dataUrl,
+			autoFocus: true,
+			select: function(event, ui) {
+				$(showedElement).val(ui.item.StreetName);
+				$(hiddenInput).val(ui.item.StreetId);
+				return false;
+			}
+		})
+			.data("ui-autocomplete")
+			._renderItem = function(ul, item) {
+				if (item === undefined) {
+					return ul;
+				}
+				return $("<li>")
+					.data("item.autocomplete", item)
+					.append("<a>" + item.StreetName + "</a>")
+					.appendTo(ul);
+			};
+		var div = $('<div>')
+			//.attr('id', options.name)
+			.append(showedElement)
+			.append(hiddenInput);
+		return div;
+	}
+	
+</script>
+
+
+<style>
+	.ui-autocomplete {
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+</style>
+  

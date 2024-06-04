@@ -1,0 +1,78 @@
+﻿@using CEC.SRV.Domain
+@using CEC.Web.SRV.Controllers
+@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.Conflict
+@using CEC.Web.SRV.Resources
+@using Lib.Web.Mvc.JQuery.JqGrid
+
+@{
+    var grid = Html.GridOptions<AddressWithoutPollingStationGridModel>("addressesWithoutPollingStation", rowsPerPage: 100, height: 310)
+        .SetOptions(x =>
+        {
+            x.MultiSelect = true;
+            x.SortingOrder = JqGridSortingOrders.Desc;
+            x.SortingName = "Persons";
+        })
+        .BuildGrid(Url.Action("AddressesWithoutPollingStationListAjax", "Conflict"))
+        .AddNavigatorButton(MUI.Address_AssignPollingStation, onClick: "changePollingStation");
+}
+
+@grid.GetHtml()
+
+<script>
+    $(document).ready(function () {
+        @grid.GetJavaScript();
+    });
+
+    function GetRegionSelections(selections) {
+        var selection = null;
+        var result = null;
+        if (selections.length > 0) {
+            selection = selections[0];
+
+            result = $("tr[id='" + selection + "'] > td[aria-describedby='addressesWithoutPollingStation_RegionId']").attr('title');
+        }
+
+        if (selections.length > 1) {
+            //check if selected addresses from sam e region
+            for (var i = 1; i < selections.length; i++) {
+                var region = $("tr[id='" + selections[i] + "'] > td[aria-describedby='addressesWithoutPollingStation_RegionId']").attr('title');
+
+                if (result != region ) {
+                    BootstrapDialog.alert({ message: '@MUI.AddressWithoutPS_SelectFromSameRegion', title: '@MUI.DialogTitle_Information' });
+                    return null;
+                }
+            }
+        }
+
+        return result;
+    }
+
+    function changePollingStation() {
+        var selections = $("#addressesWithoutPollingStation").jqGrid('getGridParam', 'selarrrow');
+        if (selections == null || selections.length == 0) {
+            BootstrapDialog.alert({ message: '@MUI.Address_NothingSelected', title: '@MUI.DialogTitle_Information' });
+            return;
+        }
+
+        var url = '@Url.Action("ChangePollingStation", "Address")';
+        var dialogTitle = '@MUI.ChangePollingStation_DialogTitle';
+        var regionId = GetRegionSelections(selections);
+
+        if (!regionId) return;
+
+        $.openDialog($(this), {
+            url: url + '?regionId=' + regionId,
+            title: dialogTitle,
+            onContentLoad: function (submitForm) {
+                for (var i = 0; i < selections.length; i++) {
+                    submitForm.append($('<input type="hidden" />').attr('name', 'Addresses[' + i + ']').val(selections[i]));
+                }
+                $('.lblCounter', submitForm).text(selections.length);
+            },
+            onSubmit: function () {
+                $("#addressesWithoutPollingStation").trigger('reloadGrid');
+            }
+        });
+    }
+</script>

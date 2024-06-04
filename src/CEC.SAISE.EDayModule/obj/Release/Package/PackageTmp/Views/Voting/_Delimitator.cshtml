@@ -1,0 +1,34 @@
+﻿
+<div id="ow-summary" class="row">
+    <div class="col-sm-12">
+        <h4 class="page-header">Delimitare</h4>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row">
+                    <div class="col-xs-12">
+                        Scrutin:
+                        <b><span data-bind="text: viewModel.UserData().AssignedElection().Name"></span></b>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        Circumscripție:
+                        <b><span data-bind="text: viewModel.UserData().AssignedCircumscription().Name"></span></b>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        Localitate:
+                        <b><span data-bind="text: viewModel.UserData().AssignedRegion().Name"></span></b>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        Secție de votare:
+                        <b><span data-bind="text: viewModel.UserData().AssignedPollingStation().Name"></span></b>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

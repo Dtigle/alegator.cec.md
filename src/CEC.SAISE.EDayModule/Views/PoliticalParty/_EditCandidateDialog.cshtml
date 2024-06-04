@@ -1,0 +1,128 @@
+﻿<div class="modal fade" id="editCandidateDialog" style="top: 100px">
+    <div class="modal-dialog" data-bind="with: SelectedCandidate">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h4 class="modal-title" data-bind="ifnot: editMode()">Adăugare Candidat</h4>
+                <h4 class="modal-title" data-bind="if: editMode()">Editare Candidat - <strong><span data-bind="text: NameRo"></span> <span data-bind="text: LastNameRo"></span> (<span data-bind="text: $parent.SelectedParty().Code"></span>)</strong></h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="well form-horizontal">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label class="col-xs-2 control-label">Ordinea:</label>
+                                <div class="col-xs-3">
+                                    <input class="form-control" placeholder="Ordinea" data-bind="value: CandidateOrder" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-xs-2 control-label">IDNP:</label>
+
+                                <div class="col-xs-4" data-bind="validationElement: Idnp">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control hasMask" placeholder="IDNP"
+                                               data-input-mask="9999999999999"
+                                               data-bind="value: Idnp,
+                                                            event: {keypress: onRequestPersonalData},
+                                                            enable: !editMode() && !idnpSearchMode()" />
+
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-primary" value="Caută"
+                                                    data-bind="click: requestPersonalData, enable: !editMode() && !idnpSearchMode()">
+                                                <span class="fa fa-search"></span>
+                                                <span>Caută</span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-6">
+                                    <div class="progress progress-striped active" data-bind="visible: idnpSearchMode">
+                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-xs-2 control-label">Nume (Ro):</label>
+                                <div class="col-xs-4" data-bind="validationElement: LastNameRo">
+                                    <input disabled class="form-control" placeholder="Nume (Ro)" data-bind="value: LastNameRo" />
+                                </div>
+
+                                <label class="col-xs-2 control-label">Фамилия:</label>
+                                <div class="col-xs-4" data-bind="validationElement: LastNameRu">
+                                    <input class="form-control" placeholder="Фамилия" data-bind="value: LastNameRu" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-xs-2 control-label">Prenume (Ro):</label>
+                                <div class="col-xs-4" data-bind="validationElement: NameRo">
+                                    <input disabled class="form-control" placeholder="Prenume (Ro)" data-bind="value: NameRo" />
+                                </div>
+
+                                <label class="col-xs-2 control-label">Имя:</label>
+                                <div class="col-xs-4" data-bind="validationElement: NameRu">
+                                    <input class="form-control" placeholder="Имя" data-bind="value: NameRu" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-xs-2 control-label">Data nașterii:</label>
+                                <div class="col-xs-3">
+                                    <input disabled class="form-control" placeholder="Data nașterii" data-bind="value: DateOfBirth()!=null ? moment(DateOfBirth()).format('DD.MM.YYYY') : ''" />
+                                </div>
+
+                                <label class="col-xs-2 col-xs-push-1 control-label">Sex:</label>
+                                <div class="col-xs-3 col-xs-push-1">
+                                    <input disabled class="form-control" placeholder="Sex" data-bind="value: GenderText" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-xs-2 control-label">Profesia (ocupația):</label>
+                                <div class="col-xs-4" data-bind="validationElement: Occupation">
+                                    <textarea class="form-control" placeholder="Profesia (ocupația)" data-bind="value: Occupation"></textarea>
+                                </div>
+
+                                <label class="col-xs-2 control-label">Профессия (род занятий):</label>
+                                <div class="col-xs-4" data-bind="validationElement: OccupationRu">
+                                    <textarea class="form-control" placeholder="Профессия (род занятий)" data-bind="value: OccupationRu"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-xs-2 control-label">Funcția/loc muncă:</label>
+                                <div class="col-xs-4" data-bind="validationElement: Workplace">
+                                    <textarea class="form-control" placeholder="Funcția și locul de muncă" data-bind="value: Workplace"></textarea>
+                                </div>
+
+                                <label class="col-xs-2 control-label">Занимаемая должность:</label>
+                                <div class="col-xs-4" data-bind="validationElement: WorkplaceRu">
+                                    <textarea class="form-control" placeholder="Занимаемая должность" data-bind="value: WorkplaceRu"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-xs-2 control-label">Statut:</label>
+                                <div class="col-xs-4">
+                                    <select class="form-control" placeholder="Statut"
+                                            data-bind="options: $root.CandidateStatuses,
+                                                       optionsText: 'Value', optionsValue: 'Key',
+                                                       value: Status"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" data-bind="click: $parent.CancelEditCandidate">Închide</button>
+                <button type="button" class="btn btn-primary" data-bind="click: $parent.SaveUpdateCandidate, enable: isValid() && !inCallMode()">Salvează</button>
+            </div>
+        </div>
+    </div>
+</div>

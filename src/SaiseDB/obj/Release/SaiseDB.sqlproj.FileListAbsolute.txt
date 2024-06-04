@@ -1,0 +1,9 @@
+D:\work\CEC\CEC.SRV\src\SaiseDB\bin\Release\SaiseDB.dacpac
+D:\work\CEC\CEC.SRV\src\SaiseDB\bin\Release\SaiseDB.dll
+D:\work\CEC\CEC.SRV\src\SaiseDB\bin\Release\SaiseDB.pdb
+D:\work\CEC\CEC.SRV\src\SaiseDB\obj\Release\Model.xml
+D:\work\CEC\CEC.SRV\src\SaiseDB\obj\Release\refactor.xml
+D:\work\CEC\CEC.SRV\src\SaiseDB\obj\Release\postdeploy.sql
+D:\work\CEC\CEC.SRV\src\SaiseDB\obj\Release\predeploy.sql
+D:\work\CEC\CEC.SRV\src\SaiseDB\obj\Release\SaiseDB.dll
+D:\work\CEC\CEC.SRV\src\SaiseDB\obj\Release\SaiseDB.pdb

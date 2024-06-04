@@ -1,0 +1,33 @@
+2018-05-22 16:49:58.3891 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog Unhandled exception occured: could not insert: [SAISE.Domain.Voter][SQL: INSERT INTO VoterSRV (NameRo, LastNameRo, PatronymicRo, DateOfBirth, PlaceOfBirth, PlaceOfResidence, Gender, DateOfRegistration, Idnp, DocumentNumber, DateOfIssue, DateOfExpiry, Status, StreetId, StreetName, StreetNumber, StreetSubNumber, BlockNumber, BlockSubNumber, PollingStationId, RegionId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); select SCOPE_IDENTITY()] NHibernate.Exceptions.GenericADOException: could not insert: [SAISE.Domain.Voter][SQL: INSERT INTO VoterSRV (NameRo, LastNameRo, PatronymicRo, DateOfBirth, PlaceOfBirth, PlaceOfResidence, Gender, DateOfRegistration, Idnp, DocumentNumber, DateOfIssue, DateOfExpiry, Status, StreetId, StreetName, StreetNumber, StreetSubNumber, BlockNumber, BlockSubNumber, PollingStationId, RegionId) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); select SCOPE_IDENTITY()] ---> System.Data.SqlClient.SqlException: A transport-level error has occurred when receiving results from the server. (provider: TCP Provider, error: 0 - An existing connection was forcibly closed by the remote host.) ---> System.ComponentModel.Win32Exception: An existing connection was forcibly closed by the remote host
+   --- End of inner exception stack trace ---
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniSyncOverAsync()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadNetworkPacket()
+   at System.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadByte(Byte& value)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   at NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+   at NHibernate.Id.IdentityGenerator.InsertSelectDelegate.ExecuteAndExtract(IDbCommand insert, ISessionImplementor session)
+   at NHibernate.Id.Insert.AbstractReturningDelegate.PerformInsert(SqlCommandInfo insertSQL, ISessionImplementor session, IBinder binder)
+   --- End of inner exception stack trace ---
+   at NHibernate.Id.Insert.AbstractReturningDelegate.PerformInsert(SqlCommandInfo insertSQL, ISessionImplementor session, IBinder binder)
+   at NHibernate.Persister.Entity.AbstractEntityPersister.Insert(Object[] fields, Boolean[] notNull, SqlCommandInfo sql, Object obj, ISessionImplementor session)
+   at NHibernate.Persister.Entity.AbstractEntityPersister.Insert(Object[] fields, Object obj, ISessionImplementor session)
+   at NHibernate.Impl.StatelessSessionImpl.Insert(String entityName, Object entity)
+   at NHibernate.Impl.StatelessSessionImpl.Insert(Object entity)
+   at CEC.Web.SRV.EDayExport.SaiseRepository.SaveOrUpdate(SaiseEntity entity) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\SaiseRepository.cs:line 53
+   at System.Collections.Generic.List`1.ForEach(Action`1 action)
+   at CEC.Web.SRV.EDayExport.SaiseRepository.InsertVotersInTemporaryTable(List`1 voters) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\SaiseRepository.cs:line 153
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 103

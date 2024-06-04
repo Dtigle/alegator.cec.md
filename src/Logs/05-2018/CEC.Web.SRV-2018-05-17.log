@@ -1,0 +1,445 @@
+2018-05-17 11:05:47.2559 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog An error occured in MapPersonToVoter for SRV.Person.Id: 1 NHibernate.SessionException: proxies cannot be fetched by a stateless session
+   at NHibernate.Impl.StatelessSessionImpl.ImmediateLoad(String entityName, Object id)
+   at NHibernate.Proxy.AbstractLazyInitializer.Initialize()
+   at NHibernate.Proxy.DefaultLazyInitializer.Intercept(InvocationInfo info)
+   at StreetProxy.get_Name()
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 271
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 179
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 98
+2018-05-17 11:05:47.2935 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog Unhandled exception occured: proxies cannot be fetched by a stateless session NHibernate.SessionException: proxies cannot be fetched by a stateless session
+   at NHibernate.Impl.StatelessSessionImpl.ImmediateLoad(String entityName, Object id)
+   at NHibernate.Proxy.AbstractLazyInitializer.Initialize()
+   at NHibernate.Proxy.DefaultLazyInitializer.Intercept(InvocationInfo info)
+   at StreetProxy.get_Name()
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 271
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 179
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 98
+2018-05-17 11:07:15.5398 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog An error occured in MapPersonToVoter for SRV.Person.Id: 1 NHibernate.SessionException: proxies cannot be fetched by a stateless session
+   at NHibernate.Impl.StatelessSessionImpl.ImmediateLoad(String entityName, Object id)
+   at NHibernate.Proxy.AbstractLazyInitializer.Initialize()
+   at NHibernate.Proxy.DefaultLazyInitializer.Intercept(InvocationInfo info)
+   at StreetProxy.get_Name()
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 271
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 179
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 98
+2018-05-17 11:07:15.5448 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog Unhandled exception occured: proxies cannot be fetched by a stateless session NHibernate.SessionException: proxies cannot be fetched by a stateless session
+   at NHibernate.Impl.StatelessSessionImpl.ImmediateLoad(String entityName, Object id)
+   at NHibernate.Proxy.AbstractLazyInitializer.Initialize()
+   at NHibernate.Proxy.DefaultLazyInitializer.Intercept(InvocationInfo info)
+   at StreetProxy.get_Name()
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 271
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 179
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 98
+2018-05-17 11:08:27.0820 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog An error occured in MapPersonToVoter for SRV.Person.Id: 1 NHibernate.SessionException: proxies cannot be fetched by a stateless session
+   at NHibernate.Impl.StatelessSessionImpl.ImmediateLoad(String entityName, Object id)
+   at NHibernate.Proxy.AbstractLazyInitializer.Initialize()
+   at NHibernate.Proxy.DefaultLazyInitializer.Intercept(InvocationInfo info)
+   at AddressProxy.get_Street()
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 270
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 179
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 98
+2018-05-17 11:08:27.0980 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog Unhandled exception occured: proxies cannot be fetched by a stateless session NHibernate.SessionException: proxies cannot be fetched by a stateless session
+   at NHibernate.Impl.StatelessSessionImpl.ImmediateLoad(String entityName, Object id)
+   at NHibernate.Proxy.AbstractLazyInitializer.Initialize()
+   at NHibernate.Proxy.DefaultLazyInitializer.Intercept(InvocationInfo info)
+   at AddressProxy.get_Street()
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 270
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 179
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 98
+2018-05-17 11:10:47.3513 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog An error occured in MapPersonToVoter for SRV.Person.Id: 1 NHibernate.SessionException: proxies cannot be fetched by a stateless session
+   at NHibernate.Impl.StatelessSessionImpl.ImmediateLoad(String entityName, Object id)
+   at NHibernate.Proxy.AbstractLazyInitializer.Initialize()
+   at NHibernate.Proxy.DefaultLazyInitializer.Intercept(InvocationInfo info)
+   at AddressProxy.get_Street()
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 270
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 179
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 98
+2018-05-17 11:10:47.3513 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog Unhandled exception occured: proxies cannot be fetched by a stateless session NHibernate.SessionException: proxies cannot be fetched by a stateless session
+   at NHibernate.Impl.StatelessSessionImpl.ImmediateLoad(String entityName, Object id)
+   at NHibernate.Proxy.AbstractLazyInitializer.Initialize()
+   at NHibernate.Proxy.DefaultLazyInitializer.Intercept(InvocationInfo info)
+   at AddressProxy.get_Street()
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 270
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 179
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 98
+2018-05-17 11:23:36.4495 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog Unhandled exception occured: could not execute native bulk manipulation query:
+                
+                        UPDATE av SET
+                        av.RequestingPollingStationId = t.pollingStationId,
+                        av.PollingStationId = t.pollingStationId,
+                        av.RequestingVillageId = ISNULL(t.regionId, -1),
+                        av.VillageId = ISNULL(t.regionId, -1),
+                        av.RopVillageId = ISNULL(t.regionId, -1),
+                        av.Category = -1,
+                        av.EditUserId = 1,
+                        av.EditDate = GETDATE(),
+                        av.Version = ISNULL(av.Version, 0) + 1
+                        FROM VoterSRV t
+                        INNER JOIN Voter v on t.idnp = v.idnp
+                        INNER JOIN AssignedVoter av on av.VoterId = v.VoterId
+                        WHERE 
+                        t.pollingStationId is not null and v.Status = 1000
+                        and av.ElectionId = :electionId
+
+                        INSERT INTO AssignedVoter (ElectionId, RequestingVillageId, VillageId, RopVillageId, RequestingPollingStationId, PollingStationId,
+                        VoterId, Category, Status, EditUserId, EditDate, Version)
+
+                        SELECT :electionId, ISNULL(t.regionId, -1), ISNULL(t.regionId, -1), ISNULL(t.regionId, -1), t.pollingStationId, t.pollingStationId, v.VoterId, -1, v.Status, 1, GetDate(), 1
+
+                        FROM VoterSRV t
+                        INNER JOIN Voter v on t.idnp = v.idnp
+                        LEFT JOIN AssignedVoter av on av.VoterId = v.VoterId and av.ElectionId = :electionId
+                        WHERE av.AssignedVoterId IS NULL
+                        and t.pollingStationId is not null and v.Status = 1000
+
+                [SQL: 
+                
+                        UPDATE av SET
+                        av.RequestingPollingStationId = t.pollingStationId,
+                        av.PollingStationId = t.pollingStationId,
+                        av.RequestingVillageId = ISNULL(t.regionId, -1),
+                        av.VillageId = ISNULL(t.regionId, -1),
+                        av.RopVillageId = ISNULL(t.regionId, -1),
+                        av.Category = -1,
+                        av.EditUserId = 1,
+                        av.EditDate = GETDATE(),
+                        av.Version = ISNULL(av.Version, 0) + 1
+                        FROM VoterSRV t
+                        INNER JOIN Voter v on t.idnp = v.idnp
+                        INNER JOIN AssignedVoter av on av.VoterId = v.VoterId
+                        WHERE 
+                        t.pollingStationId is not null and v.Status = 1000
+                        and av.ElectionId = @p0
+
+                        INSERT INTO AssignedVoter (ElectionId, RequestingVillageId, VillageId, RopVillageId, RequestingPollingStationId, PollingStationId,
+                        VoterId, Category, Status, EditUserId, EditDate, Version)
+
+                        SELECT @p1, ISNULL(t.regionId, -1), ISNULL(t.regionId, -1), ISNULL(t.regionId, -1), t.pollingStationId, t.pollingStationId, v.VoterId, -1, v.Status, 1, GetDate(), 1
+
+                        FROM VoterSRV t
+                        INNER JOIN Voter v on t.idnp = v.idnp
+                        LEFT JOIN AssignedVoter av on av.VoterId = v.VoterId and av.ElectionId = @p2
+                        WHERE av.AssignedVoterId IS NULL
+                        and t.pollingStationId is not null and v.Status = 1000
+
+                ] NHibernate.Exceptions.GenericADOException: could not execute native bulk manipulation query:
+                
+                        UPDATE av SET
+                        av.RequestingPollingStationId = t.pollingStationId,
+                        av.PollingStationId = t.pollingStationId,
+                        av.RequestingVillageId = ISNULL(t.regionId, -1),
+                        av.VillageId = ISNULL(t.regionId, -1),
+                        av.RopVillageId = ISNULL(t.regionId, -1),
+                        av.Category = -1,
+                        av.EditUserId = 1,
+                        av.EditDate = GETDATE(),
+                        av.Version = ISNULL(av.Version, 0) + 1
+                        FROM VoterSRV t
+                        INNER JOIN Voter v on t.idnp = v.idnp
+                        INNER JOIN AssignedVoter av on av.VoterId = v.VoterId
+                        WHERE 
+                        t.pollingStationId is not null and v.Status = 1000
+                        and av.ElectionId = :electionId
+
+                        INSERT INTO AssignedVoter (ElectionId, RequestingVillageId, VillageId, RopVillageId, RequestingPollingStationId, PollingStationId,
+                        VoterId, Category, Status, EditUserId, EditDate, Version)
+
+                        SELECT :electionId, ISNULL(t.regionId, -1), ISNULL(t.regionId, -1), ISNULL(t.regionId, -1), t.pollingStationId, t.pollingStationId, v.VoterId, -1, v.Status, 1, GetDate(), 1
+
+                        FROM VoterSRV t
+                        INNER JOIN Voter v on t.idnp = v.idnp
+                        LEFT JOIN AssignedVoter av on av.VoterId = v.VoterId and av.ElectionId = :electionId
+                        WHERE av.AssignedVoterId IS NULL
+                        and t.pollingStationId is not null and v.Status = 1000
+
+                [SQL: 
+                
+                        UPDATE av SET
+                        av.RequestingPollingStationId = t.pollingStationId,
+                        av.PollingStationId = t.pollingStationId,
+                        av.RequestingVillageId = ISNULL(t.regionId, -1),
+                        av.VillageId = ISNULL(t.regionId, -1),
+                        av.RopVillageId = ISNULL(t.regionId, -1),
+                        av.Category = -1,
+                        av.EditUserId = 1,
+                        av.EditDate = GETDATE(),
+                        av.Version = ISNULL(av.Version, 0) + 1
+                        FROM VoterSRV t
+                        INNER JOIN Voter v on t.idnp = v.idnp
+                        INNER JOIN AssignedVoter av on av.VoterId = v.VoterId
+                        WHERE 
+                        t.pollingStationId is not null and v.Status = 1000
+                        and av.ElectionId = @p0
+
+                        INSERT INTO AssignedVoter (ElectionId, RequestingVillageId, VillageId, RopVillageId, RequestingPollingStationId, PollingStationId,
+                        VoterId, Category, Status, EditUserId, EditDate, Version)
+
+                        SELECT @p1, ISNULL(t.regionId, -1), ISNULL(t.regionId, -1), ISNULL(t.regionId, -1), t.pollingStationId, t.pollingStationId, v.VoterId, -1, v.Status, 1, GetDate(), 1
+
+                        FROM VoterSRV t
+                        INNER JOIN Voter v on t.idnp = v.idnp
+                        LEFT JOIN AssignedVoter av on av.VoterId = v.VoterId and av.ElectionId = @p2
+                        WHERE av.AssignedVoterId IS NULL
+                        and t.pollingStationId is not null and v.Status = 1000
+
+                ] ---> System.Data.SqlClient.SqlException: The INSERT statement conflicted with the FOREIGN KEY constraint "FK_AssignedVoter_PollingStation". The conflict occurred in database "SAISE.ElectionDay20171119", table "dbo.PollingStation", column 'PollingStationId'.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at NHibernate.AdoNet.AbstractBatcher.ExecuteNonQuery(IDbCommand cmd)
+   at NHibernate.Engine.Query.NativeSQLQueryPlan.PerformExecuteUpdate(QueryParameters queryParameters, ISessionImplementor session)
+   --- End of inner exception stack trace ---
+   at NHibernate.Engine.Query.NativeSQLQueryPlan.PerformExecuteUpdate(QueryParameters queryParameters, ISessionImplementor session)
+   at NHibernate.Impl.StatelessSessionImpl.ExecuteNativeUpdate(NativeSQLQuerySpecification nativeSQLQuerySpecification, QueryParameters queryParameters)
+   at NHibernate.Impl.SqlQueryImpl.ExecuteUpdate()
+   at CEC.Web.SRV.EDayExport.SaiseRepository.AssignVoterToElection(Int64 saiseElectionId) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\SaiseRepository.cs:line 276
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 109
+2018-05-17 13:38:55.8104 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog Unhandled exception occured: could not execute native bulk manipulation query:
+                
+                        UPDATE av SET
+                        av.RequestingPollingStationId = t.pollingStationId,
+                        av.PollingStationId = t.pollingStationId,
+                        av.RequestingVillageId = ISNULL(t.regionId, -1),
+                        av.VillageId = ISNULL(t.regionId, -1),
+                        av.RopVillageId = ISNULL(t.regionId, -1),
+                        av.Category = -1,
+                        av.EditUserId = 1,
+                        av.EditDate = GETDATE(),
+                        av.Version = ISNULL(av.Version, 0) + 1
+                        FROM VoterSRV t
+                        INNER JOIN Voter v on t.idnp = v.idnp
+                        INNER JOIN AssignedVoter av on av.VoterId = v.VoterId
+                        WHERE 
+                        t.pollingStationId is not null and v.Status = 1000
+                        and av.ElectionId = :electionId
+
+                        INSERT INTO AssignedVoter (ElectionId, RequestingVillageId, VillageId, RopVillageId, RequestingPollingStationId, PollingStationId,
+                        VoterId, Category, Status, EditUserId, EditDate, Version)
+
+                        SELECT :electionId, ISNULL(t.regionId, -1), ISNULL(t.regionId, -1), ISNULL(t.regionId, -1), t.pollingStationId, t.pollingStationId, v.VoterId, -1, v.Status, 1, GetDate(), 1
+
+                        FROM VoterSRV t
+                        INNER JOIN Voter v on t.idnp = v.idnp
+                        LEFT JOIN AssignedVoter av on av.VoterId = v.VoterId and av.ElectionId = :electionId
+                        WHERE av.AssignedVoterId IS NULL
+                        and t.pollingStationId is not null and v.Status = 1000
+
+                [SQL: 
+                
+                        UPDATE av SET
+                        av.RequestingPollingStationId = t.pollingStationId,
+                        av.PollingStationId = t.pollingStationId,
+                        av.RequestingVillageId = ISNULL(t.regionId, -1),
+                        av.VillageId = ISNULL(t.regionId, -1),
+                        av.RopVillageId = ISNULL(t.regionId, -1),
+                        av.Category = -1,
+                        av.EditUserId = 1,
+                        av.EditDate = GETDATE(),
+                        av.Version = ISNULL(av.Version, 0) + 1
+                        FROM VoterSRV t
+                        INNER JOIN Voter v on t.idnp = v.idnp
+                        INNER JOIN AssignedVoter av on av.VoterId = v.VoterId
+                        WHERE 
+                        t.pollingStationId is not null and v.Status = 1000
+                        and av.ElectionId = @p0
+
+                        INSERT INTO AssignedVoter (ElectionId, RequestingVillageId, VillageId, RopVillageId, RequestingPollingStationId, PollingStationId,
+                        VoterId, Category, Status, EditUserId, EditDate, Version)
+
+                        SELECT @p1, ISNULL(t.regionId, -1), ISNULL(t.regionId, -1), ISNULL(t.regionId, -1), t.pollingStationId, t.pollingStationId, v.VoterId, -1, v.Status, 1, GetDate(), 1
+
+                        FROM VoterSRV t
+                        INNER JOIN Voter v on t.idnp = v.idnp
+                        LEFT JOIN AssignedVoter av on av.VoterId = v.VoterId and av.ElectionId = @p2
+                        WHERE av.AssignedVoterId IS NULL
+                        and t.pollingStationId is not null and v.Status = 1000
+
+                ] NHibernate.Exceptions.GenericADOException: could not execute native bulk manipulation query:
+                
+                        UPDATE av SET
+                        av.RequestingPollingStationId = t.pollingStationId,
+                        av.PollingStationId = t.pollingStationId,
+                        av.RequestingVillageId = ISNULL(t.regionId, -1),
+                        av.VillageId = ISNULL(t.regionId, -1),
+                        av.RopVillageId = ISNULL(t.regionId, -1),
+                        av.Category = -1,
+                        av.EditUserId = 1,
+                        av.EditDate = GETDATE(),
+                        av.Version = ISNULL(av.Version, 0) + 1
+                        FROM VoterSRV t
+                        INNER JOIN Voter v on t.idnp = v.idnp
+                        INNER JOIN AssignedVoter av on av.VoterId = v.VoterId
+                        WHERE 
+                        t.pollingStationId is not null and v.Status = 1000
+                        and av.ElectionId = :electionId
+
+                        INSERT INTO AssignedVoter (ElectionId, RequestingVillageId, VillageId, RopVillageId, RequestingPollingStationId, PollingStationId,
+                        VoterId, Category, Status, EditUserId, EditDate, Version)
+
+                        SELECT :electionId, ISNULL(t.regionId, -1), ISNULL(t.regionId, -1), ISNULL(t.regionId, -1), t.pollingStationId, t.pollingStationId, v.VoterId, -1, v.Status, 1, GetDate(), 1
+
+                        FROM VoterSRV t
+                        INNER JOIN Voter v on t.idnp = v.idnp
+                        LEFT JOIN AssignedVoter av on av.VoterId = v.VoterId and av.ElectionId = :electionId
+                        WHERE av.AssignedVoterId IS NULL
+                        and t.pollingStationId is not null and v.Status = 1000
+
+                [SQL: 
+                
+                        UPDATE av SET
+                        av.RequestingPollingStationId = t.pollingStationId,
+                        av.PollingStationId = t.pollingStationId,
+                        av.RequestingVillageId = ISNULL(t.regionId, -1),
+                        av.VillageId = ISNULL(t.regionId, -1),
+                        av.RopVillageId = ISNULL(t.regionId, -1),
+                        av.Category = -1,
+                        av.EditUserId = 1,
+                        av.EditDate = GETDATE(),
+                        av.Version = ISNULL(av.Version, 0) + 1
+                        FROM VoterSRV t
+                        INNER JOIN Voter v on t.idnp = v.idnp
+                        INNER JOIN AssignedVoter av on av.VoterId = v.VoterId
+                        WHERE 
+                        t.pollingStationId is not null and v.Status = 1000
+                        and av.ElectionId = @p0
+
+                        INSERT INTO AssignedVoter (ElectionId, RequestingVillageId, VillageId, RopVillageId, RequestingPollingStationId, PollingStationId,
+                        VoterId, Category, Status, EditUserId, EditDate, Version)
+
+                        SELECT @p1, ISNULL(t.regionId, -1), ISNULL(t.regionId, -1), ISNULL(t.regionId, -1), t.pollingStationId, t.pollingStationId, v.VoterId, -1, v.Status, 1, GetDate(), 1
+
+                        FROM VoterSRV t
+                        INNER JOIN Voter v on t.idnp = v.idnp
+                        LEFT JOIN AssignedVoter av on av.VoterId = v.VoterId and av.ElectionId = @p2
+                        WHERE av.AssignedVoterId IS NULL
+                        and t.pollingStationId is not null and v.Status = 1000
+
+                ] ---> System.Data.SqlClient.SqlException: The INSERT statement conflicted with the FOREIGN KEY constraint "FK_AssignedVoter_PollingStation". The conflict occurred in database "SAISE.ElectionDay20171119", table "dbo.PollingStation", column 'PollingStationId'.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at NHibernate.AdoNet.AbstractBatcher.ExecuteNonQuery(IDbCommand cmd)
+   at NHibernate.Engine.Query.NativeSQLQueryPlan.PerformExecuteUpdate(QueryParameters queryParameters, ISessionImplementor session)
+   --- End of inner exception stack trace ---
+   at NHibernate.Engine.Query.NativeSQLQueryPlan.PerformExecuteUpdate(QueryParameters queryParameters, ISessionImplementor session)
+   at NHibernate.Impl.StatelessSessionImpl.ExecuteNativeUpdate(NativeSQLQuerySpecification nativeSQLQuerySpecification, QueryParameters queryParameters)
+   at NHibernate.Impl.SqlQueryImpl.ExecuteUpdate()
+   at CEC.Web.SRV.EDayExport.SaiseRepository.AssignVoterToElection(Int64 saiseElectionId) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\SaiseRepository.cs:line 276
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 109
+2018-05-17 13:49:12.0493 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog An error occured in MapPersonToVoter for SRV.Person.Id: 1 NHibernate.SessionException: proxies cannot be fetched by a stateless session
+   at NHibernate.Impl.StatelessSessionImpl.ImmediateLoad(String entityName, Object id)
+   at NHibernate.Proxy.AbstractLazyInitializer.Initialize()
+   at NHibernate.Proxy.DefaultLazyInitializer.Intercept(InvocationInfo info)
+   at StreetProxy.get_Name()
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 271
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 179
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 98
+2018-05-17 13:50:16.7309 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog Unhandled exception occured: proxies cannot be fetched by a stateless session NHibernate.SessionException: proxies cannot be fetched by a stateless session
+   at NHibernate.Impl.StatelessSessionImpl.ImmediateLoad(String entityName, Object id)
+   at NHibernate.Proxy.AbstractLazyInitializer.Initialize()
+   at NHibernate.Proxy.DefaultLazyInitializer.Intercept(InvocationInfo info)
+   at StreetProxy.get_Name()
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 271
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 179
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 98
+2018-05-17 13:50:40.1264 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog An error occured in MapPersonToVoter for SRV.Person.Id: 1 NHibernate.SessionException: proxies cannot be fetched by a stateless session
+   at NHibernate.Impl.StatelessSessionImpl.ImmediateLoad(String entityName, Object id)
+   at NHibernate.Proxy.AbstractLazyInitializer.Initialize()
+   at NHibernate.Proxy.DefaultLazyInitializer.Intercept(InvocationInfo info)
+   at StreetProxy.get_Name()
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 271
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 179
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 98
+2018-05-17 13:50:45.5328 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog Unhandled exception occured: proxies cannot be fetched by a stateless session NHibernate.SessionException: proxies cannot be fetched by a stateless session
+   at NHibernate.Impl.StatelessSessionImpl.ImmediateLoad(String entityName, Object id)
+   at NHibernate.Proxy.AbstractLazyInitializer.Initialize()
+   at NHibernate.Proxy.DefaultLazyInitializer.Intercept(InvocationInfo info)
+   at StreetProxy.get_Name()
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 271
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 179
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 98
+2018-05-17 13:51:35.2661 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog An error occured in MapPersonToVoter for SRV.Person.Id: 1 NHibernate.SessionException: proxies cannot be fetched by a stateless session
+   at NHibernate.Impl.StatelessSessionImpl.ImmediateLoad(String entityName, Object id)
+   at NHibernate.Proxy.AbstractLazyInitializer.Initialize()
+   at NHibernate.Proxy.DefaultLazyInitializer.Intercept(InvocationInfo info)
+   at StreetProxy.get_Name()
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 271
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 179
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 98
+2018-05-17 13:51:36.2122 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog Unhandled exception occured: proxies cannot be fetched by a stateless session NHibernate.SessionException: proxies cannot be fetched by a stateless session
+   at NHibernate.Impl.StatelessSessionImpl.ImmediateLoad(String entityName, Object id)
+   at NHibernate.Proxy.AbstractLazyInitializer.Initialize()
+   at NHibernate.Proxy.DefaultLazyInitializer.Intercept(InvocationInfo info)
+   at StreetProxy.get_Name()
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 271
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 179
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 98
+2018-05-17 13:52:29.3842 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog An error occured in MapPersonToVoter for SRV.Person.Id: 1 NHibernate.SessionException: proxies cannot be fetched by a stateless session
+   at NHibernate.Impl.StatelessSessionImpl.ImmediateLoad(String entityName, Object id)
+   at NHibernate.Proxy.AbstractLazyInitializer.Initialize()
+   at NHibernate.Proxy.DefaultLazyInitializer.Intercept(InvocationInfo info)
+   at StreetProxy.get_Name()
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 271
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 179
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 98
+2018-05-17 13:52:29.3882 ERROR CEC.Web.SRV.EDayExport.ExportStageExecuter.WriteLog Unhandled exception occured: proxies cannot be fetched by a stateless session NHibernate.SessionException: proxies cannot be fetched by a stateless session
+   at NHibernate.Impl.StatelessSessionImpl.ImmediateLoad(String entityName, Object id)
+   at NHibernate.Proxy.AbstractLazyInitializer.Initialize()
+   at NHibernate.Proxy.DefaultLazyInitializer.Intercept(InvocationInfo info)
+   at StreetProxy.get_Name()
+   at CEC.Web.SRV.EDayExport.VoterExporter.MapPersonToVoter(Voter voter, Person person) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 271
+   at CEC.Web.SRV.EDayExport.VoterExporter.CreateVoters(IEnumerable`1 people) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 179
+   at CEC.Web.SRV.EDayExport.VoterExporter.ExecuteStateInternal() in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\EDayExport\VoterExporter.cs:line 98
+2018-05-17 16:14:44.8876 ERROR CEC.Web.SRV.Infrastructure.HandleAndLogErrorAttribute.OnException  NHibernate.QueryException: could not resolve property: Description of: CEC.SRV.Domain.Importer.ToSaise.SaiseExporter
+   at NHibernate.Persister.Entity.AbstractPropertyMapping.ToType(String propertyName)
+   at NHibernate.Persister.Entity.AbstractEntityPersister.GetSubclassPropertyTableNumber(String propertyPath)
+   at NHibernate.Persister.Entity.BasicEntityPropertyMapping.ToColumns(String alias, String propertyName)
+   at NHibernate.Persister.Entity.AbstractEntityPersister.ToColumns(String alias, String propertyName)
+   at NHibernate.Loader.Criteria.CriteriaQueryTranslator.GetColumns(ICriteria subcriteria, String propertyName)
+   at NHibernate.Loader.Criteria.CriteriaQueryTranslator.GetColumnAliasesUsingProjection(ICriteria subcriteria, String propertyName)
+   at NHibernate.Criterion.Order.ToSqlString(ICriteria criteria, ICriteriaQuery criteriaQuery)
+   at NHibernate.Loader.Criteria.CriteriaQueryTranslator.GetOrderBy()
+   at NHibernate.Loader.Criteria.CriteriaJoinWalker..ctor(IOuterJoinLoadable persister, CriteriaQueryTranslator translator, ISessionFactoryImplementor factory, ICriteria criteria, String rootEntityName, IDictionary`2 enabledFilters)
+   at NHibernate.Loader.Criteria.CriteriaLoader..ctor(IOuterJoinLoadable persister, ISessionFactoryImplementor factory, CriteriaImpl rootCriteria, String rootEntityName, IDictionary`2 enabledFilters)
+   at NHibernate.Impl.MultiCriteriaImpl.CreateCriteriaLoaders()
+   at NHibernate.Impl.MultiCriteriaImpl.List()
+   at NHibernate.Impl.FutureCriteriaBatch.GetResultsFrom(IMultiCriteria multiApproach)
+   at NHibernate.Impl.FutureBatch`2.GetResults()
+   at NHibernate.Impl.FutureBatch`2.GetCurrentResult[TResult](Int32 currentIndex)
+   at NHibernate.Impl.FutureBatch`2.<>c__DisplayClass1`1.<GetFutureValue>b__0()
+   at NHibernate.Impl.FutureValue`1.get_Value()
+   at Amdaris.NHibernateProvider.Utils.PageHelper.CreatePage[T](ICriteria criteria, PageRequest request, ICriteria countCriteria)
+   at Amdaris.NHibernateProvider.Utils.PageHelper.CreatePage[T](ICriteria criteria, PageRequest request)
+   at CEC.SRV.BLL.Impl.PrintBll.GetSaiseExporter(PageRequest pageRequest) in D:\work\CEC\CEC.SRV\src\CEC.SRV.BLL\Impl\PrintBll.cs:line 105
+   at CEC.Web.SRV.Controllers.ExportController.ListSaiseExporterAjax(JqGridRequest request) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\Controllers\ExportController.cs:line 166
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass33.<BeginInvokeActionMethodWithFilters>b__32(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)

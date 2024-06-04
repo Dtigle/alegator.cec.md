@@ -1,0 +1,128 @@
+﻿@model CEC.SAISE.EDayModule.Models.Home.DashboardModel
+
+@{
+    ViewBag.Title = "Principala";
+}
+
+<div class="well">
+    <h4 class="page-header">Bun venit în SIASA</h4>
+</div>
+
+<div class="row">
+    <div class="col-xs-5">
+        <div class="box">
+            <div class="box-content">
+                @Html.Partial("../Shared/_Delimitator")
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-4">
+        <div class="box">
+            <div class="box-content">
+                @Html.Partial("../Voting/_Statistics")
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-3">
+        <div class="box">
+            <div class="box-content">
+                <h4 class="page-header">Materiale utile</h4>
+
+                <ul>
+                    <li><a href="~/Content/docs/Ghidul_Operator_Ziua_Alegerilor_2015_v2.pdf" target="blank">Ghidul utilizatorului</a></li>
+                    <li><a href="~/Content/docs/Ghidul_Operator_Ziua_Alegerilor_2015_v2 _Ru.pdf" target="blank">Руководство пользователя</a></li>
+                    @*<li><a href="~/Content/docs/video/PV_VideoMenu.html" target="blank">Ghid de utilizare (curs video)</a></li>*@
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="@(Model.ShowExercises ? "col-xs-5" : "col-xs-12")">
+        <div class="box">
+            <div class="box-content">
+                <h4 class="page-header">Acțiunile zilei:</h4>
+                <ul>
+                    <li><strong>Deschiderea secției de votare.</strong> Funcționalitate disponibilă începând cu <strong>@Model.PSOpenningStartTime</strong>.</li>
+                    <li><strong>Înregistrarea prezenței la vot.</strong> Funcționalitate disponibilă începând cu <strong>@Model.PSTournoutsStartTime</strong>.</li>
+                    <li><strong>Procese Verbale.</strong> Funcționalitate disponibilă începând cu <strong>@Model.PSElectionResultsStartTime</strong>.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    @if (Model.ShowExercises)
+    {
+        <div class="col-xs-7">
+            <div class="box">
+                <div class="box-content">
+                    <h4 class="page-header">Exerciții pentru testare:</h4>
+                    @Html.Action("GetTestExercises")
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+    function HomeVM(data) {
+        var self = this;
+
+        self.UserData = ko.observable(new UserData().init(data.UserData));
+        self.Statistics = ko.observable(new Statistics().init(data.PollingStationStatistics));
+    }
+
+    function UserData() {
+        var self = this;
+
+        self.AssignedElection = ko.observable();
+        self.AssignedCircumscription = ko.observable();
+        self.AssignedRegion = ko.observable();
+        self.AssignedPollingStation = ko.observable();
+        self.IsAdmin = ko.observable();
+
+        self.init = function (initData) {
+            if (initData == null) {
+                return self;
+            }
+
+            self.AssignedElection(initData.AssignedElection);
+            self.AssignedCircumscription(initData.AssignedCircumscription);
+            self.AssignedRegion(initData.AssignedRegion);
+            self.AssignedPollingStation(initData.AssignedPollingStation);
+            self.IsAdmin(initData.IsAdmin);
+
+            return self;
+        }
+    }
+
+    function Statistics() {
+        var self = this;
+
+        self.BaseListCounter = ko.observable();
+        self.SupplimentaryListCounter = ko.observable();
+        self.VotedCounter = ko.observable();
+
+        self.init = function (initData) {
+            if (initData == null) {
+                return self;
+            }
+
+            self.BaseListCounter(initData.BaseListCounter);
+            self.SupplimentaryListCounter(initData.SupplimentaryListCounter);
+            self.VotedCounter(initData.VotedCounter);
+
+            return self;
+        }
+    }
+
+    var initialData = '@Html.Raw(Json.Encode(Model))';
+
+    var parsedJSON = $.parseJSON(initialData);
+
+    var viewModel = new HomeVM(parsedJSON);
+    ko.applyBindings(viewModel);
+</script>

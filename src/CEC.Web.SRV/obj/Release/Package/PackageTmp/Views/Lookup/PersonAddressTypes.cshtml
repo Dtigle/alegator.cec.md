@@ -1,0 +1,79 @@
+﻿@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.Lookup
+@using CEC.Web.SRV.Resources
+@using Lib.Web.Mvc.JQuery.JqGrid
+
+@{
+    ViewBag.Title = MUI.PersonAddressTypes_TabTitle;
+}
+
+@{
+    var grid = Html.GridOptions<LookupGridModel>("addressTypes")
+        .BuildGrid(Url.Action("ListPersonAddressTypesAjax"), null, null, null, null /*Url.Action("UnDeletePersonAddressType")*/,
+            Url.Action("PersonAddressTypeHistory", "History"), Url.Action("ExportPersonAddressTypes"))
+        .Navigator(new JqGridNavigatorOptions()
+        {
+            Add = false,
+            Edit = false,
+            Delete = false,
+            Search = true,
+            AddFunction = "$.CreateUpdateAddressType",
+            EditFunction = "$.CreateUpdateAddressType",
+            DeleteFunction = "$.DeleteAddressType",
+            CloneToTop = true
+        });
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-content">
+                <h4 class="page-header">@MUI.PersonAddressTypes_TabTitle</h4>
+                @grid.GetHtml()
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        @grid.GetJavaScript();
+    });
+    
+    $.CreateUpdateAddressType = function (personAddressTypeId) {
+        var personAddressTypeParam = null;
+		var url = '@Url.Action("CreateUpdatePersonAddressType","Lookup")';
+		var dialogTitle = '@MUI.PersonStatusAdd_DialogTitle';
+        if (personAddressTypeId != undefined) {
+			dialogTitle = '@MUI.PersonStatusEdite_DialogTitle';
+            personAddressTypeParam = personAddressTypeId;
+		}
+
+		$.openDialog($(this), {
+		    url: url + '?personAddressTypeId=' + personAddressTypeParam,
+			title: dialogTitle,
+			onSubmit: function () {
+			    $("#addressTypes").trigger('reloadGrid');
+			},
+		});
+	};
+
+    $.DeleteAddressType = function (personAddressTypeId) {
+		
+		var url = '@Url.Action("DeletePersonAddressType")';
+
+		BootstrapDialog.confirm('@MUI.PersonStatusDelete_Message', function (result) {
+			if (result) {
+				$.ajax({
+					type: "POST",
+					url: url,
+					data: { id: personAddressTypeId },
+					success: function () {
+					    $("#addressTypes").trigger('reloadGrid');
+					}
+				});
+			}
+		});
+	};
+</script>

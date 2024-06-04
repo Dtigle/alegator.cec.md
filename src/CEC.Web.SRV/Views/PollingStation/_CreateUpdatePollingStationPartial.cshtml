@@ -1,0 +1,106 @@
+﻿@using CEC.SRV.BLL
+@using CEC.SRV.Domain
+@using CEC.SRV.Domain.Constants
+@using CEC.Web.SRV.Resources
+@model CEC.Web.SRV.Models.PollingStation.UpdatePollingStationModel
+
+<div class="clearfix">
+
+    @using (Html.BeginForm("CreateUpdatePollingStation", "PollingStation", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(x => x.Id)
+        @Html.HiddenFor(x => x.RegionId)
+        <div class="form-group">
+            @Html.EditorFor(x => x.CircumscriptionNumber, new { ReadOnly = true })
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(x => x.Number, new { ReadOnly = true })
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(x => x.Location, new { ReadOnly = true })
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(x => x.StreetId)
+            <a href="#" id="clear_selected_street_option" title="@MUI.ButtonDelete">
+                <i class="fa fa-times"></i>
+            </a>
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(x => x.AddressId)
+            <a href="#" id="clear_selected_option" title="@MUI.ButtonDelete">
+                <i class="fa fa-times"></i>
+            </a>
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(x => x.ContactInfo, new { ReadOnly = true })
+        </div>
+        if (SecurityHelper.LoggedUserIsInRole(Transactions.Administrator))
+        {
+            <div class="form-group">
+                @Html.EditorFor(x => x.SaiseId, new { ReadOnly = true })
+            </div>
+            <div class="form-group">
+                @Html.EditorFor(x => x.PollingStationType, new { ReadOnly = true })
+            </div>
+        }
+        else
+        {
+            @Html.HiddenFor(x => x.SaiseId, new { ReadOnly = true })
+            @Html.HiddenFor(x => x.PollingStationType, new { ReadOnly = true })
+        }
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="@MUI.ButtonSave" class="btn btn-primary" />
+            </div>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+    $('.rsa-form-group > div.col-sm-4').removeClass('col-sm-4').addClass('col-sm-7');
+    $('.rsa-form-group > div.col-sm-2').removeClass('col-sm-2').addClass('col-sm-4');
+    $('.modal-content').attr('style', 'width:740px;');
+    $('#clear_selected_option').click(function () {
+        $('#AddressId').val('');
+
+        $('#s2id_AddressId .select2-chosen').text('');
+    });
+
+    $('#PollingStationType').attr('disabled', true);
+
+    $('#clear_selected_street_option').click(function () {
+        $('#StreetId').val('');
+
+        $('#s2id_StreetId .select2-chosen').text('');
+    });
+
+    function addressDataRequest(term, page, pageLimit) {
+        return {
+            q: term,
+            pageLimit: pageLimit,
+            page: page,
+            regionId: $.getRegionId().regionId,
+            streetId: $("#StreetId").val()
+        };
+    }
+
+    function addressResults(data, more) {
+        return { results: data, more: more };
+    }
+
+    function streetDataRequest(term, page, pageLimit) {
+        return {
+            q: term,
+            pageLimit: pageLimit,
+            page: page,
+            regionId: $.getRegionId().regionId
+        };
+    }
+
+    function streetResults(data, more) {
+        return { results: data, more: more };
+    }
+</script>

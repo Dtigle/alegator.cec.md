@@ -1,0 +1,96 @@
+﻿@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.Lookup
+@using CEC.Web.SRV.Models.UnDelete
+@using CEC.Web.SRV.Resources
+@using Lib.Web.Mvc.JQuery.JqGrid
+
+@{
+    ViewBag.Title = MUI.ManagerTypes_TabTitle;
+}
+
+@{
+	var grid = Html.GridOptions<LookupGridModel>("managerTypes")
+        //.SetOptions(x => x.ResizeStop = "saveGridConfig")
+        .BuildGrid(Url.Action("ListManagerTypesAjax"), null, null, null, Url.Action("UnDeleteManagerType"),
+            Url.Action("ManagerTypeHistory", "History"), Url.Action("ExportManagerTypes"))
+		.Navigator(new JqGridNavigatorOptions()
+		{
+			Add = true,
+			Edit = true,
+			Delete = true,
+			Search = true,
+			AddFunction = "$.CreateUpdateManagerType",
+			EditFunction = "$.CreateUpdateManagerType",
+			DeleteFunction = "$.DeleteManagerType",
+            CloneToTop = true
+		});
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-content">
+                <h4 class="page-header">@MUI.ManagerTypes_TabTitle</h4>
+                @grid.GetHtml()
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        @grid.GetJavaScript();
+    });
+    
+	$.CreateUpdateManagerType = function (managerTypeId) {
+
+		var managerTypeParam = null;
+	  	var url = '@Url.Action("CreateUpdateManagerType","Lookup")';
+	  	var dialogTitle = '@MUI.ManagerTypeAdd_DialogTitle';
+		if (managerTypeId != undefined) {
+			dialogTitle = '@MUI.ManagerTypeEdite_DialogTitle';
+			managerTypeParam = managerTypeId;
+		}
+
+	  	$.openDialog($(this), {
+	  		url: url + '?managerTypeId=' + managerTypeParam,
+	  		title: dialogTitle,
+	  		onSubmit: function () {
+	  			$("#managerTypes").trigger('reloadGrid');
+	  		},
+	  	});
+	};
+	
+	$.DeleteManagerType = function (managerTypeId) {
+
+		var url = '@Url.Action("DeleteManagerType")';
+
+		BootstrapDialog.confirm('@MUI.ManagerTypesDelete_Message', function (result) {
+			if (result) {
+				$.ajax({
+					type: "POST",
+					url: url,
+					data: { id: managerTypeId },
+					success: function () {
+						$("#managerTypes").trigger('reloadGrid');
+					}
+				});
+			}
+		});
+	};
+	
+   @* function saveGridConfig() {
+        var grid = $(this);
+        var gridConfig = grid.jqGrid('jqGridExport', { exptype: 'jsonstring' });
+        debugger;
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("SaveGridConfig")',
+            data: { options: gridConfig },
+            success: function () {
+                $("#managerTypes").trigger('reloadGrid');
+            }
+        });
+    }*@
+</script>

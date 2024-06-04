@@ -1,0 +1,70 @@
+﻿@using CEC.Web.SRV.Resources
+@model CEC.Web.SRV.Models.Address.ChangePollingStationForAddressModel
+
+<div class="clearfix">
+
+    @using (Html.BeginForm("ChangePollingStation", "Address", FormMethod.Post, new { @class = "form-horizontal", id = "change_ps_form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(x=>x.RegionId)
+        
+        <h6><label class="lblCounter"></label> adrese vor fi mutate în altă Secție de Votare</h6>
+        <hr />
+        @Html.ValidationSummary()
+        
+        <div class="form-group">
+            @Html.EditorFor(x => x.PollingStationId)
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" value="@MUI.ButtonSave" class="btn btn-primary" id="change_ps" />
+            </div>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+    $('.rsa-form-group > div.col-sm-4').removeClass('col-sm-4').addClass('col-sm-6');
+    $('.rsa-form-group > div.col-sm-2').removeClass('col-sm-2').addClass('col-sm-4');
+    $('.select2Control').select2();
+
+    function votersDataRequest(term, page, pageLimit) {
+        return {
+            regionId: null,
+            q: term,
+            pageLimit: pageLimit,
+            page: page
+        };
+    }
+
+    function votersResults(data, more) {
+        return { results: data, more: more };
+    }
+
+    $(document).ready(function() {
+        $('#change_ps').click(function () {
+            var psId = $('#PollingStationId').val();
+            var psRegionId;
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetRegionByPollingStation", "Address")',
+                data: { pollingStationId: psId },
+                success: function (data) {
+                    psRegionId = data;
+                    if ('@Model.RegionId' != psRegionId) {
+                        BootstrapDialog.confirm('@MUI.Address_ChangePollingStation_MessageConfirmation', function (result) {
+                            if (result) {
+                                $('#change_ps_form').submit();
+                            }
+                        });
+                    } else {
+                        $('#change_ps_form').submit();
+                    }
+                }
+            });
+            
+
+        });
+    });
+</script>

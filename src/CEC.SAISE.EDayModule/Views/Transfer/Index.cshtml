@@ -1,0 +1,151 @@
+﻿@using CEC.SAISE.EDayModule.Infrastructure.Grids;
+@using Lib.Web.Mvc.JQuery.JqGrid;
+@using CEC.SAISE.EDayModule.Models.EDaySync;
+@model CEC.SAISE.EDayModule.Models.EDaySync.TransferEDayModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    CEC.SAISE.Domain.ElectionDay eday = ViewBag.Eday;
+}
+
+@Scripts.Render("~/bundles/jqGrid")
+
+@{
+    var grid = Html.GridOptions<EDayStageGridModel>("edayStages", height: 540)
+         .SetOptions(x => x.MultiSelect = false)
+         .SetOptions(x => x.Pager = false)
+         .SetOptions(x => x.TopPager = false)
+        .BuildGrid(Url.Action("GetDataTransferStages", "Transfer"), columnChooser: true)
+        .Navigator(new JqGridNavigatorOptions()
+        {
+            Add = false,
+            Edit = false,
+            Delete = false,
+            CloneToTop = false
+        });
+
+}
+
+@using (Html.BeginForm("ExecuteTransferEDayDatabase", "Transfer", FormMethod.Post, new { @class = "form-horizontal", @id = "init-form" }))
+{
+    <div class="well form-horizontal">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <div class="col-sm-8 control-label" style="text-align: left;">
+                        <label>
+                            Parametrii de conectare la serverul SQL aferent bazei de date Raportare*
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.EditorFor(x => x.TargetHost)
+                </div>
+                <div class="form-group">
+                    @Html.EditorFor(x => x.TargetUserName)
+                </div>
+                <div class="form-group">
+                    @Html.EditorFor(x => x.TargetPassword)
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-6">
+                        <p>
+                            <input type="button" id="btn-transfer" class="btn btn-primary pull-right" value="Migrare" autocomplete="off">
+                        </p>
+                    </div>
+                </div>
+                <h4 id="txtProcessStatus">@Html.Raw(ViewBag.ExecutionsStatus)</h4>
+            </div>
+        </div>
+    </div>
+}
+<div class="well" id="tblStages" style='@Html.Raw(eday.StartDateToReportDb.HasValue?"visibility:visible":"visibility:hidden")'>
+    <div class="row">
+        <h4 style="padding: 0 0 10px 10px;">
+            Vizualizarea etapelor de transfer
+        </h4>
+    </div>
+    <div class="row">
+        @grid.GetHtml()
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        @grid.GetJavaScript();
+            setInterval(function () {
+                $.get("/Transfer/GetCurrentStatus", function (data, status) {
+                    $('#txtProcessStatus').html(data.Message);
+                    if (data.Code == 3) {
+                        $('#tblStages').css('visibility', 'hidden');
+                    }
+                    else {
+                        $('#tblStages').css('visibility', 'visible');
+                        $('#edayStages').trigger("reloadGrid", [{ current: true }]);
+                    }
+                });
+            }, 20000);
+    });
+</script>
+
+<script type="text/javascript">
+    $(function () {
+        $("#btn-transfer").click(function () {
+
+            BootstrapDialog.show({
+                title: 'Confirmare',
+                message: 'Confirmați migrarea datelor catre BD Raportare?',
+                buttons: [{
+                    label: 'Migrare',
+                    cssClass: 'btn-primary',
+                    action: function (dialog) {
+                        dialog.enableButtons(false);
+                        dialog.setClosable(false);
+                        dialog.setType(BootstrapDialog.TYPE_PRIMARY);
+                        dialog.getModalBody().html('Operație în curs, vă rugăm așteptați ...');
+
+                        var form = $("#init-form");
+                        $.ajax({
+                            type: form.attr('method'),
+                            url: form.attr('action'),
+                            data: form.serialize(),
+                            success: function (result) {
+                                console.log(result.ExecStatus);
+                                // Alert the user of success here ...
+                                if (result.ExecStatus === parseInt('1')) {
+                                    dialog.close();
+                                    $.alert("Success", "Procesul de transfer date a fost initializat!");
+                                    @grid.GetJavaScript();
+                                    return;
+                                }
+                                if (result.ExecStatus === parseInt('2')) {
+                                    dialog.setType(BootstrapDialog.TYPE_DANGER);
+                                    dialog.enableButtons(true);
+                                    dialog.setClosable(true);
+                                    dialog.getModalBody().html("Eroare la transferul datelor : <span style='color:red'>" + result.ExecMessage + '</span>');
+                                    return;
+                                }
+                                dialog.close();
+                                $.warn("Unknown Result.ExecStatus, " + result.ExecStatus);
+                            },
+                            error: function (data) {
+                                dialog.enableButtons(true);
+                                dialog.setClosable(true);
+                                dialog.getModalBody().html("Eroare la transferul datelor : <span style='color:red'>" + data + '</span>');
+                                dialog.setType(BootstrapDialog.TYPE_DANGER);
+                            }
+                        });
+                    }
+                }, {
+                    label: 'Anualare',
+                    action: function (dialogRef) {
+                        dialogRef.close();
+                    }
+                }]
+            });
+
+        });
+    });
+
+</script>

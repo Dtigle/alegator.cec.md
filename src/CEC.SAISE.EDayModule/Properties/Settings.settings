@@ -1,0 +1,27 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CEC.SAISE.EDayModule.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="AuthExpiration" Type="System.TimeSpan" Scope="Application">
+      <Value Profile="(Default)">14:00:00</Value>
+    </Setting>
+    <Setting Name="IdleTimeSpan" Type="System.TimeSpan" Scope="Application">
+      <Value Profile="(Default)">00:30:00</Value>
+    </Setting>
+    <Setting Name="UserLockoutEnabledByDefault" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="MaxFailedAccessAttemptsBeforeLockout" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="SessionPollingTimeSpan" Type="System.TimeSpan" Scope="Application">
+      <Value Profile="(Default)">00:00:30</Value>
+    </Setting>
+    <Setting Name="DefaultAccountLockoutTimeSpan" Type="System.TimeSpan" Scope="Application">
+      <Value Profile="(Default)">365000.00:00:00</Value>
+    </Setting>
+    <Setting Name="Turnout_ElectionId" Type="System.Int64" Scope="Application">
+      <Value Profile="(Default)">61</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<CEC.SAISE.EDayModule.Infrastructure.MenuItem>
+@{
+	var controller = (string) ViewContext.RouteData.Values["controller"];
+	var action = (string) ViewContext.RouteData.Values["action"];
+}
+
+@foreach (var item in Model)
+{
+    if (item.Controller == controller && item.Action == action)
+    {
+        <li>
+			<a href='@Url.Action(@action,@controller, item.RouteValues)'>@item.Title</a>
+		</li>
+	}
+	else
+	{
+		if (item.SubItems.Count > 0)
+		{
+			foreach (var subitem in item.SubItems)
+			{
+				if (subitem.Controller == controller && subitem.Action == action)
+				{
+					<li>
+						<a href="">@item.Title</a>
+					</li>
+					<li>
+						<a href='@Url.Action(@action, @controller, subitem.RouteValues)'>@subitem.Title</a>
+					</li>
+				}
+				else
+				{
+					if (subitem.SubItems.Count > 0)
+					{
+						foreach (var subitemSubItems in subitem.SubItems)
+						{
+							if (subitemSubItems.Controller == controller && subitemSubItems.Action == action)
+							{
+								<li>
+									<a href="">@item.Title</a>
+								</li>
+								<li>
+									<a href='@Url.Action(@action, @controller, subitemSubItems.RouteValues)'>@subitemSubItems.Title</a>
+								</li>
+							}
+						}
+					}
+				}
+			}
+		}
+	}	
+}
+

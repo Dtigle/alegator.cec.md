@@ -1,0 +1,227 @@
+﻿<div id="koMain">
+
+    <div class="row">
+        <div id="breadcrumb" class="col-md-12"></div>
+    </div>
+
+    <div id="chartCec3" class="col-md-12 box-content">
+        <div id="preliminaryProcessInfo" class="col-md-12">
+            <div id="informationMessage"></div>
+            <div id="preliminaryHelpPage"></div>
+        </div>
+        <div id="preliminaryProcessResults">
+            <div class="col-xs-12">
+                <h2><strong>Alegerile Locale Generale din Republica Moldova</strong></h2>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-xs-12 col-md-4 col-lg-4" data-bind="with: E1">
+        <div class="box-content">
+            <div class="page-header">
+                <h3>Alegerea Primarilor Localităților (Turul I - Realegeri)</h3>
+            </div>
+            <div class="form-horizontal">
+                <div class="form-group form-group-lg">
+                    <label class="col-md-6 control-label">Total secții de votare:</label>
+                    <div class="col-md-6">
+                        <span class="form-control" data-bind="text: TotalPollingStations"></span>
+                    </div>
+
+                </div>
+                <div class="form-group form-group-lg">
+                    <label class="col-md-6 control-label">Procese verbale procesate:</label>
+                    <div class="col-md-6">
+                        <span class="form-control" data-bind="text: processedBP"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-md-4 col-lg-4" data-bind="with: E2">
+        <div class="box-content">
+            <div class="page-header">
+                <h3>Alegerea Consilierilor Locali (Realegeri)</h3>
+            </div>
+            <div class="form-horizontal">
+                <div class="form-group form-group-lg">
+                    <label class="col-md-6 control-label">Total secții de votare:</label>
+                    <div class="col-md-6">
+                        <span class="form-control" data-bind="text: TotalPollingStations"></span>
+                    </div>
+
+                </div>
+                <div class="form-group form-group-lg">
+                    <label class="col-md-6 control-label">Procese verbale procesate:</label>
+                    <div class="col-md-6">
+                        <span class="form-control" data-bind="text: processedBP"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-md-4 col-lg-4" data-bind="with: E3">
+        <div class="box-content">
+            <div class="page-header">
+                <h3>Alegerea Consilierilor Raionali (Realegeri)</h3>
+            </div>
+            <div class="form-horizontal">
+                <div class="form-group form-group-lg">
+                    <label class="col-md-6 control-label">Total secții de votare:</label>
+                    <div class="col-md-6">
+                        <span class="form-control" data-bind="text: TotalPollingStations"></span>
+                    </div>
+
+                </div>
+                <div class="form-group form-group-lg">
+                    <label class="col-md-6 control-label">Procese verbale procesate:</label>
+                    <div class="col-md-6">
+                        <span class="form-control" data-bind="text: processedBP"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-md-4 col-lg-4" data-bind="with: E4">
+        <div class="box-content">
+            <div class="page-header">
+                <h3>Alegerea Primarilor Localităților (Turul II)</h3>
+            </div>
+            <div class="form-horizontal">
+                <div class="form-group form-group-lg">
+                    <label class="col-md-6 control-label">Total secții de votare:</label>
+                    <div class="col-md-6">
+                        <span class="form-control" data-bind="text: TotalPollingStations"></span>
+                    </div>
+
+                </div>
+                <div class="form-group form-group-lg">
+                    <label class="col-md-6 control-label">Procese verbale procesate:</label>
+                    <div class="col-md-6">
+                        <span class="form-control" data-bind="text: processedBP"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-md-4 col-lg-4" data-bind="with: E5">
+        <div class="box-content">
+            <div class="page-header">
+                <h3>Alegerea Primarului General al mun. Chișinău (Turul II)</h3>
+            </div>
+            <div class="form-horizontal">
+                <div class="form-group form-group-lg">
+                    <label class="col-md-6 control-label">Total secții de votare:</label>
+                    <div class="col-md-6">
+                        <span class="form-control" data-bind="text: TotalPollingStations"></span>
+                    </div>
+
+                </div>
+                <div class="form-group form-group-lg">
+                    <label class="col-md-6 control-label">Procese verbale procesate:</label>
+                    <div class="col-md-6">
+                        <span class="form-control" data-bind="text: processedBP"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<style>
+    label.control-label {
+        font-size: large;
+    }
+
+    span.form-control {
+        font-size: large;
+    }
+
+    
+</style>
+
+<script>
+    function ElelctionData1(){
+        var self = this;
+
+        self.TotalPollingStations = ko.observable();
+        self.BallotPapersCount = ko.observable();
+        self.BallotPapersPercentage = ko.observable();
+
+        self.processedBP = ko.pureComputed(function() {
+            return self.BallotPapersCount() + ' ( ' + self.BallotPapersPercentage() + ' )';
+        });
+
+        self.init = function (data) {
+            if (data != undefined) {
+                self.TotalPollingStations(data.TotalPollingStations);
+                self.BallotPapersCount(data.BallotPapersCount);
+                self.BallotPapersPercentage(data.BallotPapersPercentageFormatted);
+            }
+            return self;
+        }
+    };
+
+    function VM1() {
+        var self = this;
+
+        self.E1 = ko.observable();
+        self.E2 = ko.observable();
+        self.E3 = ko.observable();
+        self.E4 = ko.observable();
+        self.E5 = ko.observable();
+
+        self.init = function (data) {
+            if (data != undefined) {
+                self.E1(new ElelctionData1().init(data[2]));
+                self.E2(new ElelctionData1().init(data[3]));
+                self.E3(new ElelctionData1().init(data[4]));
+                self.E4(new ElelctionData1().init(data[0]));
+                self.E5(new ElelctionData1().init(data[1]));
+            } 
+            return self;
+        }
+
+    };
+
+    var xx1 = new VM1();
+    if (!ko.dataFor(document.getElementById("koMain"))) {
+        ko.applyBindings(xx1, document.getElementById("koMain"));
+    }
+
+    function ConnectWS() {
+        var webSocketLiveResults = new WebSocket(globalServerSocket + 'api/LiveLocalResults?pollId=0');
+
+        webSocketLiveResults.onerror = onWsError;
+        webSocketLiveResults.onmessage = onWsMessage;
+    }
+    
+    function onWsError(event) {
+            ConnectWS();
+    }
+
+    function onWsMessage(event) {
+        var stringData = event.data;
+        var json = $.parseJSON(stringData);
+
+        if (json == undefined) {
+            console.log(event);
+        }
+
+        xx1.init(json);
+
+    }
+
+    $(document).ready(function () {
+        ConnectWS();
+    });
+
+
+</script>

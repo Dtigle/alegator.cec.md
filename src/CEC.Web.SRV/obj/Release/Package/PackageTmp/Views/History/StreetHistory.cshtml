@@ -1,0 +1,21 @@
+﻿@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.History
+@using Lib.Web.Mvc.JQuery.JqGrid
+@model long
+
+@{
+    var grid = Html.GridOptions<StreetsHistoryGridModel>("streetHistory", width: 850)
+        .BuildGrid(Url.Action("ListStreetHistoryAjax", new { id = Model }),showFilterToolbar:false, columnChooser: false)
+		.Navigator(new JqGridNavigatorOptions { Add = false, Edit = false, Delete = false, Search = false });
+}
+
+<div class="clearfix">
+    @grid.GetHtml()
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        @grid.GetJavaScript();
+        $('.modal-content').attr('style', 'width:890px;');
+    });
+</script>

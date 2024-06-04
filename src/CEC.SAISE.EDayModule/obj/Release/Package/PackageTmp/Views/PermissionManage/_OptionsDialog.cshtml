@@ -1,0 +1,61 @@
+﻿<div class="modal fade" id="optionsDialog" style="top: 100px">
+    <div class="modal-dialog">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h4 class="modal-title">Selectați opțiunile pentru activare</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="well form-horizontal">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="row form-group">
+                                <div class="col-sm-4">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="cbOpening" class="dialogControl"> Deschiderea Secțiilor
+                                            <i class="fa fa-square-o small"></i>
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="cbTurnout" class="dialogControl"> Prezența la Vot
+                                            <i class="fa fa-square-o small"></i>
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" id="cbResults" class="dialogControl"> Rezultatele (Procese Verbale)
+                                            <i class="fa fa-square-o small"></i>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="radio" class="dialogControl" value="1" id="r1"> 
+                                            <i class="fa fa-circle-o small"></i>
+                                            Doar secțiile selectate (<span id="selectedItems">0</span>)
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="radio" class="dialogControl" value="2" checked> Toate secțiile
+                                            <i class="fa fa-circle-o small"></i>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Închide</button>
+                <button type="button" class="btn btn-primary" onclick="submitOptions()">Execută</button>
+            </div>
+        </div>
+    </div>
+</div>

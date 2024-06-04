@@ -1,0 +1,16 @@
+﻿@model IEnumerable<CEC.SAISE.EDayModule.Models.Home.ExerciseLinkModel>
+
+@if (Model.Any())
+{
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li><a target="_blank" href="@Url.Content(item.Path)">Accesați pentru lista de exercitii</a></li>
+            <li><a href="~/Content/docs/ExempluProcesVerbal.html" target="blank">Exercitiu Proces Verbal</a></li>
+        }
+    </ul>
+}
+else
+{
+    <label>Nu aveți exerciții accesibile</label>
+}

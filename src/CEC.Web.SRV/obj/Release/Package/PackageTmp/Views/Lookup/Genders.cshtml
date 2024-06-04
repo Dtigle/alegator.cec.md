@@ -1,0 +1,81 @@
+﻿@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.Lookup
+@using CEC.Web.SRV.Resources
+@using Lib.Web.Mvc.JQuery.JqGrid
+
+@{
+    ViewBag.Title = MUI.Genders_TabTitle;
+}
+
+@{
+    var grid = Html.GridOptions<LookupGridModel>("genders")
+        .BuildGrid(Url.Action("ListGendersAjax"), null, null, null, null /*Url.Action("UnDeleteGender")*/,
+            Url.Action("GenderHistory", "History"), Url.Action("ExportGenders"))
+        .Navigator(new JqGridNavigatorOptions()
+        {
+            Add = false,
+            Edit = false,
+            Delete = false,
+            Search = true,
+            AddFunction = "$.CreateUpdateGender",
+            EditFunction = "$.CreateUpdateGender",
+            DeleteFunction = "$.DeleteGender",
+            CloneToTop = true
+        });
+
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-content">
+                <h4 class="page-header">@MUI.Genders_TabTitle</h4>
+                @grid.GetHtml()
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        @grid.GetJavaScript();
+    });
+    
+	$.CreateUpdateGender = function (genderId) {
+
+		var genderParam = null;
+		var url = '@Url.Action("CreateUpdateGender","Lookup")';
+		var dialogTitle = '@MUI.GenderAdd_DialogTitle';
+		if (genderId != undefined) {
+			dialogTitle = '@MUI.GenderEdite_DialogTitle';
+			genderParam = genderId;
+		}
+
+		$.openDialog($(this), {
+			url: url + '?genderId=' + genderParam,
+			title: dialogTitle,
+			onSubmit: function () {
+				$("#genders").trigger('reloadGrid');
+			},
+		});
+	};
+
+	$.DeleteGender = function (genderId) {
+
+		var url = '@Url.Action("DeleteGender")';
+
+		BootstrapDialog.confirm('@MUI.GenderDelete_Message', function (result) {
+			if (result) {
+				$.ajax({
+					type: "POST",
+					url: url,
+					data: { id: genderId },
+					success: function () {
+						$("#genders").trigger('reloadGrid');
+					}
+				});
+			}
+		});
+	};
+</script>

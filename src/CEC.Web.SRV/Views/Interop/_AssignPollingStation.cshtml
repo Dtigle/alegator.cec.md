@@ -1,0 +1,78 @@
+﻿@using CEC.Web.SRV.Resources
+@model CEC.Web.SRV.Models.Interop.AssignPollingStationModel
+
+
+@if (!Model.SameSystemAndInstitution)
+{
+    <div class="clearfix" style="color: red;">
+        Tranzactiile selectate nu apartin de acelasi sistem interop si aceeasi institutie
+    </div>
+}
+else
+{
+    <div class="clearfix">
+        
+        @using (Html.BeginForm("AssignPollingStation", "Interop", FormMethod.Post, new {@class = "form-horizontal"}))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <h6>Vor fi rezolvate <label class="transactionCount"></label> tranzacții</h6>
+
+            <div class="box_fields">
+                <div class="form-group rsa-form-group">
+                    <div class="control-label col-sm-2">
+                        <label>@MUI.UpdateVotes_NewPollingStation</label>
+                    </div>
+                    @Html.EditorFor(x => x.NewPollingStation.PStationId, new {HideLabel = true})
+                </div>
+            </div>
+
+            <div class="box_fields">
+                <div class="form-group rsa-form-group">
+                    @Html.EditorFor(x => x.ElectionInfo.ElectionId)
+                </div>
+            </div>
+
+            <div class="box_fields">
+                <div class="form-group rsa-form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="@MUI.ButtonSave" class="btn btn-primary"/>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+<script type="text/javascript">
+    $('.box_fields .rsa-form-group > div.col-sm-2').removeClass('col-sm-2').addClass('col-sm-3');
+    $('.box_fields .rsa-form-group > div.col-sm-4').removeClass('col-sm-4').addClass('col-sm-8');
+    $('.modal-content').attr('style', 'width: 800px;');
+    //$('.select2Control').select2();
+
+    function votersDataRequest(term, page, pageLimit) {
+        return {
+            regionId: null,
+            q: term,
+            pageLimit: pageLimit,
+            page: page
+        };
+    }
+
+    function votersResults(data, more) {
+        return { results: data, more: more };
+    }
+
+    function electionsDataRequest(term, page, pageLimit) {
+        return {
+            q: term,
+            pageLimit: pageLimit,
+            page: page,
+            AcceptStayDeclaration: true
+        };
+    }
+
+    function electionsResults(data, more) {
+        return { results: data, more: more };
+    }
+</script>

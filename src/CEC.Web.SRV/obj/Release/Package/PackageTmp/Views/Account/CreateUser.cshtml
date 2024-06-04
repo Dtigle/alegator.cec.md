@@ -1,0 +1,49 @@
+﻿@using CEC.Web.SRV.Resources
+@model CEC.Web.SRV.Models.Account.CreateUserViewModel
+
+@{
+	ViewBag.Title = MUI.CreateUser_Title;
+}
+
+<div class="box-content">
+	<h4 class="page-header">@MUI.CreateUser_Title</h4>
+	@using (Html.BeginForm("CreateUser", "Account", FormMethod.Post,new{@class= "form-horizontal bootstrap-validator-form", novalidate = "novalidate"}))
+	{
+		@*@Html.AntiForgeryToken()
+
+	    <div class="form-group">
+	        @Html.EditorFor(x=>x.UserName)
+	    </div>
+        
+		<div class="form-group">
+			@Html.EditorFor(x=>x.FirstName)
+			@Html.EditorFor(x=>x.LastName)
+		</div>
+	 
+		<div class="form-group">
+			@Html.EditorFor(x => x.GenderId)
+		</div>
+	 
+        <div class="form-group">
+            @Html.EditorFor(x=>x.Password)
+            @Html.EditorFor(x=>x.ConfirmPassword)
+        </div>
+
+		<div class="form-group">
+			@Html.EditorFor(x => x.RoleId)
+			@Html.EditorFor(x => x.Email)
+		</div>
+
+		<div class="form-group">
+			@Html.EditorFor(x => x.Comments)
+		</div>
+
+		<div class="form-group">
+			<div class="col-md-8">
+				<input type="submit" class="btn btn-primary" value="@MUI.ButtonSave">
+				<span></span>
+                <input type="button" onclick="window.location.href='@Url.Action("Users", "Account")'" class="btn btn-default" value="@MUI.ButtonCancel">
+			</div>
+		</div>*@
+	}
+</div>

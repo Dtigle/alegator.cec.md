@@ -1,0 +1,36 @@
+﻿@{
+    Layout = "_Template.cshtml";
+}
+
+@{
+    var attributes = new Dictionary<string, object>();
+    var classes = new List<string> {"form-control", ViewData["class"] as string};
+    if (!string.IsNullOrWhiteSpace(ViewData.ModelMetadata.Watermark))
+    {
+        attributes.Add("placeholder", ViewData.ModelMetadata.Watermark);
+    }
+    object tooltipValue;
+    if (ViewData.ModelMetadata.AdditionalValues.TryGetValue("Tooltip", out tooltipValue))
+    {
+        attributes.Add("data-togle", "tooltip");
+        attributes.Add("data-original-title", tooltipValue);
+        attributes.Add("data-placement", "bottom");
+    }
+
+    object inputMask;
+    if (ViewData.ModelMetadata.AdditionalValues.TryGetValue("data-input-mask", out inputMask))
+    {
+        classes.Add("hasMask");
+        attributes.Add("data-input-mask", inputMask);
+    }
+    attributes.Add("class", string.Join(" ", classes));
+    if (ViewBag.ReadOnly != null)
+    {
+        attributes.Add("readonly", "");
+    }
+}
+
+@section Data
+{
+    @Html.TextBox("", ViewData.TemplateInfo.FormattedModelValue, attributes)
+}

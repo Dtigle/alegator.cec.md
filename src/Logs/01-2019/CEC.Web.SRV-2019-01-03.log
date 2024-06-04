@@ -1,0 +1,324 @@
+2019-01-03 09:53:54.3261 ERROR CEC.Web.SRV.Infrastructure.HandleAndLogErrorAttribute.OnException  NHibernate.Exceptions.GenericADOException: Failed to execute multi criteria[SQL: SELECT count(*) as y0_ FROM SRV.v_PeopleWithFullAddress this_ WHERE (this_.deleted IS NULL OR (this_.deletedById = ? and this_.deleted > DATEADD(month, -1  , GETDATE()))) AND this_.regionId IN ( SELECT * FROM [SRV].[fn_GetAccessibleRegionsForUser](?));
+SELECT TOP (?)  this_.person_id as person1_78_0_, this_.Statut as Statut78_0_, this_.IdStatut as IdStatut78_0_, this_.FullAddress as FullAddr4_78_0_, this_.IdTipAdresa as IdTipAdr5_78_0_, this_.NumeTipAdresa as NumeTipA6_78_0_, this_.Doc as Doc78_0_, this_.DataExpirareAdresa as DataExpi8_78_0_, this_.HasStreets as HasStreets78_0_, this_.StreetId as StreetId78_0_, this_.AddressId as AddressId78_0_, this_.regionId as regionId78_0_, this_.pollingStationId as polling13_78_0_, this_.idnp as idnp78_0_, this_.surname as surname78_0_, this_.firstName as firstName78_0_, this_.middleName as middleName78_0_, this_.dateOfBirth as dateOfB18_78_0_, this_.houseNumber as houseNu19_78_0_, this_.apNumber as apNumber78_0_, this_.apSuffix as apSuffix78_0_, this_.gender as gender78_0_, this_.age as age78_0_ FROM SRV.v_PeopleWithFullAddress this_ WHERE (this_.deleted IS NULL OR (this_.deletedById = ? and this_.deleted > DATEADD(month, -1  , GETDATE()))) AND this_.regionId IN ( SELECT * FROM [SRV].[fn_GetAccessibleRegionsForUser](?));
+] ---> System.Data.SqlClient.SqlException: Invalid column name 'deleted'.
+Invalid column name 'deletedById'.
+Invalid column name 'deleted'.
+Invalid column name 'deleted'.
+Invalid column name 'deletedById'.
+Invalid column name 'deleted'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   at NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+   at NHibernate.Driver.BatcherDataReaderWrapper..ctor(IBatcher batcher, IDbCommand command)
+   at NHibernate.Driver.BasicResultSetsCommand.GetReader(Nullable`1 commandTimeout)
+   at NHibernate.Impl.MultiCriteriaImpl.GetResultsFromDatabase(IList results)
+   --- End of inner exception stack trace ---
+   at NHibernate.Impl.MultiCriteriaImpl.GetResultsFromDatabase(IList results)
+   at NHibernate.Impl.MultiCriteriaImpl.List()
+   at NHibernate.Impl.FutureCriteriaBatch.GetResultsFrom(IMultiCriteria multiApproach)
+   at NHibernate.Impl.FutureBatch`2.GetResults()
+   at NHibernate.Impl.FutureBatch`2.GetCurrentResult[TResult](Int32 currentIndex)
+   at NHibernate.Impl.FutureBatch`2.<>c__DisplayClass1`1.<GetFutureValue>b__0()
+   at NHibernate.Impl.FutureValue`1.get_Value()
+   at Amdaris.NHibernateProvider.Utils.PageHelper.CreatePage[T](ICriteria criteria, PageRequest request, ICriteria countCriteria)
+   at Amdaris.NHibernateProvider.Utils.PageHelper.CreatePage[T](ICriteria criteria, PageRequest request)
+   at CEC.SRV.BLL.Impl.VotersBll.GetByFilters(PageRequest pageRequest, Nullable`1 regionId, Nullable`1 pollingStationId) in D:\work\CEC\CEC.SRV\src\CEC.SRV.BLL\Impl\VotersBll.cs:line 96
+   at CEC.Web.SRV.Controllers.VotersController.ListVotersAjax(JqGridRequest request, Nullable`1 regionId, Nullable`1 pollingStationId) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\Controllers\VotersController.cs:line 69
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass33.<BeginInvokeActionMethodWithFilters>b__32(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+2019-01-03 09:54:14.6990 ERROR CEC.Web.SRV.Infrastructure.HandleAndLogErrorAttribute.OnException  NHibernate.Exceptions.GenericADOException: Failed to execute multi criteria[SQL: SELECT count(*) as y0_ FROM SRV.v_PeopleWithFullAddress this_ WHERE (this_.deleted IS NULL OR (this_.deletedById = ? and this_.deleted > DATEADD(month, -1  , GETDATE()))) AND this_.regionId IN ( SELECT * FROM [SRV].[fn_GetAccessibleRegionsForUser](?));
+SELECT TOP (?)  this_.person_id as person1_78_0_, this_.Statut as Statut78_0_, this_.IdStatut as IdStatut78_0_, this_.FullAddress as FullAddr4_78_0_, this_.IdTipAdresa as IdTipAdr5_78_0_, this_.NumeTipAdresa as NumeTipA6_78_0_, this_.Doc as Doc78_0_, this_.DataExpirareAdresa as DataExpi8_78_0_, this_.HasStreets as HasStreets78_0_, this_.StreetId as StreetId78_0_, this_.AddressId as AddressId78_0_, this_.regionId as regionId78_0_, this_.pollingStationId as polling13_78_0_, this_.idnp as idnp78_0_, this_.surname as surname78_0_, this_.firstName as firstName78_0_, this_.middleName as middleName78_0_, this_.dateOfBirth as dateOfB18_78_0_, this_.houseNumber as houseNu19_78_0_, this_.apNumber as apNumber78_0_, this_.apSuffix as apSuffix78_0_, this_.gender as gender78_0_, this_.age as age78_0_ FROM SRV.v_PeopleWithFullAddress this_ WHERE (this_.deleted IS NULL OR (this_.deletedById = ? and this_.deleted > DATEADD(month, -1  , GETDATE()))) AND this_.regionId IN ( SELECT * FROM [SRV].[fn_GetAccessibleRegionsForUser](?));
+] ---> System.Data.SqlClient.SqlException: Invalid column name 'deleted'.
+Invalid column name 'deletedById'.
+Invalid column name 'deleted'.
+Invalid column name 'deleted'.
+Invalid column name 'deletedById'.
+Invalid column name 'deleted'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   at NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+   at NHibernate.Driver.BatcherDataReaderWrapper..ctor(IBatcher batcher, IDbCommand command)
+   at NHibernate.Driver.BasicResultSetsCommand.GetReader(Nullable`1 commandTimeout)
+   at NHibernate.Impl.MultiCriteriaImpl.GetResultsFromDatabase(IList results)
+   --- End of inner exception stack trace ---
+   at NHibernate.Impl.MultiCriteriaImpl.GetResultsFromDatabase(IList results)
+   at NHibernate.Impl.MultiCriteriaImpl.List()
+   at NHibernate.Impl.FutureCriteriaBatch.GetResultsFrom(IMultiCriteria multiApproach)
+   at NHibernate.Impl.FutureBatch`2.GetResults()
+   at NHibernate.Impl.FutureBatch`2.GetCurrentResult[TResult](Int32 currentIndex)
+   at NHibernate.Impl.FutureBatch`2.<>c__DisplayClass1`1.<GetFutureValue>b__0()
+   at NHibernate.Impl.FutureValue`1.get_Value()
+   at Amdaris.NHibernateProvider.Utils.PageHelper.CreatePage[T](ICriteria criteria, PageRequest request, ICriteria countCriteria)
+   at Amdaris.NHibernateProvider.Utils.PageHelper.CreatePage[T](ICriteria criteria, PageRequest request)
+   at CEC.SRV.BLL.Impl.VotersBll.GetByFilters(PageRequest pageRequest, Nullable`1 regionId, Nullable`1 pollingStationId) in D:\work\CEC\CEC.SRV\src\CEC.SRV.BLL\Impl\VotersBll.cs:line 96
+   at CEC.Web.SRV.Controllers.VotersController.ListVotersAjax(JqGridRequest request, Nullable`1 regionId, Nullable`1 pollingStationId) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\Controllers\VotersController.cs:line 69
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass33.<BeginInvokeActionMethodWithFilters>b__32(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+2019-01-03 09:54:19.5629 ERROR CEC.Web.SRV.Infrastructure.HandleAndLogErrorAttribute.OnException  NHibernate.Exceptions.GenericADOException: Failed to execute multi criteria[SQL: SELECT count(*) as y0_ FROM SRV.v_PeopleWithFullAddress this_ WHERE (this_.deleted IS NULL OR (this_.deletedById = ? and this_.deleted > DATEADD(month, -1  , GETDATE()))) AND this_.regionId IN ( SELECT * FROM [SRV].[fn_GetAccessibleRegionsForUser](?));
+SELECT TOP (?)  this_.person_id as person1_78_0_, this_.Statut as Statut78_0_, this_.IdStatut as IdStatut78_0_, this_.FullAddress as FullAddr4_78_0_, this_.IdTipAdresa as IdTipAdr5_78_0_, this_.NumeTipAdresa as NumeTipA6_78_0_, this_.Doc as Doc78_0_, this_.DataExpirareAdresa as DataExpi8_78_0_, this_.HasStreets as HasStreets78_0_, this_.StreetId as StreetId78_0_, this_.AddressId as AddressId78_0_, this_.regionId as regionId78_0_, this_.pollingStationId as polling13_78_0_, this_.idnp as idnp78_0_, this_.surname as surname78_0_, this_.firstName as firstName78_0_, this_.middleName as middleName78_0_, this_.dateOfBirth as dateOfB18_78_0_, this_.houseNumber as houseNu19_78_0_, this_.apNumber as apNumber78_0_, this_.apSuffix as apSuffix78_0_, this_.gender as gender78_0_, this_.age as age78_0_ FROM SRV.v_PeopleWithFullAddress this_ WHERE (this_.deleted IS NULL OR (this_.deletedById = ? and this_.deleted > DATEADD(month, -1  , GETDATE()))) AND this_.regionId IN ( SELECT * FROM [SRV].[fn_GetAccessibleRegionsForUser](?));
+] ---> System.Data.SqlClient.SqlException: Invalid column name 'deleted'.
+Invalid column name 'deletedById'.
+Invalid column name 'deleted'.
+Invalid column name 'deleted'.
+Invalid column name 'deletedById'.
+Invalid column name 'deleted'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   at NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+   at NHibernate.Driver.BatcherDataReaderWrapper..ctor(IBatcher batcher, IDbCommand command)
+   at NHibernate.Driver.BasicResultSetsCommand.GetReader(Nullable`1 commandTimeout)
+   at NHibernate.Impl.MultiCriteriaImpl.GetResultsFromDatabase(IList results)
+   --- End of inner exception stack trace ---
+   at NHibernate.Impl.MultiCriteriaImpl.GetResultsFromDatabase(IList results)
+   at NHibernate.Impl.MultiCriteriaImpl.List()
+   at NHibernate.Impl.FutureCriteriaBatch.GetResultsFrom(IMultiCriteria multiApproach)
+   at NHibernate.Impl.FutureBatch`2.GetResults()
+   at NHibernate.Impl.FutureBatch`2.GetCurrentResult[TResult](Int32 currentIndex)
+   at NHibernate.Impl.FutureBatch`2.<>c__DisplayClass1`1.<GetFutureValue>b__0()
+   at NHibernate.Impl.FutureValue`1.get_Value()
+   at Amdaris.NHibernateProvider.Utils.PageHelper.CreatePage[T](ICriteria criteria, PageRequest request, ICriteria countCriteria)
+   at Amdaris.NHibernateProvider.Utils.PageHelper.CreatePage[T](ICriteria criteria, PageRequest request)
+   at CEC.SRV.BLL.Impl.VotersBll.GetByFilters(PageRequest pageRequest, Nullable`1 regionId, Nullable`1 pollingStationId) in D:\work\CEC\CEC.SRV\src\CEC.SRV.BLL\Impl\VotersBll.cs:line 96
+   at CEC.Web.SRV.Controllers.VotersController.ListVotersAjax(JqGridRequest request, Nullable`1 regionId, Nullable`1 pollingStationId) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\Controllers\VotersController.cs:line 69
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass33.<BeginInvokeActionMethodWithFilters>b__32(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+2019-01-03 09:54:49.1993 ERROR CEC.Web.SRV.Infrastructure.HandleAndLogErrorAttribute.OnException  NHibernate.Exceptions.GenericADOException: Failed to execute multi criteria[SQL: SELECT count(*) as y0_ FROM SRV.v_PeopleWithFullAddress this_ WHERE (this_.deleted IS NULL OR (this_.deletedById = ? and this_.deleted > DATEADD(month, -1  , GETDATE()))) AND this_.regionId IN ( SELECT * FROM [SRV].[fn_GetAccessibleRegionsForUser](?));
+SELECT TOP (?)  this_.person_id as person1_78_0_, this_.Statut as Statut78_0_, this_.IdStatut as IdStatut78_0_, this_.FullAddress as FullAddr4_78_0_, this_.IdTipAdresa as IdTipAdr5_78_0_, this_.NumeTipAdresa as NumeTipA6_78_0_, this_.Doc as Doc78_0_, this_.DataExpirareAdresa as DataExpi8_78_0_, this_.HasStreets as HasStreets78_0_, this_.StreetId as StreetId78_0_, this_.AddressId as AddressId78_0_, this_.regionId as regionId78_0_, this_.pollingStationId as polling13_78_0_, this_.idnp as idnp78_0_, this_.surname as surname78_0_, this_.firstName as firstName78_0_, this_.middleName as middleName78_0_, this_.dateOfBirth as dateOfB18_78_0_, this_.houseNumber as houseNu19_78_0_, this_.apNumber as apNumber78_0_, this_.apSuffix as apSuffix78_0_, this_.gender as gender78_0_, this_.age as age78_0_ FROM SRV.v_PeopleWithFullAddress this_ WHERE (this_.deleted IS NULL OR (this_.deletedById = ? and this_.deleted > DATEADD(month, -1  , GETDATE()))) AND this_.regionId IN ( SELECT * FROM [SRV].[fn_GetAccessibleRegionsForUser](?));
+] ---> System.Data.SqlClient.SqlException: Invalid column name 'deleted'.
+Invalid column name 'deletedById'.
+Invalid column name 'deleted'.
+Invalid column name 'deleted'.
+Invalid column name 'deletedById'.
+Invalid column name 'deleted'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   at NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+   at NHibernate.Driver.BatcherDataReaderWrapper..ctor(IBatcher batcher, IDbCommand command)
+   at NHibernate.Driver.BasicResultSetsCommand.GetReader(Nullable`1 commandTimeout)
+   at NHibernate.Impl.MultiCriteriaImpl.GetResultsFromDatabase(IList results)
+   --- End of inner exception stack trace ---
+   at NHibernate.Impl.MultiCriteriaImpl.GetResultsFromDatabase(IList results)
+   at NHibernate.Impl.MultiCriteriaImpl.List()
+   at NHibernate.Impl.FutureCriteriaBatch.GetResultsFrom(IMultiCriteria multiApproach)
+   at NHibernate.Impl.FutureBatch`2.GetResults()
+   at NHibernate.Impl.FutureBatch`2.GetCurrentResult[TResult](Int32 currentIndex)
+   at NHibernate.Impl.FutureBatch`2.<>c__DisplayClass1`1.<GetFutureValue>b__0()
+   at NHibernate.Impl.FutureValue`1.get_Value()
+   at Amdaris.NHibernateProvider.Utils.PageHelper.CreatePage[T](ICriteria criteria, PageRequest request, ICriteria countCriteria)
+   at Amdaris.NHibernateProvider.Utils.PageHelper.CreatePage[T](ICriteria criteria, PageRequest request)
+   at CEC.SRV.BLL.Impl.VotersBll.GetByFilters(PageRequest pageRequest, Nullable`1 regionId, Nullable`1 pollingStationId) in D:\work\CEC\CEC.SRV\src\CEC.SRV.BLL\Impl\VotersBll.cs:line 96
+   at CEC.Web.SRV.Controllers.VotersController.ListVotersAjax(JqGridRequest request, Nullable`1 regionId, Nullable`1 pollingStationId) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\Controllers\VotersController.cs:line 69
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass33.<BeginInvokeActionMethodWithFilters>b__32(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+2019-01-03 09:55:19.1653 ERROR CEC.Web.SRV.Infrastructure.HandleAndLogErrorAttribute.OnException  NHibernate.Exceptions.GenericADOException: Failed to execute multi criteria[SQL: SELECT count(*) as y0_ FROM SRV.v_PeopleWithFullAddress this_ WHERE (this_.deleted IS NULL OR (this_.deletedById = ? and this_.deleted > DATEADD(month, -1  , GETDATE()))) AND this_.regionId IN ( SELECT * FROM [SRV].[fn_GetAccessibleRegionsForUser](?));
+SELECT TOP (?)  this_.person_id as person1_78_0_, this_.Statut as Statut78_0_, this_.IdStatut as IdStatut78_0_, this_.FullAddress as FullAddr4_78_0_, this_.IdTipAdresa as IdTipAdr5_78_0_, this_.NumeTipAdresa as NumeTipA6_78_0_, this_.Doc as Doc78_0_, this_.DataExpirareAdresa as DataExpi8_78_0_, this_.HasStreets as HasStreets78_0_, this_.StreetId as StreetId78_0_, this_.AddressId as AddressId78_0_, this_.regionId as regionId78_0_, this_.pollingStationId as polling13_78_0_, this_.idnp as idnp78_0_, this_.surname as surname78_0_, this_.firstName as firstName78_0_, this_.middleName as middleName78_0_, this_.dateOfBirth as dateOfB18_78_0_, this_.houseNumber as houseNu19_78_0_, this_.apNumber as apNumber78_0_, this_.apSuffix as apSuffix78_0_, this_.gender as gender78_0_, this_.age as age78_0_ FROM SRV.v_PeopleWithFullAddress this_ WHERE (this_.deleted IS NULL OR (this_.deletedById = ? and this_.deleted > DATEADD(month, -1  , GETDATE()))) AND this_.regionId IN ( SELECT * FROM [SRV].[fn_GetAccessibleRegionsForUser](?));
+] ---> System.Data.SqlClient.SqlException: Invalid column name 'deleted'.
+Invalid column name 'deletedById'.
+Invalid column name 'deleted'.
+Invalid column name 'deleted'.
+Invalid column name 'deletedById'.
+Invalid column name 'deleted'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   at NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+   at NHibernate.Driver.BatcherDataReaderWrapper..ctor(IBatcher batcher, IDbCommand command)
+   at NHibernate.Driver.BasicResultSetsCommand.GetReader(Nullable`1 commandTimeout)
+   at NHibernate.Impl.MultiCriteriaImpl.GetResultsFromDatabase(IList results)
+   --- End of inner exception stack trace ---
+   at NHibernate.Impl.MultiCriteriaImpl.GetResultsFromDatabase(IList results)
+   at NHibernate.Impl.MultiCriteriaImpl.List()
+   at NHibernate.Impl.FutureCriteriaBatch.GetResultsFrom(IMultiCriteria multiApproach)
+   at NHibernate.Impl.FutureBatch`2.GetResults()
+   at NHibernate.Impl.FutureBatch`2.GetCurrentResult[TResult](Int32 currentIndex)
+   at NHibernate.Impl.FutureBatch`2.<>c__DisplayClass1`1.<GetFutureValue>b__0()
+   at NHibernate.Impl.FutureValue`1.get_Value()
+   at Amdaris.NHibernateProvider.Utils.PageHelper.CreatePage[T](ICriteria criteria, PageRequest request, ICriteria countCriteria)
+   at Amdaris.NHibernateProvider.Utils.PageHelper.CreatePage[T](ICriteria criteria, PageRequest request)
+   at CEC.SRV.BLL.Impl.VotersBll.GetByFilters(PageRequest pageRequest, Nullable`1 regionId, Nullable`1 pollingStationId) in D:\work\CEC\CEC.SRV\src\CEC.SRV.BLL\Impl\VotersBll.cs:line 96
+   at CEC.Web.SRV.Controllers.VotersController.ListVotersAjax(JqGridRequest request, Nullable`1 regionId, Nullable`1 pollingStationId) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\Controllers\VotersController.cs:line 69
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass33.<BeginInvokeActionMethodWithFilters>b__32(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+2019-01-03 09:55:35.0799 ERROR CEC.Web.SRV.Infrastructure.HandleAndLogErrorAttribute.OnException  NHibernate.Exceptions.GenericADOException: Failed to execute multi criteria[SQL: SELECT count(*) as y0_ FROM SRV.v_PeopleWithFullAddress this_ WHERE (this_.deleted IS NULL OR (this_.deletedById = ? and this_.deleted > DATEADD(month, -1  , GETDATE()))) AND this_.regionId IN ( SELECT * FROM [SRV].[fn_GetAccessibleRegionsForUser](?));
+SELECT TOP (?)  this_.person_id as person1_78_0_, this_.Statut as Statut78_0_, this_.IdStatut as IdStatut78_0_, this_.FullAddress as FullAddr4_78_0_, this_.IdTipAdresa as IdTipAdr5_78_0_, this_.NumeTipAdresa as NumeTipA6_78_0_, this_.Doc as Doc78_0_, this_.DataExpirareAdresa as DataExpi8_78_0_, this_.HasStreets as HasStreets78_0_, this_.StreetId as StreetId78_0_, this_.AddressId as AddressId78_0_, this_.regionId as regionId78_0_, this_.pollingStationId as polling13_78_0_, this_.idnp as idnp78_0_, this_.surname as surname78_0_, this_.firstName as firstName78_0_, this_.middleName as middleName78_0_, this_.dateOfBirth as dateOfB18_78_0_, this_.houseNumber as houseNu19_78_0_, this_.apNumber as apNumber78_0_, this_.apSuffix as apSuffix78_0_, this_.gender as gender78_0_, this_.age as age78_0_ FROM SRV.v_PeopleWithFullAddress this_ WHERE (this_.deleted IS NULL OR (this_.deletedById = ? and this_.deleted > DATEADD(month, -1  , GETDATE()))) AND this_.regionId IN ( SELECT * FROM [SRV].[fn_GetAccessibleRegionsForUser](?));
+] ---> System.Data.SqlClient.SqlException: Invalid column name 'deleted'.
+Invalid column name 'deletedById'.
+Invalid column name 'deleted'.
+Invalid column name 'deleted'.
+Invalid column name 'deletedById'.
+Invalid column name 'deleted'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader()
+   at NHibernate.AdoNet.AbstractBatcher.ExecuteReader(IDbCommand cmd)
+   at NHibernate.Driver.BatcherDataReaderWrapper..ctor(IBatcher batcher, IDbCommand command)
+   at NHibernate.Driver.BasicResultSetsCommand.GetReader(Nullable`1 commandTimeout)
+   at NHibernate.Impl.MultiCriteriaImpl.GetResultsFromDatabase(IList results)
+   --- End of inner exception stack trace ---
+   at NHibernate.Impl.MultiCriteriaImpl.GetResultsFromDatabase(IList results)
+   at NHibernate.Impl.MultiCriteriaImpl.List()
+   at NHibernate.Impl.FutureCriteriaBatch.GetResultsFrom(IMultiCriteria multiApproach)
+   at NHibernate.Impl.FutureBatch`2.GetResults()
+   at NHibernate.Impl.FutureBatch`2.GetCurrentResult[TResult](Int32 currentIndex)
+   at NHibernate.Impl.FutureBatch`2.<>c__DisplayClass1`1.<GetFutureValue>b__0()
+   at NHibernate.Impl.FutureValue`1.get_Value()
+   at Amdaris.NHibernateProvider.Utils.PageHelper.CreatePage[T](ICriteria criteria, PageRequest request, ICriteria countCriteria)
+   at Amdaris.NHibernateProvider.Utils.PageHelper.CreatePage[T](ICriteria criteria, PageRequest request)
+   at CEC.SRV.BLL.Impl.VotersBll.GetByFilters(PageRequest pageRequest, Nullable`1 regionId, Nullable`1 pollingStationId) in D:\work\CEC\CEC.SRV\src\CEC.SRV.BLL\Impl\VotersBll.cs:line 96
+   at CEC.Web.SRV.Controllers.VotersController.ListVotersAjax(JqGridRequest request, Nullable`1 regionId, Nullable`1 pollingStationId) in D:\work\CEC\CEC.SRV\src\CEC.Web.SRV\Controllers\VotersController.cs:line 69
+   at lambda_method(Closure , ControllerBase , Object[] )
+   at System.Web.Mvc.ActionMethodDispatcher.Execute(ControllerBase controller, Object[] parameters)
+   at System.Web.Mvc.ReflectedActionDescriptor.Execute(ControllerContext controllerContext, IDictionary`2 parameters)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionMethod(ControllerContext controllerContext, ActionDescriptor actionDescriptor, IDictionary`2 parameters)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<BeginInvokeSynchronousActionMethod>b__39(IAsyncResult asyncResult, ActionInvocation innerInvokeState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`2.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass33.<BeginInvokeActionMethodWithFilters>b__32(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResult`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)

@@ -1,0 +1,52 @@
+﻿@using CEC.SRV.Domain
+@using CEC.SRV.Domain.Constants
+@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.PollingStation
+@using CEC.Web.SRV.Resources
+@using Lib.Web.Mvc.JQuery.JqGrid
+
+@{
+    ViewBag.Title = MUI.PollingStations;
+}
+
+@{
+    var navigatorOptions = new JqGridNavigatorOptions
+    {
+        Add = false,
+        Edit = false,
+        Delete = false,
+        Search = true,
+        CloneToTop = true
+    };
+
+    if (User.IsInRole(Transactions.Administrator))
+    {
+        navigatorOptions.Add = false;
+        navigatorOptions.Edit = false;
+        navigatorOptions.Delete = false;
+        navigatorOptions.AddFunction = "$.CreateUpdatePollingStation";
+        navigatorOptions.EditFunction = "$.CreateUpdatePollingStation";
+        navigatorOptions.DeleteFunction = "$.DeletePollingStation";
+    }
+
+    var grid = Html.GridOptions<PollingStationGridModel>("pollingStation")
+        .SetOptions(x => x.MultiSelect = true).SetOptions(x => x.OnSelectRow = "$.setCurrentRow")
+        .BuildGrid(Url.Action("ListPollingStationAjax", "PollingStation"),null,null,null, null /*Url.Action("UnDeletePollingStation","PollingStation")*/,
+                   Url.Action("PollingStationHistory", "History"), 
+                   Url.Action("ExportPollingStations"))
+                    .Navigator(navigatorOptions)
+                    .AddNavigatorButton("Ordonare", onClick: "$.addElectionListNumber")
+                    .AddNavigatorButton("Setare adresă", onClick: "$.CreateUpdatePollingStation")
+                    .AddNavigatorButton("Sincronizare adrese", onClick: "$.synkAdminPollingStation")
+                    ;
+
+}
+
+@grid.GetHtml()
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        @grid.GetJavaScript();
+    });
+    
+</script>

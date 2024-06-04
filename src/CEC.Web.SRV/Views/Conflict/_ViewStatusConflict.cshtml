@@ -1,0 +1,265 @@
+﻿@using CEC.Web.SRV.Resources
+@model  CEC.Web.SRV.Models.Conflict.ViewStatusConflictModel
+
+
+@Html.HiddenFor(x => x.VoterData.Id)
+@Html.HiddenFor(x => x.PeopleData.Id)
+<div class="row messageBox">@Html.DisplayFor(x => x.PeopleData.StatusMessage)</div>
+<div class="row">
+    <div class="col-sm-6 personBox">
+        <table class="table table-striped table-bordered table-hover table-heading no-border-bottom">
+            <thead>
+                <tr>
+                    <th>Registru Alegător</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => x.VoterData.Idnp)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => x.VoterData.FirstName)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => x.VoterData.Surname)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => x.VoterData.MiddleName)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => x.VoterData.DateOfBirth)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => x.VoterData.Gender)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => x.VoterData.DocSeria)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => x.VoterData.DocNumber)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => x.VoterData.DocType)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => x.VoterData.DocIssueBy)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => x.VoterData.DocIssueDate)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => x.VoterData.DocValidBy)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="color: red">
+                        @Html.DisplayFor(x => x.VoterData.PersonStatus)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => x.VoterData.Address)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => x.VoterData.Comments)
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-sm-6 personBox">
+        <table class="table table-striped table-bordered table-hover table-heading no-border-bottom">
+            <thead>
+                <tr>
+                    <th>Registru Populației</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => x.PeopleData.Idnp)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => x.PeopleData.FirstName)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => x.PeopleData.LastName)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => x.PeopleData.SecondName)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => x.PeopleData.Birthdate)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => x.PeopleData.Gender)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => x.PeopleData.Series)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => x.PeopleData.Number)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => x.PeopleData.DocType)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => x.PeopleData.Validity)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => x.PeopleData.IssueDate)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => x.PeopleData.ExpirationDate)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="color: red">
+                        @Html.DisplayFor(x => x.PeopleData.PersonStatus)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => x.PeopleData.Address)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => x.PeopleData.Region)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => x.PeopleData.Locality)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => x.PeopleData.AdministrativeCode)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => x.PeopleData.Source)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => x.PeopleData.Status)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => x.PeopleData.Created)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => x.PeopleData.StatusDate)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(x => x.PeopleData.Comments)
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6">
+        <button type="button" class="btn btn-default" id="keepRSVStatus">Păstrează versiunea din RSA</button>
+    </div>
+    <div class="col-sm-6">
+        <button type="button" class="btn btn-default" id="takeRSPStatus">Acceptă versiunea din RSP</button>
+    </div>
+</div>
+<div class="row" style="padding: 15px;">
+    @Html.Partial("_ShareConflictDetails")
+</div>
+
+<script type="text/javascript">
+    $('.messageBox .rsa-form-group > div.col-sm-4').removeClass('col-sm-4').addClass('col-sm-9');
+    $('.messageBox .rsa-form-group > div.col-sm-2').removeClass('col-sm-2').addClass('col-sm-2');
+    $('.personBox .rsa-form-group > div.col-sm-4').removeClass('col-sm-4').addClass('col-sm-9');
+    $('.personBox .rsa-form-group > div.col-sm-2').removeClass('col-sm-2').addClass('col-sm-3');
+    $(document).ready(function () {
+
+        $('#keepRSVStatus').click(function () {
+            BootstrapDialog.confirm('@MUI.ConflictStatus_ResolveReject_MessageConfirmation', function (result) {
+                if (result) {
+                    ResolveStatusConflcit('@Model.PeopleData.Id', true);
+                 }
+             });
+        });
+        $('#takeRSPStatus').click(function () {
+            BootstrapDialog.confirm('@MUI.ConflictStatus_ResolveAccept_MessageConfirmation', function (result) {
+                if (result) {
+                    ResolveStatusConflcit('@Model.PeopleData.Id', false);
+                }
+            });
+        });
+
+    });
+    
+    function ResolveStatusConflcit(id, keepRSVVersion) {
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("ResolveStatusConflict", "Conflict")',
+            data: { conflictId: id, keepRSVVersion: keepRSVVersion },
+            success: function () {
+                $.clearViewConflict();
+                $("#statusConflicts").trigger('reloadGrid');
+            }
+        });
+    }
+</script>

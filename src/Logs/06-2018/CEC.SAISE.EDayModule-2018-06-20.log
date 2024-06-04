@@ -1,0 +1,25 @@
+2018-06-20 11:33:46.3909 ERROR CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission Index-ElectionCompetitor System.Web.HttpException (0x80004005): The controller for path '/' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.GetControllerByName(RequestContext requestContext, String controllerName) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 277
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission(ControllerContext controllerContext, String action, String controller) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 197
+2018-06-20 18:13:28.4436 ERROR CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission Index-ElectionCompetitor System.Web.HttpException (0x80004005): The controller for path '/' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.GetControllerByName(RequestContext requestContext, String controllerName) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 277
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission(ControllerContext controllerContext, String action, String controller) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 197
+2018-06-20 18:22:51.0104 ERROR CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission Index-ElectionCompetitor System.Web.HttpException (0x80004005): The controller for path '/' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.GetControllerByName(RequestContext requestContext, String controllerName) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 277
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission(ControllerContext controllerContext, String action, String controller) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 197
+2018-06-20 18:23:00.0988 ERROR CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission Index-ElectionCompetitor System.Web.HttpException (0x80004005): The controller for path '/' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.GetControllerByName(RequestContext requestContext, String controllerName) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 277
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission(ControllerContext controllerContext, String action, String controller) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 197
+2018-06-20 18:23:10.0196 ERROR CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission Index-ElectionCompetitor System.Web.HttpException (0x80004005): The controller for path '/' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.GetControllerByName(RequestContext requestContext, String controllerName) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 277
+   at CEC.SAISE.EDayModule.Infrastructure.MenuHelper.HasActionPermission(ControllerContext controllerContext, String action, String controller) in D:\work\CEC\CEC.SRV\src\CEC.SAISE.EDayModule\Infrastructure\MenuHelper.cs:line 197

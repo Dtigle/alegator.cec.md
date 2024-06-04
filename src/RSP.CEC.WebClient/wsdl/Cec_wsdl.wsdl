@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="cec.services.soap.rpc.framework.server.registru.md" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="cec.services.soap.rpc.framework.server.registru.md" xmlns:intf="cec.services.soap.rpc.framework.server.registru.md" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns1="http://cec.soap.rpc.framework.server.registru.md" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema targetNamespace="cec.services.soap.rpc.framework.server.registru.md" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://cec.soap.rpc.framework.server.registru.md"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="ArrayOf_xsd_long">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:long[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns1_RegistrationData">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:RegistrationData[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema targetNamespace="http://cec.soap.rpc.framework.server.registru.md" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="cec.services.soap.rpc.framework.server.registru.md"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="ResultData">
+    <sequence>
+     <element name="errorText" nillable="true" type="xsd:string"/>
+     <element name="resultCode" nillable="true" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="IdnpRequestData">
+    <sequence>
+     <element name="idnp" nillable="true" type="impl:ArrayOf_xsd_long"/>
+     <element name="result" nillable="true" type="tns1:ResultData"/>
+    </sequence>
+   </complexType>
+   <complexType name="DocumentData">
+    <sequence>
+     <element name="docTypeCode" nillable="true" type="xsd:int"/>
+     <element name="expirationDate" nillable="true" type="xsd:dateTime"/>
+     <element name="issueDate" nillable="true" type="xsd:dateTime"/>
+     <element name="issueLocation" nillable="true" type="xsd:string"/>
+     <element name="number" nillable="true" type="xsd:string"/>
+     <element name="series" nillable="true" type="xsd:string"/>
+     <element name="validity" nillable="true" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="AddressData">
+    <sequence>
+     <element name="administrativCode" nillable="true" type="xsd:int"/>
+     <element name="block" nillable="true" type="xsd:string"/>
+     <element name="flat" nillable="true" type="xsd:string"/>
+     <element name="house" nillable="true" type="xsd:string"/>
+     <element name="locality" nillable="true" type="xsd:string"/>
+     <element name="region" nillable="true" type="xsd:string"/>
+     <element name="street" nillable="true" type="xsd:string"/>
+     <element name="streetCode" nillable="true" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="RegistrationData">
+    <sequence>
+     <element name="address" nillable="true" type="tns1:AddressData"/>
+     <element name="expirationDate" nillable="true" type="xsd:dateTime"/>
+     <element name="regDate" nillable="true" type="xsd:dateTime"/>
+     <element name="regTypeCode" nillable="true" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="PhysicalPersonData">
+    <sequence>
+     <element name="birthDate" nillable="true" type="xsd:dateTime"/>
+     <element name="citizenRM" nillable="true" type="xsd:boolean"/>
+     <element name="dead" nillable="true" type="xsd:boolean"/>
+     <element name="firstName" nillable="true" type="xsd:string"/>
+     <element name="identDocument" nillable="true" type="tns1:DocumentData"/>
+     <element name="idnp" nillable="true" type="xsd:long"/>
+     <element name="lastName" nillable="true" type="xsd:string"/>
+     <element name="registration" nillable="true" type="impl:ArrayOf_tns1_RegistrationData"/>
+     <element name="secondName" nillable="true" type="xsd:string"/>
+     <element name="sexCode" nillable="true" type="xsd:short"/>
+    </sequence>
+   </complexType>
+   <complexType name="PhysicalPersonRequestData">
+    <sequence>
+     <element name="person" nillable="true" type="tns1:PhysicalPersonData"/>
+     <element name="result" nillable="true" type="tns1:ResultData"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="confirmReceivedPersonRequest">
+
+      <wsdl:part name="idnp" type="xsd:long"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getChangedPhysicalPersonListResponse">
+
+      <wsdl:part name="getChangedPhysicalPersonListReturn" type="tns1:IdnpRequestData"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPhysicalPersonDataRequest">
+
+      <wsdl:part name="idnp" type="xsd:long"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPhysicalPersonDataResponse">
+
+      <wsdl:part name="getPhysicalPersonDataReturn" type="tns1:PhysicalPersonRequestData"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="confirmReceivedPersonResponse">
+
+      <wsdl:part name="confirmReceivedPersonReturn" type="tns1:ResultData"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getChangedPhysicalPersonListRequest">
+
+   </wsdl:message>
+
+   <wsdl:portType name="Cec">
+
+      <wsdl:operation name="getChangedPhysicalPersonList">
+
+         <wsdl:input message="impl:getChangedPhysicalPersonListRequest" name="getChangedPhysicalPersonListRequest"/>
+
+         <wsdl:output message="impl:getChangedPhysicalPersonListResponse" name="getChangedPhysicalPersonListResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPhysicalPersonData" parameterOrder="idnp">
+
+         <wsdl:input message="impl:getPhysicalPersonDataRequest" name="getPhysicalPersonDataRequest"/>
+
+         <wsdl:output message="impl:getPhysicalPersonDataResponse" name="getPhysicalPersonDataResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="confirmReceivedPerson" parameterOrder="idnp">
+
+         <wsdl:input message="impl:confirmReceivedPersonRequest" name="confirmReceivedPersonRequest"/>
+
+         <wsdl:output message="impl:confirmReceivedPersonResponse" name="confirmReceivedPersonResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="CecSoapBinding" type="impl:Cec">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getChangedPhysicalPersonList">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getChangedPhysicalPersonListRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="cec.services.soap.rpc.framework.server.registru.md" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getChangedPhysicalPersonListResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="cec.services.soap.rpc.framework.server.registru.md" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPhysicalPersonData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPhysicalPersonDataRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="cec.services.soap.rpc.framework.server.registru.md" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPhysicalPersonDataResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="cec.services.soap.rpc.framework.server.registru.md" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="confirmReceivedPerson">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="confirmReceivedPersonRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="cec.services.soap.rpc.framework.server.registru.md" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="confirmReceivedPersonResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="cec.services.soap.rpc.framework.server.registru.md" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="CecService">
+
+      <wsdl:port binding="impl:CecSoapBinding" name="Cec">
+
+         <wsdlsoap:address location="http://alice:9001/cec/services/Cec"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

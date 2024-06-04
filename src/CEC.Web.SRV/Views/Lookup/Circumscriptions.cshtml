@@ -1,0 +1,55 @@
+﻿@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.Lookup
+@using CEC.Web.SRV.Resources
+@using Lib.Web.Mvc.JQuery.JqGrid
+
+@{
+	ViewBag.Title = MUI.Circumscriptions_TabTitle;
+}
+
+@{
+	var grid = Html.GridOptions<CircumscriptionGridModel>("circumscriptions")
+        .BuildGrid(Url.Action("ListCircumscriptionsAjax"), exportAction: Url.Action("ExportCircumscriptions"), columnChooser: true)
+		.Navigator(new JqGridNavigatorOptions()
+		{
+			Add = false,
+			Edit = false,
+			Delete = false,
+			Search = true,
+			EditFunction = "$.UpdateCircumscription",
+			CloneToTop = true
+		});
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-content">
+                <h4 class="page-header">@MUI.Circumscriptions_TabTitle</h4>
+                @grid.GetHtml()
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        @grid.GetJavaScript();
+    });
+    
+	$.UpdateCircumscription = function (circumscriptionId) {
+		
+	  	var url = '@Url.Action("UpdateCircumscription","Lookup")';
+	  	var dialogTitle = '@MUI.CircumscriptionAdd_DialogTitle';
+
+	  	$.openDialog($(this), {
+	  		url: url + '?circumscriptionId=' + circumscriptionId,
+	  		title: dialogTitle,
+	  		onSubmit: function () {
+	  			$("#circumscriptions").trigger('reloadGrid');
+	  		},
+	  	});
+	};
+	
+</script>

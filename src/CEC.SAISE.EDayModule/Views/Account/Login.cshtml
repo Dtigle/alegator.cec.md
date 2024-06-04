@@ -1,0 +1,30 @@
+﻿@model CEC.SAISE.EDayModule.Models.Account.LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="text-center">
+        <h3 class="page-header">Autentificare CEC SIASA</h3>
+        <h3 style="color:RED">CALL CENTER: 022 88 01 01</h3>
+    </div>
+    @Html.ValidationSummary(true)
+    <div class="form-group">
+        @Html.LabelFor(m => m.UserName, new { @class = "control-label" })
+        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.UserName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password, new { @class = "control-label" })
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Password)
+    </div>
+    <div class="text-center">
+        <input type="submit" value="Logare" class="btn btn-primary" />
+    </div>
+}

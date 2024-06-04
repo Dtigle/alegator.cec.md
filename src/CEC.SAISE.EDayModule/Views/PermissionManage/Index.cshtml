@@ -1,0 +1,263 @@
+﻿@using CEC.SAISE.EDayModule.Infrastructure.Grids
+@using CEC.SAISE.EDayModule.Models.PermissionManage
+@using Lib.Web.Mvc.JQuery.JqGrid
+
+@Scripts.Render("~/bundles/jqGrid")
+
+@{
+    var grid = Html.GridOptions<PollingStationStageEnablerGridModel>("pollingStationStageEnabler", rowsPerPage: 100)
+        .SetOptions(x => x.MultiSelect = true)
+        .BuildGrid(null, columnChooser: false , showFilterToolbar: true)        
+        .Navigator(new JqGridNavigatorOptions() { Add = false, Edit = false, Delete = false, CloneToTop = true })
+        .AddNavigatorButton("Modificare etapă SV", onClick: "toggleOptions")
+        .AddNavigatorButton("Modificare PV", onClick: "processverbal")
+        .AddNavigatorButton("Aprobarea PV", onClick: "approuvePV");
+}
+
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="row padding-15">
+                <div class="col-xs-2">
+                    <strong>Scrutin:</strong>
+                </div>
+                <div class="col-xs-8">
+                    <input type="hidden" class="electionsSelect" />
+                </div>
+            </div>
+            @grid.GetHtml()
+        </div>
+    </div>
+</div>
+
+@Html.Partial("_OptionsDialog")
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        @grid.GetJavaScript();
+
+        $('.electionsSelect').select2({
+            placeholder: 'Selectați scrutinul...',
+            ajax: {
+                url: '@Url.Action("SelectElections", "Selectors")',
+                dataType: 'json',
+                delay: 250,
+                data: function (term, page) {
+                    return {
+                        q: term,
+                        pageLimit: 10,
+                        page: page
+                    };
+                },
+                results: function (data, page) {
+                    var more = (page * 10) < data.Total;
+                    return { results: data.Items, more: more };
+                },
+                cache: true
+            }
+        }).on('change', function (e) {
+            var psGrid = $("#pollingStationStageEnabler").jqGrid();
+            psGrid.jqGrid('setGridParam', { 'url': '@Url.Action("ListPollingStationAjax", "PermissionManage")', 'postData': { 'electionId': parseInt(e.val) } });
+            psGrid.jqGrid('setGridParam', {
+                multiSort: true,
+                sortname: "CircumscriptionNumber asc, PollingStation"
+            });     
+
+            $('#refresh_pollingStationStageEnabler_top').click();
+
+            psGrid.trigger('reloadGrid');
+        });
+    });
+
+    function toggleOptions() {
+        var grid = $('#pollingStationStageEnabler');
+        var selectedRows = grid.jqGrid('getGridParam', 'selarrrow');
+
+        $('.dialogControl').prop('checked', false);
+        if (selectedRows.length > 0) {
+            var rowData = grid.jqGrid('getRowData', selectedRows[0]);
+            var s = rowData.PollingStation;
+            
+            $('#cbOpening').prop('checked', rowData.EnableOpening === 'true');
+            $('#cbTurnout').prop('checked', rowData.EnableTurnout === 'true');
+            $('#cbResults').prop('checked', rowData.EnabelElectionResult === 'true');
+           
+        }
+
+
+
+        $('#selectedItems').text(selectedRows.length);
+        $('#optionsDialog').modal('show');
+    }
+
+    function submitOptions() {
+        var action = parseInt($("input:radio[name ='radio']:checked").val());
+        var electionId = parseInt($('.electionsSelect').select2('val'));
+
+        if (isNaN(electionId)) {
+            ShowAlert('Selectați scrutinul', 'Atenție');
+            return;
+        }
+
+        if (isNaN(action)) {
+            ShowAlert('Selectați acțiunea', 'Atenție');
+            return;
+        }
+
+        ShowConfirmDialog('Doriți să continuați?', function(confirmed) {
+            if (confirmed) {
+                var grid = $('#pollingStationStageEnabler');
+                var selectedRows = grid.jqGrid('getGridParam', 'selarrrow');
+
+                var data = {
+                    ElectionId: electionId,
+                    SelectedAPSIds: selectedRows,
+                    EnableOpening: $('#cbOpening').is(':checked'),
+                    EnableTurnout: $('#cbTurnout').is(':checked'),
+                    EnableElectionResults: $('#cbResults').is(':checked'),
+                    Action: action
+                };
+
+                $.ajax({
+                    url: '@Url.Action("ProcessOptions")',
+                    type: "post",
+                    contentType: 'application/json',
+                    data: JSON.stringify({ model: data }),
+                    success: function(result) {
+                        $("#pollingStationStageEnabler").trigger('reloadGrid');
+                    }
+                }).always(function() {
+                    $('#optionsDialog').modal('hide');
+                });
+            }
+        });
+    }
+
+    
+
+    function processverbal() {
+        var grid = $('#pollingStationStageEnabler');
+        var selectedRows = grid.jqGrid('getGridParam', 'selarrrow');
+        if (selectedRows.length > 1) {
+            ShowAlert('La modificare/aprobarea procesului verbal nu este admisibil selectarea mutiplă');
+            return;
+        }
+
+        if (selectedRows.length === 0) {
+            ShowAlert('Selecta-ți secția de votare.', 'Atenție');
+            return;
+        }
+        var electionId = parseInt($('.electionsSelect').select2('val'));
+
+        if (isNaN(electionId)) {
+            ShowAlert('Selectați scrutinul', 'Atenție');
+            return;
+        }
+      
+        var s = parseInt(selectedRows[0]);
+        var pollingstationid;
+                $.ajax({
+                    url: '@Url.Action("GetPoolingStation")',
+                    type: "POST",
+                    data: { id: s },
+                    success: function (result) {
+                      
+                        pollingstationid = result;
+
+                    }
+                })
+        ShowConfirmDialog('Doriți să continuați?', function (confirmed) {
+            if (confirmed) {
+
+                var message = $('<div class="popupWindows"><div/>');
+                var adres = '@Url.Action("GetBallotPaper", "PermissionManage")';
+                var dialogTitle = 'Aprobare proces verbal';
+                var grid = $('#pollingStationStageEnabler');
+                var selectedRows = grid.jqGrid('getGridParam', 'selarrrow');
+                var rowData = grid.jqGrid('getRowData', selectedRows[0]);
+                var s = rowData.BallotPaperStatus;
+
+                if (s === 'Nou') {
+                    ShowAlert('Procesul verbal nu a fost expediat pentru aprobare.', 'Atenție');
+                    return;
+                }
+
+                $.ajax({
+                    url: '@Url.Action("GetBallotPapper", "PermissionManage")',
+                    type: "post",
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        delimitationData: {
+                            ElectionId: electionId,
+                            PollingStationId: pollingstationid
+                        }
+                    }),
+                    success: function (result) {
+                      
+                        message.append(result);
+                          var dialog = new BootstrapDialog({
+                          title: dialogTitle,
+                           message: message,
+                          });
+                           dialog.open();
+                    }
+                })
+               }
+            });
+    }
+
+    function approuvePV() {
+        var grid = $('#pollingStationStageEnabler');
+        var selectedRows = grid.jqGrid('getGridParam','selarrrow');      
+      
+        if (selectedRows.length === 0) {
+            ShowAlert('Selecta-ți secția de votare.', 'Atenție');
+            return;
+        }
+        
+        var myList = new Array();
+        var number = 0;
+        for (var ballotPaperID in selectedRows) {
+            var rowData = grid.jqGrid('getRowData', selectedRows[number]);
+            var s = rowData.BallotPaperId;
+            myList.push(s);
+            number += 1;
+        }
+         ShowConfirmDialog('Doriți să continuați?', function (confirmed) {
+            if (confirmed) {
+
+               
+
+                $.ajax({
+                    url: '@Url.Action("ConfirmResults", "PermissionManage")',
+                    
+                    type: "POST",
+                    data: { model: myList },
+                   
+                    success: function (result) {
+                      
+                        BootstrapDialog.show({
+                            title: 'Inforamție',
+                            message: result,
+                            buttons: [
+                                {
+                                    label: 'Închide',
+                                    action: function (dialogItself) {
+                                        $("#pollingStationStageEnabler").trigger('reloadGrid');
+                                        dialogItself.close();
+                                       
+                                    }
+                                }
+
+                            ]
+                            
+                        });
+                       
+                    }
+                })
+               }
+            });
+    }
+</script>

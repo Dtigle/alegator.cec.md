@@ -1,0 +1,228 @@
+﻿<job-scheduling-data
+xmlns="http://quartznet.sourceforge.net/JobSchedulingData"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0">
+
+  <processing-directives>
+    <overwrite-existing-data>true</overwrite-existing-data>
+  </processing-directives>
+
+  <schedule>
+    <job>
+      <name>ResultsReportsPrintOutJob</name>
+      <group>SAISE</group>
+      <job-type>CEC.QuartzServer.Jobs.Reporting.ResultsReportsPrintOutJob, CEC.QuartzServer.Jobs</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+    </job>
+    <trigger>
+      <simple>
+        <name>ResultsReportsPrintOutJob</name>
+        <group>SAISE</group>
+        <description>description</description>
+        <job-name>ResultsReportsPrintOutJob</job-name>
+        <job-group>SAISE</job-group>
+        <misfire-instruction>SmartPolicy</misfire-instruction>
+        <repeat-count>0</repeat-count>
+        <repeat-interval>10000</repeat-interval>
+      </simple>
+    </trigger>
+  </schedule>
+
+  <!--<schedule>
+    <job>
+      <name>TurnoutReportsPrintOutJob</name>
+      <group>SAISE</group>
+      <description>Exportare rapoarte prezenta la vot</description>
+      <job-type>CEC.QuartzServer.Jobs.Reporting.TurnoutReportsPrintOutJob, CEC.QuartzServer.Jobs</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+    </job>
+    <trigger>
+      <simple>
+        <name>TurnoutReportsPrintOutJob</name>
+        <group>RSA</group>
+        <description>description</description>
+        <job-name>TurnoutReportsPrintOutJob</job-name>
+        <job-group>SAISE</job-group>
+      </simple>
+    </trigger>
+  </schedule>-->
+  <!--<schedule>
+    <job>
+      <name>ExpiredAddressSwapJob</name>
+      <group>RSA</group>
+      <description>Procesarea resedintelor expirate</description>
+      <job-type>CEC.QuartzServer.Jobs.ListsPrinting.ExpiredAddressSwapJob, CEC.QuartzServer.Jobs</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+    </job>
+    <trigger>
+      <simple>
+        <name>ExpiredAddressSwapJob</name>
+        <group>RSA</group>
+        <description>description</description>
+        <job-name>ExpiredAddressSwapJob</job-name>
+        <job-group>RSA</job-group>
+      </simple>
+    </trigger>
+  </schedule>-->
+
+  <!--
+  <schedule>
+    <job>
+      <name>RemoveStayStatementsJob</name>
+      <group>RSP data jobs</group>
+      <job-type>CEC.QuartzServer.Jobs.Import.RemoveStayStatementsJob, CEC.QuartzServer.Jobs</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+    </job>
+    <trigger>
+      <simple>
+        <name>RemoveStayStatementsJob</name>
+        <group>RSP data cron</group>
+        <description>description</description>
+        <job-name>RemoveStayStatementsJob</job-name>
+        <job-group>RSP data jobs</job-group>
+      </simple>
+    </trigger>
+  </schedule>
+  
+-->
+  <!--<schedule>
+    <job>
+      <name>SaiseExporterJob</name>
+      <group>Export SRV to SAISE Job</group>
+      <job-type>CEC.QuartzServer.Jobs.Export.SaiseExporterJob, CEC.QuartzServer.Jobs</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+    </job>
+    <trigger>
+      <simple>
+        <name>SaiseExporterJob</name>
+        <group>Export SRV to SAISE Job</group>
+        <description>description</description>
+        <job-name>SaiseExporterJob</job-name>
+        <job-group>Export SRV to SAISE Job</job-group>
+      </simple>
+    </trigger>
+  </schedule>-->
+
+  <!--
+  <schedule>
+    <job>
+      <name>ListsPrintingJob</name>
+      <group>ListsPrinting jobs</group>
+      <job-type>CEC.QuartzServer.Jobs.ListsPrinting.ListsPrintingJob, CEC.QuartzServer.Jobs</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+    </job>
+    <trigger>
+      <simple>
+        <name>ListsPrintingJob</name>
+        <group>ListsPrinting cron</group>
+        <description>description</description>
+        <job-name>ListsPrintingJob</job-name>
+        <job-group>ListsPrinting jobs</job-group>
+        <misfire-instruction>SmartPolicy</misfire-instruction>
+        <repeat-count>0</repeat-count>
+        <repeat-interval>10000</repeat-interval>
+      </simple>
+    </trigger>
+  </schedule>
+  
+  <schedule>
+    <job>
+      <name>DumbTestJob</name>
+      <group>Test jobs</group>
+      <job-type>CEC.QuartzServer.Jobs.DumbTestJob, CEC.QuartzServer.Jobs</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+    </job>
+    <trigger>
+      <cron>
+        <name>DumbTestJob</name>
+        <group>Test cron</group>
+        <description>description</description>
+        <job-name>DumbTestJob</job-name>
+        <job-group>Test jobs</job-group>
+        <cron-expression>0 0/4 * 1/1 * ? *</cron-expression>
+      </cron>
+    </trigger>
+  </schedule>
+
+  <schedule>
+    <job>
+      <name>RsaUserProcessorJob</name>
+      <group>RSA user jobs</group>
+      <job-type>CEC.QuartzServer.Jobs.Import.RsaUserProcessorJob, CEC.QuartzServer.Jobs</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+    </job>
+    <trigger>
+      <cron>
+        <name>DubmDBTestJob</name>
+        <group>RSA user cron</group>
+        <description>description</description>
+        <job-name>RsaUserProcessorJob</job-name>
+        <job-group>RSA user jobs</job-group>
+        <cron-expression>0 0/1 * 1/1 * ? *</cron-expression>
+      </cron>
+    </trigger>
+  </schedule>
+-->
+  <!--<schedule>
+    <job>
+      <name>RspModificationProcessorJob</name>
+      <group>RSA</group>
+      <job-type>CEC.QuartzServer.Jobs.Import.RspModificationProcessorJob, CEC.QuartzServer.Jobs</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+    </job>
+    <trigger>
+      <simple>
+        <name>RspModificationProcessorJob</name>
+        <group>RSA</group>
+        <description>description</description>
+        <job-name>RspModificationProcessorJob</job-name>
+        <job-group>RSA</job-group>
+      </simple>
+    </trigger>
+  </schedule>-->
+  <!--<schedule>
+    <job>
+      <name>RspModificationImporterJob</name>
+      <group>RSA</group>
+      <job-type>CEC.QuartzServer.Jobs.Import.RspModificationImporterJob, CEC.QuartzServer.Jobs</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+    </job>
+    <trigger>
+      <simple>
+        <name>RspModificationImporterJob</name>
+        <group>RSA</group>
+        <description>description</description>
+        <job-name>RspModificationImporterJob</job-name>
+        <job-group>RSA</job-group>
+      </simple>
+    </trigger>
+  </schedule>-->
+  <!--<schedule>
+    <job>
+      <name>ExpiredAddressSwapJob</name>
+      <group>RSA</group>
+      <description>Procesarea resedintelor expirate</description>
+      <job-type>CEC.QuartzServer.Jobs.ListsPrinting.ExpiredAddressSwapJob, CEC.QuartzServer.Jobs</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+    </job>
+    <trigger>
+      <simple>
+        <name>ExpiredAddressSwapJob</name>
+        <group>RSA</group>
+        <description>description</description>
+        <job-name>ExpiredAddressSwapJob</job-name>
+        <job-group>RSA</job-group>
+      </simple>
+    </trigger>
+  </schedule>-->
+</job-scheduling-data>

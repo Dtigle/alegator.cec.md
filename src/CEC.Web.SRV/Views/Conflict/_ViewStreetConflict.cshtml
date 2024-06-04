@@ -1,0 +1,22 @@
+﻿
+@model  CEC.Web.SRV.Models.Conflict.StatusMessageConflictModel
+
+
+@Html.HiddenFor(x => x.IdRSP)
+<div class="row messageBox">@Html.DisplayFor(x => x.StatusMessage)</div>
+
+
+@*<div class="row">
+    <div class="col-sm-6">
+        <button type="button" class="btn btn-default" id="retryProcess">Re-procesare</button>
+    </div>
+</div>*@
+
+
+<script type="text/javascript">
+    $('.messageBox .rsa-form-group > div.col-sm-4').removeClass('col-sm-4').addClass('col-sm-10');
+    $('.messageBox .rsa-form-group > div.col-sm-2').removeClass('col-sm-2').addClass('col-sm-2');
+    $(document).ready(function () {
+       
+    });
+</script>

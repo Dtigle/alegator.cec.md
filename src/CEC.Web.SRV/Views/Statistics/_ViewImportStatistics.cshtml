@@ -1,0 +1,59 @@
+﻿@model CEC.Web.SRV.Models.Statistics.ImportStatisticsModel 
+
+<table id="inportData-table" class="table m-table table-bordered table-hover table-heading">
+     <thead>
+         <tr>
+             <th></th>
+             <th>Total</th>
+         </tr>
+     </thead>
+     <tbody>          
+         <tr>
+             <td class="m-ticker"><b>Noi alegători</b></td>
+             <td class="m-price">
+                 <div>@Model.New</div>
+             </td>
+         </tr>
+         <tr>
+             <td class="m-ticker"><b>Conflicte</b></td>
+             <td class="m-price">
+                 <div>@Model.Conflicted</div>
+             </td>
+         </tr>
+         <tr>
+             <td class="m-ticker"><b>Statut modificat</b></td>
+             <td class="m-price">
+                 <div>@Model.ChangedStatus</div>
+             </td>
+         </tr>
+         <tr>
+             <td class="m-ticker"><b>Adrese modificate</b></td>
+             <td class="m-price">
+                 <div>@Model.ResidenceChnaged</div>
+             </td>
+         </tr>
+         <tr>
+             <td class="m-ticker"><b>Importări reușite</b></td>
+             <td class="m-price">
+                 <div>@Model.Updated</div>
+             </td>
+         </tr>
+         <tr>
+             <td class="m-ticker"><b>Importări nereușite</b></td>
+             <td class="m-price">
+                 <div>@Model.Error</div>
+             </td>
+         </tr>
+         <tr>
+             <td class="m-ticker">&nbsp;</td>
+             <td class="m-price">
+                 <div><b>@Model.Total</b></div>
+             </td>
+         </tr>      
+     </tbody>
+ </table>
+
+<script>
+    $(document).ready(function() {
+    })
+</script>

@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>CEC.SRV.Database</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{dbbcc36e-ed60-45ea-b8c8-6736f1c0ece0}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql100DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>CEC.SRV.Database</RootNamespace>
+    <AssemblyName>CEC.SRV.Database</AssemblyName>
+    <ModelCollation>1048,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <DefaultCollation>Romanian_100_CI_AS</DefaultCollation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- VS10 without SP1 will not have VisualStudioVersion set, so do that here -->
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <!-- Default to the v10.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="Access" />
+    <Folder Include="Security" />
+    <Folder Include="Security\Schemas" />
+    <Folder Include="Lookup" />
+    <Folder Include="Scripts" />
+    <Folder Include="Scripts\Post-Deployment" />
+    <Folder Include="Scripts\Post-Deployment\Lookup" />
+    <Folder Include="Scripts\Post-Deployment\Access" />
+    <Folder Include="SRV" />
+    <Folder Include="Audit" />
+    <Folder Include="Views" />
+    <Folder Include="Functions" />
+    <Folder Include="Scripts\Post-Deployment\SRV" />
+    <Folder Include="Scripts\Migration" />
+    <Folder Include="Importer" />
+    <Folder Include="Scripts\Pre-Deployment" />
+    <Folder Include="Scripts\Pre-Deployment\SRV" />
+    <Folder Include="Scripts\Post-Deployment\RSAUsers" />
+    <Folder Include="RSP" />
+    <Folder Include="Scripts\Post-Deployment\RSP" />
+    <Folder Include="Exporter\" />
+    <Folder Include="Scripts\Test" />
+    <Folder Include="Scripts\Post-Deployment\Importer" />
+    <Folder Include="StoredProcedures" />
+    <Folder Include="Scripts\ManualRun" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Access\IdentityRoles.sql" />
+    <Build Include="Access\IdentityUserClaims.sql" />
+    <Build Include="Access\IdentityUserLogins.sql" />
+    <Build Include="Access\IdentityUsers.sql" />
+    <Build Include="Access\UserRoles.sql" />
+    <Build Include="Security\Schemas\Access.sql" />
+    <Build Include="Security\Schemas\Lookup.sql" />
+    <Build Include="Lookup\StreetTypes.sql" />
+    <Build Include="Lookup\RegionTypes.sql" />
+    <None Include="Scripts\Post-Deployment\Lookup\RegionTypes.sql" />
+    <None Include="Scripts\Post-Deployment\Access\UserRoles.sql" />
+    <Build Include="Lookup\PersonStatusTypes.sql" />
+    <Build Include="SRV\SRVIdentityUser.sql" />
+    <Build Include="Security\Schemas\SRV.sql" />
+    <Build Include="Lookup\ManagerTypes.sql" />
+    <None Include="Scripts\Post-Deployment\Lookup\ManagerTypes.sql" />
+    <Build Include="Lookup\Genders.sql" />
+    <Build Include="Security\Schemas\Audit.sql" />
+    <Build Include="Audit\REVINFO.sql" />
+    <Build Include="Audit\IdentityUsers_AUD.sql" />
+    <Build Include="Audit\SRVIdentityUsers_AUD.sql" />
+    <Build Include="Lookup\Regions.sql" />
+    <Build Include="SRV\AdditionalUserInfos.sql" />
+    <Build Include="Audit\AdditionalUserInfos_AUD.sql" />
+    <None Include="Scripts\Post-Deployment\Lookup\Regions.sql" />
+    <None Include="Scripts\Post-Deployment\Lookup\Regions_Chisinau.sql" />
+    <Build Include="Lookup\Streets.sql" />
+    <Build Include="SRV\SRVIdentityUsersRegions.sql" />
+    <Build Include="SRV\Addresses.sql" />
+    <Build Include="SRV\People.sql" />
+    <Build Include="Lookup\DocumentTypes.sql" />
+    <Build Include="SRV\PersonAddresses.sql" />
+    <Build Include="Lookup\ElectionTypes.sql" />
+    <None Include="Scripts\Post-Deployment\Lookup\ElectionTypes.sql" />
+    <Build Include="Views\RegionWithLevel.sql" />
+    <None Include="Scripts\Post-Deployment\Lookup\Regions_Country.sql" />
+    <Build Include="SRV\PollingStations.sql" />
+    <Build Include="SRV\PublicAdministrations.sql" />
+    <Build Include="Audit\DocumentTypes_AUD.sql" />
+    <Build Include="Audit\ElectionTypes_AUD.sql" />
+    <Build Include="Audit\Genders_AUD.sql" />
+    <Build Include="Audit\ManagerTypes_AUD.sql" />
+    <Build Include="Audit\PersonStatusTypes_AUD.sql" />
+    <Build Include="Audit\RegionTypes_AUD.sql" />
+    <Build Include="Audit\StreetTypes_AUD.sql" />
+    <Build Include="Audit\PublicAdministrations_AUD.sql" />
+    <Build Include="Audit\PollingStations_AUD.sql" />
+    <Build Include="Audit\Addresses_AUD.sql" />
+    <Build Include="Audit\Regions_AUD.sql" />
+    <Build Include="Audit\Streets_AUD.sql" />
+    <Build Include="Audit\Street_Address_AUD.sql" />
+    <Build Include="Audit\PersonAddresses_AUD.sql" />
+    <Build Include="Audit\People_AUD.sql" />
+    <None Include="Scripts\Post-Deployment\SRV\Addresses.sql" />
+    <None Include="Scripts\Post-Deployment\SRV\People.sql" />
+    <None Include="Scripts\Post-Deployment\SRV\PersonAddresses.sql" />
+    <None Include="Scripts\Post-Deployment\SRV\UpdateAddresses.sql" />
+    <Build Include="Functions\fn_BuildingNumberConcat.sql" />
+    <Build Include="Functions\fn_GetFullAddress.sql" />
+    <Build Include="Views\v_Buildings.sql" />
+    <Build Include="Views\v_Streets.sql" />
+    <Build Include="Views\v_Voters.sql" />
+    <Build Include="SRV\Elections.sql" />
+    <Build Include="Audit\Elections_AUD.sql" />
+    <None Include="Scripts\Migration\Alegator2SRV.PollingStations.sql" />
+    <Build Include="SRV\StayStatements.sql" />
+    <Build Include="Audit\StayStatements_AUD.sql" />
+    <Build Include="Lookup\PersonAddressTypes.sql" />
+    <Build Include="Audit\PersonAddressTypes_AUD.sql" />
+    <Build Include="Importer\AlegatorDatas.sql" />
+    <Build Include="Security\Schemas\Importer.sql" />
+    <Build Include="SRV\PersonStatuses.sql" />
+    <Build Include="Audit\PersonStatuses_AUD.sql" />
+    <None Include="Scripts\Post-Deployment\Lookup\PersonAddressTypes.sql" />
+    <Build Include="SRV\Notifications.sql" />
+    <Build Include="SRV\NotificationReceivers.sql" />
+    <Build Include="Functions\fn_GetAccessibleRegionsForUser.sql" />
+    <Build Include="SRV\Events.sql" />
+    <None Include="Scripts\Post-Deployment\SRV\Events.sql" />
+    <None Include="Scripts\Post-Deployment\SRV\Notifications.sql" />
+    <None Include="Scripts\Post-Deployment\SRV\NotificationsReceivers.sql" />
+    <Build Include="Functions\fn_GetUsersWithAccessToRegion.sql" />
+    <Build Include="Functions\fn_GetChildRegionsOfParent.sql" />
+    <Build Include="Functions\fn_GetParentRegionsOfChild.sql" />
+    <None Include="Scripts\Pre-Deployment\SRV\RemovePersonDocumentTable.sql" />
+    <Build Include="Views\v_PersonFullAddress.sql" />
+    <Build Include="Importer\RsaUsers.sql" />
+    <None Include="Scripts\Post-Deployment\RSAUsers\IdentityUsers.sql" />
+    <None Include="Scripts\Post-Deployment\RSAUsers\UserRoles.sql" />
+    <None Include="Scripts\Post-Deployment\RSAUsers\AdditionalUserInfos.sql" />
+    <None Include="Scripts\Post-Deployment\RSAUsers\SRVIdentityUsersRegions.sql" />
+    <Build Include="Functions\fn_GetCircumscription.sql" />
+    <Build Include="Views\v_IdentityUserRegions.sql" />
+    <Build Include="SRV\AbroadVoterRegistration.sql" />
+    <Build Include="Views\v_PollingStationStatistics.sql" />
+    <Build Include="Views\v_StreetWithCountOfAddresses.sql" />
+    <Build Include="Importer\RspModificationDatas.sql" />
+    <Build Include="Views\v_RspModificationConflictData.sql" />
+    <Build Include="Exporter\ExportPollingStations.sql" />
+    <Build Include="Exporter\PrintSessions.sql" />
+    <Build Include="Security\Schemas\Print.sql" />
+    <Build Include="RSP\StreetCode.sql" />
+    <Build Include="RSP\RegTypeCode.sql" />
+    <Build Include="RSP\DocTypeCode.sql" />
+    <Build Include="Importer\Statistics.sql" />
+    <Build Include="Importer\MappingAddress.sql" />
+    <Build Include="Views\v_AddressWithCountOfPeople.sql" />
+    <Build Include="Views\v_PersonByConflict.sql" />
+    <Build Include="Views\v_HierarchicalRegions.sql" />
+    <Build Include="Importer\ImportStatistics.sql" />
+    <Build Include="Importer\SaiseExporters.sql" />
+    <Build Include="Importer\SaiseExporterStages.sql" />
+    <None Include="Scripts\Test\TestRspModificationDataInsert.sql" />
+    <Build Include="Views\v_RspModificationConflictDataAdmin.sql" />
+    <Build Include="Views\v_PollingStationWithFullAddress.sql" />
+    <Build Include="SRV\LinkedRegions.sql" />
+    <Build Include="SRV\LinkedRegions_Region.sql" />
+    <Build Include="Views\v_LinkedRegions.sql" />
+    <Build Include="Importer\RspRegistrationDatas.sql" />
+    <Build Include="RSP\SexCode.sql" />
+    <Build Include="Views\v_ProblematicDataPollingStationStatistics.sql" />
+    <Build Include="StoredProcedures\sp_GenerateVotersList.sql" />
+    <Build Include="Views\v_RegionWithoutSaiseId.sql" />
+    <Build Include="SRV\ConfigurationSetting.sql" />
+    <Build Include="Audit\ConfigurationSettings_AUD.sql" />
+    <Build Include="Views\v_AddressWithPollingStations.sql" />
+    <Build Include="Views\v_RspAddressMappings.sql" />
+    <None Include="Scripts\ManualRun\001_CopyRspRegistrationsToOwnTable.sql" />
+    <None Include="Scripts\ManualRun\002_CreationNoResidenceRegionAndItsAddress.sql" />
+    <None Include="Scripts\ManualRun\003_UpdateStatusCodes.sql" />
+    <None Include="Scripts\ManualRun\004_UpdateStreetNameFromRspClassifiers.sql" />
+    <None Include="Scripts\ManualRun\005_UpdateCUATMcodes.sql" />
+    <Build Include="StoredProcedures\sp_MarkAllNotificationsRead.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CEC.SRV.Database.publish.xml" />
+    <None Include="Scripts\Post-Deployment\Lookup\StreetTypes.sql" />
+    <None Include="Scripts\Post-Deployment\Access\IdentityRoles.sql" />
+    <None Include="Scripts\Post-Deployment\Access\IdentityUsers.sql" />
+    <None Include="Scripts\Post-Deployment\Lookup\PersonStatusTypes.sql" />
+    <None Include="Scripts\Post-Deployment\Lookup\Genders.sql" />
+    <None Include="Scripts\Post-Deployment\Lookup\DocumentTypes.sql" />
+    <None Include="Scripts\Post-Deployment\Lookup\Streets_Chisinau.sql" />
+    <None Include="Scripts\Post-Deployment\Lookup\DisableConstraints.sql" />
+    <None Include="Scripts\Post-Deployment\Lookup\EnableConstraints.sql" />
+    <None Include="CEC.SRV.Database.CI.publish.xml" />
+    <None Include="Scripts\Post-Deployment\SRV\PollingStations.sql" />
+    <None Include="Scripts\Post-Deployment\SRV\PersonStatus.sql" />
+    <None Include="Scripts\Post-Deployment\SRV\UpdatePeopleWithStatus.sql" />
+    <None Include="Scripts\Post-Deployment\Lookup\StreetCode.sql" />
+    <Build Include="Security\Schemas\RSP.sql" />
+    <None Include="Scripts\Post-Deployment\RSP\StreetCode.sql" />
+    <None Include="Scripts\Post-Deployment\RSP\RegTypeCode.sql" />
+    <None Include="Scripts\Post-Deployment\RSP\DocTypeCode.sql" />
+    <None Include="Scripts\Test\TestStatusConflict_DataScript.sql" />
+    <None Include="Scripts\Test\TestAddressConflict_DataScript.sql" />
+    <None Include="Scripts\Test\Test_NoAddress_PollingStationsConflict_DataScript.sql" />
+    <None Include="Scripts\Test\TestMissingRegionConflict_DataScript_1.sql" />
+    <None Include="Scripts\Test\Test_LinkedRegionsConflict_DataScript.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Scripts\Post-Deployment\Script.PostDeployment.sql" />
+    <PreDeploy Include="Scripts\Pre-Deployment\Script.PreDeployment.sql" />
+    <None Include="Scripts\Post-Deployment\RSP\SexCode.sql" />
+    <None Include="Scripts\Post-Deployment\SRV\DefaultSettingValues.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="CEC.SRV.Database.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Functions\TitleCaseNet4.cs" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,49 @@
+﻿@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.QuartzAdmin
+@using CEC.Web.SRV.Resources
+@using Lib.Web.Mvc.JQuery.JqGrid
+@{
+    var grid = Html.GridOptions<QuartzScheduledJobsGridModel>("quartzScheduledJobs", rowsPerPage: 10, height: 200)
+        .BuildGrid(null, columnChooser:false, showFilterToolbar: false)
+        .Navigator(new JqGridNavigatorOptions() { Add = false, Edit = false, Delete = false, CloneToTop = true })
+        .AddNavigatorButton(MUI.QuartzAdmin_Actions, onClick: "gridJobActions");
+}
+@grid.GetHtml()
+
+<div class="contextMenu" id="scheduledJobsMnu" style="display: none">
+    <ul style="width: initial !important">
+        <li class="mnuJobActions">
+            <span class="fa fa-pencil-square-o" style="float: left"></span>
+            <span style="font-size: 11px; font-family: Verdana; padding-left: 10px;">@MUI.QuartzAdmin_Actions</span>
+        </li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        @grid.GetJavaScript();
+
+        $('#quartzScheduledJobs').jqGrid().remapColumns([5, 6, 7, 8, 9, 0, 1, 2, 3, 4], true, false);
+
+        var grid = $('#quartzScheduledJobs');
+        grid.contextMenu('scheduledJobsMnu', {
+            onContextMenu: function (e) {
+                var rowId = $(e.target).closest("tr.jqgrow").attr("id");
+                if (!rowId) {
+                    return false;
+                }
+
+                return true;
+            }
+        });
+    });
+
+    function gridJobActions() {
+        jobActions($(this));
+    }
+
+    $('.mnuJobActions').click(function() {
+        $('#jqContextMenu').hide().next().hide();
+        jobActions($('#quartzScheduledJobs'));
+    });
+</script>

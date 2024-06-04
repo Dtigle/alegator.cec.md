@@ -1,0 +1,83 @@
+﻿@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.AppConfiguration
+@using CEC.Web.SRV.Models.Lookup
+@using CEC.Web.SRV.Resources
+@using Lib.Web.Mvc.JQuery.JqGrid
+
+@{
+    ViewBag.Title = MUI.Configurationsettings_TabTitle;
+}
+
+@{
+	var grid = Html.GridOptions<ConfigurationSettingsGridModel>("configSettings")
+        .BuildGrid(Url.Action("ListConfigurationSettingsAjax"), null, null, null, null,
+            Url.Action("ConfigurationSettingHistory", "History"), Url.Action("ExportConfigurationSettings"))
+		.Navigator(new JqGridNavigatorOptions()
+		{
+			Add = false,
+			Edit = true,
+			Delete = false,
+			Search = true,
+            EditFunction = "$.CreateUpdateConfigurationSetting",
+            DeleteFunction = "$.DeleteConfigurationSetting",
+            CloneToTop = true
+		});
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-content">
+                <h4 class="page-header">@MUI.Configurationsettings_TabTitle</h4>
+                @grid.GetHtml()
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    (function ($) {
+        $(document).ready(function () {
+            @grid.GetJavaScript();
+        });
+        
+        $.CreateUpdateConfigurationSetting = function (configSettingId) {
+            var url = '@Url.Action("CreateUpdateConfigurationSetting","AppConfiguration")';
+            var dialogTitle = '@MUI.ConfigurationSettingAdd_DialogTitle';
+            if (configSettingId != undefined) {
+                dialogTitle = '@MUI.ConfigurationSettingEdit_DialogTitle';
+            } else {
+                configSettingId = 0;
+            }
+            
+            $.openDialog($(this), {
+                url: url + '?id=' + configSettingId,
+                title: dialogTitle,
+                onSubmit: function () {
+                    $('#configSettings').trigger('reloadGrid');
+                }
+            });
+            
+           
+        };
+
+        $.DeleteConfigurationSetting = function (configSettingId) {
+            var url = '@Url.Action("DeleteConfigurationSetting","AppConfiguration")';
+
+            BootstrapDialog.confirm('@MUI.PollingStationDelete_Message', function (result) {
+                if (result) {
+                    $.ajax({
+                        type: 'POST',
+                        url: url,
+                        data: { configSettingId: configSettingId },
+                        success: function () {
+                            $('#configSettings').trigger('reloadGrid');
+                        }
+                    });
+                }
+
+            });
+
+        };
+    })(jQuery);
+</script>

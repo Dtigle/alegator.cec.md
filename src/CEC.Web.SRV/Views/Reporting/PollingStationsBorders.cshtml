@@ -1,0 +1,56 @@
+﻿@using CEC.Web.SRV.Resources
+@using MvcReportViewer
+@model CEC.Web.SRV.Models.Reporting.PollingStationBordersModel
+
+@{
+    ViewBag.Title = MUI.Reporting_PSBorders;
+}
+
+<div class="clearfix">
+
+    @using (Html.BeginForm("PollingStationsBorders", "Reporting", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.EditorFor(x => x.RegionId)
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="@MUI.ButtonExecute" class="btn btn-primary" />
+            </div>
+        </div>
+    }
+</div>
+
+@if (Model.DataReadyForReport)
+{
+    var report = Html.MvcReportViewerFluent(Model.ReportPath)
+        .Attributes(new { Height = 900, Width = 1150 })
+        .ControlSettings(new ControlSettings { ShowParameterPrompts = false })
+        .ReportParameters(new
+        {
+            regionId = Model.RegionId
+        });
+
+    <div class="box">
+        <div class="box-content">
+            @report
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+
+    function regionsDataRequest(term, page, pageLimit) {
+		return {
+			q: term,
+			pageLimit: pageLimit,
+			page: page
+		};
+	}
+
+    function regionsResults(data, more) {
+		return { results: data, more: more };
+	}
+</script>
