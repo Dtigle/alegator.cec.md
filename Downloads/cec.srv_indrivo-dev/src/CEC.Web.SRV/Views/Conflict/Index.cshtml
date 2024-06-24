@@ -1,0 +1,174 @@
+﻿@using CEC.SRV.BLL
+@using CEC.SRV.Domain
+@using CEC.SRV.Domain.Constants
+@using CEC.SRV.Domain.Importer
+@using CEC.Web.SRV.Controllers
+@using CEC.Web.SRV.Resources
+
+@{
+    ViewBag.Title = MUI.Conflict_TabTitle;
+    var statusConflictLink = Url.Action("LoadGridList", new { statusCode = ConflictStatusCode.StatusConflict });
+    var addressConflictLink1 = Url.Action("LoadGridList", new { statusCode = ConflictStatusCode.AddressConflict });
+    var addressConflictLink2 = Url.Action("LoadGridList", new { statusCode = ConflictStatusCode.PollingStationConflict });
+    var regionConflictLink = Url.Action("LoadGridList", new { statusCode = ConflictStatusCode.RegionConflict });
+    var streetConflictLink = Url.Action("LoadGridList", new { statusCode = ConflictStatusCode.StreetZeroConflict });
+    var localityConflictLink = Url.Action("LoadGridList", new { statusCode = ConflictStatusCode.LocalityConflict });
+    var addressWithoutPollingStationLink = Url.Action("LoadAddressesWithoutPollingStatioGridList");
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-content" style="display: block;">
+                <h5 class="page-header">@MUI.ConflictMgmt</h5>
+
+                <div id="bTabs" class="tab-pane">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#c1" data-url="@statusConflictLink" data-grid="#statusConflicts">Conflicte de statut</a>
+                        </li>
+                        <li class="">
+                            <a href="#c2" data-url="@addressConflictLink1" data-grid="#addressConflicts">Conflicte de adresă</a>
+                        </li>
+                        <li class="">
+                            <a href="#c3" data-url="@addressConflictLink2" data-grid="#addressNoStreetConflicts">Conflicte de secție de votare</a>
+                        </li>
+                        @if (SecurityHelper.LoggedUserIsInRole(Transactions.Administrator))
+                        {
+                            <li class="">
+                                <a href="#c4" data-url="@streetConflictLink" data-grid="#streetConflicts">Conflicte Stradă = 0</a>
+                            </li>
+                            <li class="">
+                                <a href="#c5" data-url="@regionConflictLink" data-grid="#regionConflicts">Conflicte lipsă CUATM code</a>
+                            </li>
+                        }
+
+                        @if (SecurityHelper.LoggedUserIsInRole(Transactions.Registrator))
+                        {
+                            <li class="">
+                                <a href="#c6" data-url="@localityConflictLink" data-grid="#localityConflicts">Conflicte de localitate</a>
+                            </li>
+
+                            <li class="pull-right" style="margin-top: 8px;">
+                                <select id="region-dropdown" class="selectpicker">
+                                    <option value="@ConflictGridType.AllConflicts" selected="selected">Toate conflictele</option>
+                                    <option value="@ConflictGridType.FromMyRegion">Conflicte regiunea mea </option>
+                                    <option value="@ConflictGridType.SharedByMyRegion">Partajate cu alte regiuni </option>
+                                    <option value="@ConflictGridType.SharedWithMyRegion">Partajate de către alte regiuni </option>
+                                </select>
+                            </li>
+                        }
+                        else if (SecurityHelper.LoggedUserIsInRole(Transactions.Administrator))
+                        {
+                            <input id="region-dropdown" type="hidden" value="@ConflictGridType.AllConflicts" />
+                        }
+                        <li class="">
+                            <a href="#c7" data-url="@addressWithoutPollingStationLink" data-grid="#addressWithoutPollingStation">Adrese fără secție</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div id="c1" class="tab-pane fade active in"></div>
+                        <div id="c2" class="tab-pane fade"></div>
+                        <div id="c3" class="tab-pane fade"></div>
+                        <div id="c4" class="tab-pane fade"></div>
+                        <div id="c5" class="tab-pane fade"></div>
+                        <div id="c6" class="tab-pane fade"></div>
+                        <div id="c7" class="tab-pane fade"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <div class="box-content">
+                <h5 class="page-header">@MUI.ViewConflict</h5>
+                <div id="viewConflict"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var lastGrid;
+    $(document).ready(function () {
+        $('#c1').load($('.active a').attr("data-url"), function(result) {
+            $('.active a').tab('show');
+            $.forEachGrid($.removeClonedGridButtons);
+            $.forEachGrid($.bindListeners);
+        });
+    });
+
+    $("#region-dropdown").on("changed.bs.select", function (e) {
+
+        var gridId = $('.tab-pane .active a').attr("data-grid");
+        console.log("grid id", gridId);
+
+        $(gridId).trigger('reloadGrid', [{ current: true }]);
+
+    });
+
+    $('#bTabs a').click(function (e) {
+        //Reset Dropdown
+        //$('#region-dropdown').selectpicker('val', '@ConflictGridType.AllConflicts');
+
+        e.preventDefault();
+        $.clearViewConflict();
+        var url = $(this).attr("data-url");
+        var href = this.hash;
+        var pane = $(this);
+
+
+        // ajax load from data-url
+        $(href).load(url, function (result) {
+            pane.tab('show');
+
+            //$.forEachGrid($.bindListeners)
+            var parentWidth = $(this).parent().width();
+            var grid = $(this).find('.ui-jqgrid-btable');
+
+            $.forEachGrid($.removeClonedGridButtons);
+            return grid.jqGrid().setGridWidth(parentWidth, false);
+        });
+    });
+
+    $.clearViewConflict = function() {
+        $('#viewConflict').empty();
+    };
+
+    function onCellSelect(rowId) {
+        var conflictType = '@ConflictStatusCode.None';
+        var id = $(this).attr('id');
+        switch (id) {
+            case 'statusConflicts':
+                conflictType = '@ConflictStatusCode.StatusConflict';
+                break;
+            case 'addressConflicts':
+                conflictType = '@ConflictStatusCode.AddressConflict';
+                break;
+            case 'addressNoStreetConflicts':
+                conflictType = '@ConflictStatusCode.PollingStationConflict';
+                break;
+            case 'regionConflicts':
+                conflictType = '@ConflictStatusCode.RegionConflict';
+                break;
+            case 'streetConflicts':
+                conflictType = '@ConflictStatusCode.StreetZeroConflict';
+                break;
+            case 'localityConflicts':
+                conflictType = '@ConflictStatusCode.LocalityConflict';
+                break;
+        }
+
+        if (rowId != null && rowId > 0) {
+            var url = '@Url.Action("GetViewConflict", "Conflict")';
+            $.ajax({
+                url: url + '?conflictId=' + rowId + '&conflictType=' + conflictType,
+                type: "POST",
+                success: function (data) {
+                    $('#viewConflict').html(data);
+                }
+            });
+        }
+    }
+
+</script>

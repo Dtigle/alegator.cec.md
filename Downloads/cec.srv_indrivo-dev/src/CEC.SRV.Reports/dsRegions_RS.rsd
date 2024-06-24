@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>DataSource_ReportingServer</DataSourceReference>
+      <DataSetParameters>
+        <DataSetParameter Name="@CircumscriptionId">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>false</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>Object</rd:DbType>
+        </DataSetParameter>
+        <DataSetParameter Name="@ElectionRoundId">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>false</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>Object</rd:DbType>
+        </DataSetParameter>
+      </DataSetParameters>
+      <CommandText>(
+SELECT 
+       r.RegionId,
+	   rt.[Rank],
+       CONCAT(rt.[Name], ' ', r.[Name]) as [Name]
+FROM 
+  [dbo].[AssignedPollingStation] as aps
+  INNER JOIN  [dbo].[PollingStation] as ps ON aps.PollingStationId = ps.PollingStationId
+  INNER JOIN  [dbo].[Region] as r ON r.RegionId = ps.RegionId
+  INNER JOIN  [dbo].[RegionType] as rt ON rt.RegionTypeId = r.RegionTypeId
+AND ps.ElectionDayId = aps.ElectionDayId
+WHERE
+  aps.[AssignedCircumscriptionId] = (SELECT TOP 1 [AssignedCircumscriptionId] FROM [dbo].[AssignedCircumscription] ac WHERE ac.CircumscriptionId = @CircumscriptionId AND ac.ElectionRoundId = @ElectionRoundId)
+GROUP BY rt.[Rank], rt.Name, r.RegionId, r.Name
+UNION ALL
+SELECT
+0 as RegionId,
+0 as [Rank],
+' - Toate regiunile - ' as Name
+)
+ORDER BY [Rank], [Name] ASC</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="RegionId">
+        <DataField>RegionId</DataField>
+        <rd:TypeName>System.Int64</rd:TypeName>
+      </Field>
+      <Field Name="Rank">
+        <DataField>Rank</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="Name">
+        <DataField>Name</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

@@ -1,0 +1,18 @@
+<head>
+    <script type="text/javascript">
+        function CopyToClipboard () {
+ navigator.clipboard.readText()
+      .then(text => {
+        alert(text);
+      })
+      .catch(err => {
+        alert(err.message);
+      });
+        }
+
+    </script>
+</head>
+<body>
+    <input id="toClipboard" value="text to clipboard"/>
+    <button onclick='CopyToClipboard ()'>Copy text from clipboard</button>
+</body>

@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition">
+  <Description />
+  <DataSet Name="DS_Village_PR">
+    <Query>
+      <DataSourceReference>DataSource_SAISE</DataSourceReference>
+      <DataSetParameters>
+        <DataSetParameter Name="@DistrictId">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>false</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>Int32</rd:DbType>
+        </DataSetParameter>
+        <DataSetParameter Name="@ElectionId">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>false</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>Int32</rd:DbType>
+        </DataSetParameter>
+      </DataSetParameters>
+      <CommandText>SELECT   V.E_ElectionId,  V_VillageId, V_RopUniqueId, V_NameRo, V_NameRu, V_OldName, V_Type, V_DistrictId, V_Name
+FROM         vDK_VillagePerEDV AS V
+WHERE     (V_DistrictId = @DistrictId )
+			and V.E_ElectionId = @ElectionId
+UNION
+SELECT   0 as E_ElectionId,  NULL AS V_VillageId, 0 AS V_RopUniqueId, '' AS V_NameRo, '' AS V_NameRu, '' AS V_OldName, '' AS V_Type, '' AS V_DistrictId, '[Toate]' AS V_Name
+where (select E.E_TypeName from vDK_Election as E where E.E_ElectionId = @ElectionId)
+		in ('Local_ConsilieriRaional', 'Local_ConsilieriMunicipali', 'Local_PrimarGeneral')
+ORDER BY V_NameRo</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="V_VillageId">
+        <DataField>V_VillageId</DataField>
+        <rd:TypeName>System.Int64</rd:TypeName>
+      </Field>
+      <Field Name="E_ElectionId">
+        <DataField>E_ElectionId</DataField>
+        <rd:TypeName>System.Int64</rd:TypeName>
+      </Field>
+      <Field Name="V_RopUniqueId">
+        <DataField>V_RopUniqueId</DataField>
+        <rd:TypeName>System.Int64</rd:TypeName>
+      </Field>
+      <Field Name="V_NameRo">
+        <DataField>V_NameRo</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="V_NameRu">
+        <DataField>V_NameRu</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="V_OldName">
+        <DataField>V_OldName</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="V_Type">
+        <DataField>V_Type</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="V_DistrictId">
+        <DataField>V_DistrictId</DataField>
+        <rd:TypeName>System.Int64</rd:TypeName>
+      </Field>
+      <Field Name="V_Name">
+        <DataField>V_Name</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="NameLkp">
+        <Value>= Fields!V_Name.Value + " [" + CStr(Fields!V_VillageId.Value) + "]"</Value>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

@@ -1,0 +1,220 @@
+﻿<div class="row">
+
+    <div id="breadcrumb" class="col-md-12">
+        
+    </div>
+</div>
+
+
+<div class="row" id="electionContent" style="display: none">
+
+	<div class="col-xs-12 col-sm-5">
+		<div class="box">
+			<div class="box-content">
+				<fieldset>
+					<div class="form-group" id="inputSearch">
+
+						<div class="col-sm-4 control-label">
+							<label for="txtIdnpPersonal">Introduceți IDNP</label>
+						</div>
+						<div class="col-sm-6">
+
+							<input type="text" class="form-control " data-original-title=""
+							       id="txtIdnpPersonal" name="idnp" placeholder="IDNP – 13 cifre" value="">
+                            
+						</div>
+
+						<div class="col-sm-1">
+							<input type="submit" id="goSearchByIdnp" class="btn btn-primary" value="Caută">
+						</div>
+                        
+                        
+					</div>
+
+				</fieldset>
+				<fieldset>
+					<h5 class="page-header">Identitate</h5>
+					<div class="form-group">
+						<div class="col-sm-4 control-label">
+							<label for="txtName">Nume</label>
+						</div>
+						<div class="col-sm-8">
+							<input type="text" id="txtName" readonly class="form-control" />
+						</div>
+					</div>    
+					<div class="form-group">
+						<div class="col-sm-4 control-label">
+							<label for="txtSurname">Prenume</label>
+						</div>
+						<div class="col-sm-8">
+							<input type="text" id="txtSurname" readonly class="form-control" />
+						</div>
+					</div>    
+					<div class="form-group">
+						<div class="col-sm-4 control-label">
+							<label for="txtDob">Anul nașterii</label>
+						</div>
+						<div class="col-sm-8">
+							<input type="text" id="txtDob" readonly class="form-control" />
+						</div>
+					</div>    
+					<div class="form-group">
+						<div class="col-sm-4 control-label">
+							<label for="txtAddress">Domiciliul în RM</label>
+						</div>
+						<div class="col-sm-8">
+							<textarea id="txtAddress" rows="2" readonly class="form-control" />
+						</div>
+					</div>    
+				</fieldset>
+			</div>
+		</div>
+		<div class="box" id="locationSearch">
+			<div class="box-content">
+				<fieldset>
+					<div class="form-group">
+
+						<div class="col-sm-12 control-label">
+							<label for="txtLocation">Introduceți Oraș/Țară</label>
+						</div>
+
+						<div class="col-sm-12 ">
+							<input type="text" class="form-control"
+							       id="txtLocation" name="location" placeholder="Introduceți Oras/Tara" value="" />                            
+						</div>
+
+					</div>
+
+				</fieldset>
+			</div>
+		</div>
+		<form action="" method="post" id="emailAddress">
+			<div class="box" id="emailAddress2">
+				<div class="box-content">
+					<fieldset>
+						<div class="form-group">
+
+							<div class="col-sm-12 control-label">
+								<label for="email">Introduceți E-mail </label>
+							</div>
+
+							<div class="col-sm-12">
+								<input type="email" class="form-control" data-original-title="" name="email"
+								       id="email" required placeholder="Email" value="">
+							</div>
+
+							<small class="help-block col-sm-offset-3 col-sm-9" style=""></small>
+						</div>
+
+					</fieldset>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div class="col-xs-12 col-sm-7">
+		<div class="box">
+			<div class="box-content">
+				<fieldset>
+					<h4>Declarație: </h4>
+
+					<div id="searchingProgress" class="preloader">
+						&nbsp;
+					</div>
+
+					<div id="searchByIdnpResult" class="col-md-12">
+						<div id="infoMessage"></div>
+						<div id="helpPage"></div>
+					</div>
+
+					<div id="MainContent_Panel2" style="height:100%;width:99%;" class="col-sm-8" title="Declarația poate fi depusă doar atunci când toate datele din punctele 1-3 sunt corecte">
+						<fieldset>
+							<p align="right">
+								Anexa nr. 1
+								<br>
+								la
+								<a href="http://cec.md/files/legi/3302_regulament_inregistrarea_prealabila.pdf"> Regulamentul privind înregistrarea prealabilă a cetăţenilor</a>
+								<br>
+								Republicii Moldova aflaţi în străinătate
+							</p>
+							<h2 align="center">
+								<strong>
+									<br>
+									Declaraţie
+								</strong>
+							</h2>
+							<p align="justify">  </p>
+							<p align="justify">
+								Prin prezenta,
+								<span id="MainContent_lblPersoana" class="declaratie-bold"><span id="nume">[Nume]</span> <span id="prenume">[Prenume]</span> nascut in anul <span id="anulNasterii">[AnNastere]</span>, IDNP: <span id="idnp">[IDNP]</span></span>
+								îmi exprim dorinţa de a participa la alegerile din Republica Moldova. Va informez ca temporar mă aflu peste hotarele Republicii Moldova în
+								<span id="MainContent_lblStrainatate" class="declaratie-bold">[Tara, Regiunea]</span>
+								. şi în legătură cu aceasta rog sa fiu radiat(ă) temporar din lista electoral de baza de la domiciliul meu permanent din R. Moldova (
+								<span id="MainContent_lblDomiciliu" class="declaratie-bold">[Raion], [Localitate], </span>
+								) <span id="electionSection"> pentru <span id="electionName" class="declaratie-bold" /> din <span id="electionDate" class="declaratie-bold" /></span>
+							</p>
+							<p align="justify"> Declar, pe propria răspundere, că datele incluse in declaraţie sunt corecte şi veridice. </p>
+							<p align="justify">  </p>
+							<p align="justify">
+								<span class="aspNetDisabled" title=" termenii și condițiile">
+									<input id="MainContent_ConfirmCheckBox" type="checkbox" disabled="disabled" name="ctl00$MainContent$ConfirmCheckBox">
+								</span>
+								<script type="text/javascript">
+                                    // Popup window code
+									function newPopup(url) {
+										popupWindow = window.open(
+											url,
+											'popUpWindow', 'height=350,width=700,left=300%,top=300%,resizable=yes,scrollbars=yes,toolbar=no,menubar=no,location=no,directories=no,status=yes')
+									}
+								</script>
+								Accept
+								<a href="JavaScript:newPopup('termeni.htm');">termenii și condițiile</a>
+								și confirm că informația prezentată este veridică.
+							</p>
+							<p> </p>
+							<p align="center"> </p>
+							<p> </p>
+							<p> </p>
+							<p> </p>
+							<p> </p>
+							<p> </p>
+							<p> </p>
+							<p></p>
+						</fieldset>
+					</div>
+				</fieldset>
+				<fieldset>
+					<div class="col-sm-8">
+						<div class="form-group">
+							<div class="col-sm-9 col-sm-offset-6">
+								<input type="hidden" id="electionId" />
+								<input type="hidden" id="locationid" />
+								<input type="hidden" id="locationLat" />
+								<input type="hidden" id="locationLong" />
+								<input type="hidden" id="locationCountry" />                                
+								<input type="button" id="btnSubmit" class="btn btn-primary" value="Aplică" disabled />
+							</div>
+						</div>    
+					</div>
+				</fieldset>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="infoMessageAbroadDeclaration" style="display: none">
+	<h2>Înregistrarea prealabilă nu e activată</h2>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        initCheckRegisterTheList();
+        setTimeout(function () {
+            initialize();
+        }, 500);
+
+        LoadBootstrapValidatorScript(DemoFormValidator);
+    });
+
+</script>

@@ -1,0 +1,192 @@
+﻿@using CEC.SRV.BLL
+@using CEC.SRV.Domain
+@using CEC.SRV.Domain.Constants
+@using CEC.Web.SRV.Controllers
+@using CEC.Web.SRV.Resources
+@model CEC.Web.SRV.Models.Conflict.ShareConflictModel
+
+    @using (Html.BeginForm("ShareConflict", "Conflict", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "shareConflict" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(x => x.ConflictId)
+
+        for(var i = 0; i < Model.OriginalRegions.Count(); i++)
+        {
+            @Html.HiddenFor(x => x.OriginalRegions[i].Value);
+            @Html.HiddenFor(x => x.OriginalRegions[i].Text);
+        }
+
+        <div class="table">
+            <div class="row">
+                    @Html.EditorFor(x => x.ReasonId)
+            </div>
+            <div class="row">
+                    @Html.EditorFor(x => x.ConflictShareNote)
+            </div>
+
+            <div class="row box-content">
+                <div id ="RegonsLabel" class="control-label col-sm-2 col-sm-offset-1" style="white-space: nowrap">
+                    @Html.Label("Arbore regiuni")
+                </div>
+                <div id ="AllocatedRegionsLabel" class="control-label col-sm-4 col-sm-push-4">
+                    @Html.Label("Partajat cu localitățile")
+                </div>
+            </div>
+
+            <div class="row">
+                <div id="treeViewGridContainer" class="col-sm-5">
+                    <div>
+                        @Html.Partial("_RegionsTreeViewForConflictSharing")
+                    </div>
+                </div>
+
+                <div id ="regionBtnsContainer" class="col-sm-2 col-sm-height" style ="height: 200px;">
+                    <div class="v-align" style ="height: 200px;">
+                        <input id ="AddRegionBtn" type="button" value="-&gt;" onclick="selectItem()"/>
+                        <input id ="RemoveRegionBtn" type="button" value="&lt;-" onclick="removeItem()"/>
+                    </div>
+                </div>
+
+                <div id="AllocatedRegionsContainer" class="col-sm-5">
+                    <div>
+                        @Html.EditorFor(x => x.AllocatedRegions)                       
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row padding-15"> 
+                <input id="UpdateButton" type="submit" value="@MUI.ButtonUpdate" class="btn btn-primary " />
+                <input id="CancelShares" type="button" value="@MUI.ButtonDeleteAllShares" class="btn btn-danger" onclick="cancelAllShares()"/>
+            </div>
+        </div>
+
+    }
+
+
+<script type="text/javascript">
+
+    $('.rsa-form-group > div.col-sm-2').removeClass('col-sm-2').addClass('col-sm-2');
+    $('.rsa-form-group > div.col-sm-4').removeClass('col-sm-4').addClass('col-sm-10');
+
+</script>
+
+@if (SecurityHelper.LoggedUserIsInRole(Transactions.Registrator))
+{
+    <script type="text/javascript">
+        $(document)
+            .ready(function() {
+                $('.modal-dialog').css("width", '700px');
+                $('.modal-dialog').css("height", '500px');
+                $("#AllocatedRegions").css("height", '220px');
+
+
+                var dropdownValue = $("#region-dropdown").val();
+
+                if (dropdownValue == '@ConflictGridType.SharedWithMyRegion')
+                {
+                    setupFormForConflictsSharedWithMyRegion();
+                }
+
+            });
+        var selectedRegionId;
+
+        $.onRegionSelect = function(id) {
+            selectedRegionId = id;
+        };
+
+        function setupFormForConflictsSharedWithMyRegion() {
+            $("#UpdateButton").remove();
+            $("#CancelShares").remove();
+            $("#treeViewGridContainer").remove();
+            $("#regionBtnsContainer").remove();
+            $("#RegonsLabel").remove();
+
+            $("#ReasonId").prop('disabled', true);
+            $("#ConflictShareNote").prop('disabled', true);
+
+            $("#AllocatedRegionsContainer").removeClass("col-sm-5").addClass("col-sm-12");
+            $("#AllocatedRegions").css("width", '100%');
+            $("#AllocatedRegionsLabel").removeClass("col-sm-push-4");
+            $("#AllocatedRegionsLabel").css("text-align", "center");
+        }
+
+        function selectItem() {
+            var grid = $('#regionsGridConflictShare');
+
+            if (selectedRegionId === undefined) {
+                BootstrapDialog.alert({ message: '@MUI.RegionNotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+                return;
+            }
+            var rowData = grid.jqGrid('getRowData', selectedRegionId);
+            if ($('#AllocatedRegions option[value="' + selectedRegionId + '"]').length == 0) {
+                if (selectedRegionId != 1) {
+                    $('#AllocatedRegions')[0].options.add(new Option(rowData.Name, selectedRegionId));
+                }
+            }
+        };
+
+        function removeItem() {
+            $('#AllocatedRegions option:selected').remove();
+        };
+
+        function cancelAllShares() {
+            var url = '@Url.Action("CancelConflictShares")';
+            $.post(url + "?conflictDataId=" + @Model.ConflictId,null,function(data, textStatus, jqXHR) {
+                $('.modal').modal('hide');
+            });
+        }
+
+    </script>
+}
+else
+{
+    <script type="text/javascript">
+        $(document)
+            .ready(function() {
+                $('.modal-dialog').css("width", '700px');
+                $('.modal-dialog').css("height", '500px');
+                $("#AllocatedRegions").css("height", '220px');
+
+
+                    
+
+            });
+        var selectedRegionId;
+
+        $.onRegionSelect = function(id) {
+            selectedRegionId = id;
+        };
+
+
+
+        function selectItem() {
+            var grid = $('#regionsGridConflictShare');
+
+            if (selectedRegionId === undefined) {
+                BootstrapDialog.alert({ message: '@MUI.RegionNotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+                return;
+            }
+            var rowData = grid.jqGrid('getRowData', selectedRegionId);
+            if ($('#AllocatedRegions option[value="' + selectedRegionId + '"]').length == 0) {
+                if (selectedRegionId != 1) {
+                    $('#AllocatedRegions')[0].options.add(new Option(rowData.Name, selectedRegionId));
+                }
+            }
+        };
+
+        function removeItem() {
+            $('#AllocatedRegions option:selected').remove();
+        };
+
+        function cancelAllShares() {
+            var url = '@Url.Action("CancelConflictShares")';
+            $.post(url + "?conflictDataId=" + @Model.ConflictId,null,function(data, textStatus, jqXHR) {
+                $('.modal').modal('hide');
+            });
+        }
+
+    </script>
+
+}
+

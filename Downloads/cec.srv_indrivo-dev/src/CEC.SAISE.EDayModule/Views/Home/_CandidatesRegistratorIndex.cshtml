@@ -1,0 +1,96 @@
+﻿@model CEC.SAISE.EDayModule.Models.Voting.UserDataModel
+
+@{
+    ViewBag.Title = "Principala";
+}
+
+<div class="well">
+    <h4 class="page-header">Bun venit în SIASA</h4>
+</div>
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="box">
+            <div class="box-content">
+                @Html.Partial("../Shared/_Delimitator")
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <div class="box">
+            <div class="box-content">
+                <h4 class="page-header">Materiale utile</h4>
+
+                <ul>
+                    <li><a href="~/Content/docs/Ghid_Operator_Concurenti_CECE_II_ROM.pdf" target="blank">Ghidul utilizatorului</a></li>
+                    <li><a href="~/Content/docs/Ghid_Operator_Concurenti_CECE_II_RU.pdf" target="blank">Руководство пользователя</a></li>
+                    <li><a href="~/Content/docs/video/ConcurentiVideoMenu.html" target="blank">Ghid de utilizare (curs video)</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-4">
+        <div class="box">
+            <div class="box-content">
+                <h4 class="page-header">Contacte</h4>
+
+                <ul>
+                    <li><address><abbr title="Telefon"></abbr><i class="glyphicon glyphicon-phone-alt"></i> 022-88-01-01</address></li>
+                    <li><address><a href="mailto:#"><i class="glyphicon glyphicon-envelope"></i> sia@cec.md</a></address></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="box">
+            <div class="box-content">
+                <h4 class="page-header">Rapoarte de totalizare</h4>
+
+                @Html.Action("GetAccessibleReports")
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function HomeVM(data) {
+        var self = this;
+
+        self.UserData = ko.observable(new UserData().init(data));
+    }
+
+    function UserData() {
+        var self = this;
+
+        self.AssignedElection = ko.observable();
+        self.AssignedCircumscription = ko.observable();
+        self.AssignedRegion = ko.observable();
+        self.AssignedPollingStation = ko.observable();
+        self.IsAdmin = ko.observable();
+
+        self.init = function (initData) {
+            if (initData == null) {
+                return self;
+            }
+
+            self.AssignedElection(initData.AssignedElection);
+            self.AssignedCircumscription(initData.AssignedCircumscription);
+            self.AssignedRegion(initData.AssignedRegion);
+            self.AssignedPollingStation(initData.AssignedPollingStation);
+            self.IsAdmin(initData.IsAdmin);
+
+            return self;
+        }
+    }
+
+    var initialData = '@Html.Raw(Json.Encode(Model))';
+
+    var parsedJSON = $.parseJSON(initialData);
+
+    var viewModel = new HomeVM(parsedJSON);
+    ko.applyBindings(viewModel);
+</script>

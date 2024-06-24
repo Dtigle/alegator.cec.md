@@ -1,0 +1,404 @@
+﻿@using CEC.SRV.Domain.Lookup
+
+<style>
+    .ftd {
+    }
+
+        .ftd td:first-child {
+            padding-left: 20px;
+        }
+</style>
+
+<div id="dashboard-overview" class="row">
+    <div class="col-sm-12 col-md-6">
+        <table id="overview-table" class="table m-table table-bordered table-hover table-heading ftd">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th style="text-align: center; width: 150px;">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="m-ticker"><b>Persoane RSA</b></td>
+                    <td class="m-price">
+                        <div id="loadingProgress_totalPeople" class="preloader">
+                            &nbsp;
+                        </div>
+
+                        <div id="totalPeople"></div>
+                    </td>
+                </tr>
+                <tr style="display: none">
+                    <td class="m-ticker"><b>Persoane</b><span>(fără decedați)</span></td>
+                    <td class="m-price">
+                        <div id="loadingProgress_totalPeopleWithoutDeads" class="preloader">
+                            &nbsp;
+                        </div>
+                        <div id="totalPeopleWithoutDeads"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="m-ticker"><b>Decedați</b></td>
+                    <td class="m-price">
+                        <div id="loadingProgress_totalPeopleDeads" class="preloader">
+                            &nbsp;
+                        </div>
+                        <div id="totalPeopleDeads"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="m-ticker" style="padding-left: 5px; cursor:pointer" id="alegatori-toggle"><i class="fa fa-plus"></i>&nbsp;<b>Alegători</b></td>
+                    <td class="m-price">
+                        <div id="loadingProgress_totalVoters" class="preloader">
+                            &nbsp;
+                        </div>
+                        <div id="totalVoters"></div>
+                    </td>
+                </tr>
+                <tr class="alegatori">
+                    <td class="m-ticker pl10"> >> <b>Militari</b></td>
+                    <td class="m-price">
+                        <div id="loadingProgress_Military" class="preloader">
+                            &nbsp;
+                        </div>
+                        <div id="totalMilitary"></div>
+                    </td>
+                </tr>
+                <tr class="alegatori">
+                    <td class="m-ticker"> >> <b>Deținuți</b></td>
+                    <td class="m-price">
+                        <div id="loadingProgress_Detainee" class="preloader">
+                            &nbsp;
+                        </div>
+                        <div id="totalDetainee"></div>
+                    </td>
+                </tr>
+                <tr class="alegatori">
+                    <td class="m-ticker"> >> <b>Declarații peste hotare</b></td>
+                    <td class="m-price">
+                        <div id="loadingProgress_StatementAbroad" class="preloader">
+                            &nbsp;
+                        </div>
+                        <div id="totalStatementAbroad"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="m-ticker"> > <b>Declarații de ședere</b></td>
+                    <td class="m-price">
+                        <div id="loadingProgress_totalDeclarations" class="preloader">
+                            &nbsp;
+                        </div>
+                        <div id="totalDeclarations"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="m-ticker"> > <b>Total femei</b></td>
+                    <td class="m-price">
+                        <div id="loadingProgress_totalWomen" class="preloader">
+                            &nbsp;
+                        </div>
+                        <div id="totalWomen"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="m-ticker"> > <b>Total bărbați</b></td>
+                    <td class="m-price">
+                        <div id="loadingProgress_totalMen" class="preloader">
+                            &nbsp;
+                        </div>
+                        <div id="totalMen"></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-xs-12 col-md-6">
+        <div id="ow-donut" class="row">
+            <div class="col-xs-4">
+                <div id="morris_donut_1" style="width:120px;height:120px;"></div>
+            </div>
+            <div class="col-xs-4">
+                <div id="morris_donut_2" style="width:120px;height:120px;"></div>
+            </div>
+            <div class="col-xs-4">
+                <div id="morris_donut_3" style="width:120px;height:120px;"></div>
+            </div>
+        </div>
+        @*<div id="ow-activity" class="row">
+                <div class="col-xs-2 col-sm-1 col-md-2">
+                    <div class="v-txt">ACTIVITĂȚI</div>
+                </div>
+                <div class="col-xs-7 col-sm-6 col-md-7">
+                    <div class="row"><i class="fa fa-cloud-upload"></i> Ultima actualizare <span class="label label-default pull-right">01.01.2014</span></div>
+                    <div class="row"><i class="fa fa-camera"></i> Snapshot created <span class="label label-default pull-right">04:22:11</span></div>
+                    <div class="row"><i class="fa fa fa-money"></i> Invoice pay <span class="label label-default pull-right">05:11:51</span></div>
+                    <div class="row"><i class="fa fa-briefcase"></i> Project edited <span class="label label-default pull-right">04:52:23</span></div>
+                    <div class="row"><i class="fa fa-floppy-o"></i> Project saved <span class="label label-default pull-right">07:11:01</span></div>
+                    <div class="row"><i class="fa fa-bug"></i> Neconformități depistate <span class="label label-default pull-right">100</span></div>
+                </div>
+            </div>*@
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#alegatori-toggle").click(function () {
+            var $this = $(this).children(":first");
+            if ($this.hasClass("fa-plus")) {
+                $this.removeClass("fa-plus");
+                $this.addClass("fa-minus");
+                $(".alegatori").show();
+
+                //
+                // lazy load of voter categories
+                //
+                if (!$this.data("loaded")) {
+                    $this.data("loaded", true);
+
+                    getTotalMilitary();
+                    getTotalDetainee();
+                    getTotalStatementAbroad();
+                }
+            } else {
+                $this.addClass("fa-plus");
+                $this.removeClass("fa-minus");
+                $(".alegatori").hide();
+            }
+        });
+
+        $(".alegatori").hide();
+
+        getTotalPeople();
+        getTotalPeopleDeads();
+        getTotalVoters();
+        getTotalDeclarations();
+        getTotalWomen();
+        getTotalMen();
+    });
+
+    function getTotalPeople() {
+        $('#loadingProgress_totalPeople').show();
+        $('#totalPeople').hide();
+
+        $.ajax({
+            url: '@Url.Action("GetTotalPeople", "Statistics")',
+            type: "POST",
+            dataType: "json",
+            data: {
+                //see _FilterForHome.cshtml
+                regionId: $.getDashboardRegionId(),
+                pollingStationId: $.getDashboardPollingStationId()
+            },
+
+            success: function (data) {
+                $('#loadingProgress_totalPeople').hide();
+                $('#totalPeople').show();
+                $('#totalPeople').html(data);
+            }
+
+        });
+    }
+
+    function getTotalPeopleWithoutDeads() {
+        $('#loadingProgress_totalPeopleWithoutDeads').show();
+        $('#totalPeopleWithoutDeads').hide();
+
+        $.ajax({
+            url: '@Url.Action("GetTotalNumberOfPeopleWithoutDeads", "Statistics")',
+            type: "POST",
+            dataType: "json",
+            data: {
+                //see _FilterForHome.cshtml
+                regionId: $.getDashboardRegionId(),
+                pollingStationId: $.getDashboardPollingStationId()
+            },
+
+            success: function (data) {
+                $('#loadingProgress_totalPeopleWithoutDeads').hide();
+                $('#totalPeopleWithoutDeads').show();
+                $('#totalPeopleWithoutDeads').html(data);
+            }
+
+        });
+    }
+
+    function getTotalPeopleDeads() {
+        $('#loadingProgress_totalPeopleDeads').show();
+        $('#totalPeopleDeads').hide();
+
+        $.ajax({
+            url: '@Url.Action("GetTotalNumberOfDeads", "Statistics")',
+            type: "POST",
+            dataType: "json",
+            data: {
+                //see _FilterForHome.cshtml
+                regionId: $.getDashboardRegionId(),
+                pollingStationId: $.getDashboardPollingStationId()
+            },
+
+            success: function (data) {
+                $('#loadingProgress_totalPeopleDeads').hide();
+                $('#totalPeopleDeads').show();
+                $('#totalPeopleDeads').html(data);
+            }
+        });
+    }
+
+    function getTotalVoters() {
+        $('#loadingProgress_totalVoters').show();
+        $('#totalVoters').hide();
+
+        $.ajax({
+            url: '@Url.Action("GetTotalNumberOfVoters", "Statistics")',
+            type: "POST",
+            dataType: "json",
+            data: {
+                //see _FilterForHome.cshtml
+                regionId: $.getDashboardRegionId(),
+                pollingStationId: $.getDashboardPollingStationId()
+            },
+
+            success: function (data) {
+                $('#loadingProgress_totalVoters').hide();
+                $('#totalVoters').show();
+                $('#totalVoters').html(data);
+            }
+        });
+    }
+
+    function getTotalDeclarations() {
+        $('#loadingProgress_totalDeclarations').show();
+        $('#totalDeclarations').hide();
+
+        $.ajax({
+            url: '@Url.Action("GetTotalNumberOfStayStatementDeclarations", "Statistics")',
+            type: "POST",
+            dataType: "json",
+            data: {
+                //see _FilterForHome.cshtml
+                regionId: $.getDashboardRegionId(),
+                pollingStationId: $.getDashboardPollingStationId()
+            },
+
+            success: function (data) {
+                $('#loadingProgress_totalDeclarations').hide();
+                $('#totalDeclarations').show();
+                $('#totalDeclarations').html(data);
+            }
+        });
+    }
+
+    function getTotalMilitary() {
+        $('#loadingProgress_Military').show();
+        $('#totalMilitary').hide();
+
+        $.ajax({
+            url: '@Url.Action("GetTotalNumberOfMilitary", "Statistics")',
+            type: "POST",
+            dataType: "json",
+            data: {
+                //see _FilterForHome.cshtml
+                regionId: $.getDashboardRegionId(),
+                pollingStationId: $.getDashboardPollingStationId()
+            },
+
+            success: function (data) {
+                $('#loadingProgress_Military').hide();
+                $('#totalMilitary').show();
+                $('#totalMilitary').html(data);
+            }
+        });
+    }
+
+    function getTotalDetainee() {
+        $('#loadingProgress_Detainee').show();
+        $('#totalDetainee').hide();
+
+        $.ajax({
+            url: '@Url.Action("GetTotalNumberOfDetainee", "Statistics")',
+            type: "POST",
+            dataType: "json",
+            data: {
+                //see _FilterForHome.cshtml
+                regionId: $.getDashboardRegionId(),
+                pollingStationId: $.getDashboardPollingStationId()
+            },
+
+            success: function (data) {
+                $('#loadingProgress_Detainee').hide();
+                $('#totalDetainee').show();
+                $('#totalDetainee').html(data);
+            }
+        });
+    }
+
+
+    function getTotalStatementAbroad() {
+        $('#loadingProgress_StatementAbroad').show();
+        $('#totalStatementAbroad').hide();
+
+        $.ajax({
+            url: '@Url.Action("GetTotalNumberOfStatementAbroad", "Statistics")',
+            type: "POST",
+            dataType: "json",
+            data: {
+                //see _FilterForHome.cshtml
+                regionId: $.getDashboardRegionId(),
+                pollingStationId: $.getDashboardPollingStationId()
+            },
+
+            success: function (data) {
+                $('#loadingProgress_StatementAbroad').hide();
+                $('#totalStatementAbroad').show();
+                $('#totalStatementAbroad').html(data);
+            }
+        });
+    }
+
+
+    function getTotalWomen() {
+        $('#loadingProgress_totalWomen').show();
+        $('#totalWomen').hide();
+        var url = '@Url.Action("GetTotalNumberOfPeopleByGender", "Statistics")';
+        var gender = '@GenderTypes.Female';
+        $.ajax({
+            url: url + "?gender=" + gender,
+            type: "POST",
+            dataType: "json",
+            data: {
+                //see _FilterForHome.cshtml
+                regionId: $.getDashboardRegionId(),
+                pollingStationId: $.getDashboardPollingStationId()
+            },
+
+            success: function (data) {
+                $('#loadingProgress_totalWomen').hide();
+                $('#totalWomen').show();
+                $('#totalWomen').html(data);
+            }
+        });
+    }
+    function getTotalMen() {
+        $('#loadingProgress_totalMen').show();
+        $('#totalMen').hide();
+        var url = '@Url.Action("GetTotalNumberOfPeopleByGender", "Statistics")';
+        var gender = '@GenderTypes.Male';
+        $.ajax({
+            url: url + "?gender=" + gender,
+            type: "POST",
+            dataType: "json",
+            data: {
+                //see _FilterForHome.cshtml
+                regionId: $.getDashboardRegionId(),
+                pollingStationId: $.getDashboardPollingStationId()
+            },
+
+            success: function (data) {
+                $('#loadingProgress_totalMen').hide();
+                $('#totalMen').show();
+                $('#totalMen').html(data);
+            }
+        });
+    }
+</script>

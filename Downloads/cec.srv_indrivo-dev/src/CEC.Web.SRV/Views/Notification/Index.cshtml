@@ -1,0 +1,23 @@
+﻿@using CEC.Web.SRV.Resources
+
+@{
+	ViewBag.Title = MUI.Notification_TabTitle;
+}
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-content">
+                <h5 class="page-header">@MUI.NotificationMgmt</h5>
+                @Html.Partial("_NotificationList")
+            </div>
+        </div>
+        <div class="box">
+            <div class="box-content">
+	            <h5 class="page-header">@MUI.ViewNotification</h5>
+				@Html.Partial("_ViewMessage")
+            </div>
+        </div>
+    </div>
+</div>

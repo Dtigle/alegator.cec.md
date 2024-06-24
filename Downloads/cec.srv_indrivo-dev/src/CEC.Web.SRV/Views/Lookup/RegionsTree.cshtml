@@ -1,0 +1,138 @@
+﻿@using CEC.Web.SRV.Resources
+
+@{
+    ViewBag.Title = MUI.mnuRegions;
+}
+
+<div class="box-content">
+    <h4 class="page-header">@MUI.mnuRegions</h4>
+    <div class="row">
+        <div class="col-sm-3">
+            @Html.Partial("_TreeViewLocalities")
+        </div>
+        <div class="col-sm-9">
+            @Html.Partial("_RegionsGridView")
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    (function ($) {
+        var currentRegion = 0;
+
+        $.onRegionSelect = function (regionId) {
+            currentRegion = regionId;
+			var regionsGrid = $('#regionsFlatGrid').jqGrid();
+			regionsGrid.jqGrid('setGridParam', { 'postData': { 'parentId': regionId } });
+			regionsGrid.trigger('reloadGrid');
+		};
+		
+		$.onGetParentId = function (e, typePow) {
+		    if (typePow != "") {
+				//var rowId = $("#regionsFlatGrid").jqGrid('getGridParam', 'selrow');
+		        return { regionId: currentRegion };
+			}
+			return null;
+		};
+		$.CreateUpdateRegion = function (regionId) {
+		    if (currentRegion == 0) {
+		        BootstrapDialog.alert({message: '@MUI.RegionNotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+                return;
+            }
+	        var url = '@Url.Action("CreateUpdateRegion","Lookup")';
+
+		    var dialogTitle = '@MUI.RegionAdd_DialogTitle';
+		    if (regionId != undefined) {
+                dialogTitle = '@MUI.RegionEdite_DialogTitle';
+	        }
+
+	        $.openDialog($(this), {
+	            url: url + '?parentId=' + currentRegion + '&regionId=' + regionId,
+	            title: dialogTitle,
+	            onSubmit: function () {
+	                $("#regionsFlatGrid").trigger('reloadGrid');
+	            },
+
+	        });
+
+	     };
+
+        $.DeleteRegion = function (regionId) {
+           
+            var url = '@Url.Action("DeleteRegion","Lookup")';
+
+            BootstrapDialog.confirm('@MUI.RegionDelete_Message', function (result) {
+                if (result) {
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        data: { id: regionId },
+                        success: function () {
+                            $("#regionsFlatGrid").trigger('reloadGrid');
+                        }
+                    });
+                }
+            });
+        };
+		$.UpdateAdministrativeInfo = function () {
+		    var url = '@Url.Action("UpdateAdministrativeInfo","Lookup")';
+		    var selectedRegionId = $("#regionsFlatGrid").jqGrid('getGridParam', 'selrow');
+		    if (selectedRegionId == undefined) {
+		        BootstrapDialog.alert({message: '@MUI.RegionNotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+                return;
+            }
+		    
+		    $.openDialog($(this), {
+		        url: url + '?regionId=' + selectedRegionId,
+		        title: '@MUI.PublicAdministration_DialogTitle',
+		        onSubmit: function () {
+		            $("#regionsFlatGrid").trigger('reloadGrid');
+		        },
+
+		    });
+        };
+        $.linkRegions = function () {
+		    var url = '@Url.Action("LinkRegions","Lookup")';
+		    var selectedRegionId = $("#regionsFlatGrid").jqGrid('getGridParam', 'selrow');
+		    if (selectedRegionId == undefined) {
+		        BootstrapDialog.alert({message: '@MUI.RegionNotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+                return;
+            }
+		    
+		    $.openDialog($(this), {
+		        url: url + '?regionId=' + selectedRegionId,
+		        title: '@MUI.LinkedRegions_DialogTitle',
+		        onSubmit: function () {
+		            $("#regionsFlatGrid").trigger('reloadGrid');
+		        },
+
+		    });
+        };
+	})(jQuery);
+	
+	$('body').on("change", "#Parent", function () {
+		$(this).find("option:selected").each(function () {
+			var regionId = $(this).val();
+		    $.ajax({
+		        url: "@Url.Action("SelectRegionType", "Lookup")",
+		        type: "POST",
+		        data: { regionId: regionId }
+		    }).done(function(regionsType) {
+		        var regionTypeEl = $('#RegionType');
+		        var selectedOption = regionTypeEl.val();
+		        var options = $(regionsType).children().clone();
+		        var optionExists = false;
+                for (var i = 0; i < options.length; i++) {
+                    optionExists = optionExists || ($(options.get(i)).val() == selectedOption);
+                }
+		        regionTypeEl.empty();
+		        regionTypeEl.append(options);
+		        if (optionExists) {
+		            regionTypeEl.val(selectedOption);
+		        }
+		    });
+		});
+	});
+
+</script>

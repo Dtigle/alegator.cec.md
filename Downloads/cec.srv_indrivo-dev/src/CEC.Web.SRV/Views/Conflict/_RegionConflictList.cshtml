@@ -1,0 +1,115 @@
+﻿@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.Conflict
+@using Lib.Web.Mvc.JQuery.JqGrid
+@using CEC.Web.SRV.Resources
+
+
+@{
+    var grid = Html.GridOptions<ConflictGridModel>("regionConflicts", rowsPerPage: 10, height: 310)
+         .SetOptions(x =>
+         {
+             x.OnCellSelect = "onCellSelect";
+             x.ColumnsRemaping = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28 };
+             x.ColumnsModels.ApplyCustomVisibilityRules(new ConflictGridModelCustomVisibilityRules());
+         })
+         .BuildGrid(Url.Action("RegionListConflictAjax", "Conflict"))
+         .Navigator(new JqGridNavigatorOptions() { Add = false, Edit = false, Delete = false, CloneToTop = true })
+         .AddNavigatorButton(new JqGridNavigatorButtonOptions { Icon = "ui-icon-link", Caption = "Partajare Conflict", OnClick = "$.shareConflict", Id = "region_shareConflict" })
+         .AddNavigatorButton(new JqGridNavigatorButtonOptions { Icon = "ui-icon-newwin", Caption = MUI.Voters_VoterProfile, OnClick = "$.voterProfile", Id = "voterProfile" })
+         .AddNavigatorButton(new JqGridNavigatorButtonOptions { Icon = "ui-icon-newwin", Caption = MUI.Voters_WithSame_SurnName, OnClick = "$.votersBySurname", Id = "votersBySurname" });
+}
+
+@grid.GetHtml()
+
+<script type="text/javascript">
+
+    //Show Share Conflict Modal
+    $.shareConflict = function (e) {
+
+        var selections = GetGridSelections();
+        var url = '@Url.Action("ShareConflictView")';
+
+
+        if (selections == null || selections == 0) {
+            BootstrapDialog.alert({ message: '@MUI.VoterNotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+            return;
+        }
+
+
+        $.openDialog($(this), {
+            title: '@MUI.ShareConflict_ModalTitle',
+            usePost: true,
+            url: url + '?conflictId=' + selections,
+            onSubmit: function () {
+                $("#regionConflicts").trigger('reloadGrid', [{ current: true }]);
+                $.getCountNotification();
+            }
+        });
+    }
+
+    $.voterProfile = function (e) {
+        var selectedIdnp = GetGridSelectedConflictIdnp();
+
+        if (selectedIdnp == null || selectedIdnp == 0) {
+            BootstrapDialog.alert({ message: '@MUI.VoterNotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+            return;
+        }
+
+        $.openDialog($(this), {
+            title: '@MUI.Voters_VoterProfile',
+            url: '@Url.Action("CreateVoterProfile", "Voters")',
+            usePost: true,
+            postData: {
+                idnp: selectedIdnp
+            },
+            onClose: function () {
+                //dialog.close();
+                //$.getCountNotification();
+            }
+        });
+    }
+
+    $.votersBySurname = function (e) {
+        var selectedIdnp = GetGridSelectedConflictIdnp();
+
+        if (selectedIdnp == null || selectedIdnp == 0) {
+            BootstrapDialog.alert({ message: '@MUI.VoterNotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+            return;
+        }
+
+        $.openDialog($(this), {
+            title: '@MUI.Voters_WithSame_SurnName',
+            url: '@Url.Action("VotersBySurname", "Voters")',
+            usePost: true,
+            postData: {
+                idnp: selectedIdnp
+            },
+            onClose: function () {
+                //dialog.close();
+                //$.getCountNotification();
+            }
+        });
+    }
+
+    function GetGridSelectedConflictIdnp() {
+
+        var selections = $("#regionConflicts").jqGrid('getGridParam', 'selrow');
+        var real = $("tr[id='" + selections + "'] > td[aria-describedby='regionConflicts_Idnp']").attr('title');
+
+        return real;
+    }
+
+    function GetGridSelections() {
+
+        var selections = $("#regionConflicts").jqGrid('getGridParam', 'selrow');
+        var real = $("tr[id='" + selections + "'] > td[aria-describedby='regionConflicts_RspModificationDataId']").attr('title');
+
+        return real;
+    }
+    //********
+
+	$(document).ready(function () {
+	    @grid.GetJavaScript();
+	});
+
+</script>

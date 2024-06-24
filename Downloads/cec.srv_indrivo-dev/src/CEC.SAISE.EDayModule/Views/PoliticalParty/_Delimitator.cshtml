@@ -1,0 +1,19 @@
+﻿<h4 class="page-header">Delimitare</h4>
+<div class="row form-horizontal">
+    <div class="col-xs-12">
+        <table class="table table-condensed borderless" >
+            <tr>
+                <td><strong>Scrutin:</strong></td>
+                <td><input class="electionsSelect" type="hidden" /></td>
+            </tr>
+            <tr data-bind="if: concurentsVM.Delimitator().ElectionIsLocal() && concurentsVM.Delimitator().SelectedElectionId() != null">
+                <td><strong>Circumscripție:</strong></td>
+                <td><input class="circumscriptionSelect" type="hidden" /></td>
+            </tr>
+            <tr data-bind="if: concurentsVM.Delimitator().ElectionIsLocal() && concurentsVM.Delimitator().SelectedCircumscriptionId() != null">
+                <td><strong>Localitate:</strong></td>
+                <td><input class="regionSelect" type="hidden" /></td>
+            </tr>
+        </table>
+    </div>
+</div>

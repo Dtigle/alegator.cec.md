@@ -1,0 +1,10 @@
+﻿
+@using CEC.Web.SRV.Resources
+@model IEnumerable<SelectListItem>
+<select>
+    <option value=''>@MUI.SelectPrompt</option>
+    @foreach (var item in Model)
+    {
+        <option value='@item.Value'>@item.Text</option>
+    }
+</select>

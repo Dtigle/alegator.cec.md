@@ -1,0 +1,82 @@
+﻿@using System.Globalization
+@using CEC.Web.SRV.Resources
+@using MvcReportViewer;
+@model CEC.Web.SRV.Models.Reporting.ListPrintingModel
+
+@{
+	ViewBag.Title = MUI.Reporting_TabTitle;
+}
+
+<div class="clearfix">
+
+    @using (Html.BeginForm("ListPrinting", "Reporting", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.EditorFor(x => x.ElectionId)
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(x => x.PollingStationId)
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="@MUI.ButtonExecute" class="btn btn-primary" />
+            </div>
+        </div>
+    }
+</div>
+
+@if (Model.DataReadyForReport)
+{
+    var report = Html.MvcReportViewerFluent(Model.ReportPath)
+        .Attributes(new { Height = 900, Width = 1150 })
+        .ControlSettings(new ControlSettings { ShowParameterPrompts = false })
+        .ReportParameters(new
+        {
+            pollingStationId = Model.PollingStationId,
+            electionTitleRO = Model.ElectionTitleRO.ToUpper(),
+            electionTitleRU = Model.ElectionTitleRU.ToUpper(),
+            pollingStationNr = Model.PollingStationNr,
+            electionDate = Model.ElectionDate.Value.Date.ToString("yyyy-MM-dd"),
+            electionDateAsText = Model.ElectionDate.Value.Date.ToString("dd MMMM yyyy", CultureInfo.CurrentCulture),
+            regionName = Model.RegionName,
+            managerTypeName = Model.ManagerTypeName,
+            managerName = Model.ManagerName
+        });
+
+    <div class="box">
+        <div class="box-content">
+            @report
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+
+	function votersDataRequest(term, page, pageLimit) {
+		return {
+			regionId: null,
+			q: term,
+			pageLimit: pageLimit,
+			page: page
+		};
+	}
+
+	function votersResults(data, more) {
+		return { results: data, more: more };
+	}
+	
+	function electionsDataRequest(term, page, pageLimit) {
+		return {
+			q: term,
+			pageLimit: pageLimit,
+			page: page
+		};
+	}
+
+	function electionsResults(data, more) {
+		return { results: data, more: more };
+	}
+</script>
+

@@ -1,0 +1,10 @@
+﻿@using CEC.Web.SRV.Resources
+@model CEC.Web.SRV.Models.Export.ExportRsaToSaiseModel
+
+@{
+	ViewBag.Title = MUI.Reporting_Export; 
+}
+
+@(!Model.IsProgress ? Html.Partial("_CreatingSaiseExporter") : Html.Partial("_SaiseExporterList"))
+
+

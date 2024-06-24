@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ElectionsService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:19938/WebServices/ElectionsService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:19938/WebServices/ElectionsService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:19938/WebServices/ElectionsService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/SAISE.Admin.WebApp.WebServices.Types" />
+      <xsd:import schemaLocation="http://localhost:19938/WebServices/ElectionsService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/SAISE.Admin.Domain.election" />
+      <xsd:import schemaLocation="http://localhost:19938/WebServices/ElectionsService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:19938/WebServices/ElectionsService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/SAISE.Admin.Domain.Lookup" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IElectionsService_GetElections_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetElections" />
+  </wsdl:message>
+  <wsdl:message name="IElectionsService_GetElections_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetElectionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IElectionsService_GetElectionRounds_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetElectionRounds" />
+  </wsdl:message>
+  <wsdl:message name="IElectionsService_GetElectionRounds_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetElectionRoundsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IElectionsService_GetElectionCircumscriptions_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetElectionCircumscriptions" />
+  </wsdl:message>
+  <wsdl:message name="IElectionsService_GetElectionCircumscriptions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetElectionCircumscriptionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IElectionsService_GetElectionPollingStations_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetElectionPollingStations" />
+  </wsdl:message>
+  <wsdl:message name="IElectionsService_GetElectionPollingStations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetElectionPollingStationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IElectionsService_GetElectionRegions_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetElectionRegions" />
+  </wsdl:message>
+  <wsdl:message name="IElectionsService_GetElectionRegions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetElectionRegionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IElectionsService_GetElectionCompetitors_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetElectionCompetitors" />
+  </wsdl:message>
+  <wsdl:message name="IElectionsService_GetElectionCompetitors_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetElectionCompetitorsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IElectionsService_GetElectionMembers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetElectionMembers" />
+  </wsdl:message>
+  <wsdl:message name="IElectionsService_GetElectionMembers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetElectionMembersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IElectionsService_GetElectionObservers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetElectionObservers" />
+  </wsdl:message>
+  <wsdl:message name="IElectionsService_GetElectionObservers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetElectionObserversResponse" />
+  </wsdl:message>
+  <wsdl:message name="IElectionsService_SetPollingStationAddress_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetPollingStationAddress" />
+  </wsdl:message>
+  <wsdl:message name="IElectionsService_SetPollingStationAddress_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetPollingStationAddressResponse" />
+  </wsdl:message>
+  <wsdl:message name="IElectionsService_SetElectionResults_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetElectionResults" />
+  </wsdl:message>
+  <wsdl:message name="IElectionsService_SetElectionResults_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetElectionResultsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IElectionsService_GetElectionCircumscriptionPollingStation_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetElectionCircumscriptionPollingStation" />
+  </wsdl:message>
+  <wsdl:message name="IElectionsService_GetElectionCircumscriptionPollingStation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetElectionCircumscriptionPollingStationResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IElectionsService">
+    <wsdl:operation name="GetElections">
+      <wsdl:input wsaw:Action="http://tempuri.org/IElectionsService/GetElections" message="tns:IElectionsService_GetElections_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IElectionsService/GetElectionsResponse" message="tns:IElectionsService_GetElections_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetElectionRounds">
+      <wsdl:input wsaw:Action="http://tempuri.org/IElectionsService/GetElectionRounds" message="tns:IElectionsService_GetElectionRounds_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IElectionsService/GetElectionRoundsResponse" message="tns:IElectionsService_GetElectionRounds_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetElectionCircumscriptions">
+      <wsdl:input wsaw:Action="http://tempuri.org/IElectionsService/GetElectionCircumscriptions" message="tns:IElectionsService_GetElectionCircumscriptions_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IElectionsService/GetElectionCircumscriptionsResponse" message="tns:IElectionsService_GetElectionCircumscriptions_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetElectionPollingStations">
+      <wsdl:input wsaw:Action="http://tempuri.org/IElectionsService/GetElectionPollingStations" message="tns:IElectionsService_GetElectionPollingStations_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IElectionsService/GetElectionPollingStationsResponse" message="tns:IElectionsService_GetElectionPollingStations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetElectionRegions">
+      <wsdl:input wsaw:Action="http://tempuri.org/IElectionsService/GetElectionRegions" message="tns:IElectionsService_GetElectionRegions_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IElectionsService/GetElectionRegionsResponse" message="tns:IElectionsService_GetElectionRegions_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetElectionCompetitors">
+      <wsdl:input wsaw:Action="http://tempuri.org/IElectionsService/GetElectionCompetitors" message="tns:IElectionsService_GetElectionCompetitors_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IElectionsService/GetElectionCompetitorsResponse" message="tns:IElectionsService_GetElectionCompetitors_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetElectionMembers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IElectionsService/GetElectionMembers" message="tns:IElectionsService_GetElectionMembers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IElectionsService/GetElectionMembersResponse" message="tns:IElectionsService_GetElectionMembers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetElectionObservers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IElectionsService/GetElectionObservers" message="tns:IElectionsService_GetElectionObservers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IElectionsService/GetElectionObserversResponse" message="tns:IElectionsService_GetElectionObservers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetPollingStationAddress">
+      <wsdl:input wsaw:Action="http://tempuri.org/IElectionsService/SetPollingStationAddress" message="tns:IElectionsService_SetPollingStationAddress_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IElectionsService/SetPollingStationAddressResponse" message="tns:IElectionsService_SetPollingStationAddress_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetElectionResults">
+      <wsdl:input wsaw:Action="http://tempuri.org/IElectionsService/SetElectionResults" message="tns:IElectionsService_SetElectionResults_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IElectionsService/SetElectionResultsResponse" message="tns:IElectionsService_SetElectionResults_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetElectionCircumscriptionPollingStation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IElectionsService/GetElectionCircumscriptionPollingStation" message="tns:IElectionsService_GetElectionCircumscriptionPollingStation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IElectionsService/GetElectionCircumscriptionPollingStationResponse" message="tns:IElectionsService_GetElectionCircumscriptionPollingStation_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IElectionsService" type="tns:IElectionsService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetElections">
+      <soap:operation soapAction="http://tempuri.org/IElectionsService/GetElections" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetElectionRounds">
+      <soap:operation soapAction="http://tempuri.org/IElectionsService/GetElectionRounds" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetElectionCircumscriptions">
+      <soap:operation soapAction="http://tempuri.org/IElectionsService/GetElectionCircumscriptions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetElectionPollingStations">
+      <soap:operation soapAction="http://tempuri.org/IElectionsService/GetElectionPollingStations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetElectionRegions">
+      <soap:operation soapAction="http://tempuri.org/IElectionsService/GetElectionRegions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetElectionCompetitors">
+      <soap:operation soapAction="http://tempuri.org/IElectionsService/GetElectionCompetitors" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetElectionMembers">
+      <soap:operation soapAction="http://tempuri.org/IElectionsService/GetElectionMembers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetElectionObservers">
+      <soap:operation soapAction="http://tempuri.org/IElectionsService/GetElectionObservers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetPollingStationAddress">
+      <soap:operation soapAction="http://tempuri.org/IElectionsService/SetPollingStationAddress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetElectionResults">
+      <soap:operation soapAction="http://tempuri.org/IElectionsService/SetElectionResults" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetElectionCircumscriptionPollingStation">
+      <soap:operation soapAction="http://tempuri.org/IElectionsService/GetElectionCircumscriptionPollingStation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ElectionsService">
+    <wsdl:port name="BasicHttpBinding_IElectionsService" binding="tns:BasicHttpBinding_IElectionsService">
+      <soap:address location="http://localhost:19938/WebServices/ElectionsService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

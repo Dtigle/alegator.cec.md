@@ -1,0 +1,104 @@
+﻿@using CEC.Web.SRV.Resources
+@model CEC.Web.SRV.Models.Voters.StayStatementViewModel
+
+<div class = "form-horizontal" id="stayStatmentView">
+    <div class="box" id="box0">
+        <div class="box-content">
+            <div class="form-group">
+                <div class="control-label col-sm-2">
+                    <label>@Html.LabelFor(x => x.Id)</label>
+                </div>
+                @Html.DisplayFor(x => x.Id, new {HideLabel = true})
+                @Html.DisplayFor(x => x.CreationDate)
+            </div>
+        </div>
+    </div>
+    <div class="box" id="box1">
+        <div class="box-content">
+            <h5 class="page-header">@Html.LabelFor(x => x.PersonInfo)</h5>
+            <div class="row form-group">
+                @Html.DisplayFor(x => x.PersonInfo.FullName)
+                @Html.DisplayFor(x => x.PersonInfo.DateOfBirth)
+            </div>
+            <div class="row form-group">
+                @Html.DisplayFor(x => x.PersonInfo.IDNP)
+                <div class="control-label col-sm-2">
+                    <label>@Html.DisplayTextFor(x => x.PersonInfo.DocType)</label>
+                </div>
+                @Html.DisplayFor(x => x.PersonInfo.DocNumber, new {HideLabel = true})
+            </div>
+            <div class="row form-group">
+                @Html.DisplayFor(x => x.PersonInfo.DocIssuedDate)
+                @Html.DisplayFor(x => x.PersonInfo.DocIssuedBy)
+            </div>
+            <div class="row form-group">
+                @Html.DisplayFor(x => x.PersonInfo.DocValidBy)
+            </div>
+        </div>
+    </div>
+
+    <div class="box" id="box2">
+        <div class="box-content">
+            <h5 class="page-header">@Html.LabelFor(x => x.BaseAddressInfo)</h5>
+            <div class="form-group">
+                @Html.DisplayFor(x => x.BaseAddressInfo.FullAddress)
+            </div>
+        </div>
+    </div>
+
+    <div class="box" id="box3">
+        <div class="box-content">
+            <h5 class="page-header">@Html.LabelFor(x => x.DeclaredStayAddressInfo)</h5>
+            <div class="form-group">
+                @Html.DisplayFor(x => x.DeclaredStayAddressInfo.FullAddress)
+            </div>
+        </div>
+    </div>
+
+    <div class="box" id="box4">
+        <div class="box-content">
+
+            <h5 class="page-header">@Html.LabelFor(x => x.ElectionInfo)</h5>
+            <div class="form-group">
+                @Html.DisplayFor(x => x.ElectionInfo.ElectionTypeName)
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="@MUI.ButtonPrint" id="printing_StayStatement" class="btn btn-primary" />
+            <input type="submit" value="@MUI.ButtonClose" id="closeWindow" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $('#box2 .rsa-form-group > div.col-sm-4').removeClass('col-sm-4').addClass('col-sm-8');
+    $('#box3 .rsa-form-group > div.col-sm-4').removeClass('col-sm-4').addClass('col-sm-8');
+    $('#box4 .rsa-form-group > div.col-sm-4').removeClass('col-sm-4').addClass('col-sm-8');
+    $('.modal-content').attr('style', 'width:740px;');
+
+    $('#closeWindow').click(function () {
+        BootstrapDialog.closeAll();
+    });
+
+    $('#printing_StayStatement').click(function () {
+        if ('@Model.IsDeleted' == 'True') {
+            $.alert('Atenție', 'Nu puteți imprima o declarație anulată.');
+            return;
+        }
+
+        BootstrapDialog.closeAll();
+        var stayStatementId = '@Model.Id';
+        @*var url = '@Url.Action("StayStatementReport", "Voters", new { stayStatementId = Model.Id })';
+        window.location.href = url;*@
+        
+        var url = '@Url.Action("StayStatementPrinting", "Voters")';
+        var currentElement = $('#stayStatmentView');
+        $.openDialog(currentElement, {
+            title: 'Declarație de ședere',
+            url: url + '?stayStatementId=' + stayStatementId,
+            onSubmit: function () { }
+        });
+    });
+</script>

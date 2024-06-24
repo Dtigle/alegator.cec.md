@@ -1,0 +1,203 @@
+﻿@using CEC.Web.SRV.Resources
+@model CEC.Web.SRV.Models.Export.ListExportingModel
+
+<div class="clearfix form-horizontal">
+    @if (Model.TotalPollingStationInPending > 0)
+    {
+        <div class="form-group">
+            @Html.EditorFor(x => x.TotalPollingStationInPending, new { ReadOnly = true })
+        </div>
+    }
+    <div class="form-group">
+        @Html.EditorFor(x => x.ElectionInfo.ElectionDate)
+    </div>
+    <div class="form-group">
+        @Html.EditorFor(x => x.ElectionInfo.ElectionId)
+        <div class="has-error" id="errorElection">
+            <span class="field-validation-error help-block" data-valmsg-for="ElectionInfo.ElectionId" data-valmsg-replace="true">Câmp necesar</span>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.EditorFor(x => x.ElectionRoundId)
+        <div class="has-error" id="errorElectionRound">
+            <span class="field-validation-error help-block" data-valmsg-for="ElectionRoundId" data-valmsg-replace="true">Câmp necesar</span>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.EditorFor(x => x.CircumscriptionId)
+        <div class="has-error" id="errorCircumscription">
+            <span class="field-validation-error help-block" data-valmsg-for="ElectionId" data-valmsg-replace="true">Câmp necesar</span>
+        </div>
+        <input type="checkbox" checked="" id="chkCircumscription"><label style="padding-left:5px;" for="chkCircumscription">Selectează toate</label>
+    </div>
+    <div class="form-group" id="manualSelection">
+        <label class="col-sm-2 control-label">@MUI.ListExportingModel_IsPollingStationSelection</label>
+        <div class="col-sm-4">
+            <input type="checkbox" id="IsPollingStationSelection" />
+        </div>
+    </div>
+    <div class="form-group" id="pollingStationList">
+        @Html.EditorFor(x => x.PollingStationId)
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="button" value="@MUI.ButtonExecute" class="btn btn-primary" onclick="submitButton()" />
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#chkCircumscription").prop("checked", false);
+        $("#chkCircumscription").click(function () {
+            if ($("#chkCircumscription").is(':checked')) {
+                var electionRoundId = $('#ElectionRoundId').val();
+                $.ajax({
+				    type: "POST",
+                    url: '/Reporting/GetCircumscriptionsFromAdmin',
+                    data: { electionRoundId: electionRoundId, page: 1, pageLimit: 1000 },
+                    success: function (data) {
+                        $('#CircumscriptionId').select2("data", data.Items);
+                        $('#manualSelection').show();
+                    },
+                    fail: function () {
+					    waitingDialog.hide();
+                    }
+			    });
+            } else {
+                $('#CircumscriptionId').select2("data", null);
+            }
+        });
+
+
+		$('#pollingStationList').hide();
+		$('#manualSelection').hide();
+        $('#errorElection').hide();
+        $('#errorElectionRound').hide();
+		$('#errorCircumscription').hide();
+        $('#CircumscriptionId').select2("data", null);
+		$('#PollingStationId').select2("data", null);
+
+		$('#CircumscriptionId').on("change", function (e) {
+			if ($('#CircumscriptionId').select2("val").length > 0) {
+				$('#manualSelection').show();
+			} else {
+				$('#manualSelection').hide();
+				$('#pollingStationList').hide();
+			}
+		});
+
+		$('#IsPollingStationSelection').on("change", function (e) {
+			if ($(this).is(':checked')) {
+				$('#CircumscriptionId').select2("readonly", true);
+				$('#pollingStationList').show();
+			} else {
+				$('#pollingStationList').hide();
+				$('#CircumscriptionId').select2("readonly", false);
+				$("#PollingStationId").select2("data", null);
+			}
+		});
+	});
+    function submitButton() {
+
+        waitingDialog.show('Așteptați...');
+		if ($('#ElectionInfo_ElectionId').val() == "") {
+			$('#errorElection').show();
+		} else {
+			$('#errorElection').hide();
+		}
+
+		if ($('#CircumscriptionId').select2("val").length > 0 ) {
+			$('#errorCircumscription').hide();
+		} else {
+			$('#errorCircumscription').show();
+		}
+
+		if ($('#CircumscriptionId').select2("val").length > 0 && $('#ElectionInfo_ElectionId').val() != "") {
+			var url = '@Url.Action("CreatePrintSession")';
+            var electionId = $('#ElectionInfo_ElectionId').val();
+            var electionRoundId = $('#ElectionRoundId').val();
+			var pollingStationsId = $('#PollingStationId').select2("val");
+			var circumscriptionsId = $('#CircumscriptionId').select2("val");
+			$.ajax({
+				type: "POST",
+				url: url,
+                data: { circumscriptionsId: circumscriptionsId, electionId: electionId, electionId: electionId, pollingStationsId: pollingStationsId },
+                success: function (data) {
+                    waitingDialog.hide();
+					window.location.href = '@Url.Action(ViewContext.RouteData.Values["action"].ToString())';
+                },
+                fail: function () {
+					waitingDialog.hide();
+                }
+			});
+		}
+	}
+
+    function electionsDataRequest(term, page, pageLimit) {
+        var isoDate = '';
+        if ($('#ElectionInfo_ElectionDate').datepicker("getDate") != null) {
+            isoDate = $('#ElectionInfo_ElectionDate').datepicker("getDate").toISOString();
+        }
+
+		return {
+			q: term,
+			pageLimit: pageLimit,
+            page: page,
+            electionDate: isoDate
+		};
+	}
+
+	function electionsResults(data, more) {
+		return { results: data, more: more };
+    }
+
+
+    function electionRoundDataRequest(term, page, pageLimit) {
+        var electionId = $('#ElectionInfo_ElectionId').val();
+        return {
+            q: term,
+            pageLimit: pageLimit,
+            page: page,
+            electionId: electionId
+        };
+    }
+
+    function electionRoundResults(data, more) {
+        console.log(1);
+        return { results: data, more: more };
+    }
+
+
+    function circumscriptionsDataRequest(term, page, pageLimit) {
+        var electionRoundId = $('#ElectionRoundId').val();
+		return {
+			q: term,
+			pageLimit: pageLimit,
+            page: page,
+            electionRoundId: electionRoundId
+		};
+	}
+
+	function circumscriptionsResults(data, more) {
+		return { results: data, more: more };
+	}
+	function pollingStationDataRequest(term, page, pageLimit) {
+        var circumscriptionsId = $('#CircumscriptionId').select2("val");
+		return {
+			q: term,
+			pageLimit: pageLimit,
+			page: page,
+            circumscriptionsId: circumscriptionsId
+		};
+	}
+
+	function pollingStationResults(data, more) {
+		return { results: data, more: more };
+    }
+
+</script>
+
+
+

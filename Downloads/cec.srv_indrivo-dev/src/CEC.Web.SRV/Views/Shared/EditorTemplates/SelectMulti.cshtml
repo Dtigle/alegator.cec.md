@@ -1,0 +1,16 @@
+﻿@using CEC.Web.SRV.Resources
+@model IEnumerable<SelectListItem>
+@{
+    Layout = "_Template.cshtml";
+}
+
+@section Data
+{
+    @{ var model = (Model as IEnumerable<SelectListItem>) ?? (IEnumerable<SelectListItem>)ViewData[ViewData.ModelMetadata.PropertyName]; }
+    <select id="@ViewData.ModelMetadata.PropertyName" name="@string.Format("{0}[]", ViewData.ModelMetadata.PropertyName)" multiple class="form-control">
+        @foreach (var item in model)
+        {
+            <option value="@item.Value">@item.Text</option>
+        }
+    </select>
+}

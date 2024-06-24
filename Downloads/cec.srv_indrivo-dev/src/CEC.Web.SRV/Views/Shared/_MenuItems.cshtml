@@ -1,0 +1,94 @@
+﻿@using CEC.Web.SRV.Infrastructure
+@model IEnumerable<MenuItem>
+
+@helper CreateMenuSubItems (MenuItem menuitem)
+{
+    var classList1 = "";
+    classList1 = menuitem.IsCategory ? "dropdown-toggle" : "ajax-link";
+    if (menuitem.IsActive)
+    {
+        classList1 = classList1 + " active-parent active";
+    }
+
+    <li @(Html.Raw(menuitem.IsCategory ? "class='dropdown'" : string.Empty)) >
+        <a href = "@menuitem.ActionLink(Url)" class="@classList1" >
+            <i class="@menuitem.Css"></i>
+            <span class="hidden-xs"> @menuitem.Title </span >
+        </a >
+        @if(menuitem.IsCategory)
+        {
+            <ul class="dropdown-menu" @Html.Raw(menuitem.SubItems.Any(x => x.IsActive) ? "style='display:block'" : "style='display:none'") >
+                @foreach(var subItem in menuitem.SubItems)
+                {
+
+                        if (!subItem.IsCategory)
+                        {
+                            var classList = new List<string> ();
+                            if (subItem.IsActive)
+                            {
+                                classList.Add("active-parent active ");
+                            }
+                            var attributes = new {@class = string.Join(" ", classList)};
+                            <li>
+                                @Html.ActionLink(subItem.Title, subItem.Action, subItem.Controller, subItem.RouteValues, attributes)
+                            </li>
+                        }
+                        else {
+                            @CreateMenuSubItems(subItem)
+                        }
+
+                }
+            </ul>
+        }
+    </li>
+}
+
+    @foreach(var item in Model)
+    {
+        var classList1 = "";
+        classList1 = item.IsCategory ? "dropdown-toggle" : "ajax-link";
+        if (item.IsActive)
+        {
+            classList1 = classList1 + " active-parent active";
+        }
+
+        <li @Html.Raw(item.IsCategory ? "class='dropdown'" : string.Empty) >
+            <a href = "@item.ActionLink(Url)" class="@classList1" >
+                <i class="@item.Css"></i>
+                <span class="hidden-xs"> @item.Title </span >
+            </a >
+            @if(item.IsCategory)
+            {
+
+                <ul class="dropdown-menu" @Html.Raw(item.IsActive || item.SubItems.Any(x => x.IsActive) ? "style='display:block'" : "style") >
+                    @foreach(var subItem in item.SubItems)
+                    {
+                        if (subItem.Action != "CreateUser")
+                        {
+                            if (!subItem.IsCategory)
+                            {
+                                var classList = new List<string> {"ajax-link"};
+                                if (subItem.IsActive)
+                                {
+                                    classList.Add("active-parent");
+                                    classList.Add("active");
+                                }
+                                var attributes = new {@class = string.Join(" ", classList)};
+                                <li>
+                                    @Html.ActionLink(subItem.Title, subItem.Action, subItem.Controller, subItem.RouteValues, attributes)
+                                </li>
+                            }
+                            else {
+
+                                @CreateMenuSubItems(subItem)
+
+                            }
+                        }
+
+                    }
+                </ul>
+            }
+        </li>
+    }
+
+

@@ -1,0 +1,802 @@
+﻿@using CEC.SAISE.BLL.Dto
+@using CEC.SAISE.Domain
+@model CEC.SAISE.EDayModule.Models.Voting.InitialDataModel
+@{
+    var wacomLicenseKey = System.Web.Configuration.WebConfigurationManager.AppSettings["wacomLicenseKey"];
+    var wacomSecret = System.Web.Configuration.WebConfigurationManager.AppSettings["WacomLicenseSecret"];
+}
+
+@Html.Partial("_SignatureDialog")
+
+@Html.Partial("_SignatureExpirationDialog")
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="alert alert-info">
+            <h5>Pentru a căuta alegătorul, introduceți codul personal în bara de căutare și acționați butonul <kbd>Caută alegător</kbd> sau aplicați <kbd>Enter</kbd>.</h5>
+        </div>
+    </div>
+</div>
+
+
+<div class="well">
+    <div class="row">
+        <div class="col-sm-12 col-xs-12 col-md-10 col-lg-7">
+            <div class="form-horizontal">
+                <div class="form-group form-group-lg has-feedback"  >
+                    <label class="col-sm-2 control-label">IDNP</label>
+                    <div class="col-sm-8">
+                        <div data-bind="validationElement: Idnp"  id="searchDiv" class="input-group input-group-lg">
+                            <input type="text" id="txtSearch" class="form-control hasMask"
+                                   placeholder="IDNP – 13 cifre" data-input-mask="9999999999999"
+                                   data-bind="value: Idnp,
+                                              event: {keypress: enterSearch},
+                                              disable: InCallMode">
+                            <span class="input-group-btn">
+                                <button type="button" id="btnSearchEv" class="btn btn-primary" data-bind="click: btnSearch, disable: InCallMode">
+                                    <span class="fa fa-search"></span>
+                                    <span>Caută alegător</span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="alert alert-success" data-bind="visible: InCallMode">
+                Rugăm așteptați...
+                <div class="progress progress-striped active">
+                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                </div>
+            </div>
+
+            <div data-bind="template: getResultTemplate, visible: !showWrongIdnp()"></div>
+            <div class="alert alert-danger" data-bind="visible: showWrongIdnp">
+                <h3 data-bind="visible: Idnp()!=undefined && Idnp().length>0">IDNP-ul: <span data-bind="text: Idnp"></span> nu este valid</h3>
+                <h4>Verificați corectitudinea IDNP-ului introdus.</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="voterDataContainer"></div>
+
+<script type="text/html" id="successResult">
+    <div class="box voting-box" data-bind="with: Result">
+        <div class="box-content">
+            <div class="row">
+                <div class="col-md-1">
+                    <div class="text-center">
+                        <span data-bind="css: VoterData().genderIcon"></span>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <dl class="dl-horizontal">
+                        <dt>Nume:</dt>
+                        <dd><span id="voterLastName" data-bind="text: VoterData().LastName"></span></dd>
+
+                        <dt>Prenume:</dt>
+                        <dd><span id="voterFirstName" data-bind="text: VoterData().FirstName"></span></dd>
+
+                        <dt>Patronimic:</dt>
+                        <dd><span data-bind="text: VoterData().Patronymic"></span></dd>
+
+                        <dt>Data nașterii:</dt>
+                        <dd><span data-bind="text: moment.tz(VoterData().DateOfBirth(), 'Europe/Bucharest').format('DD.MM.YYYY')"></span></dd>
+                        <dt>IDNP:</dt>
+                        <dd><span id="voterIdnp" data-bind="text: VoterData().Idnp"></span></dd>
+
+                        <dt>Document:</dt>
+                        <dd><span data-bind="text: VoterData().DocumentNumber"></span></dd>
+
+                        <dt>Adresa:</dt>
+                        <dd><span data-bind="text: VoterData().Address"></span></dd>
+
+                        <dt class="verificationClass" data-bind="visible: VoterData().ElectionListNr">Numărul de ordine</dt>
+                        <dt class="verificationClass" data-bind="visible: VoterData().ElectionListNr">în listă:</dt>
+                        <dd class="verificationClass">
+                            <span data-bind="text: VoterData().ElectionListNr" style="font-size: xx-large;color: #63cc9e;"></span>
+                        </dd>
+                    </dl>
+                    @*<dl class="dl-horizontal" id="verificationId">
+                            <dt class="verificationClass" data-bind="visible: VoterData().ElectionListNr">Numărul de ordine</dt>
+                            <dt class="verificationClass" data-bind="visible: VoterData().ElectionListNr">în listă:</dt>
+                            <dd class="verificationClass">
+                                <span data-bind="text: VoterData().ElectionListNr" style="font-size: xx-large;color: #63cc9e;"></span>
+                            </dd>
+                        </dl>*@
+                </div>
+                @*<div class="col-sm-3">
+                        <dl class="dl-horizontal">
+                            <dt>IDNP:</dt>
+                            <dd><span data-bind="text: VoterData().Idnp"></span></dd>
+
+                            <dt>Document:</dt>
+                            <dd><span data-bind="text: VoterData().DocumentNumber"></span></dd>
+
+                            <dt>Document valid?:</dt>
+                            <dd><span data-bind="text: VoterData().isDocumentValidText, css: {'bg-danger': !VoterData().IsDocumentValid()}"></span></dd>
+
+                            <dt>Adresa:</dt>
+                            <dd><span data-bind="text: VoterData().Address"></span></dd>
+                        </dl>
+                    </div>*@
+
+
+                <div class="col-sm-7" data-bind="ifnot: VoterData().IsNotAssigned()">
+                    <dl class="dl-horizontal" data-bind="with: VoterData().Assignement">
+                        <dt>Scrutin:</dt>
+                        <dd><i class=" fa fa-fw fa-check txt-success"></i><span data-bind="text:viewModel.UserData().AssignedElection().Name"></span></dd>
+
+
+                        <div data-bind="ifnot: HideCircumscriptionLabel()">
+                            <dt>Circumscripție:</dt>
+                            <dd><i data-bind="css: assignementIcon(IsSameCircumscription())"></i><span data-bind="text: Circumscription().Name, css: {'bg-danger': !IsSameCircumscription()}"></span></dd>
+                        </div>
+
+
+                        <div data-bind="ifnot: HidePollingLabel()">
+                            <dt>Secție de votare:</dt>
+                            <dd><i data-bind="css: assignementIcon(IsSamePollingStation())"></i><span data-bind="text: PollingStation().Name, css: {'bg-danger': !IsSamePollingStation()}"></span></dd>
+
+                            <dd><i>&nbsp;&nbsp;&nbsp; </i><span data-bind="text: PollingAdressLink, css: {'bg-danger': !IsSamePollingStation()}"></span></dd>
+                        </div>
+
+
+                    </dl>
+                    <dl class="dl-horizontal" style="margin-bottom:0px" data-bind="if: VoterData().Certificat()">
+                        <dt>Nr Certificatului:</dt>
+                        <dd><i class="fa fa-fw fa-times txt-danger"></i><span class="bg-danger" data-bind="text: VoterData().NrCertificat"></span></dd>
+                        <dt>Data eliberării :</dt>
+                        <dd><i class="fa fa-fw fa-times txt-danger"></i><span class="bg-danger" data-bind="text: moment(VoterData().ReleaseDateCert()).format('DD.MM.YYYY')"></span></dd>
+                    </dl>
+
+                </div>
+            </div>
+
+            <div class="well">
+                <div class="row">
+                    <div class="col-lg-8" data-bind="template: VoterData().getStatusTemplate"></div>
+                    <div class="col-lg-4">
+                        <div>
+                            <h4 data-bind="visible: VoterData().SetReceivedBallotAction() || VoterData().SetVoterAddSupplementaryAction()">Înregistrare prezența la vot:</h4>
+
+                            <div data-bind="visible: (VoterData().SetReceivedBallotAction() || VoterData().SetReceivedBallotMobileAction())&&!VoterData().Certificat()">
+                                <input type="button" class="btn btn-success btn-lg board-btn execute-voting" value="Votează" data-bind="visible: VoterData().SetReceivedBallotAction, disable: $parent.InCallMode, click: receivedBallotAction">
+                                <input type="button" class="btn btn-primary btn-lg board-btn pull-right execute-voting-from-mobile-ballot-box" value="Urna mobilă" data-bind="visible: VoterData().SetReceivedBallotMobileAction, disable: $parent.InCallMode, click: receivedBallotMobileAction">
+                            </div>
+
+                        <div data-bind="visible: (VoterData().Certificat() || VoterData().SetVoterAddSupplementaryAction())&&!VoterData().HasVoted()">
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="supplimentaryGroup"
+                                           value="@((int) AssignedVoterStatus.ReceivedBallotSupplementary)"
+                                           data-bind="checked: supplimentaryType"> Acceptat Secretarul BESV
+                                    <i class="fa fa-circle-o small"></i>
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="supplimentaryGroup"
+                                           value="@((int) AssignedVoterStatus.ReceivedBallotAbsentee)"
+                                           data-bind="checked: supplimentaryType"> Certificat cu drept de vot
+                                    <i class="fa fa-circle-o small"></i>
+                                </label>
+                            </div>
+                            <div>
+                                <input type="button" class="btn btn-danger btn-lg execute-voting-from-suplementary" value="Votează" data-bind="disable: $parent.InCallMode() || supplimentaryType() == null, click: voterAddSupplementaryAction" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</script>
+
+<script type="text/html" id="defaultTemplate">
+    <div class="alert alert-success" data-bind="ifnot: InCallMode">
+        <h4>Introduceți IDNP pentru căutare.</h4>
+    </div>
+</script>
+
+<script type="text/html" id="successUpdateTemplate">
+    <div class="alert alert-success">
+        <h4>Alegătorul cu IDNP: <span data-bind="text: UpdateResult().Idnp"></span> a fost înregistrat cu succes.</h4>
+        <h4>Gata pentru următoarea căutare.</h4>
+    </div>
+</script>
+
+<script type="text/html" id="successVotingTemplate">
+    <div class="alert alert-success">
+        <h4>Alegătorul cu IDNP: <span data-bind="text: UpdateResultIdnp"></span> a fost înregistrat cu succes.</h4>
+        <h4>Gata pentru următoarea căutare.</h4>
+    </div>
+</script>
+
+<script type="text/html" id="failedUpdateTemplate">
+    <div class="alert alert-danger">
+        <h4>A avut loc o eroare. Rugăm să mai incercați o dată.</h4>
+        <h4>Gata pentru următoarea căutare.</h4>
+    </div>
+</script>
+
+<script type="text/html" id="voterNotFoundTemplate">
+    <div class="alert alert-danger">
+        <h4>Nu există înregistrări cu IDNP: <span data-bind="text: Idnp"></span></h4>
+        <h4>Verificați corectitudinea IDNP-ului introdus.</h4>
+    </div>
+</script>
+
+<script type="text/html" id="alreadyVotedStatusTemplate">
+    <div class="alert alert-danger">
+        <h4>Găsit în Eliberat Buletin. Ultima editare: <span data-bind="text: VoterData().Assignement().EditUser"></span> pe <span data-bind="text: VoterData().Assignement().ServerEditDate()"></span></h4>
+        <h4>Deja a votat!</h4>
+        <h4>ATENȚIE: Informați imediat Președintele BESV, nu înapoiați buletinul de identitate alegătorului!</h4>
+        <audio src="./Content/sounds/error.wav" autoplay></audio>
+    </div>
+</script>
+
+<script type="text/html" id="invalidVoterStatusTemplate">
+    <div class="alert alert-danger">
+        <h4>Cetățean cu statut special. Adresați-vă președintelui biroului electoral.</h4>
+        <audio src="./Content/sounds/error.wav" autoplay></audio>
+    </div>
+</script>
+
+<script type="text/html" id="validForVotingStatusTemplate">
+    <div class="alert alert-success">
+        <h4>Valid pentru eliberarea buletinului de vot.</h4>
+        <h4>Găsit în Lista de Bază. Ultima editare: <span data-bind="text: VoterData().Assignement().EditUser"></span> pe <span data-bind="text: VoterData().Assignement().ServerEditDate()"></span></h4>
+    </div>
+</script>
+
+<script type="text/html" id="notAssignedStatusTemplate">
+    <div class="alert alert-warning">
+        <h4>Cetățean nealocat. Verificați domiciliul persoanei. Consultați președintele BESV.</h4>
+    </div>
+</script>
+
+<script type="text/html" id="supplimentaryStatusTemplate">
+    <div class="alert alert-warning">
+        <h4>Alegătorul este atribuit unei alte secții de votare!</h4>
+        <h4>Înregistrarea alegătorul se face în baza acordului emis de Secretarului BESV sau în baza certificatului cu drept de vot.</h4>
+        <h4>Bifați opțiunea corespunzătoare.</h4>
+    </div>
+</script>
+<script type="text/html" id="addWithCertificat">
+    <div class="alert alert-warning">
+        <h4>Înregistrarea alegătorul se face în baza acordului emis de Secretarului BESV sau în baza certificatului cu drept de vot.</h4>
+        <h4>Bifați opțiunea corespunzătoare.</h4>
+    </div>
+</script>
+
+<script type="text/javascript">
+    const urlParams = new URLSearchParams(window.location.search);
+    let idnp = urlParams.get('idnp');
+
+    history.replaceState({}, "", "/Voting");
+
+    $('#txtSearch').focus();
+
+    var initialData = '@Html.Raw(Json.Encode(Model))';
+    let allowSaveSignature = false;
+
+    const saveSignatureBtn = document.querySelector("#saveSignatureBtn");
+
+    if (allowSaveSignature) {
+        saveSignatureBtn.removeAttribute("disabled");
+    } else {
+        saveSignatureBtn.setAttribute("disabled", "disabled");
+    }
+
+    var SearchVoterVM = function(initialData) {
+        var self = this;
+
+        self.UserData = ko.observable(new UserData(initialData.UserData)),
+            self.Statistics = ko.observable(new Statistics(initialData.PollingStationStatistics)),
+            self.Idnp = ko.observable().extend({ required: true, minLength: 13, maxLength: 13 }),
+            self.FirstName = ko.observable(),
+            self.LastName = ko.observable(),
+            self.Result = ko.observable(),
+            self.UpdateResult = ko.validatedObservable(),
+
+            self.InCallMode = ko.observable(),
+            self.showWrongIdnp = ko.pureComputed(function() {
+                return self.Idnp() != undefined && !self.isValidIdnp();
+            });
+
+        self.enterSearch = function(d, e) {
+            e.keyCode === 13 && self.btnSearch();
+            return true;
+        }
+
+        self.isValidIdnp = function() {
+            var self = this;
+
+            var idnp = self.Idnp();
+            if (idnp == undefined || idnp.length < 13) {
+                return false;
+            }
+
+            var crc = 0;
+            var mask = [7, 3, 1, 7, 3, 1, 7, 3, 1, 7, 3, 1];
+            $.map(mask, function(x, i) {
+                crc += (x * parseInt(idnp[i]));
+            });
+
+            return (crc % 10) === parseInt(idnp[12]);
+        };
+
+        self.IsCapturingSignature = ko.observable(false);
+        self.VoterId = ko.observable();
+
+        self.btnSearch = function() {
+            var self = this;
+
+            if (!self.isValidIdnp()) {
+                return;
+            }
+
+            self.Result(null);
+            self.UpdateResult(null);
+            self.InCallMode(true);
+            self.isFatalError(false);
+            $.ajax({
+                url: '@Url.Action("SearchVoter")',
+                type: 'post',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: ko.toJSON({ idnp: self.Idnp, firstName: self.FirstName, lastName: self.LastName }),
+                success: function (data) {
+                    idnp = null;
+                    self.UpdateResultIdnp(null);
+
+                    self.Result(new Result(data, self));
+                    self.IsCapturingSignature(data.IsCapturingSignature);
+                    self.VoterId(data.VoterData?.VoterId);
+                },
+                error: function(e){
+                    if (e.status == 423) {
+                        BootstrapDialog.show({
+                            draggable: true,
+                            cssClass: (typeof cssClass != 'undefined')? cssClass:'info-dialog',
+                            title: (typeof title != 'undefined') ? title : 'Info',
+                            message: 'Funcționalitatea dată a fost blocată.',
+                            closable: false,
+                            buttons: [
+                                {
+                                    label: 'Închide',
+                                    action: function (dialogItself) {
+                                        dialogItself.close();
+                                        window.location = '@Url.Action("Index")';
+                                    }
+                                }]
+                        });
+
+                    }
+                    self.isFatalError(true);
+                }
+            }).always(function(data) {
+                self.InCallMode(false);
+            });
+        }
+
+        self.hasResult = ko.pureComputed(function() {
+            return self.Result() != null;
+        });
+
+        self.isFatalError = ko.observable(false);
+        self.UpdateResultIdnp = ko.observable();
+
+        self.getResultTemplate = ko.pureComputed(function () {
+            if(self.isFatalError())
+            {
+                return 'failedUpdateTemplate';
+            }
+
+            var updateResult = self.UpdateResult();
+
+            if (self.Result() == null && updateResult == null && idnp === null) {
+                return 'defaultTemplate';
+            }
+
+            if (idnp !== null) {
+                self.UpdateResultIdnp(idnp);
+
+                return 'successVotingTemplate';
+            }
+
+            if (updateResult != null && !updateResult.Success) {
+                if (updateResult.Success) {
+                    return 'successUpdateTemplate';
+                } else {
+                    return 'failedUpdateTemplate';
+                }
+            }
+
+            switch (self.Result()?.Status()) {
+            case (@((int) VoterSearchStatus.Success)):
+                return 'successResult';
+            case (@((int) VoterSearchStatus.NotFound)):
+                return 'voterNotFoundTemplate';
+            case (@((int)VoterSearchStatus.NotAssigned)):
+                return 'successResult';
+            default:
+                return 'defaultTemplate';
+            }
+        });
+
+        function getAssignedVoterStatusAction() {
+            let action;
+
+            switch (true) {
+                case self.Result().VoterData().SetVoterAddSupplementaryAction():
+                    action = self.Result().supplimentaryType();
+                    break;
+                case self.Result().VoterData().SetReceivedAbsenteeBallotAction():
+                    action = @((int) AssignedVoterStatus.ReceivedBallotAbsentee);
+                    break;
+                case self.Result().VoterData().SetReceivedBallotAction():
+                    action = @((int) AssignedVoterStatus.ReceivedBallot);
+                    break;
+                default:
+                    action = @((int) AssignedVoterStatus.ReceivedBallotMobile);
+                    break;
+            }
+
+            return action;
+        }
+
+        function setVoterDataAttributes(result) {
+            $('#signatureDialog').attr('data-idnp', result.Idnp);
+            $('#signatureDialog').attr('data-first-name', result.FirstName);
+            $('#signatureDialog').attr('data-last-name', result.LastName);
+
+            const action = getAssignedVoterStatusAction();
+
+            var data = {
+                //VoterId: self.VoterId(),
+                ElectionId: self.UserData().AssignedElection().Id,
+                AssignedVoterId: self.Result().VoterData().Assignement().AssignedVoterId(),
+                VoterStatus: @((int) AssignedVoterStatus.NoChange),
+                AssignedVoterStatus: action
+            };
+
+            //$('#signatureDialog').attr('data-voter-id', data.VoterId);
+            //$('#signatureDialog').attr('data-voter-id', data.VoterId);
+            $('#signatureDialog').attr('data-election-id', data.ElectionId);
+            $('#signatureDialog').attr('data-assigned-voter-id', data.AssignedVoterId);
+            $('#signatureDialog').attr('data-voter-status', data.VoterStatus);
+            $('#signatureDialog').attr('data-assigned-voter-status', data.AssignedVoterStatus);
+        }
+
+        self.CallUpdateVoter = function (data, options = {}) {
+            self = this;
+            self.InCallMode(true);
+
+            const updateVoterData = JSON.stringify({ updateData: data });
+            const updateVoterDataWithNewVoterId = { ...updateVoterData, VoterId: self.VoterId() };
+            const { isMobileBallotBox } = options;
+            const updatingIdnp = document.querySelector("#voterIdnp").textContent;
+
+            if (self.IsCapturingSignature() === true && !isMobileBallotBox) {
+                const url = '@Url.Action("GetVoterDataForSignature")';
+                const urlWithQuery = url + '?voterId=' + self.VoterId();
+
+                $.ajax({
+                    url: urlWithQuery,
+                    type: 'get',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    success: function (result) {
+                        setVoterDataAttributes({
+                            ...result,
+                            VoterId: self.VoterId(),
+                            AssignedVoterId: self.Result().VoterData().Assignement().AssignedVoterId()
+                        });
+
+                        $('#signatureDialog').attr('data-voter-id', self.VoterId());
+                        $('#signatureDialog').modal('show');
+                    }
+                }).done(function () {
+                    self.InCallMode(false);
+                });
+            } else {
+                 $.ajax({
+                    url: '@Url.Action("UpdateVoter")',
+                    type: 'post',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    data: updateVoterData,
+                    success: function (result) {
+                        self.UpdateResult(result);
+
+                        if (!result.Success) {
+                            //todo: message arrea update for failure required
+
+                            if (result.IsPollingStationSuspended) {
+                                window.location.href = '@Url.Action("Index")';
+                                return;
+                            }
+
+                            return;
+                        }
+
+                        self.Statistics(result.Statistics);
+                        self.Result(null);
+
+                        window.location.href = `/Voting?idnp=${updatingIdnp}`;
+                    }
+                }).done(function () {
+                    self.InCallMode(false);
+                });
+            }
+        }
+
+    };
+
+    function UserData(UserData) {
+
+        this.AssignedElection = ko.observable(UserData.AssignedElection);
+        this.AssignedCircumscription = ko.observable(UserData.AssignedCircumscription);
+        this.AssignedRegion = ko.observable(UserData.AssignedRegion);
+        this.AssignedPollingStation = ko.observable(UserData.AssignedPollingStation);
+        this.IsAdmin = ko.observable(UserData.IsAdmin);
+    }
+
+    function Statistics(Statistics) {
+        this.BaseListCounter = ko.observable(Statistics.BaseListCounter);
+        this.SupplimentaryListCounter = ko.observable(Statistics.SupplimentaryListCounter);
+        this.VotedCounter = ko.observable(Statistics.VotedCounter);
+    }
+
+    function UpdateResult(data, idnp, firstName, lastName) {
+        this.Idnp = idnp;
+        this.FirstName = firstName;
+        this.LastName = lastName;
+        this.Statistics = data.Statistics;
+        this.Success = data.Success;
+    }
+
+    function Result(data, model) {
+        var self = this;
+        self.parent = model;
+
+        self.Status = ko.observable(data.Status);
+        self.StatusText = ko.observable(data.StatusText);
+
+        self.isDisplayedSignatureContainer = ko.observable(false);
+        self.supplimentaryType = ko.observable();
+
+        var success = @( (int) VoterSearchStatus.Success);
+        var notAssigned = @((int)VoterSearchStatus.NotAssigned);
+        if (data.Status === success || data.Status === notAssigned) {
+            self.VoterData = ko.observable(new VoterData(data.VoterData, model));
+        } else {
+            self.VoterData = ko.observable(null);
+        }
+
+        self.receivedBallotAction = function() {
+            var self = this;
+            var action = @((int) AssignedVoterStatus.ReceivedBallot);
+
+            var data = {
+                VoterId: self.VoterData().VoterId(),
+                ElectionId: self.parent.UserData().AssignedElection().Id,
+                AssignedVoterId: self.VoterData().Assignement().AssignedVoterId(),
+                VoterStatus: @((int) AssignedVoterStatus.NoChange),
+                AssignedVoterStatus: action
+            };
+
+            self.parent.CallUpdateVoter(data);
+        }
+
+        self.receivedBallotMobileAction = function() {
+            var self = this;
+            var action = @((int) AssignedVoterStatus.ReceivedBallotMobile);
+
+            var data = {
+                VoterId: self.VoterData().VoterId(),
+                ElectionId: self.parent.UserData().AssignedElection().Id,
+                AssignedVoterId: self.VoterData().Assignement().AssignedVoterId(),
+                VoterStatus: @((int) AssignedVoterStatus.NoChange),
+                AssignedVoterStatus: action
+            };
+
+            self.parent.CallUpdateVoter(data, { isMobileBallotBox: true });
+        }
+
+        self.receivedAbsenteeBallotAction = function() {
+            var self = this;
+            var action = @((int) AssignedVoterStatus.ReceivedBallotAbsentee);
+
+            var data = {
+                VoterId: self.VoterData().VoterId(),
+                ElectionId: self.parent.UserData().AssignedElection().Id,
+                AssignedVoterId: self.VoterData().Assignement().AssignedVoterId(),
+                VoterStatus: @((int) AssignedVoterStatus.NoChange),
+                AssignedVoterStatus: action
+            };
+
+            self.parent.CallUpdateVoter(data);
+        }
+
+        self.displaySignatureContainer = function () {
+            const self = this;
+
+            $('#signatureDialog').modal('show');
+        }
+
+        self.voterAddSupplementaryAction = function() {
+            var self = this;
+            var action = self.supplimentaryType();
+
+            var data = {
+                VoterId: self.VoterData().VoterId(),
+                ElectionId: self.parent.UserData().AssignedElection().Id,
+                AssignedVoterId: self.VoterData().Assignement().AssignedVoterId(),
+                VoterStatus: @((int) AssignedVoterStatus.NoChange),
+                AssignedVoterStatus: action
+            };
+
+            self.parent.CallUpdateVoter(data);
+        }
+    }
+
+    function VoterData(data, model) {
+
+        var self = this;
+
+
+        self.Idnp = ko.observable(data.Idnp);
+        self.FirstName = ko.observable(data.FirstName);
+        self.LastName = ko.observable(data.LastName);
+        self.Patronymic = ko.observable(data.Patronymic);
+        self.DateOfBirth = ko.observable(data.DateOfBirth);
+        self.DocumentNumber = ko.observable(data.DocumentNumber);
+        self.IsDocumentValid = ko.observable(data.IsDocumentValid);
+        self.Address = ko.observable(data.Address);
+        self.VoterId = ko.observable(data.VoterId);
+        self.Gender = ko.observable(data.Gender);
+        self.VoterStatus = ko.observable(data.VoterStatus);
+        self.VoteStatus = ko.observable(data.VoteStatus);
+        self.Assignement = ko.observable(new VoterAssignment(model.UserData()).init(data.Assignement));
+        self.HasValidStatus = ko.observable(data.HasValidStatus);
+        self.HasVoted = ko.observable(data.HasVoted);
+        self.IsNotAssigned = ko.observable(data.IsNotAssigned);
+        self.SetReceivedBallotAction = ko.observable(data.SetReceivedBallotAction);
+        self.SetReceivedAbsenteeBallotAction = ko.observable(data.SetReceivedAbsenteeBallotAction);
+        self.SetReceivedBallotMobileAction = ko.observable(data.SetReceivedBallotMobileAction);
+        self.SetVoterAddSupplementaryAction = ko.observable(data.SetVoterAddSupplementaryAction);
+        self.NrCertificat = ko.observable(data.NrCertificat);
+        self.ElectionListNr = ko.observable(data.ElectionListNr);
+        self.Certificat = ko.observable(data.Certificat);
+        self.ReleaseDateCert = ko.observable(data.ReleaseDateCert);
+        self.isValid = ko.pureComputed(function () {
+            return self.Assignement.allAssignementValid() && self.HasValidStatus() && !self.HasVoted();
+        });
+
+        self.genderIcon = ko.pureComputed(function () {
+            return self.Gender() === 1 ? 'fa fa-male fa-5x' : 'fa fa-female fa-5x';
+        });
+
+        self.isDocumentValidText = ko.pureComputed(function() {
+            return self.IsDocumentValid() ? 'DA' : 'NU';
+        });
+
+        self.getStatusTemplate = ko.pureComputed(function() {
+            if (!self.HasValidStatus()) {
+                $('.verificationClass').hide(true);
+                return 'invalidVoterStatusTemplate';
+            }
+
+            if (self.HasVoted()) {
+                return 'alreadyVotedStatusTemplate';
+            }
+
+            if (self.IsNotAssigned()) {
+                $('.verificationClass').hide(true);
+                return 'notAssignedStatusTemplate';
+            }
+
+            if (self.SetVoterAddSupplementaryAction()) {
+                $('.verificationClass').hide(true);
+                return 'supplimentaryStatusTemplate';
+            }
+            if (self.Certificat()) {
+                return 'addWithCertificat';
+            }
+
+            return 'validForVotingStatusTemplate';
+        });
+
+
+
+    }
+
+    function VoterAssignment(userData) {
+
+        var self = this;
+        var currentUser = userData;
+
+        self.AssignedVoterId = ko.observable();
+        //self.Election = ko.observable();
+        self.Circumscription = ko.observable();
+        self.Region = ko.observable();
+        self.PollingStation = ko.observable();
+        self.VoteStatus = ko.observable();
+        self.EditDate = ko.observable();
+        self.ServerEditDate = ko.observable();
+        self.EditUser = ko.observable();
+        self.NrCertificat = ko.observable();
+        self.ElectionListNr = ko.observable();
+        self.IsSameElection = ko.observable();
+        self.IsSameCircumscription = ko.observable();
+        self.IsSameRegion = ko.observable();
+        self.IsSamePollingStation = ko.observable();
+        self.PollingAdressLink = ko.observable();
+        self.HidePollingLabel = ko.observable();
+        self.HideCircumscriptionLabel = ko.observable();
+        self.allAssignementValid = ko.pureComputed(function () {
+
+
+            return self.IsSameCircumscription() && self.IsSameRegion() && self.IsSamePollingStation();
+        });
+
+        self.assignementIcon = function(isEqual) {
+            return isEqual ? 'fa fa-fw fa-check txt-success' : 'fa fa-fw fa-times txt-danger';
+        };
+
+        self.init = function (data) {
+
+            var self = this;
+            if (data == null) {
+                return self;
+            }
+
+            self.AssignedVoterId = ko.observable(data.AssignedVoterId);
+            //self.Election = ko.observable(data.Election);
+            self.Circumscription = ko.observable(data.Circumscription);
+            self.PollingStation = ko.observable(data.PollingStation);
+            self.Region = ko.observable(data.Region);
+            self.VoteStatus = ko.observable(data.VoteStatus);
+            self.EditDate = ko.observable(data.EditDate);
+            self.ServerEditDate = ko.observable(data.ServerEditDate);
+            self.EditUser = ko.observable(data.EditUser);
+            self.ElectionListNr = ko.observable(data.ElectionListNr)
+            self.PollingAdressLink = ko.observable(data.PollingAdressLink)
+            self.NrCertificat = ko.observable(data.NrCertificat);
+            self.IsSameElection = ko.observable(data.IsSameElection);
+            self.IsSameCircumscription = ko.observable(data.IsSameCircumscription);
+            self.IsSameRegion = ko.observable(data.IsSameRegion);
+            self.IsSamePollingStation = ko.observable(data.IsSamePollingStation);
+            self.HidePollingLabel = ko.observable(data.HidePollingLabel);
+            self.HideCircumscriptionLabel = ko.observable(data.HideCircumscriptionLabel);
+            return self;
+        }
+    }
+
+    var parsedJSON = $.parseJSON(initialData);
+
+    ko.validation.configure({
+        insertMessages: false,
+        decoratedElement: true,
+        errorElementClass: 'has-error',
+        errorMessageClass: 'help-block'
+    });
+
+    var viewModel = new SearchVoterVM(parsedJSON);
+
+    ko.applyBindings(viewModel);
+
+    document.querySelector(".accept-signature-expiration-btn").addEventListener("click", () => {
+        window.location.reload();
+    });
+</script>
+

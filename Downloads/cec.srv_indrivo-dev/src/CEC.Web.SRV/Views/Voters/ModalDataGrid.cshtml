@@ -1,0 +1,136 @@
+﻿@using System.Activities.Expressions
+@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.Address
+@using CEC.Web.SRV.Models.Conflict
+@using CEC.Web.SRV.Models.Voters
+@using CEC.Web.SRV.Resources
+@using Lib.Web.Mvc.JQuery.JqGrid
+@using NHibernate.Event
+
+@model CEC.Web.SRV.Models.Voters.ModalDataModel
+
+@{
+    IJqGridHelper grid = null;
+    if (Model != null)
+    {
+        var type = Model.ModelType;
+
+        if (type == typeof(VotersGridModel))
+        {
+            grid = Html.GridOptions<VotersGridModel>("modalVoterDataGrid", rowsPerPage: 10)
+                .SetOptions(x =>
+                {
+                    x.PostDataScript = "{ " +
+                                       "'regionId':'" + Model.RegionId + "'" +
+                                       ", 'localityId':'" + Model.LocalityId + "'" +
+                                       ", 'addressId':'" + Model.AddressId + "'" +
+                                       ", 'streetId':'" + Model.StreetId + "'" +
+                                       ", 'houseNumber':'" + Model.HouseNumber + "'" +
+                                       ", 'apNumber':'" + Model.ApNumber + "'" +
+                                       ", 'apSuffix':'" + Model.ApSuffix + "'" +
+                                       " }";
+                })
+                .BuildGrid(Url.Action("ListVotersAjax2", "Voters"), showFilterToolbar: false)
+
+                .Navigator(new JqGridNavigatorOptions()
+                {
+                    Add = false,
+                    Edit = false,
+                    Delete = false,
+                    Search = false,
+                    CloneToTop = false
+                });
+        }
+
+        if (type == typeof(PersonFullAdressGridModel))
+        {
+            grid = Html.GridOptions<PersonFullAdressGridModel>("modalAdressVoterDataGrid", rowsPerPage: 10)
+                .BuildGrid(Url.Action("ListVoterAdressesHistoryAjax", "Voters", new { personId = Model.PersonId }), showFilterToolbar: false)
+                .Navigator(new JqGridNavigatorOptions()
+                {
+                    Add = false,
+                    Edit = false,
+                    Delete = false,
+                    Search = false,
+                    CloneToTop = false
+                });
+        }
+
+        if (type == typeof(VoterConflictGridModel))
+        {
+            grid = Html.GridOptions<VoterConflictGridModel>("modalConflictVoterDataGrid", rowsPerPage: 10)
+                .BuildGrid(Url.Action("ListVoterConflictsHistoryAjax", "Voters", new { personId = Model.PersonId }), showFilterToolbar: false)
+                .Navigator(new JqGridNavigatorOptions()
+                {
+                    Add = false,
+                    Edit = false,
+                    Delete = false,
+                    Search = false,
+                    CloneToTop = false
+                });
+
+        }
+
+        if (type == typeof(VoterDocumentGridModel))
+        {
+            grid = Html.GridOptions<VoterDocumentGridModel>("modalDocumentVoterDataGrid", rowsPerPage: 10)
+                .BuildGrid(Url.Action("ListVoterDocumentHistoryAjax", "Voters", new { personId = Model.PersonId }), showFilterToolbar: false)
+                .Navigator(new JqGridNavigatorOptions()
+                {
+                    Add = false,
+                    Edit = false,
+                    Delete = false,
+                    Search = false,
+                    CloneToTop = false
+                });
+
+        }
+
+        if (type == typeof(VoterPollingStationHistoryGridModel))
+        {
+            grid = Html.GridOptions<VoterPollingStationHistoryGridModel>("modalPollingStationsVoterDataGrid", rowsPerPage: 10)
+                .BuildGrid(Url.Action("ListVoterVotingStationHistoryAjax", "Voters", new { personId = Model.PersonId }), showFilterToolbar: false)
+                .Navigator(new JqGridNavigatorOptions()
+                {
+                    Add = false,
+                    Edit = false,
+                    Delete = false,
+                    Search = false,
+                    CloneToTop = false
+                });
+
+        }
+
+        if (type == typeof(StayStatementsGridModel))
+        {
+            grid = Html.GridOptions<StayStatementsGridModel>("modalStayStatementVoterDataGrid", rowsPerPage: 10)
+                .BuildGrid(Url.Action("ListVoterStayStatementHistoryAjax", "Voters", new { personId = Model.PersonId }), showFilterToolbar: false)
+                .Navigator(new JqGridNavigatorOptions()
+                {
+                    Add = false,
+                    Edit = false,
+                    Delete = false,
+                    Search = false,
+                    CloneToTop = false
+                });
+
+        }
+
+    }
+
+
+    if (grid != null)
+    {
+        @grid.GetHtml()
+
+        <script type="text/javascript">
+        $(document)
+            .ready(function() {
+                var grid = @grid.GetJavaScript();
+
+                grid.jqGrid('setGridHeight', "100%", true);
+                $(window).trigger("resize");
+            });
+        </script>
+    }
+}

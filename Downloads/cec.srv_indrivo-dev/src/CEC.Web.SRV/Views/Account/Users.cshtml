@@ -1,0 +1,183 @@
+﻿@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.Account
+@using CEC.Web.SRV.Models.Lookup
+@using CEC.Web.SRV.Resources
+@using Lib.Web.Mvc.JQuery.JqGrid
+
+
+@{
+    ViewBag.Title = MUI.Users_ManageUsers;
+}
+
+@{
+    var grid = Html.GridOptions<UserGridModel>("usersGrid")
+
+         .SetOptions(x =>
+         {
+             x.MultiSelect = false;
+         })
+        .BuildGrid(Url.Action("ListUsersAjax"), exportAction: Url.Action("ExportUsers"))
+        .Navigator(new JqGridNavigatorOptions()
+        {
+            Add = false,
+            Edit = false,
+            Delete = false,
+            Search = true,
+            //AddFunction = "$.goToCreateUser",
+            //EditFunction = "$.UpdateUser",
+            //DeleteFunction = "$.DeleteUser",
+            CloneToTop = true,
+            
+        });
+}
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-content">
+                <h4 class="page-header">@MUI.Users_UsersList</h4>
+                @grid.GetHtml()
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        @grid.GetJavaScript();
+    });
+    $.regionsFormatter = function (cellvalue, options, rowObject) {
+        var cellvalueformated = '';
+        var arr = cellvalue.split(';');
+        for (var i = 0; i < arr.length; i++) {
+            cellvalueformated += arr[i] + '<br />';
+        } 
+        return cellvalueformated;
+    };
+
+    $.goToCreateUser = function() {
+        window.location = '@Url.Action("CreateUser")';
+    };
+
+    $.userProfileFormatter = function(cellvalue, options, rowObject) {
+        var query = "?userId=" + options.rowId;
+        return "<a'>" + cellvalue + "</a>";
+        @*return "<a href='@Url.Action("ViewProfile")" + query + "'>" + cellvalue + "</a>";*@
+    };
+    function GetGridSelections() {
+        var selections = $("#usersGrid").jqGrid('getGridParam', 'selarrrow');
+        return selections;
+    }
+    $.multiEditClick = function(e) {
+        var selections = GetGridSelections();
+        var url = '@Url.Action("UpdateAccounts")';
+        if (selections.length == 0) {
+            BootstrapDialog.alert({ message: '@MUI.UserNotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+            return;
+        }
+
+        $.openDialog($(this), {
+            id: 'multiSelectEdit',
+            title: 'Modificare înregistrări',
+            url: url,
+            onContentLoad: function(submitForm) {
+                for (var i = 0; i < selections.length; i++) {
+                    submitForm.append($('<input type="hidden" />').attr('name', 'Accounts[' + i + ']').val(selections[i]));
+                }
+                $('.lblCounter', submitForm).text(selections.length);
+            },
+            onSubmit: function() {
+                $("#usersGrid").trigger('reloadGrid');
+            }
+        });
+    };
+
+    $.setRegions = function (e) {
+        var selections = GetGridSelections();
+        var url = '@Url.Action("SetRegionsForUser")';
+        if (selections.length > 1) {
+            BootstrapDialog.alert({message: '@MUI.UserSelectedManyAlertMessage', title: '@MUI.DialogTitle_Information' });
+            return;
+        }
+        if (selections.length == 0) {
+            BootstrapDialog.alert({message: '@MUI.UserNotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+            return;
+        }
+	    $.openDialog($(this), {
+		    id: 'setRegionsDialog',
+		    title: 'Alocare regiuni',
+		    url: url + '?userId=' + selections[0],
+		    usePost: true,
+            onBeforeSerialize: function (submitForm) {
+                var selectOptions = $('#AllocatedRegions')[0].options;
+                for (var i = 0; i < selectOptions.length; i++) {
+                    submitForm.append($('<input type="hidden" />').attr('name', 'AllocatedRegions[' + i + '].Value').val(selectOptions[i].value));
+                    submitForm.append($('<input type="hidden" />').attr('name', 'AllocatedRegions[' + i + '].Text').val(selectOptions[i].text));
+                }
+            },
+            onSubmit: function () {
+                $("#usersGrid").trigger('reloadGrid');
+            },
+            onShown: function (dialog) {
+            	var context = $('#' + dialog.getId());
+                $.resetGridWidth2($('.ui-jqgrid', context), context);
+            }
+        });
+    };
+
+    $.beforeShowForm = function($form) {
+    	$("td.delmsg", $form[0]).html('@MUI.UserDelete_Message');
+    };
+
+	$.UpdateUser = function () {
+		var selections = GetGridSelections();
+		if (selections.length == 0) {
+		    BootstrapDialog.alert({message: '@MUI.UserNotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+			return;
+		}
+		if (selections.length > 1) {
+		    BootstrapDialog.alert({message: '@MUI.UserSelectedManyAlertMessage', title: '@MUI.DialogTitle_Information' });
+		 	return;
+		}
+		
+		var url = '@Url.Action("UpdateUser")';
+		var dialogTitle = '@MUI.UsersEdite_DialogTitle';
+		
+		$.openDialog($(this), {
+			url: url + '?userId=' + selections[0],
+			title: dialogTitle,
+			onSubmit: function () {
+				$("#usersGrid").trigger('reloadGrid');
+			},
+		});
+	};
+	
+	$.DeleteUser = function (userId) {
+		
+		var selections = GetGridSelections();
+		if (selections.length == 0) {
+		    BootstrapDialog.alert({ message: '@MUI.UserNotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+			return;
+		}
+		if (selections.length > 1) {
+		    BootstrapDialog.alert({message: '@MUI.UserSelectedManyAlertMessage', title: '@MUI.DialogTitle_Information' });
+			return;
+		}
+		
+		var url = '@Url.Action("DeleteUser")';
+
+		BootstrapDialog.confirm('@MUI.UserDelete_Message', function (result) {
+			if (result) {
+				$.ajax({
+					type: "POST",
+					url: url,
+					data: { userId: userId[0]},
+					success: function () {
+						$("#usersGrid").trigger('reloadGrid');
+					}
+				});
+			}
+		});
+	};
+</script>

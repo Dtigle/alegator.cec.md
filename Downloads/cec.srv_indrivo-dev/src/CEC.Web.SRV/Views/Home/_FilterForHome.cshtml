@@ -1,0 +1,87 @@
+﻿@using CEC.Web.SRV.Resources
+@model CEC.Web.SRV.Models.Home.FilterForHomeModel
+
+<div>
+    <div class="col-sm-9">
+        @Html.EditorFor(x => x.RegionId, "Select2")
+
+        @Html.EditorFor(x => x.PollingStationId)
+    </div>
+    <button type="button" class="btn btn-primary btn-label-left" id="btn-home-apply">
+        <span>
+            <i class="fa fa-filter"></i>
+        </span> @MUI.ApplyFilterButton 
+    </button>
+    <button type="button" class="btn btn-default btn-label-left" id="btn-home-reset">
+        @MUI.ClearFilterButton
+    </button>
+</div>
+    
+        
+
+<script type="text/javascript">
+
+	function regionDataRequest(term, page, pageLimit) {
+		return {
+			q: term,
+			pageLimit: pageLimit,
+			page: page
+		};
+	}
+
+	function regionResults(data, more) {
+		return { results: data, more: more };
+	}
+
+	function votersDataRequest(term, page, pageLimit) {
+		return {
+			regionId: $('#RegionId').val(),
+			q: term,
+			pageLimit: pageLimit,
+			page: page
+		};
+	}
+
+	function votersResults(data, more) {
+		return { results: data, more: more };
+	}
+
+    $.getDashboardRegionId = function () {
+		return $('#RegionId').val();
+	};
+
+    $.getDashboardPollingStationId = function () {
+        return $('#PollingStationId').val();
+	};
+
+	$.loadDashBoardFunction = function() {
+
+	};
+
+    $(document).ready(function () {
+
+        $('#RegionId').on('change', function () {
+            var regionId = $('#RegionId').val();
+            $('#PollingStationId').select2('data', null);
+            var pollingStationId = $('#PollingStationId').val();
+        });
+
+	    $('#PollingStationId').on('change', function () {
+	        var regionId = $('#RegionId').val();
+	        var pollingStationId = $('#PollingStationId').val();
+	    });
+
+
+	    $("#btn-home-apply").on("click", function () {
+	        //todo: load current section
+	        $.loadDashBoardFunction();
+	    });
+
+	    $("#btn-home-reset").on("click", function () {
+	        $('#RegionId').select2('data', null);
+	        $('#PollingStationId').select2('data', null);
+	        $.loadDashBoardFunction();
+        });
+
+    });
+    </script>

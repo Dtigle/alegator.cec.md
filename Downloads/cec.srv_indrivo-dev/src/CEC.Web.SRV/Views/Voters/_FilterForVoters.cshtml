@@ -1,0 +1,39 @@
+﻿@using CEC.Web.SRV.Resources
+@model CEC.Web.SRV.Models.Voters.FilterForVotersModel
+
+<div class="row">
+    <div class="form-group">
+        @Html.EditorFor(x => x.RegionId, "Select2")
+    </div>
+	<div  class="form-group">
+		@Html.EditorFor(x => x.PollingStationId)
+	</div>
+</div>
+
+<script type="text/javascript">
+
+	function regionDataRequest(term, page, pageLimit) {
+		return {
+			q: term,
+			pageLimit: pageLimit,
+			page: page
+		};
+	}
+
+	function regionResults(data, more) {
+		return { results: data, more: more };
+	}
+
+	function votersDataRequest(term, page, pageLimit) {
+		return {
+			regionId: $('#RegionId').val(),
+			q: term,
+			pageLimit: pageLimit,
+			page: page
+		};
+	}
+
+	function votersResults(data, more) {
+		return { results: data, more: more };
+	}
+</script>

@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>DataSource_ReportingServer</DataSourceReference>
+      <DataSetParameters>
+        <DataSetParameter Name="@ElectionRoundId">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>false</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>Object</rd:DbType>
+        </DataSetParameter>
+      </DataSetParameters>
+      <CommandText>SELECT
+*
+FROM
+(SELECT 
+       [CircumscriptionId]
+      ,[AssignedCircumscriptionId]
+      ,[ElectionRoundId]
+      ,[Number]
+      ,[NameRo]
+FROM [dbo].[AssignedCircumscription]
+WHERE   ElectionRoundId = @ElectionRoundId
+UNION ALL
+SELECT
+0,
+0,
+0,
+'0',
+N'- Toate circumscripțiile -') as circ
+ORDER BY CAST(N'/' + LTrim(RTrim(circ.number)) + N'/' AS HIERARCHYID)</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="CircumscriptionId">
+        <DataField>CircumscriptionId</DataField>
+        <rd:TypeName>System.Int64</rd:TypeName>
+      </Field>
+      <Field Name="AssignedCircumscriptionId">
+        <DataField>AssignedCircumscriptionId</DataField>
+        <rd:TypeName>System.Int64</rd:TypeName>
+      </Field>
+      <Field Name="ElectionRoundId">
+        <DataField>ElectionRoundId</DataField>
+        <rd:TypeName>System.Int64</rd:TypeName>
+      </Field>
+      <Field Name="Number">
+        <DataField>Number</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="NameRo">
+        <DataField>NameRo</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

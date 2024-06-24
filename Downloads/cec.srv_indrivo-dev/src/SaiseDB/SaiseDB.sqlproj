@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>SaiseDB</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{15c570ed-7ba6-48ae-897f-10e8aa21d0d8}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql120DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>SaiseDB</RootNamespace>
+    <AssemblyName>SaiseDB</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="schematmp\" />
+    <Folder Include="schematmp\Tables\" />
+    <Folder Include="Audit\" />
+    <Folder Include="Audit\Tables\" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Functions\" />
+    <Folder Include="dbo\Stored Procedures\" />
+    <Folder Include="Security\" />
+    <Folder Include="SaiseAdmin" />
+    <Folder Include="SaiseAdmin\Scripts" />
+    <Folder Include="eDayDbScript" />
+    <Folder Include="SaiseAdmin\StoredProcedures" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="schematmp\Tables\ReportParamValues.sql" />
+    <Build Include="schematmp\Tables\Role.sql" />
+    <Build Include="schematmp\Tables\SystemUser.sql" />
+    <Build Include="schematmp\Tables\Voter.sql" />
+    <Build Include="Audit\Tables\BallotPaper_AUD.sql" />
+    <Build Include="Audit\Tables\ElectionResult_AUD.sql" />
+    <Build Include="Audit\Tables\REVINFO.sql" />
+    <Build Include="Audit\Tables\VoterCertificat_AUD.sql" />
+    <Build Include="dbo\Tables\AgeCategories.sql" />
+    <Build Include="dbo\Tables\Alerts.sql" />
+    <Build Include="dbo\Tables\AssignedCircumscription.sql" />
+    <Build Include="dbo\Tables\AssignedPermission.sql" />
+    <Build Include="dbo\Tables\AssignedPollingStation.sql" />
+    <Build Include="dbo\Tables\AssignedRole.sql" />
+    <Build Include="dbo\Tables\AssignedVoter.sql" />
+    <Build Include="dbo\Tables\AssignedVoterStatistics.sql" />
+    <Build Include="dbo\Tables\AuditEvents.sql" />
+    <Build Include="dbo\Tables\AuditEventTypes.sql" />
+    <Build Include="dbo\Tables\BallotPaper.sql" />
+    <Build Include="dbo\Tables\CircumscriptionRegion.sql" />
+    <Build Include="dbo\Tables\Election.sql" />
+    <Build Include="dbo\Tables\ElectionCompetitor.sql" />
+    <Build Include="dbo\Tables\ElectionCompetitorMember.sql" />
+    <Build Include="dbo\Tables\ElectionDay.sql" />
+    <Build Include="dbo\Tables\ElectionResult.sql" />
+    <Build Include="dbo\Tables\ElectionRound.sql" />
+    <Build Include="dbo\Tables\ElectionType.sql" />
+    <Build Include="dbo\Tables\Permission.sql" />
+    <Build Include="dbo\Tables\PoliticalPartyStatusOverride.sql" />
+    <Build Include="dbo\Tables\PollingStation.sql" />
+    <Build Include="dbo\Tables\Region.sql" />
+    <Build Include="dbo\Tables\RegionType.sql" />
+    <Build Include="dbo\Tables\ReportParams.sql" />
+    <Build Include="dbo\Tables\ReportParamValues.sql" />
+    <Build Include="dbo\Tables\Role.sql" />
+    <Build Include="dbo\Tables\SystemUser.sql" />
+    <Build Include="dbo\Tables\Voter.sql" />
+    <Build Include="dbo\Tables\VoterCertificat.sql" />
+    <Build Include="schematmp\Tables\AgeCategories.sql" />
+    <Build Include="schematmp\Tables\AssignedCircumscription.sql" />
+    <Build Include="schematmp\Tables\AssignedPermission.sql" />
+    <Build Include="schematmp\Tables\AssignedPollingStation.sql" />
+    <Build Include="schematmp\Tables\AssignedRole.sql" />
+    <Build Include="schematmp\Tables\AssignedVoter.sql" />
+    <Build Include="schematmp\Tables\AuditEventTypes.sql" />
+    <Build Include="schematmp\Tables\BallotPaper.sql" />
+    <Build Include="schematmp\Tables\CircumscriptionRegion.sql" />
+    <Build Include="schematmp\Tables\Election.sql" />
+    <Build Include="schematmp\Tables\ElectionCompetitor.sql" />
+    <Build Include="schematmp\Tables\ElectionCompetitorMember.sql" />
+    <Build Include="schematmp\Tables\ElectionDay.sql" />
+    <Build Include="schematmp\Tables\ElectionResult.sql" />
+    <Build Include="schematmp\Tables\ElectionRound.sql" />
+    <Build Include="schematmp\Tables\ElectionType.sql" />
+    <Build Include="schematmp\Tables\Permission.sql" />
+    <Build Include="schematmp\Tables\PoliticalPartyStatusOverride.sql" />
+    <Build Include="schematmp\Tables\PollingStation.sql" />
+    <Build Include="schematmp\Tables\Region.sql" />
+    <Build Include="schematmp\Tables\RegionType.sql" />
+    <Build Include="schematmp\Tables\ReportParams.sql" />
+    <Build Include="dbo\Functions\fn_GetParentRegion.sql" />
+    <Build Include="dbo\Functions\fn_GetFullRegionName.sql" />
+    <Build Include="dbo\Stored Procedures\GetBallotPaper.sql" />
+    <Build Include="dbo\Stored Procedures\GetCandidatResult.sql" />
+    <Build Include="dbo\Stored Procedures\GetDataTransferStages.sql" />
+    <Build Include="dbo\Stored Procedures\infElectionResult.sql" />
+    <Build Include="dbo\Stored Procedures\infVoterTurnout.sql" />
+    <Build Include="dbo\Stored Procedures\MoveDataFromTemp.sql" />
+    <Build Include="dbo\Stored Procedures\MoveDataToRepository.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateDataFromTemp.sql" />
+    <Build Include="dbo\Stored Procedures\GetElectionRoundResult.sql" />
+    <Build Include="Security\Audit.sql" />
+    <Build Include="Security\schematmp.sql" />
+    <Build Include="dbo\Stored Procedures\SAISEAdmin_InitializeElectionDayDb.sql" />
+    <None Include="eDayDbScript\createElectionDayDb.sql" />
+    <Build Include="SaiseAdmin\StoredProcedures\InitializeElectionDayDb.sql" />
+    <Build Include="dbo\Stored Procedures\InitializeElectionDayDb.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="dbo\Stored Procedures\GetVotersList.sql" />
+    <None Include="SaiseAdmin\Scripts\TemplateMapping.sql" />
+    <None Include="SaiseAdmin\Scripts\SeedReportParametersBESV.sql" />
+    <None Include="SaiseAdmin\Scripts\SeedReportParamsCECE.sql" />
+    <None Include="SaiseAdmin\Scripts\InsertIntoTemplateTypes.sql" />
+    <None Include="SaiseAdmin\Scripts\InsertIntoTemplates.sql" />
+    <None Include="SaiseAdmin\Scripts\InsertIntoTemplateName.sql" />
+  </ItemGroup>
+</Project>

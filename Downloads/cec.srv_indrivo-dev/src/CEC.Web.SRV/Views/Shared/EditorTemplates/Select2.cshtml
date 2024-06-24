@@ -1,0 +1,84 @@
+﻿@using System.Reflection
+@using System.Web.Mvc.Html
+@using System.Xml
+@using CEC.Web.SRV.Infrastructure
+@using CEC.Web.SRV.Resources
+@using Microsoft.Ajax.Utilities
+
+@{
+    Layout = "_Template.cshtml";
+}
+
+@{
+    var containerType = ViewData.ModelMetadata.ContainerType;
+    var propertyName = ViewData.ModelMetadata.PropertyName;
+    var property = containerType.GetProperty(propertyName);
+    var select2RemoteConfig = property.GetCustomAttribute<Select2RemoteConfigAttribute>();
+}
+
+
+@section Data
+{
+    @if (select2RemoteConfig == null)
+    {
+        var model = (Model as IEnumerable<SelectListItem>) ?? (IEnumerable<SelectListItem>)ViewData[ViewData.ModelMetadata.PropertyName];
+
+        <select id="@ViewData.TemplateInfo.GetFullHtmlFieldId("")" name="@ViewData.TemplateInfo.GetFullHtmlFieldName("")" class="select2Control">
+            <option value="">@MUI.SelectPrompt</option>
+            @foreach (var item in model)
+            {
+                <option @(item.Selected ? "selected" : string.Empty) value="@item.Value">@item.Text</option>
+            }
+        </select>
+    }
+    else
+    {
+        @Html.HiddenFor(x => Model)
+        <script type="text/javascript">
+            $(document).ready(function(e) {
+                var select2 = $('#@ViewData.TemplateInfo.GetFullHtmlFieldId("")').select2({
+                    initSelection: function(element, callback) {
+                        var currentValue = $('#@ViewData.TemplateInfo.GetFullHtmlFieldId("")').val();
+                        var initAction = '@select2RemoteConfig.AjaxData_ActionInitSelection';
+                        var initController = '@select2RemoteConfig.AjaxData_ControllerInitSelection';
+                        if (currentValue != undefined && currentValue != '' && initAction != '' && initController != '') {
+                            var url = '@Url.Action(select2RemoteConfig.AjaxData_ActionInitSelection, select2RemoteConfig.AjaxData_ControllerInitSelection)';
+                            $.ajax({
+                                url: url,
+                                type: 'POST',
+                                dataType: "json",
+                                data: { id: currentValue },
+                                success: function(result) {
+                                    callback({ id: currentValue, text: result });
+                                }
+                            });
+                        }
+                    },
+                    ajax: {
+                        url: '@Url.Action(select2RemoteConfig.AjaxAction, select2RemoteConfig.AjaxController)',
+                        dataType: '@select2RemoteConfig.AjaxDataType',
+                        quietMillis: 200,
+                        data: function(term, page) {
+                            var dataFuncName = '@select2RemoteConfig.AjaxData_JsFuncName';
+                            if (typeof window[dataFuncName] === 'function') {
+                                return window[dataFuncName](term, page, '@select2RemoteConfig.PageLimit');
+                            } else {
+                                return {};
+                            }
+                        },
+                        results: function(data, page) {
+                            var resultsFuncName = '@select2RemoteConfig.AjaxResults_JsFuncName';
+                            if (typeof window[resultsFuncName] === 'function') {
+                                var more = (page * 10) < data.Total;
+                                return window[resultsFuncName](data.Items, more);
+                            }
+                            return { results: data };
+                        }
+                    }
+                });
+
+                select2.prop("disabled", @(ViewBag.ReadOnly ?? false ? "true" : "false"));
+            })
+        </script>
+    }
+}

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="CEC_Admin">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=192.168.1.142;Initial Catalog=SAISE.Admin</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>ab59bfff-cbb6-4599-b431-1e99bd848a05</DataSourceID>
+</RptDataSource>

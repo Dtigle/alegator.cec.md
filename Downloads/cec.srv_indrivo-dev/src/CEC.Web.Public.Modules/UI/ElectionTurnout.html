@@ -1,0 +1,183 @@
+﻿<div class="row">
+
+    <div id="breadcrumb" class="col-md-12">
+    </div>
+</div>
+
+
+<div class="row">
+
+    <div class="col-xs-8 col-sm-5" style="height: 990px">
+        <div class="row">
+            <div class="box-content" style="height: 70vh">
+                <p id="countdown"></p>
+                <div class="progress progress-striped" style="height: 5px;">
+                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;height: 5px"></div>
+                </div>
+
+                <table id="title_tab" class="table m-table" style="font-size: xx-large; font-weight: bold">
+                    <tr>
+                        <td class="m-ticker">
+                            <label>Total secții de votare</label></td>
+                        <td class="m-price">
+                            <div id="totalPS"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="m-ticker">
+                            <label>Alegători pe lista de bază</label></td>
+                        <td class="m-price">
+                            <div id="totalBaseVoters"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="m-ticker">
+                            <label>Au votat</label></td>
+                        <td class="m-price">
+                            <div id="totalVoted"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="m-ticker" style="font-size: x-large; font-weight: bold">
+                            <label>- din care pe lista suplimentară</label>
+                        </td>
+                        <td class="m-price">
+                            <div id="totalSupplementaryList"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="m-ticker">
+                            <label>Rata participării</label></td>
+                        <td class="m-price">
+                            <div id="votedPercentage"></div>
+                        </td>
+                    </tr>
+                </table>
+
+                <table id="pollingStationsTable" class="display compact"></table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="box-content" style="height: 19vh">
+                <div id="totalStatistic"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-7 col-sm-7" >
+        <div class="row">
+            <div class="box-content" style="height: 91vh">
+                <div id="googleMap"></div>
+                <div id="alertMessage" class="alert alert-warning alert-dismissible" role="alert" style="display: none">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Warning!</strong> Better check yourself, you're not looking too good.
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script type='text/javascript' src='http://www.google.com/jsapi'></script>
+
+<style>
+     html, body{
+         overflow: hidden;
+     }
+     .gm-style-iw + div {
+         display: none;
+     }
+
+    #pollingStationsTable td {
+        font-size: larger
+    }
+
+    .olFramedCloudPopupContent {
+        font-size: x-large;
+    }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#pollingStationsTable').DataTable({
+            deferRender:    true,
+            dom:            "frtiS",
+            scrollY:        150,
+            scrollCollapse: true,
+            "bLengthChange": false,
+            "autoWidth": false,
+            "columns": [
+                { "title": "Nr.S/V", width: '5%' },
+                { "title": "Circumscripție", width: '10%' },
+                { "title": "Localitate", width: '25%' },
+                { "title": "Nr. alegători pe lista de bază", className: 'dt-body-right', width: '10%' },
+                { "title": "Au votat", className: 'dt-body-right', width: '10%' },
+                { "title": "pe lista supl.", className: 'dt-body-right', width: '10%' },
+                { "title": "Rata de participare", className: 'dt-body-right', width: '10%' },
+                { "title": "Latitudinea" },
+                { "title": "Longitudinea" }
+            ],
+            //"pageLength": 5,
+            "language": {
+                "search": "Căutare",
+                "lengthMenu": "_MENU_  înregistrări pe pagină",
+                "info": "_START_ - _END_ din _TOTAL_",
+                "infoFiltered": "(găsit din _MAX_)",
+                "infoEmpty": "0 înregistrări",
+                "paginate": {
+                    "first": "|<",
+                    "previous": "<",
+                    "next": ">",
+                    "last": ">|"
+                }
+            }
+        });
+        $('#pollingStationsTable').DataTable().column(7).visible(false);
+        $('#pollingStationsTable').DataTable().column(8).visible(false);
+
+        $('#ajax-content').on('click', '#pollingStationsTable tbody tr', function () {
+            var table = $('#pollingStationsTable').DataTable();
+            var rowData = table.row(this).data();
+
+            var lat = rowData[7];
+            var lng = rowData[8];
+            
+            if (lat != null && lng != null) {
+                var projectFrom = new OpenLayers.Projection("EPSG:4326"); // WGS 1984 projection
+                var projectTo = map.getProjectionObject();
+                var zoom = 16;
+                map.zoomToMaxExtent();
+                var lonlatStartPosition = new OpenLayers.LonLat(lng, lat);
+                map.setCenter(lonlatStartPosition.transform(projectFrom, projectTo), zoom);
+                map.zoomIn();
+            } else {
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "300",
+                    "hideDuration": "1000",
+                    "timeOut": "10000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "slideDown",
+                    "hideMethod": "fadeOut"
+                }
+
+                toastr["info"](
+                    "Secția de votare Nr <strong>" + rowData[0] + "</strong></br>" +
+                    "Circumscripția <strong>" + rowData[1] + "</strong></br>" +
+                    "Localitatea <strong>" + rowData[2] + "</strong></br>" +
+                    "Lista de bază <strong>" + rowData[3] + "</strong></br>" +
+                    "Au votat <strong>" + rowData[4] + "</strong></br>" +
+                    "- din care pe suplimentar <strong>" + rowData[5] + "</strong></br>" +
+                    "Rata de participare <strong>" + rowData[6] + "</strong></br>" +
+                    "Lipsesc coordonatele.");
+            }
+        });
+    });
+</script>

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>CEC_Admin</DataSourceReference>
+      <DataSetParameters>
+        <DataSetParameter Name="@ElectionCircumscriptionId">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>false</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>Object</rd:DbType>
+        </DataSetParameter>
+      </DataSetParameters>
+      <CommandText>SELECT
+[electionPollingStationId],
+aps.[pollingStationId],
+aps.NumberPerElection,
+ps.[NameRo],
+CONCAT(aps.NumberPerElection, ' ', ps.[NameRo]) as Name
+FROM 
+[SAISE].[ElectionPollingStations] as aps
+INNER JOIN  [SAISE].[PollingStations] as ps ON aps.pollingStationId = ps.pollingStationId
+WHERE
+electionCircumscriptionId = @ElectionCircumscriptionId </CommandText>
+    </Query>
+    <Fields>
+      <Field Name="electionPollingStationId">
+        <DataField>electionPollingStationId</DataField>
+        <rd:TypeName>System.Int64</rd:TypeName>
+      </Field>
+      <Field Name="pollingStationId">
+        <DataField>pollingStationId</DataField>
+        <rd:TypeName>System.Int64</rd:TypeName>
+      </Field>
+      <Field Name="NumberPerElection">
+        <DataField>NumberPerElection</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="NameRo">
+        <DataField>NameRo</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="Name">
+        <DataField>Name</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

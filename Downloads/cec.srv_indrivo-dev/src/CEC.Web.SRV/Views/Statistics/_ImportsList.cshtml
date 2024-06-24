@@ -1,0 +1,36 @@
+﻿@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.Statistics
+@using Lib.Web.Mvc.JQuery.JqGrid
+
+
+@{
+    var grid = Html.GridOptions<ImportsGridModel>("importList", rowsPerPage: 5, height: 160)
+		 .SetOptions(x =>
+		 {
+             x.OnCellSelect = "onCellSelect";
+		 })
+        .BuildGrid(Url.Action("ImporterListAjax", "Statistics"), columnChooser: false, showFilterToolbar: false)
+		.Navigator(new JqGridNavigatorOptions() { Add = false, Edit = false, Delete = false, CloneToTop = true});
+}
+
+@grid.GetHtml()
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        @grid.GetJavaScript();
+        $.forEachGrid($.removeClonedGridButtons);
+    });
+    function onCellSelect(rowId) {
+        var region = $.getSelectedRegion();
+        var date = rowId;
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("GetImportStatistics", "Statistics")',
+            data: { importDataTime: date, regionId: region },
+            success: function (returnData) {
+                $('#view_statistics').html(returnData);
+            }
+        });
+    };
+</script>

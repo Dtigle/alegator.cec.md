@@ -1,0 +1,314 @@
+﻿@using CEC.SAISE.Domain
+@model CEC.SAISE.EDayModule.Models.Document.DocumentModel
+
+@{
+    ViewBag.Title = "Gestionarea documentelor";
+}
+
+<div class="well">
+    <div class="row">
+        <div class="col-xm-12">
+            @Html.Partial("_Delimitator")
+        </div>
+    </div>
+</div>
+
+<div class="well">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="alert alert-danger" data-bind="visible: ElectionResultsVM.BallotPaperNotFound">
+                <p>
+                    <span class="glyphicon glyphicon-alert"></span>
+                    Document nu a fost găsit. Adresați-vă administratorilor.
+                </p>
+            </div>
+
+            <div class="alert alert-danger" data-bind="visible: ElectionResultsVM.ModuleIsLockedOut">
+                <p>
+                    Atenție! Funcționalitatea 'Gestionarea documentelor' nu este activată.
+                    <a href="#" class="checkActivation">Apăsați pentru verificarea activării.</a>
+                </p>
+            </div>
+
+            <div data-bind="template: {name: '_ReportTemplate'}"></div>
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="_ReportTemplate">
+    <div class="box">
+        <div class="box-content" data-bind="template: { name: 'reportContentTemplate' }"></div>
+    </div>
+</script>
+
+<script type="text/html" id="reportContentTemplate">
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 1">
+        <div id="bESVReportOnSVPreparation">@Html.Partial("_BESVReportOnSVPreparation")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 2">
+        <div id="bESVReportOnSVPreparationSecondDay">@Html.Partial("_BESVReportOnSVPreparationSecondDay")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 3">
+        <div id="intermediateBESVReport1400Elections">@Html.Partial("_IntermediateBESVReport1400Elections")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 4">
+        <div id="intermediateBESVReport1400Referendum">@Html.Partial("_IntermediateBESVReport1400Referendum")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 5">
+        <div id="intermediateBESVReport2100">@Html.Partial("_IntermediateBESVReport2100")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 6">
+        <div id="processVerbalBESVOnVoteCountResultsElections">@Html.Partial("_ProcessVerbalBESVOnVoteCountResultsElections")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 7">
+        <div id="processVerbalBESVOnVoteCountResultsReferendum">@Html.Partial("_ProcessVerbalBESVOnVoteCountResultsReferendum")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 8">
+        <div id="processVerbalBESVOnVoteCountResultsUTAGagauziaElections">@Html.Partial("_ProcessVerbalBESVOnVoteCountResultsUTAGagauziaElections")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 9">
+        <div id="processVerbalBESVOnVoteCountResultsUTAGagauziaReferendum">@Html.Partial("_ProcessVerbalBESVOnVoteCountResultsUTAGagauziaReferendum")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 10">
+        <div id="finalBESVReportElections1Day1stRound">@Html.Partial("_FinalBESVReportElections1Day1stRound")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 11">
+        <div id="finalBESVReportElections1Day1stRound">@Html.Partial("_FinalBESVReportElections1Day2ndRound")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 12">
+        <div id="finalBESVReportElections1Day1stRound">@Html.Partial("_FinalBESVReportElections2Days1stRound")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 13">
+        <div id="finalBESVReportElections1Day1stRound">@Html.Partial("_FinalBESVReportElections2Days2ndRound")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 14">
+        <div id="finalBESVReportElections1Day1stRound">@Html.Partial("_FinalBESVReportReferendum1day")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 15">
+        <div id="finalBESVReportElections1Day1stRound">@Html.Partial("_FinalBESVReportReferendum2days")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 16">
+        <div id="finalBESVReportElections1Day1stRound">@Html.Partial("_FinalBESVReportElections1Day1stRoundUTAG")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 17">
+        <div id="finalBESVReportElections1Day1stRound">@Html.Partial("_FinalBESVReportElections1Day2ndRoundUTAG")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 18">
+        <div id="finalBESVReportElections1Day1stRound">@Html.Partial("_FinalBESVReportElections2Days1stRoundUTAG")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 19">
+        <div id="finalBESVReportElections1Day1stRound">@Html.Partial("_FinalBESVReportElections2Days2ndRoundUTAG")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 20">
+        <div id="finalBESVReportElections1Day1stRound">@Html.Partial("_FinalBESVReportReferendum1dayUTAG")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 21">
+        <div id="finalBESVReportElections1Day1stRound">@Html.Partial("_FinalBESVReportReferendum2daysUTAG")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 22">
+        <div id="finalBESVReportElections1Day1stRound">@Html.Partial("_IntermediateCECEReportElections")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 23">
+        <div id="finalBESVReportElections1Day1stRound">@Html.Partial("_IntermediateCECEReportReferendum")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 24">
+        <div id="finalBESVReportElections1Day1stRound">@Html.Partial("_ProcessVerbalCECECouncillor")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 25">
+        <div id="finalBESVReportElections1Day1stRound">@Html.Partial("_ProcessVerbalCECEMayor")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 26">
+        <div id="finalBESVReportElections1Day1stRound">@Html.Partial("_ProcessVerbalCECEParliamentRM")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 27">
+        <div id="finalBESVReportElections1Day1stRound">@Html.Partial("_ProcessVerbalCECEPresidentRM")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 28">
+        <div id="finalBESVReportElections1Day1stRound">@Html.Partial("_ProcessVerbalCECEReferendum")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 29">
+        <div id="finalBESVReportElections1Day1stRound">@Html.Partial("_ProcessVerbalCECEGovernorUTAG")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 30">
+        <div id="finalBESVReportElections1Day1stRound">@Html.Partial("_ProcessVerbalCECEDeputyAPUTAG")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 31">
+        <div id="finalBESVReportElections1Day1stRound">@Html.Partial("_ProcessVerbalCECEReferendumUTAG")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 32">
+        <div id="finalBESVReportElections1Day1stRound">@Html.Partial("_FinalCECEReportElections1Day1stRound")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 33">
+        <div id="finalBESVReportElections1Day1stRound">@Html.Partial("_FinalCECEReportElections1Day2ndRound")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 34">
+        <div id="finalBESVReportElections1Day1stRound">@Html.Partial("_FinalCECEReportElections2Days1stRound")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 35">
+        <div id="finalBESVReportElections1Day1stRound">@Html.Partial("_FinalCECEReportElections2Days2ndRound")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 36">
+        <div id="finalBESVReportElections1Day1stRound">@Html.Partial("_FinalCECEReportReferendum1day")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 37">
+        <div id="finalBESVReportElections1Day1stRound">@Html.Partial("_FinalCECEReportReferendum2days")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 38">
+        <div id="finalBESVReportElections1Day1stRound">@Html.Partial("_FinalCECEReportElections1Day1stRoundUTAG")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 39">
+        <div id="finalBESVReportElections1Day1stRound">@Html.Partial("_FinalCECEReportElections1Day2ndRoundUTAG")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 40">
+        <div id="finalBESVReportElections1Day1stRound">@Html.Partial("_FinalCECEReportElections2Days1stRoundUTAG")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 41">
+        <div id="finalBESVReportElections1Day1stRound">@Html.Partial("_FinalCECEReportElections2Days2ndRoundUTAG")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 42">
+        <div id="finalBESVReportElections1Day1stRound">@Html.Partial("_FinalCECEReportReferendum1dayUTAG")</div>
+    </div>
+
+    <div data-bind="if: reportTemplateViewModel().templateNameId() === 43">
+        <div id="finalBESVReportElections1Day1stRound">@Html.Partial("_FinalCECEReportReferendum2daysUTAG")</div>
+    </div>
+</script>
+
+<script type="text/html" id="alreadySubmitedStatusBarTemplate">
+    <div class="alert alert-danger">
+        <p>
+            <span class="glyphicon glyphicon-alert"></span>
+            <span data-bind="text: DocumentName()"></span> a fost transmis la <span data-bind="text: ServerEditDate()"></span> de utilizatorul <span data-bind="text: EditUser"></span>
+            <div data-bind="if: IsResultsConfirmed">
+                Confirmat la <span data-bind="text: ServerConfirmationDate"></span> de utlizatorul cu ID-ul: <span data-bind="text: ConfirmationUserId"></span>
+            </div>
+        </p>
+    </div>
+</script>
+
+<script type="text/html" id="normalPartyTemplate">
+    <span data-bind="text: PoliticalPartyName"></span>
+    <span class="label label-danger pull-right" data-bind="visible: isWithdrawn">RETRAS</span>
+</script>
+
+<script type="text/html" id="uninominalTemplate">
+    <strong><span data-bind="text: CandidateName"></span></strong>
+    <div data-bind="text: PoliticalPartyName"></div>
+    <span class="label label-danger pull-right" data-bind="visible: isWithdrawn">RETRAS</span>
+</script>
+
+
+<script type="text/html" id="independentCandidateTemplate">
+    <span data-bind="text: PoliticalPartyName"></span>
+    <br />
+    <span class="label label-danger pull-right" data-bind="visible: isWithdrawn">RETRAS</span>
+</script>
+
+<script type="text/html" id="referendumElectionTemplate">
+    <span data-bind="text: CandidateName"></span>
+</script>
+
+<script type="text/html" id="mayorElectionTemplate">
+    <span data-bind="text: CandidateName"></span>
+    <br />
+    <span data-bind="visible: IsIndependent">Candidat Independent</span>
+    <span data-bind="visible: !IsIndependent, text: PoliticalPartyName"></span>
+    <span class="label label-danger pull-right" data-bind="visible: isWithdrawn">RETRAS</span>
+</script>
+
+<script type="text/html" id="alreadySubmitedStatusBarTemplate">
+    <div class="alert alert-danger">
+        <p>
+            <span class="glyphicon glyphicon-alert"></span>
+            Procesul verbal a fost transmis la <span data-bind="text: ServerEditDate()"></span> de utilizatorul <span data-bind="text: EditUser"></span>
+            <div data-bind="if: IsResultsConfirmed">
+                Confirmat la <span data-bind="text: ServerConfirmationDate"></span> de utlizatorul cu ID-ul: <span data-bind="text: ConfirmationUserId"></span>
+            </div>
+        </p>
+    </div>
+</script>
+
+<script type="text/html" id="defaultStatusBarTemplate">
+</script>
+
+<script type="text/html" id="submitAllowedStatusBarTemplate">
+    <div class="alert alert-success">
+        <p>
+            Transmiterea rezultatelor este permisă.
+        </p>
+    </div>
+</script>
+
+<script type="text/html" id="updateSuccessStatusBarTemplate">
+    <div class="alert alert-success">
+        <p>
+            Transmis cu succes.
+        </p>
+    </div>
+</script>
+
+<script type="text/html" id="submitNotAllowedStatusBarTemplate">
+    <div class="alert alert-danger">
+        <p>
+            Transmiterea rezultatelor NU este permisă.
+        </p>
+    </div>
+</script>
+
+<script type="text/html" id="validationSummary">
+    <div class="alert alert-warning" role="alert">
+        <h4>Sumar validare:</h4>
+        <ul data-bind="foreach: { data: errors, as: 'error'}">
+            <li data-bind="html: error"></li>
+        </ul>
+    </div>
+</script>
+
+<script>
+    var initialData = '@Html.Raw(Json.Encode(Model))';
+</script>
+
+<script src="~/Scripts/document-reports-validation.js"></script>
+<script src="~/Scripts/ViewModel/DelimitatorVM.js"></script>
+<script src="~/Scripts/document-reports.js"></script>

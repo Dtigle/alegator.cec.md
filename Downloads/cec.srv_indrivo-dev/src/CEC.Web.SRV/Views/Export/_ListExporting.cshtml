@@ -1,0 +1,130 @@
+﻿@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.Export
+@using CEC.Web.SRV.Models.Reporting
+@using CEC.Web.SRV.Resources
+@using Lib.Web.Mvc.JQuery.JqGrid
+@model CEC.Web.SRV.Models.Export.ListExportingModel
+
+@{
+	var grid = Html.GridOptions<ExportPollingStationsGridModel>("exportPollingStations")
+		.BuildGrid(Url.Action("ListPollingStationAjax", "Export"))
+        .Navigator(new JqGridNavigatorOptions
+        {
+            Add = false, 
+            Edit = false, 
+            Delete = false, 
+            Search = true, 
+            CloneToTop = true
+        });
+
+}
+
+
+<div class="clearfix form-horizontal">
+	@Html.HiddenFor(x=>x.PrintSessionId)
+
+	<div class="form-group">
+		@Html.EditorFor(x => x.ElectionInfo.ElectionTypeName, new {ReadOnly = true})
+		@Html.EditorFor(x => x.StartDate, new {ReadOnly = true})
+	</div>
+	<div class="form-group">
+		@Html.EditorFor(x => x.TotalPollingStationForExporting, new {ReadOnly = true})
+		@Html.EditorFor(x => x.PollingStationFinished, new {ReadOnly = true})
+	</div>
+	<div class="form-group">
+		<div class="col-md-offset-2 col-md-10">
+			<input type="submit" value="@MUI.ButtonCancel" class="btn btn-primary"  onclick="cancelButton()" style="float: right" />
+		</div>
+	</div>
+	<div class="form-group" style="padding-left: 15px ;padding-right: 15px">
+		<p id="countdown"></p> 
+		<div class="progress progress-striped">
+			<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+				<span>@MUI.ZeroProgress</span>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="box">
+	<div class="box-content">
+		<h5 class="page-header">@MUI.ViewPollingStationExport</h5>
+		@grid.GetHtml()
+	</div>
+</div>
+
+
+<script type="text/javascript">
+    var timeout = 0;
+    var pageUpdateInterval = 5;
+	$(document).ready(function () {
+		@grid.GetJavaScript();
+		updatePage();
+		var timeLeft = pageUpdateInterval;
+		var countdown = document.getElementById('countdown');
+
+		timeout = setInterval(function () {
+			if (timeLeft === 0) {
+				updatePage();
+				timeLeft = pageUpdateInterval;
+			} else {
+				countdown.innerHTML = '' + '<span> @MUI.ExportUpdateRemained ' + timeLeft + ' @MUI.Seconds</span>';
+				timeLeft--;
+			}
+		}, 1000);
+	});
+	
+	function cancelButton() {
+		var url = '@Url.Action("CancelPrintSession")';
+		var printSessionId = $('#PrintSessionId').val();
+
+		$.ajax({
+			type: "POST",
+			url: url,
+			success: function (data) {
+				var exportPollingStations = $('#exportPollingStations').jqGrid();
+				exportPollingStations.jqGrid('setGridParam', { 'postData': { 'printSessionId': printSessionId } });
+				exportPollingStations.trigger('reloadGrid');
+				window.location.href = '@Url.Action(ViewContext.RouteData.Values["action"].ToString())';
+			}
+		});
+	}
+	
+	function updatePage() {
+		var url = '@Url.Action("GetProgressOfPrintSession")';
+		var printSessionId = $('#PrintSessionId').val();
+		$.ajax({
+			type: "POST",
+			dataType: 'json',
+			url: url,
+			data: { printSessionId: printSessionId },
+			success: function (data) {
+				
+				if (data.Error) {
+					clearTimeout(timeout);
+					countdown.innerHTML = '' + '<span> @MUI.ExportFailed </span>';
+					$('#countdown').css('color', 'red');
+					$('.progress').hide();
+				}
+				
+				$('.progress-bar-success').css("width", data.Progres + '%');
+				$('.progress-bar-success span').text(data.Progres + '%');
+				$('.progress-bar-success').attr('aria-valuenow', data.Progres);
+				$('#exportPollingStations').jqGrid().trigger('reloadGrid');
+				$('#PollingStationFinished').val(data.PollingStationFinished);
+				
+				if (data.Progres == 100) {
+					clearTimeout(timeout);
+					countdown.innerHTML = '' + '<span> @MUI.ExportSucceeded </span>';
+					window.location.href = '@Url.Action("ExportList")';
+				}
+				
+			}
+		});
+	}
+</script>
+
+
+
+
+

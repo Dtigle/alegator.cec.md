@@ -1,0 +1,23 @@
+﻿@model CEC.Web.SRV.Models.Voters.UpdateVotersStatusModel
+
+<div class="clearfix">
+	<div class="form-group">
+		@Html.HiddenFor(x => x.PersonInfo.Id)
+	</div>
+
+	<div class="form-group">
+		@Html.DisplayFor(x => x.PersonInfo.FullName)
+	</div>
+
+	<div class="form-group">
+		@Html.DisplayFor(x => x.PersonInfo.PrimaryDocument)
+	</div>
+
+	<div class="form-group">
+		@Html.DisplayFor(x => x.PersonInfo.Idnp)
+	</div>
+
+	<div class="form-group">
+		@Html.DisplayFor(x => x.PersonInfo.Address)
+	</div>
+</div>

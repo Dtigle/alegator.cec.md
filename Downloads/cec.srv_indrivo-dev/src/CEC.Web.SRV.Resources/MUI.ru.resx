@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Buildings" xml:space="preserve">
+    <value>Дома</value>
+  </data>
+  <data name="ByBuildings" xml:space="preserve">
+    <value>По домам</value>
+  </data>
+  <data name="ByExclusions" xml:space="preserve">
+    <value>По исключениям</value>
+  </data>
+  <data name="ExclusionGrounds" xml:space="preserve">
+    <value>Основания для исключения</value>
+  </data>
+  <data name="FullList" xml:space="preserve">
+    <value>Полный список</value>
+  </data>
+  <data name="Localities" xml:space="preserve">
+    <value>Местности</value>
+  </data>
+  <data name="LocalityInfo" xml:space="preserve">
+    <value>Инфо о нас. пункте</value>
+  </data>
+  <data name="LocalityTypes" xml:space="preserve">
+    <value>Типы местностей</value>
+  </data>
+  <data name="Lookups" xml:space="preserve">
+    <value>Справочники</value>
+  </data>
+  <data name="ManagerTypes" xml:space="preserve">
+    <value>Типы руководителей</value>
+  </data>
+  <data name="mnuConfig" xml:space="preserve">
+    <value>Конфигурирование</value>
+  </data>
+  <data name="mnuElectionTypes" xml:space="preserve">
+    <value>Типы выборов</value>
+  </data>
+  <data name="mnuHome" xml:space="preserve">
+    <value>Главная</value>
+  </data>
+  <data name="mnuPrinting" xml:space="preserve">
+    <value>Распечатка Списков</value>
+  </data>
+  <data name="mnuReports" xml:space="preserve">
+    <value>Отчёты</value>
+  </data>
+  <data name="mnuUserRights" xml:space="preserve">
+    <value>Пользователи и Права</value>
+  </data>
+  <data name="PollingSectorsBorders" xml:space="preserve">
+    <value>Границы избирательных участков</value>
+  </data>
+  <data name="PollingStations" xml:space="preserve">
+    <value>Избирательные участки</value>
+  </data>
+  <data name="PollingStationsList" xml:space="preserve">
+    <value>Список избирательных участков</value>
+  </data>
+  <data name="StayStatements" xml:space="preserve">
+    <value>Заявления о месте нахождения</value>
+  </data>
+  <data name="Streets" xml:space="preserve">
+    <value>Улицы</value>
+  </data>
+  <data name="StreetsList" xml:space="preserve">
+    <value>Список улиц</value>
+  </data>
+  <data name="StreetTypes" xml:space="preserve">
+    <value>Типы улиц</value>
+  </data>
+  <data name="VotersMgmt" xml:space="preserve">
+    <value>Редактирование списков</value>
+  </data>
+  <data name="CreateUser" xml:space="preserve">
+    <value>Создать пользователя</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Роли</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Пользователи</value>
+  </data>
+  <data name="UsersRoles" xml:space="preserve">
+    <value>Пользователи и Роли</value>
+  </data>
+  <data name="PersonStatus" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="AccountErrorNumLimit_LandlinePhoneNumber" xml:space="preserve">
+    <value>{0}  должен содержать {2} цифры.</value>
+  </data>
+  <data name="AccountErrorNumLimit_MobilePhoneNumber" xml:space="preserve">
+    <value>{0}  должен содержать {2} цифры.</value>
+  </data>
+  <data name="AccountErrorNum_LandlinePhoneNumber" xml:space="preserve">
+    <value>Введите только цифры.</value>
+  </data>
+  <data name="AccountErrorNum_MobilePhoneNumber" xml:space="preserve">
+    <value>Введите только цифры.</value>
+  </data>
+  <data name="AccountErrorRequired_FirstName" xml:space="preserve">
+    <value>{0} обязательный.</value>
+  </data>
+  <data name="AccountErrorRequired_LastName" xml:space="preserve">
+    <value>{0} обязательный.</value>
+  </data>
+  <data name="Account_DateOfBirth" xml:space="preserve">
+    <value>Дата рождения</value>
+  </data>
+  <data name="Account_FirstName" xml:space="preserve">
+    <value>Фамилия</value>
+  </data>
+  <data name="Account_LandlinePhoneNumber" xml:space="preserve">
+    <value>Телефон (стационарный)</value>
+  </data>
+  <data name="Account_LastLogin" xml:space="preserve">
+    <value>Последний логин</value>
+  </data>
+  <data name="Account_LastName" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="Account_LoginCreationDate" xml:space="preserve">
+    <value>Дата создания эккаунта</value>
+  </data>
+  <data name="Account_LoginName" xml:space="preserve">
+    <value>Имя пользователя</value>
+  </data>
+  <data name="Account_MobilePhoneNumber" xml:space="preserve">
+    <value>Телефон (моб.)</value>
+  </data>
+  <data name="Account_WorkAddressDetails" xml:space="preserve">
+    <value>Рабочий адрес</value>
+  </data>
+  <data name="ActionChPassword" xml:space="preserve">
+    <value>Изменить пароль</value>
+  </data>
+  <data name="ActionResPassword" xml:space="preserve">
+    <value>Сбросить пароль</value>
+  </data>
+  <data name="ProfileBox1Title" xml:space="preserve">
+    <value>Действия</value>
+  </data>
+  <data name="ProfileTitle" xml:space="preserve">
+    <value>Профильные детали</value>
+  </data>
+</root>

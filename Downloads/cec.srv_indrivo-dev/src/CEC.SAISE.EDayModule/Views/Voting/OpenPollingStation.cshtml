@@ -1,0 +1,170 @@
+﻿@model CEC.SAISE.EDayModule.Models.Voting.OpeningModel
+
+<div class="well">
+    <div class="row">
+        <div class="col-sm-6">
+            @Html.Partial("../Shared/_Delimitator")
+        </div>
+    </div>
+</div>
+
+<div class="alert alert-danger" data-bind="visible: !OpeningData().IsOpeningEnabled()">
+    <p>
+        Atenție! Funcționalitatea nu este activată.
+        <a href="@Url.Action("OpenPollingStation")">Apăsați pentru verificarea activării.</a>
+    </p>
+</div>
+
+<div data-bind="visible: OpeningData().IsOpeningEnabled">
+    <div class="well" data-bind="with: OpeningData">
+        <div class="row">
+            <div class="col-xs-12">
+
+                <h2 class="page-header">Numărul de alegători pe lista de bază</h2>
+                <div class="alert alert-info">
+                    Introduceți numărul de alegători incluși în lista de bază, cu excluderea certificatelor cu drept de vot eliberate.
+                </div>
+
+                <div class="form-horizontal">
+                    <div class="form-group form-group-lg has-feedback">
+                        <label class="col-sm-2 control-label">Numărul de alegători</label>
+                        <div class="col-sm-2">
+                            <div class="input-group-lg " data-bind="validationElement: OpeningVoters">
+                                <input type="text" class="form-control number"
+                                       data-bind="value: OpeningVoters,
+                                              disable: IsOpen">
+                            </div>
+                            <input type="button" class="btn btn-danger pull-right"
+                                   value="Salvează"
+                                   data-bind="visible: !IsOpen(), enable: OpeningVoters.isValid() && (OpeningVoters() > 0 || AllowZeroForOpen()), click: $parent.btnSubmit" />
+                        </div>
+                    </div>
+
+                    <div class="alert alert-warning" data-bind="visible: !IsOpen()">
+                        <span class="fa fa-info-circle"></span>
+                        După introducerea numărului de alegători, secția de votare se socoate deschisă și gata pentru înregistrarea alegătorilor.
+                    </div>
+
+                    <div class="alert alert-danger" data-bind="visible: IsOpen">
+                        <p>
+                            <span class="glyphicon glyphicon-alert"></span>
+
+                            Numărul de alegători la deschidere a fost deja introdus.
+                            Secția este deschisă.
+                            <a href="@Url.Action("Index", "Voting")">Apăsați pentru a trece la introducerea prezenței la vot.</a>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var initialData = '@Html.Raw(Json.Encode(Model))';
+
+    var validationMsgs = {
+        isRequired: 'Câmp obligatoriu',
+        Min0: 'Minimum 0',
+        Min30: 'Minimum 30',
+        Max3500: 'Maximum 3500'
+    };
+    
+    var OpeningVM = function(initialData) {
+        var self = this;
+
+        self.UserData = ko.observable(new UserData(initialData.UserData)),
+        self.OpeningData = ko.observable(new OpeningData(initialData.OpeningData)),
+        self.OpeningResult = ko.observable(),
+
+        self.btnSubmit = function () {
+            if (!self.OpeningData().OpeningVoters.isValid()) {
+                return;
+            }
+
+            var openingData = {
+                assignedPollingStationId: self.OpeningData().AssignedPollingStationId,
+                openingVoters: self.OpeningData().OpeningVoters()
+            }
+
+            var message = '<p>Atenție! Odată transmis, numărul de alegători pe lista de bază, nu va mai putea fi modificat.</p><p>Va fi transmisă valoarea <strong>' + openingData.openingVoters + '</strong>.</p><p>Confirmați transmiterea?</p>';
+            ShowConfirmDialog(message, function(confirmed) {
+                if (confirmed) {
+                    $.ajax({
+                        url: '@Url.Action("OpenPollingStation")',
+                        type: 'post',
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        data: ko.toJSON(openingData),
+                        success: function(data) {
+                            self.OpeningResult(data.Result);
+                            self.OpeningData(new OpeningData(data.OpeningData));
+                        },
+                        error: function(e) {
+
+                            if (e.status == 423) {
+                                BootstrapDialog.show({
+                                    draggable: true,
+                                    cssClass: (typeof cssClass != 'undefined') ? cssClass : 'info-dialog',
+                                    title: (typeof title != 'undefined') ? title : 'Info',
+                                    message: 'Funcționalitatea dată a fost blocată.',
+                                    closable: false,
+                                    buttons: [
+                                    {
+                                        label: 'Închide',
+                                        action: function(dialogItself) {
+                                            dialogItself.close();
+                                            window.location = '@Url.Action("OpenPollingStation")';
+                                        }
+                                    }]
+                                });
+
+                            } else{
+                                ShowAlert('A avut loc o eroare', 'Eroare', 'danger-dialog');
+                            }
+                        }
+                    });
+                }
+            }, 'warning-dialog');
+        }
+    };
+
+    function UserData(UserData) {
+        this.AssignedElection = ko.observable(UserData.AssignedElection);
+        this.AssignedRegion = ko.observable(UserData.AssignedRegion);
+        this.AssignedCircumscription = ko.observable(UserData.AssignedCircumscription);
+        this.AssignedPollingStation = ko.observable(UserData.AssignedPollingStation);
+        this.IsAdmin = ko.observable(UserData.IsAdmin);
+    }
+
+    function OpeningData(OpeningData) {
+        var self = this;
+
+        self.AssignedPollingStationId = OpeningData.AssignedPollingStationId;
+        self.IsOpen = ko.observable(OpeningData.IsOpen);
+        self.IsOpeningEnabled = ko.observable(OpeningData.IsOpeningEnabled);
+        self.AssignedVotersCount = ko.observable(OpeningData.AssignedVotersCount);
+
+        self.AllowZeroForOpen = ko.pureComputed(function() {
+            return self.AssignedVotersCount() === 0;
+        });
+
+        var minValidatorParams = { params: self.AllowZeroForOpen() ? 0 : 30, message: self.AllowZeroForOpen() ? validationMsgs.Min0 : validationMsgs.Min30 };
+
+        self.OpeningVoters = ko.observable(OpeningData.OpeningVoters).extend({ required: { message: validationMsgs.isRequired }, min: minValidatorParams, max: { params: 3500, message: validationMsgs.Max3500 } });
+    }
+
+    ko.validation.configure({
+        insertMessages: true,
+        decoratedElement: true,
+        errorElementClass: 'has-error',
+        errorMessageClass: 'help-block'
+    });
+
+    var parsedJSON = $.parseJSON(initialData);
+
+    var viewModel = new OpeningVM(parsedJSON);
+   
+    ko.applyBindings(viewModel);
+</script>

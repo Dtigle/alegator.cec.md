@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition">
+  <Description />
+  <DataSet Name="DS_PollingStation_PR">
+    <Query>
+      <DataSourceReference>DataSource_SAISE</DataSourceReference>
+      <DataSetParameters>
+        <DataSetParameter Name="@ElectionId">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>false</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>Int32</rd:DbType>
+        </DataSetParameter>
+        <DataSetParameter Name="@DistrictId">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>false</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>Int32</rd:DbType>
+        </DataSetParameter>
+        <DataSetParameter Name="@VillageId">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>true</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>Int32</rd:DbType>
+        </DataSetParameter>
+      </DataSetParameters>
+      <CommandText>select PS.PS_PollingStationId
+		,PS.E_ElectionId
+		,PS.D_DistrictId
+		,PS.V_VillageId
+		,PS.PS_Nr
+		,PS.PS_NameRo
+		,PS.PS_NameRu
+		,PS.PS_Type
+		 from
+vDK_PollingStationPerEDV as PS
+where PS.E_ElectionId = @ElectionId
+		and PS.D_DistrictId = @DistrictId
+		and PS.V_VillageId = @VillageId
+UNION		
+SELECT     null as PS_PollingStationId
+			,NULL AS E_ElectionId
+			,null AS D_DistrictId
+			,null as V_VillageId
+			,0 as PS_Nr
+			,'[Toate]' AS PS_NameRo
+			,'[Toate]' AS PS_NameRu 
+			,'' AS PS_Type
+			 
+ORDER BY PS_Nr</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="E_ElectionId">
+        <DataField>E_ElectionId</DataField>
+        <rd:TypeName>System.Int64</rd:TypeName>
+      </Field>
+      <Field Name="PS_PollingStationId">
+        <DataField>PS_PollingStationId</DataField>
+        <rd:TypeName>System.Int64</rd:TypeName>
+      </Field>
+      <Field Name="D_DistrictId">
+        <DataField>D_DistrictId</DataField>
+        <rd:TypeName>System.Int64</rd:TypeName>
+      </Field>
+      <Field Name="V_VillageId">
+        <DataField>V_VillageId</DataField>
+        <rd:TypeName>System.Int64</rd:TypeName>
+      </Field>
+      <Field Name="PS_Nr">
+        <DataField>PS_Nr</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="PS_NameRo">
+        <DataField>PS_NameRo</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="PS_NameRu">
+        <DataField>PS_NameRu</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="PS_Type">
+        <DataField>PS_Type</DataField>
+        <rd:TypeName>System.Int32</rd:TypeName>
+      </Field>
+      <Field Name="NameLkp">
+        <Value>= CStr(Fields!PS_Nr.Value) + " [" + CStr(Fields!PS_PollingStationId.Value) + "]"</Value>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

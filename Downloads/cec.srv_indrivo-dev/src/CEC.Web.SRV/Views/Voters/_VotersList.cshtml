@@ -1,0 +1,317 @@
+﻿@using System.Activities.Expressions
+@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.Voters
+@using CEC.Web.SRV.Resources
+@using Lib.Web.Mvc.JQuery.JqGrid
+@using CEC.SRV.BLL;
+@using CEC.SRV.Domain.Constants
+
+@{
+    var grid = Html.GridOptions<VotersGridModel>("voters", rowsPerPage: 100, useDynamicScrolling: false)
+        .SetOptions(x =>
+        {
+            x.OnSelectRow = "onRowSelect";
+            x.MultiSelect = true;
+            x.OnSelectAll = "onSelectAll";
+            x.ShrinkToFit = true;
+            x.OnInitGrid = "get_filters";
+        })
+        .BuildGrid(Url.Action("ListVotersAjax", "Voters"), exportAction: Url.Action("ExportVoters"), clearFiltersFunc: "clearAllFilters")
+        .Navigator(new JqGridNavigatorOptions() { Add = false, Edit = false, Delete = false, CloneToTop = true })
+        .AddNavigatorButton("Modificarea Statulului", onClick: "$.setStatus")
+        .AddNavigatorButton(new JqGridNavigatorButtonOptions { Caption = MUI.Voters_ChangeOfAddress, OnClick = "$.updateAddress", Id = "changeAddress" })
+        .AddNavigatorButton(new JqGridNavigatorButtonOptions { Caption = MUI.Voters_ChangeOfPollingStation, OnClick = "$.changePollingStation", Id = "changePollingStation" })
+        .AddNavigatorButton(new JqGridNavigatorButtonOptions { Caption = MUI.Voters_VoterProfile, OnClick = "$.voterProfile", Id = "voterProfile" })
+        .AddNavigatorButton(new JqGridNavigatorButtonOptions { Icon = "ui-icon-newwin", Caption = MUI.Voters_WithSame_SurnName, OnClick = "$.votersBySurname", Id = "votersBySurname" })
+        ;
+    if (SecurityHelper.LoggedUserIsInRole(Transactions.DeleteElectionNumber))
+    {
+        grid.AddNavigatorButton("Ștergerea numărul in listă", onClick: " $.deleteElectionListNumber");
+    }
+}
+
+@grid.GetHtml()
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#PollingStationId').on('change', function () {
+    		var regionId = $('#RegionId').val();
+    		var pollingStationId = $('#PollingStationId').val();
+
+    		var votersGrid = $('#voters').jqGrid();
+    		votersGrid.jqGrid('setGridParam', { 'postData': { 'regionId': regionId, 'pollingStationId': pollingStationId } });
+    		votersGrid.trigger('reloadGrid');
+	        hideNavigatorButton();
+    	});
+        $('#RegionId').on('change', function () {
+            var regionId = $('#RegionId').val();
+            $('#PollingStationId').select2('data', null);
+    		var pollingStationId = $('#PollingStationId').val();
+    		var votersGrid = $('#voters').jqGrid();
+    		votersGrid.jqGrid('setGridParam', { 'postData': { 'regionId': regionId, 'pollingStationId': pollingStationId } });
+    		votersGrid.trigger('reloadGrid');
+	        hideNavigatorButton();
+    	});
+    	@grid.GetJavaScript();
+        hideNavigatorButton();
+
+        function get_filters() {
+            var grid = $(this);
+
+            //load grid state
+            $.loadGridState(grid);
+
+            //on column resize
+            grid.bind("jqGridResizeStop", function (event, ui) {
+                $.saveGridState($(this));
+            });
+
+            //setFilters when jqgrid appears
+            setTimeout(function () {
+                var colModel = grid.jqGrid('getGridParam', 'colModel');
+                setFiltersForColModel(colModel);
+            }, 50);
+
+            var postdata = grid.jqGrid('getGridParam', 'postData');
+            jQuery.extend(postdata,
+                {
+                    filters: '',
+                    searchField: 'Status',
+                    searchOper: 'eq',
+                    searchString: 1
+                });
+            grid.jqGrid('setGridParam', { search: true, postData: postdata });
+            grid.trigger("reloadGrid");
+        }
+    });
+    
+    $.setStatus = function (e) {
+		var selections = GetGridSelections();
+		var url = '@Url.Action("SetStatus")';
+
+	    if (selections == null || selections.length == 0) {
+	        BootstrapDialog.alert({message: '@MUI.VoterNotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+        	return;
+     	}
+	    if (selections.length > 1) {
+	        BootstrapDialog.alert({ message: '@MUI.UserSelectedManyAlertMessage', title: '@MUI.DialogTitle_Information' });
+		    return;
+		}
+     	$.openDialog($(this), {
+     	    title: '@MUI.DialogTitle_ChangeStatus',
+     		url: url + '?personId=' + selections,
+     		onSubmit: function () {
+     		    $("#voters").trigger('reloadGrid', [{ current: true }]);
+     		}
+     	});
+    };
+
+    $.voterProfile = function (e) {
+        var selections = GetGridSelections();
+
+        if (selections == null || selections.length == 0) {
+            BootstrapDialog.alert({ message: '@MUI.VoterNotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+            return;
+        }
+        if (selections.length > 1) {
+            BootstrapDialog.alert({ message: '@MUI.UserSelectedManyAlertMessage', title: '@MUI.DialogTitle_Information' });
+            return;
+        }
+
+        $.openDialog($(this), {
+            title: '@MUI.Voters_VoterProfile',
+            url: '@Url.Action("CreateVoterProfile")?personId=' + selections,
+            onClose: function () {
+                dialog.close();
+                //$.getCountNotification();
+            }
+        });
+    }
+
+    $.votersBySurname = function (e) {
+        var selectedIdnp = GetGridSelectedIdnp();
+
+        if (!selectedIdnp || selectedIdnp == 0) {
+            BootstrapDialog.alert({ message: '@MUI.VoterNotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+            return;
+        }
+
+        $.openDialog($(this), {
+            title: '@MUI.Voters_WithSame_SurnName',
+            url: '@Url.Action("VotersBySurname", "Voters")',
+            usePost: true,
+            postData: {
+                idnp: selectedIdnp
+            },
+            onClose: function () {
+                //dialog.close();
+                //$.getCountNotification();
+            }
+        });
+    }
+
+
+    $.deleteElectionListNumber = function() {
+        var url = '@Url.Action("DeleteElectionNumberList")';
+        BootstrapDialog.show({
+            message: 'Confirmati stergerea ?',
+            buttons: [{
+                id: "btnConfirm",
+                label: 'Da confirm',
+                cssClass: 'btn-primary',
+                autospin: true,
+                action: function (dialog) {
+                    dialog.getModalBody().html("Procedura de ștergere a fost transmisă cu succes. Durata ei este de pină la 30 secunde");
+                    var $button = this;
+                    var $button1 = $('#btnNegation');
+                    $button.disable();
+                    $button1.html('Închide');
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        success: function() {
+
+                        }
+                    });
+                }
+            }, {
+                id:"btnNegation",
+                label: 'Nu ',
+                action: function (dialogRef) {
+                    dialogRef.close();
+                }
+            }]
+        });
+     
+    }
+
+	$.updateAddress = function (e) {
+	    var selections = GetGridSelections();
+		var url = '@Url.Action("UpdateAddress")';
+
+		if (selections == null || selections.length == 0) {
+		    BootstrapDialog.alert({ message: '@MUI.VoterNotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+			return;
+		}
+	    if (selections.length > 1) {
+	        BootstrapDialog.alert({ message: '@MUI.TooManyVotersSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+             return;
+        }
+		$.openDialog($(this), {
+		    title: '@MUI.DialogTitle_ChangeAddress',
+		    url: url + '?personId=' + selections,
+			onSubmit: function () {
+			    $("#voters").trigger('reloadGrid', [{ current: true }]);
+				$.getCountNotification();
+			}
+		});
+	};
+	
+    $.changePollingStation = function (e) {
+        var selections = GetGridSelections();
+		var url = '@Url.Action("ChangePollingStationForm")';
+
+		if (selections == null || selections.length == 0) {
+		    BootstrapDialog.alert({ message: '@MUI.VoterNotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+			return;
+		}
+
+		$.openDialog($(this), {
+		    title: '@MUI.DialogTitle_ChangePersonPollingStation',
+		    url: url,
+		    usePost: true,
+		    postData: {peopleIds: selections},
+		    onContentLoad: function (submitForm) {
+		        for (var i = 0; i < selections.length; i++) {
+		            submitForm.append($('<input type="hidden" />').attr('name', 'PeopleIds[' + i + ']').val(selections[i]));
+		        }
+		        $('.votersCounter', submitForm).text(selections.length);
+		    },
+			onSubmit: function () {
+			    $("#voters").trigger('reloadGrid', [{ current: true }]);
+				$.getCountNotification();
+			}
+		});
+	};
+	
+	function GetGridSelections() {
+	    var selections = $("#voters").jqGrid('getGridParam', 'selarrrow');
+		return selections;
+	}
+	
+	clearAllFilters = function (e) {
+	    $('#PollingStationId').select2('data', null);
+	    $('#RegionId').select2('data', null);
+        var regionId = $('#RegionId').val();
+	    var pollingStationId = $('#PollingStationId').val();
+	    var votersGrid = $('#voters');
+	    votersGrid.jqGrid('setGridParam', { 'postData': { 'regionId': regionId, 'pollingStationId': pollingStationId } });
+		
+	    var grid = $(this);
+	    var colModel = grid.jqGrid('getGridParam', 'colModel');
+	    colModel.forEach(function (entry) {
+	    	if (entry.hasOwnProperty('searchoptions') && entry.searchoptions.hasOwnProperty('sopt')) {
+	    		$('a.soptclass[colname=' + entry.name + ']').attr('soper', entry.searchoptions.sopt[0]);
+	    		if (entry.searchoptions.sopt[0] == 'eq') {
+	    			$('a.soptclass[colname=' + entry.name + ']').text('==');
+	    		}
+	    		if (entry.searchoptions.sopt[0] == 'lt') {
+	    			$('a.soptclass[colname=' + entry.name + ']').text('<');
+	    		}
+	    	}
+	    });
+		
+	    grid[0].clearToolbar();
+	    votersGrid.trigger('reloadGrid');
+	};
+	
+	function onRowSelect() {
+	    var selections = GetGridSelections();
+	    rowsSelected($(this), selections);
+	}
+
+	function onSelectAll(aRowids, status) {
+	    if (status) {
+	        rowsSelected($(this), aRowids);
+	    } else {
+	        $('#changeAddress').hide();
+	        $('#changePollingStation').hide();
+	    }
+	}
+    function GetGridSelectedIdnp() {
+
+        var selections = $("#voters").jqGrid('getGridParam', 'selarrrow');
+        var real = $("tr[id='" + selections + "'] > td[aria-describedby='voters_Idnp']").attr('title');
+
+        return real;
+    }
+	function rowsSelected(grid, selections) {
+        if (selections != null && selections.length > 0) {
+            var firstElement = true;
+            var rowData;
+            for (var j = 0; j < selections.length; j++) {
+                if (firstElement) {
+                    rowData = grid.jqGrid("getRowData", selections[j]);
+                    firstElement = false;
+                }
+                var rowData2 = grid.jqGrid("getRowData", selections[j]);
+                if (rowData.RegionHasStreets != rowData2.RegionHasStreets) {
+                    $('#changeAddress').hide();
+                    $('#changePollingStation').hide();
+                    break;
+                } else if (rowData2.RegionHasStreets == 'Yes') {
+                    $('#changeAddress').show();
+                    $('#changePollingStation').hide();
+                } else {
+                    $('#changeAddress').hide();
+                    $('#changePollingStation').show();
+                }
+            }
+        }
+    }
+	
+	function hideNavigatorButton() {
+		$('#changeAddress').hide();
+		$('#changePollingStation').hide();
+	}
+</script>

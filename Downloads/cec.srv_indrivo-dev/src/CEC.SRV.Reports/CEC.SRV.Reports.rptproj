@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <FullPath>Debug</FullPath>
+    <OutputPath>bin\Debug</OutputPath>
+    <ErrorLevel>2</ErrorLevel>
+    <OverwriteDatasets>False</OverwriteDatasets>
+    <OverwriteDataSources>False</OverwriteDataSources>
+    <TargetServerVersion>SSRS2008R2</TargetServerVersion>
+    <Platform>Win32</Platform>
+    <TargetReportFolder>/SRV/ST/Reports</TargetReportFolder>
+    <TargetDatasetFolder>/SRV/ST/Datasets</TargetDatasetFolder>
+    <TargetDatasourceFolder>/SRV/ST/Data Sources</TargetDatasourceFolder>
+    <TargetReportPartFolder>/SRV/ST/Report Parts</TargetReportPartFolder>
+    <TargetServerURL>http://192.168.200.195/reportserver</TargetServerURL>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'DebugLocal' ">
+    <FullPath>DebugLocal</FullPath>
+    <OutputPath>bin\DebugLocal</OutputPath>
+    <ErrorLevel>2</ErrorLevel>
+    <OverwriteDatasets>False</OverwriteDatasets>
+    <OverwriteDataSources>False</OverwriteDataSources>
+    <TargetServerVersion>SSRS2008R2</TargetServerVersion>
+    <Platform>Win32</Platform>
+    <TargetReportFolder>CEC.SRV.Reports</TargetReportFolder>
+    <TargetDatasetFolder>Datasets</TargetDatasetFolder>
+    <TargetDatasourceFolder>Data Sources</TargetDatasourceFolder>
+    <TargetReportPartFolder>Report Parts</TargetReportPartFolder>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <FullPath>Release</FullPath>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorLevel>2</ErrorLevel>
+    <OverwriteDatasets>True</OverwriteDatasets>
+    <OverwriteDataSources>False</OverwriteDataSources>
+    <TargetServerVersion>SSRS2008R2</TargetServerVersion>
+    <Platform>Win32</Platform>
+    <TargetReportFolder>/SRV/ST/Reports</TargetReportFolder>
+    <TargetDatasetFolder>/SRV/ST/Datasets</TargetDatasetFolder>
+    <TargetDatasourceFolder>/SRV/ST/Data Sources</TargetDatasourceFolder>
+    <TargetReportPartFolder>/SRV/ST/Report Parts</TargetReportPartFolder>
+    <TargetServerURL>http://192.168.200.195/ReportServer</TargetServerURL>
+  </PropertyGroup>
+  <PropertyGroup>
+    <State>$base64$PFNvdXJjZUNvbnRyb2xJbmZvIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhtbG5zOmRkbDI9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDAzL2VuZ2luZS8yIiB4bWxuczpkZGwyXzI9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDAzL2VuZ2luZS8yLzIiIHhtbG5zOmRkbDEwMF8xMDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDA4L2VuZ2luZS8xMDAvMTAwIiB4bWxuczpkZGwyMDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEwL2VuZ2luZS8yMDAiIHhtbG5zOmRkbDIwMF8yMDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEwL2VuZ2luZS8yMDAvMjAwIiB4bWxuczpkZGwzMDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDExL2VuZ2luZS8zMDAiIHhtbG5zOmRkbDMwMF8zMDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDExL2VuZ2luZS8zMDAvMzAwIiB4bWxuczpkZGw0MDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEyL2VuZ2luZS80MDAiIHhtbG5zOmRkbDQwMF80MDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEyL2VuZ2luZS80MDAvNDAwIiB4bWxuczpkZGw1MDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEzL2VuZ2luZS81MDAiIHhtbG5zOmRkbDUwMF81MDA9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vYW5hbHlzaXNzZXJ2aWNlcy8yMDEzL2VuZ2luZS81MDAvNTAwIiB4bWxuczpkd2Q9Imh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vRGF0YVdhcmVob3VzZS9EZXNpZ25lci8xLjAiPg0KICA8RW5hYmxlZD50cnVlPC9FbmFibGVkPg0KICA8UHJvamVjdE5hbWU+U0FLPC9Qcm9qZWN0TmFtZT4NCiAgPEF1eFBhdGg+U0FLPC9BdXhQYXRoPg0KICA8TG9jYWxQYXRoPlNBSzwvTG9jYWxQYXRoPg0KICA8UHJvdmlkZXI+U0FLPC9Qcm92aWRlcj4NCjwvU291cmNlQ29udHJvbEluZm8+</State>
+    <DataSources>@(DataSource)</DataSources>
+    <DataSets>@(DataSet)</DataSets>
+    <Reports>@(Report)</Reports>
+  </PropertyGroup>
+  <ItemGroup>
+    <DataSet Include="dsCircumscriptionLists.rsd" />
+    <DataSet Include="dsCircumscriptionsByListId.rsd" />
+    <DataSet Include="dsCircumscriptions_RS.rsd" />
+    <DataSet Include="dsCircumscriptionVoters.rsd" />
+    <DataSet Include="dsCircumscription_ED.rsd" />
+    <DataSet Include="dsElectionCircumscriptions_Admin.rsd" />
+    <DataSet Include="dsElectionPollingStations_Admin.rsd" />
+    <DataSet Include="dsElectionResult_RS.rsd" />
+    <DataSet Include="dsElectionRounds_Admin.rsd" />
+    <DataSet Include="dsElectionRounds_RS.rsd" />
+    <DataSet Include="dselectionRound_ED.rsd" />
+    <DataSet Include="dsElections_Admin.rsd" />
+    <DataSet Include="dsElections_RS.rsd" />
+    <DataSet Include="dsElection_ED.rsd" />
+    <DataSet Include="dsPollingStations_RS.rsd" />
+    <DataSet Include="dsPollingStation_ED.rsd" />
+    <DataSet Include="dsPoolingStations.rsd" />
+    <DataSet Include="dsRegionPSVotersTree.rsd" />
+    <DataSet Include="dsRegions.rsd" />
+    <DataSet Include="dsRegions_RS.rsd" />
+    <DataSet Include="dsRegionVotersTree.rsd" />
+    <DataSet Include="DS_District_RP.rsd" />
+    <DataSet Include="DS_Election_RP.rsd" />
+    <DataSet Include="DS_PollingStation_PR.rsd" />
+    <DataSet Include="DS_Village_PR.rsd" />
+    <DataSet Include="GetVotersByPollingStationList.rsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <DataSource Include="CEC_Admin.rds" />
+    <DataSource Include="CEC_SRV.rds" />
+    <DataSource Include="DataSource_ReportingServer.rds" />
+    <DataSource Include="DataSource_SAISE.rds" />
+    <DataSource Include="EdayDatatSource.rds" />
+  </ItemGroup>
+  <ItemGroup>
+    <Report Include="BallotPapper_Rep.rdl" />
+    <Report Include="CircumscriptionVoters.rdl" />
+    <Report Include="Copy of StayStatementForm2021.rdl" />
+    <Report Include="ElectionResults.rdl" />
+    <Report Include="ElectionResultsReport.rdl" />
+    <Report Include="ElectionStats_ExtWeb.rdl" />
+    <Report Include="ParliamentElectionStats_ExtDisp.rdl" />
+    <Report Include="ParliamentElectionStats_ExtWeb.rdl" />
+    <Report Include="PollingStationsBorders2.rdl" />
+    <Report Include="PollingStationsVoters.rdl" />
+    <Report Include="ProcVerbTotal.rdl" />
+    <Report Include="RegionsPSVoters.rdl" />
+    <Report Include="RegionsVoters.rdl" />
+    <Report Include="StayStatementForm.rdl" />
+    <Report Include="StayStatementForm2020.rdl" />
+    <Report Include="StayStatementForm2021.rdl" />
+    <Report Include="TurnoutStats_Districts.rdl" />
+    <Report Include="TurnoutStats_ExtDisp_Districts.rdl" />
+    <Report Include="TurnoutStats_ExtDisp_PStations.rdl" />
+    <Report Include="TurnoutStats_ExtDisp_Villages.rdl" />
+    <Report Include="TurnoutStats_ExtWeb_Districts.rdl" />
+    <Report Include="TurnoutStats_ExtWeb_PStations.rdl" />
+    <Report Include="TurnoutStats_ExtWeb_Villages.rdl" />
+    <Report Include="TurnoutStats_Inspection.rdl" />
+    <Report Include="TurnoutStats_PStations.rdl" />
+    <Report Include="TurnoutStats_Villages.rdl" />
+    <Report Include="VotersList.rdl" />
+    <Report Include="VotersList_A3_2014.rdl" />
+    <Report Include="VotersList_A3_2019.rdl" />
+    <Report Include="VotersList_A4_Partial.rdl" />
+    <Report Include="VotersList_Abroad_A3_2014.rdl" />
+    <Report Include="VotersList_Abroad_A3_2019.rdl" />
+    <Report Include="VotersList_LocalElections_A3_2015.rdl" />
+    <Report Include="VotersList_Verification.rdl" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Reporting Services\Microsoft.ReportingServices.MSBuilder.targets" />
+</Project>

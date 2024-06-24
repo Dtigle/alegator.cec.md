@@ -1,0 +1,63 @@
+﻿@using CEC.Web.SRV.Resources
+@model CEC.Web.SRV.Models.Lookup.UpdateElectionTypeModel
+
+<div class="clearfix">
+
+    @using (Html.BeginForm("CreateUpdateElectionType", "Lookup", FormMethod.Post, new { @class = "form-horizontal" }))
+    {   
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(x => x.Id)
+        <div class="form-group">
+            @Html.EditorFor(x => x.Name)
+        </div>
+	    <div class="form-group">
+		    @Html.EditorFor(x => x.Description)
+	    </div>
+
+        <div class="form-group row">
+            @Html.EditorFor(x => x.ElectionCompetitorType)
+        </div>
+        
+        <div class="form-group row">
+            @Html.EditorFor(x => x.ElectionRoundsNo)
+        </div> 
+        
+        <div class="form-group row">
+            @Html.EditorFor(x => x.ElectionArea)
+        </div>
+
+        <div class="form-group row">
+            @Html.EditorFor(x => x.CircumscriptionListId)
+        </div>
+
+        <b style="margin-left: 22px;">@MUI.ElectionTypes_AdmiteVote_Text</b>
+        <div class="form-group row" style="margin-left: 45px;">
+            <label style="font-weight: normal">
+                @Html.EditorFor(x => x.AcceptResidenceDoc)
+                @MUI.ElectionTypes_AcceptResidenceDoc
+            </label>
+            <br />
+            <label style="font-weight: normal">
+                @Html.EditorFor(x => x.AcceptVotingCert)
+                @MUI.ElectionTypes_AcceptVotingCert
+            </label>
+            <br />
+            <label style="font-weight: normal">
+                @Html.EditorFor(x => x.AcceptAbroadDeclaration)
+                @MUI.ElectionTypes_AcceptAbroadDeclaration
+            </label>
+        </div>
+		
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+	            <input type="submit" value="@MUI.ButtonSave" class="btn btn-primary" />
+            </div>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+    $('.rsa-form-group > div.col-sm-4').removeClass('col-sm-4').addClass('col-sm-6');
+    $('.rsa-form-group > div.col-sm-2').removeClass('col-sm-2').addClass('col-sm-4');
+</script>

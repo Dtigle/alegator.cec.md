@@ -1,0 +1,52 @@
+﻿.form-horizontal .control-display-value {
+    padding-top: 4px;
+}
+
+.ui-jqgrid td a {
+    color: blue;
+}
+
+.ui-jqgrid tr.ui-state-highlight {
+    background: #fbec88 50% 50% repeat-x
+}
+
+.ui-jqgrid tr.deletedRecord {
+    color: red;
+    text-decoration: line-through;
+}
+
+.ui-menu {
+    z-index: 9998 !important;
+}
+
+
+.modal-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: whitesmoke;
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.modal-loading .loading-text {
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    padding: 5px; 
+    border: 2px solid #ccc;
+    background-color:rgba(255,255,255,1);
+    color: black;
+}
+
+.v{
+    display: none;
+    color: red;
+    font-size: large;
+    background-color: yellow;
+}
+
+.v:before {
+    content: "v. 3.0 TEST";
+}

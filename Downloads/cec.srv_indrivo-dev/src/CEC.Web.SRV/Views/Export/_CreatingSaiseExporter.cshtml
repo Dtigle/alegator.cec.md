@@ -1,0 +1,38 @@
+﻿@using CEC.Web.SRV.Resources
+@model CEC.Web.SRV.Models.Export.ExportRsaToSaiseModel
+
+<div class="clearfix">
+
+    @using (Html.BeginForm("ExportRsaToSaise", "Export", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.EditorFor(x => x.ElectionInfo.ElectionId)
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(x => x.ExportAll)
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="@MUI.ButtonExecute" class="btn btn-primary" />
+            </div>
+        </div>
+    }
+</div>
+
+
+<script type="text/javascript">
+	function electionsDataRequest(term, page, pageLimit) {
+		return {
+			q: term,
+			pageLimit: pageLimit,
+			page: page
+		};
+	}
+
+	function electionsResults(data, more) {
+		return { results: data, more: more };
+	}
+</script>
+

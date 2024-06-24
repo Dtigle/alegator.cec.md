@@ -1,0 +1,15 @@
+﻿@model IEnumerable<CEC.SAISE.EDayModule.Models.Home.ReportLinkModel>
+
+@if (Model.Any())
+{
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li><a href="@Url.Content(item.Path)">@item.Title</a></li>
+        }
+    </ul>
+}
+else
+{
+    <label>Nu aveți rapoarte accesibile</label>
+}

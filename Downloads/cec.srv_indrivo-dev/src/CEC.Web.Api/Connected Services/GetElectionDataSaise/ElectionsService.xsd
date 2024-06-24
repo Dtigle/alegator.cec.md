@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/SAISE.Admin.WebApp.WebServices.Types" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SAISE.Admin.WebApp.WebServices.Types" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:19938/WebServices/ElectionsService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/SAISE.Admin.Domain.election" />
+  <xs:import schemaLocation="http://localhost:19938/WebServices/ElectionsService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://localhost:19938/WebServices/ElectionsService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/SAISE.Admin.Domain.Lookup" />
+  <xs:complexType name="ElectionsRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:PageRequest">
+        <xs:sequence>
+          <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/SAISE.Admin.Domain.election" minOccurs="0" name="Statuses" nillable="true" type="q1:ArrayOfElectionStatus" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ElectionsRequest" nillable="true" type="tns:ElectionsRequest" />
+  <xs:complexType name="PageRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="PageNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="PageSize" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PageRequest" nillable="true" type="tns:PageRequest" />
+  <xs:complexType name="ElectionsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="StartIndex" type="xs:int" />
+      <xs:element minOccurs="0" name="PageSize" type="xs:int" />
+      <xs:element minOccurs="0" name="Total" type="xs:int" />
+      <xs:element minOccurs="0" name="Elections" nillable="true" type="tns:ArrayOfElection" />
+      <xs:element minOccurs="0" name="ElectionTypes" nillable="true" type="tns:ArrayOfElectionType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ElectionsResponse" nillable="true" type="tns:ElectionsResponse" />
+  <xs:complexType name="ArrayOfElection">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Election" nillable="true" type="tns:Election" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfElection" nillable="true" type="tns:ArrayOfElection" />
+  <xs:complexType name="Election">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ElectionTypeId" type="xs:long" />
+      <xs:element minOccurs="0" name="ElectionDate" type="xs:dateTime" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/SAISE.Admin.Domain.election" minOccurs="0" name="Status" type="q2:ElectionStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Election" nillable="true" type="tns:Election" />
+  <xs:complexType name="ArrayOfElectionType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ElectionType" nillable="true" type="tns:ElectionType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfElectionType" nillable="true" type="tns:ArrayOfElectionType" />
+  <xs:complexType name="ElectionType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="Code" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/SAISE.Admin.Domain.election" minOccurs="0" name="CompetitorType" type="q3:ElectionCompetitorType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ElectionType" nillable="true" type="tns:ElectionType" />
+  <xs:complexType name="ArrayOfElectionRound">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ElectionRound" nillable="true" type="tns:ElectionRound" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfElectionRound" nillable="true" type="tns:ArrayOfElectionRound" />
+  <xs:complexType name="ElectionRound">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="Number" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ElectionDate" type="xs:dateTime" />
+      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/SAISE.Admin.Domain.election" minOccurs="0" name="Status" type="q4:ElectionRoundStatus" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ElectionRound" nillable="true" type="tns:ElectionRound" />
+  <xs:complexType name="ElectionCircumscriptionsRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:PageRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ElectionRoundId" type="xs:long" />
+          <xs:element minOccurs="0" name="ExpandPollingStations" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ElectionCircumscriptionsRequest" nillable="true" type="tns:ElectionCircumscriptionsRequest" />
+  <xs:complexType name="ElectionCircumscriptionsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="StartIndex" type="xs:int" />
+      <xs:element minOccurs="0" name="PageSize" type="xs:int" />
+      <xs:element minOccurs="0" name="Total" type="xs:int" />
+      <xs:element minOccurs="0" name="Items" nillable="true" type="tns:ArrayOfElectionCircumscription" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ElectionCircumscriptionsResponse" nillable="true" type="tns:ElectionCircumscriptionsResponse" />
+  <xs:complexType name="ArrayOfElectionCircumscription">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ElectionCircumscription" nillable="true" type="tns:ElectionCircumscription" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfElectionCircumscription" nillable="true" type="tns:ArrayOfElectionCircumscription" />
+  <xs:complexType name="ElectionCircumscription">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="Number" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NameRo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NameRu" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RegionId" type="xs:long" />
+      <xs:element minOccurs="0" name="PollingStations" nillable="true" type="tns:ArrayOfElectionPollingStation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ElectionCircumscription" nillable="true" type="tns:ElectionCircumscription" />
+  <xs:complexType name="ArrayOfElectionPollingStation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ElectionPollingStation" nillable="true" type="tns:ElectionPollingStation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfElectionPollingStation" nillable="true" type="tns:ArrayOfElectionPollingStation" />
+  <xs:complexType name="ElectionPollingStation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="RegionId" type="xs:long" />
+      <xs:element minOccurs="0" name="PollingStationId" type="xs:long" />
+      <xs:element minOccurs="0" name="ElectionRoundId" type="xs:long" />
+      <xs:element minOccurs="0" name="CircumscriptionId" type="xs:long" />
+      <xs:element minOccurs="0" name="Number" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ContactInfo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumberPerElection" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ElectionPollingStation" nillable="true" type="tns:ElectionPollingStation" />
+  <xs:complexType name="ElectionPollingStationsRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:PageRequest">
+        <xs:sequence>
+          <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ElectionCircumscriptionsId" nillable="true" type="q5:ArrayOflong" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ElectionPollingStationsRequest" nillable="true" type="tns:ElectionPollingStationsRequest" />
+  <xs:complexType name="ElectionPollingStationsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="StartIndex" type="xs:int" />
+      <xs:element minOccurs="0" name="PageSize" type="xs:int" />
+      <xs:element minOccurs="0" name="Total" type="xs:int" />
+      <xs:element minOccurs="0" name="Items" nillable="true" type="tns:ArrayOfElectionPollingStation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ElectionPollingStationsResponse" nillable="true" type="tns:ElectionPollingStationsResponse" />
+  <xs:complexType name="ElectionRegions">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Root" nillable="true" type="tns:Region" />
+      <xs:element minOccurs="0" name="RegionTypes" nillable="true" type="tns:ArrayOfRegionType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ElectionRegions" nillable="true" type="tns:ElectionRegions" />
+  <xs:complexType name="Region">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="NameRo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NameRu" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RegionTypeId" type="xs:long" />
+      <xs:element minOccurs="0" name="Children" nillable="true" type="tns:ArrayOfRegion" />
+      <xs:element minOccurs="0" name="StatisticCode" nillable="true" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Region" nillable="true" type="tns:Region" />
+  <xs:complexType name="ArrayOfRegion">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Region" nillable="true" type="tns:Region" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRegion" nillable="true" type="tns:ArrayOfRegion" />
+  <xs:complexType name="ArrayOfRegionType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RegionType" nillable="true" type="tns:RegionType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRegionType" nillable="true" type="tns:ArrayOfRegionType" />
+  <xs:complexType name="RegionType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RegionType" nillable="true" type="tns:RegionType" />
+  <xs:complexType name="ElectionCompetitorsRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ElectionCircumscriptionId" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="ElectionRoundId" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ElectionCompetitorsRequest" nillable="true" type="tns:ElectionCompetitorsRequest" />
+  <xs:complexType name="ElectionCompetitors">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Total" type="xs:int" />
+      <xs:element minOccurs="0" name="Competitors" nillable="true" type="tns:ArrayOfElectionCompetitor" />
+      <xs:element minOccurs="0" name="PoliticalParties" nillable="true" type="tns:ArrayOfPoliticalParty" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ElectionCompetitors" nillable="true" type="tns:ElectionCompetitors" />
+  <xs:complexType name="ArrayOfElectionCompetitor">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ElectionCompetitor" nillable="true" type="tns:ElectionCompetitor" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfElectionCompetitor" nillable="true" type="tns:ArrayOfElectionCompetitor" />
+  <xs:complexType name="ElectionCompetitor">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="ElectionCircumscriptionId" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="Position" type="xs:int" />
+      <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/SAISE.Admin.Domain.election" minOccurs="0" name="CompetitorType" type="q6:ElectionCompetitorType" />
+      <xs:element minOccurs="0" name="PoliticalPartyId" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="IsIndependent" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ReferendumQuestion" nillable="true" type="tns:ReferendumQuestion" />
+      <xs:element minOccurs="0" name="CompetitorMembers" nillable="true" type="tns:ArrayOfElectionCompetitorMember" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ElectionCompetitor" nillable="true" type="tns:ElectionCompetitor" />
+  <xs:complexType name="ReferendumQuestion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="QuestionRo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="QuestionRu" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReferendumQuestion" nillable="true" type="tns:ReferendumQuestion" />
+  <xs:complexType name="ArrayOfElectionCompetitorMember">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ElectionCompetitorMember" nillable="true" type="tns:ElectionCompetitorMember" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfElectionCompetitorMember" nillable="true" type="tns:ArrayOfElectionCompetitorMember" />
+  <xs:complexType name="ElectionCompetitorMember">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="Position" type="xs:int" />
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Idnp" nillable="true" type="xs:string" />
+      <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/SAISE.Admin.Domain.Lookup" minOccurs="0" name="Gender" type="q7:GenderEnum" />
+      <xs:element minOccurs="0" name="FirstNameRo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstNameRu" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastNameRo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastNameRu" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BirthDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OccupationRu" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OccupationRo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WorkplaceRu" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WorkplaceRo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LogoColor" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="LogoBlackWhite" nillable="true" type="xs:base64Binary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ElectionCompetitorMember" nillable="true" type="tns:ElectionCompetitorMember" />
+  <xs:complexType name="ArrayOfPoliticalParty">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PoliticalParty" nillable="true" type="tns:PoliticalParty" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPoliticalParty" nillable="true" type="tns:ArrayOfPoliticalParty" />
+  <xs:complexType name="PoliticalParty">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="ShortName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NameRo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NameRu" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LogoColor" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="LogoBlackWhite" nillable="true" type="xs:base64Binary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PoliticalParty" nillable="true" type="tns:PoliticalParty" />
+  <xs:complexType name="ElectionMembersRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:PageRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ElectionRoundId" type="xs:long" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ElectionMembersRequest" nillable="true" type="tns:ElectionMembersRequest" />
+  <xs:complexType name="ElectionMembers">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="StartIndex" type="xs:int" />
+      <xs:element minOccurs="0" name="PageSize" type="xs:int" />
+      <xs:element minOccurs="0" name="Total" type="xs:int" />
+      <xs:element minOccurs="0" name="Items" nillable="true" type="tns:ArrayOfElectionMember" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ElectionMembers" nillable="true" type="tns:ElectionMembers" />
+  <xs:complexType name="ArrayOfElectionMember">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ElectionMember" nillable="true" type="tns:ElectionMember" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfElectionMember" nillable="true" type="tns:ArrayOfElectionMember" />
+  <xs:complexType name="ElectionMember">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="Idnp" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ElectionPollingStationId" type="xs:long" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/SAISE.Admin.Domain.election" minOccurs="0" name="Role" type="q8:ElectionMemberRole" />
+      <xs:element minOccurs="0" name="BadgeNumber" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ElectionMember" nillable="true" type="tns:ElectionMember" />
+  <xs:complexType name="ElectionObserversRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:PageRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ElectionRoundId" type="xs:long" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ElectionObserversRequest" nillable="true" type="tns:ElectionObserversRequest" />
+  <xs:complexType name="ElectionObservers">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="StartIndex" type="xs:int" />
+      <xs:element minOccurs="0" name="PageSize" type="xs:int" />
+      <xs:element minOccurs="0" name="Total" type="xs:int" />
+      <xs:element minOccurs="0" name="Items" nillable="true" type="tns:ArrayOfElectionObserver" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ElectionObservers" nillable="true" type="tns:ElectionObservers" />
+  <xs:complexType name="ArrayOfElectionObserver">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ElectionObserver" nillable="true" type="tns:ElectionObserver" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfElectionObserver" nillable="true" type="tns:ArrayOfElectionObserver" />
+  <xs:complexType name="ElectionObserver">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="Idnp" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/SAISE.Admin.Domain.election" minOccurs="0" name="Accreditation" type="q9:ElectionObserverAccreditation" />
+      <xs:element minOccurs="0" name="AccreditationNumber" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ElectionObserver" nillable="true" type="tns:ElectionObserver" />
+  <xs:complexType name="ElectionResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ElectionRoundId" type="xs:long" />
+      <xs:element minOccurs="0" name="CompetitorResults" nillable="true" type="tns:ArrayOfElectionCompetitorResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ElectionResult" nillable="true" type="tns:ElectionResult" />
+  <xs:complexType name="ArrayOfElectionCompetitorResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ElectionCompetitorResult" nillable="true" type="tns:ElectionCompetitorResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfElectionCompetitorResult" nillable="true" type="tns:ArrayOfElectionCompetitorResult" />
+  <xs:complexType name="ElectionCompetitorResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ElectionCompetitorId" type="xs:long" />
+      <xs:element minOccurs="0" name="Result" type="tns:CompetitorResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ElectionCompetitorResult" nillable="true" type="tns:ElectionCompetitorResult" />
+  <xs:simpleType name="CompetitorResult">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Loser" />
+      <xs:enumeration value="Draw" />
+      <xs:enumeration value="Winner" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="CompetitorResult" nillable="true" type="tns:CompetitorResult" />
+  <xs:complexType name="ElectionCircumscriptionPollingStation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="Number" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NameRo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NameRu" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RegionId" type="xs:long" />
+      <xs:element minOccurs="0" name="PollingStationNumber" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ElectionCircumscriptionPollingStation" nillable="true" type="tns:ElectionCircumscriptionPollingStation" />
+</xs:schema>

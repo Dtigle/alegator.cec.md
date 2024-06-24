@@ -1,0 +1,30 @@
+﻿CREATE TABLE [Audit].[People_AUD]
+(
+	personId BIGINT not null,
+       REV INT not null,
+       REVTYPE TINYINT not null,
+       idnp NVARCHAR(13) null,
+       firstName NVARCHAR(255) null,
+       surname NVARCHAR(255) null,
+       middleName NVARCHAR(255) null,
+       dateOfBirth DATETIME null,
+       created DATETIMEOFFSET null,
+       modified DATETIMEOFFSET null,
+       deleted DATETIMEOFFSET null,
+       genderId BIGINT null,
+       statusId BIGINT null,
+       createdById NVARCHAR(255) null,
+       modifiedById NVARCHAR(255) null,
+       deletedById NVARCHAR(255) null,
+       [comments] NVARCHAR(255) NULL, 
+	    alegatorId BIGINT NULL,
+		doc_seria NVARCHAR(32) NULL,
+	   doc_number NVARCHAR(64) NULL,
+	   doc_issuedDate DATETIME2 NULL, 
+	   doc_issuedBy NVARCHAR(50) NULL, 
+       doc_validBy DATETIME2 NULL, 
+	   doc_typeId BIGINT NULL,
+
+    CONSTRAINT [PK_People_AUD] primary key (personId, REV),
+	   constraint FK6271F260AAE62361   foreign key (REV) references Audit.REVINFO
+)

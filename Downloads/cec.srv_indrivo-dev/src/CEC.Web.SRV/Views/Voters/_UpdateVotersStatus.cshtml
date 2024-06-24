@@ -1,0 +1,50 @@
+﻿@using CEC.Web.SRV.Resources
+@model CEC.Web.SRV.Models.Voters.UpdateVotersStatusModel
+
+<div class="clearfix">
+
+    @using (Html.BeginForm("SetStatus", "Voters", FormMethod.Post, new { @class = "form-horizontal" }))
+	{   
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+		@Html.Partial("_PersonInfo")
+	    <div class="box_fields">
+	        <div class="form-group">
+	            @Html.DisplayFor(x => x.CurrentStatus)
+	        </div>
+	    </div>
+        
+	    <div class="box_fields">
+	        <div class="form-group">
+	            @Html.DisplayFor(x => x.CurrentConfirmation)
+	        </div>
+	    </div>
+        
+	    <div class="box_fields">
+	        <div class="form-group">
+	            @Html.EditorFor(x => x.StatusId)
+	        </div>
+	    </div>
+        
+	    <div class="box_fields">
+	        <div class="form-group">
+	            @Html.EditorFor(x => x.ConfirmationNew)
+	        </div>
+	    </div>
+        
+	    <div class="box_fields">
+	        <div class="form-group">
+	            <div class="col-md-offset-2 col-md-10">
+	                <input type="submit" value="@MUI.ButtonSave" class="btn btn-primary" style="float: right" />
+	            </div>
+	        </div>
+	    </div>
+        
+    }
+</div>
+
+<script type="text/javascript">
+    $('.box_fields .rsa-form-group > div.col-sm-4').removeClass('col-sm-4').addClass('col-sm-6');
+    $('.box_fields .rsa-form-group > div.col-sm-2').removeClass('col-sm-2').addClass('col-sm-4');
+</script>

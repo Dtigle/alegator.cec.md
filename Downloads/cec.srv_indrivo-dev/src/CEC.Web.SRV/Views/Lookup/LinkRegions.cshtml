@@ -1,0 +1,78 @@
+﻿@using CEC.Web.SRV.Resources
+@model CEC.Web.SRV.Models.Lookup.LinkRegionsModel
+
+
+<div class="clearfix form-horizontal">
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(x => x.CurrentRegionId)
+        @for (var i = 0 ; i < Model.LinkedRegions.Count(); i++)
+        {
+            @Html.HiddenFor(x =>x.LinkedRegions[i].LinkedRegionId)
+            @Html.HiddenFor(x =>x.LinkedRegions[i].FullRegionName)
+        }
+
+         <div class="form-group">
+             @Html.EditorFor(x => x.RegionId)
+         </div>
+
+         <div class="form-group">
+             <div class="col-md-offset-2 col-md-10">
+                 <input type="button" value="@MUI.ButtonExecute" class="btn btn-primary" id="saveLinkedRegions" />
+             </div>
+         </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.rsa-form-group > div.col-sm-2').removeClass('col-sm-2').addClass('col-sm-2');
+        $('.rsa-form-group > div.col-sm-4').removeClass('col-sm-4').addClass('col-sm-9');
+        $('.modal-content').attr('style', 'width:900px;');
+        
+        var arr = [];
+        var count = '@Model.LinkedRegions.Count()';
+        for (var i = 0; i < count; i++) {
+            var regionId = $('#LinkedRegions_' + i + '__LinkedRegionId').val();
+            var regionFullName = $('#LinkedRegions_' + i + '__FullRegionName').val();
+            if ('@Model.CurrentRegionId' == regionId) {
+                arr[i] = { id: regionId, text: regionFullName, locked: true };
+            }
+            else {
+                arr[i] = { id: regionId, text: regionFullName };
+            }
+        }
+       
+        $('#RegionId').select2('data', arr);
+        
+	    $('#saveLinkedRegions').click(function () {
+	        var linkedRegionIds = $('#RegionId').select2('val');
+	        var regionId = $('#CurrentRegionId').val();
+	        $.ajax({
+	            type: "POST",
+	            url: '@Url.Action("LinkRegions")',
+	            data: { regionId: regionId, linkedRegionIds: linkedRegionIds },
+	            success: function (data) {
+	                $("#regionsGriView").trigger('reloadGrid');
+	                $("#regionsFlatGrid").trigger('reloadGrid');
+	                BootstrapDialog.closeAll();
+	            }
+            });
+	    });
+	});
+	
+    function linkedRegionsDataRequest(term, page, pageLimit) {
+		return {
+			q: term,
+			pageLimit: pageLimit,
+			page: page
+		};
+	}
+
+    function linkedRegionsResults(data, more) {
+		return { results: data, more: more };
+	}
+	
+</script>
+
+
+

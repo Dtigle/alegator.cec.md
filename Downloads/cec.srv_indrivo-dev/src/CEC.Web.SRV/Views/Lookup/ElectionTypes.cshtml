@@ -1,0 +1,101 @@
+﻿@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.Lookup
+@using CEC.Web.SRV.Resources
+@using Lib.Web.Mvc.JQuery.JqGrid
+
+@{
+    ViewBag.Title = MUI.ElectionTypes_TabTitle;
+}
+
+<style type="text/css">
+    .ui-jqgrid .ui-jqgrid-htable th {
+        vertical-align: middle !important;
+    }
+
+        .ui-jqgrid .ui-jqgrid-htable th div {
+            height: auto !important;
+            overflow: hidden !important;
+            padding-right: 4px !important;
+            padding-top: 2px !important;
+            position: relative !important;
+            vertical-align: text-top !important;
+            white-space: normal !important;
+        }
+</style>
+
+@{
+    var grid = Html.GridOptions<ElectionTypeGridModel>("electionTypes")
+        .SetOptions(x =>
+        {
+            x.SortingName = "Name";
+            x.SortingOrder = JqGridSortingOrders.Asc;
+            x.ShrinkToFit = true;
+            x.AutoWidth = true;
+        })
+        .BuildGrid(Url.Action("ListElectionTypesAjax"), null, null, null, null /*Url.Action("UnDeleteElectionType")*/,
+            Url.Action("ElectionTypeHistory", "History"), Url.Action("ExportElectionTypes"))
+        .Navigator(new JqGridNavigatorOptions()
+        {
+            Add = false,
+            Edit = false,
+            Delete = false,
+            Search = true,
+            AddFunction = "$.CreateUpdateElectionType",
+            EditFunction = "$.CreateUpdateElectionType",
+            DeleteFunction = "$.DeleteElectionType",
+            CloneToTop = true
+        });
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-content">
+                <h4 class="page-header">@MUI.ElectionTypes_TabTitle</h4>
+                @grid.GetHtml()
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        @grid.GetJavaScript();
+    });
+	$.CreateUpdateElectionType = function (electionTypeId) {
+		var electionTypeParam = null;
+		var url = '@Url.Action("CreateUpdateElectionType","Lookup")';
+		var dialogTitle = '@MUI.ElectionTypeAdd_DialogTitle';
+		if (electionTypeId != undefined) {
+    		dialogTitle = '@MUI.ElectionTypeEdite_DialogTitle';
+    		electionTypeParam = electionTypeId;
+		}
+
+    	$.openDialog($(this), {
+    		url: url + '?electionTypeId=' + electionTypeParam,
+    		title: dialogTitle,
+    		onSubmit: function () {
+    			$("#electionTypes").trigger('reloadGrid');
+    		},
+    	});
+    };
+
+	$.DeleteElectionType = function (electionTypeId) {
+
+		var url = '@Url.Action("DeleteElectionType")';
+
+		BootstrapDialog.confirm('@MUI.ElectionTypeDelete_Message', function (result) {
+			if (result) {
+				$.ajax({
+					type: "POST",
+					url: url,
+					data: { id: electionTypeId },
+					success: function () {
+						$("#electionTypes").trigger('reloadGrid');
+					}
+				});
+			}
+		});
+	};
+</script>

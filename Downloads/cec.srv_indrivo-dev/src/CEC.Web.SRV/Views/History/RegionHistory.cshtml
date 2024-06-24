@@ -1,0 +1,23 @@
+﻿@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.History
+@using CEC.Web.SRV.Resources
+@using Lib.Web.Mvc.JQuery.JqGrid
+@model long
+
+@{
+    var grid = Html.GridOptions<RegionHistoryGridModel>("regionHistory", width: 960)
+        .BuildGrid(Url.Action("ListRegionHistoryAjax", new {id = Model}),showFilterToolbar:false,columnChooser:false)
+		.Navigator(new JqGridNavigatorOptions { Add = false, Edit = false, Delete = false, Search = false });
+}
+
+<div class="clearfix">
+    @grid.GetHtml()
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        @grid.GetJavaScript();
+    	$('#regionHistory').jqGrid().remapColumns([0, 6, 5, 7, 1, 2, 3, 4, 8, 9, 10, 11, 12, 13], true, false);
+        $('.modal-content').attr('style', 'width:1000px;');
+    });
+</script>

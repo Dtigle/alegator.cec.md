@@ -1,0 +1,74 @@
+﻿@using CEC.Web.SRV.Resources
+@model CEC.Web.SRV.Models.Account.AllocateRegionModel
+
+
+@using (Html.BeginForm("SetRegions", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "setRegionsForm" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary()
+    @Html.HiddenFor(x => x.UserId)
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="control-label">
+                    @Html.Label("Regiuni")
+                </div>
+                <div>
+                    @Html.Partial("_TreeViewLocalities")
+                </div>
+            </div>
+        
+            <div class="col-sm-2 col-sm-height">
+                <div class="v-align">
+                    <input type="button" value="-&gt;" onclick="selectItem()"/>
+                    <input type="button" value="&lt;-" onclick="removeItem()"/>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                    <div class="control-label">
+                        @Html.LabelFor(x => x.AllocatedRegions)
+                    </div>
+                    <div >
+                        @Html.EditorFor(x => x.AllocatedRegions)
+                    </div>
+                </div>
+            </div>
+    </div>
+    
+    <div class="form-group">
+            <input type="submit" value="@MUI.BtnExecute" class="btn btn-primary" />
+    </div>
+}
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.modal-dialog').css("width", '700px');
+    });
+    var selectedRegionId;
+
+    $.onRegionSelect = function(id) {
+        selectedRegionId = id;
+    };
+
+    function selectItem() {
+        var grid = $('#regionsGrid');
+
+        if (selectedRegionId === undefined) {
+            BootstrapDialog.alert({ message: '@MUI.RegionNotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+            return;
+        }
+        var rowData = grid.jqGrid('getRowData', selectedRegionId);
+        if ($('#AllocatedRegions option[value="' + selectedRegionId + '"]').length == 0) {
+        	if (selectedRegionId != 1) {
+        		$('#AllocatedRegions')[0].options.add(new Option(rowData.Name, selectedRegionId));
+        	}
+        }
+     
+    };
+    function removeItem() {
+        $('#AllocatedRegions option:selected').remove();
+    };
+    
+</script>

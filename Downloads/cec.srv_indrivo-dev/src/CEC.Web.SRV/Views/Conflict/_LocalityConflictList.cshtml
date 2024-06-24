@@ -1,0 +1,132 @@
+﻿@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.Conflict
+@using Lib.Web.Mvc.JQuery.JqGrid
+@using CEC.Web.SRV.Resources
+
+
+@{
+    var grid = Html.GridOptions<ConflictGridModel>("localityConflicts", rowsPerPage: 100, height: 310)
+        .SetOptions(x =>
+        {
+            x.OnCellSelect = "onCellSelect";
+            x.ColumnsModels.ApplyCustomVisibilityRules(new ConflictGridModelCustomVisibilityRules());
+            x.PostDataScript = "{ 'gridType':function(){ return $('#region-dropdown').val()} }";
+        })
+        .BuildGrid(Url.Action("LocalityConflictAjax", "Conflict"))
+        .Navigator(new JqGridNavigatorOptions() { Add = false, Edit = false, Delete = false, CloneToTop = true })
+         .AddNavigatorButton(new JqGridNavigatorButtonOptions { Icon = "ui-icon-link", Caption = "Partajare Conflict", Id = "locality_shareConflict" })
+         .AddNavigatorButton(new JqGridNavigatorButtonOptions { Icon = "ui-icon-newwin", Caption = MUI.Voters_VoterProfile, OnClick = "$.voterProfile", Id = "voterProfile" })
+         .AddNavigatorButton(new JqGridNavigatorButtonOptions { Icon = "ui-icon-newwin", Caption = MUI.Voters_WithSame_SurnName, OnClick = "$.votersBySurname", Id = "votersBySurname" });
+}
+
+@grid.GetHtml()
+
+<script type="text/javascript">
+	$(document).ready(function () {
+	    @grid.GetJavaScript();
+	});
+
+    //Show Share Conflict Modal
+    $.shareConflict = function (e) {
+
+        var selectedConflictModifiedDataId = GetGridSelectedConflictModifiedDataID();
+        var selectedConflictDataId = GetGridSelectedConflictDataId();
+
+        var url = '@Url.Action("ShareConflictView")';
+
+
+        if (selectedConflictModifiedDataId == null || selectedConflictModifiedDataId == 0) {
+            BootstrapDialog.alert({ message: '@MUI.VoterNotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+            return;
+        }
+
+
+        url =  url + '?conflictModifiedDataId=' + selectedConflictModifiedDataId;
+        url = url + '&conflictDataId=' + selectedConflictDataId;
+
+        $.openDialog($(this), {
+            title: '@MUI.ShareConflict_ModalTitle',
+            usePost: true,
+            url: url,
+            onBeforeSerialize: function (submitForm) {
+                var selectOptions = $('#AllocatedRegions')[0].options;
+                for (var i = 0; i < selectOptions.length; i++) {
+                    submitForm.append($('<input type="hidden" />').attr('name', 'AllocatedRegions[' + i + '].Value').val(selectOptions[i].value));
+                    submitForm.append($('<input type="hidden" />').attr('name', 'AllocatedRegions[' + i + '].Text').val(selectOptions[i].text));
+                }
+            },
+            onSubmit: function () {
+                $("#localityConflicts").trigger('reloadGrid', [{ current: true }]);
+                $.getCountNotification();
+            }
+        });
+    }
+
+    $.voterProfile = function (e) {
+        var selectedIdnp = GetGridSelectedConflictIdnp();
+
+        if (selectedIdnp == null || selectedIdnp == 0) {
+            BootstrapDialog.alert({ message: '@MUI.VoterNotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+            return;
+        }
+
+        $.openDialog($(this), {
+            title: '@MUI.Voters_VoterProfile',
+            url: '@Url.Action("CreateVoterProfile", "Voters")',
+            usePost: true,
+            postData: {
+                idnp: selectedIdnp
+            },
+            onClose: function () {
+                //dialog.close();
+                //$.getCountNotification();
+            }
+        });
+    }
+
+    $.votersBySurname = function (e) {
+        var selectedIdnp = GetGridSelectedConflictIdnp();
+
+        if (selectedIdnp == null || selectedIdnp == 0) {
+            BootstrapDialog.alert({ message: '@MUI.VoterNotSelectedAlertMessage', title: '@MUI.DialogTitle_Information' });
+            return;
+        }
+
+        $.openDialog($(this), {
+            title: '@MUI.Voters_WithSame_SurnName',
+            url: '@Url.Action("VotersBySurname", "Voters")',
+            usePost: true,
+            postData: {
+                idnp: selectedIdnp
+            },
+            onClose: function () {
+                //dialog.close();
+                //$.getCountNotification();
+            }
+        });
+    }
+
+    function GetGridSelectedConflictIdnp() {
+
+        var selections = $("#localityConflicts").jqGrid('getGridParam', 'selrow');
+        var real = $("tr[id='" + selections + "'] > td[aria-describedby='localityConflicts_Idnp']").attr('title');
+
+        return real;
+    }
+
+    function GetGridSelectedConflictModifiedDataID() {
+        var selections = $("#localityConflicts").jqGrid('getGridParam', 'selrow');
+        var real = $("tr[id='" + selections + "'] > td[aria-describedby='localityConflicts_RspModificationDataId']").attr('title');
+
+        return real;
+    }
+
+    function GetGridSelectedConflictDataId() {
+        var selections = $("#localityConflicts").jqGrid('getGridParam', 'selrow');
+        return selections;
+    }
+
+    //********
+
+
+</script>

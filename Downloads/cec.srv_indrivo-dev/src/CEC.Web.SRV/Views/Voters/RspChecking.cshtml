@@ -1,0 +1,130 @@
+﻿@using CEC.Web.SRV.Resources
+@model CEC.Web.SRV.Models.Voters.RspCheckingModel
+
+@{
+	ViewBag.Title = MUI.RspChecking;
+}
+
+@*<div class="clearfix">
+	@using (Html.BeginForm("RspChecking", "Voters", FormMethod.Post, new { @class = "form-horizontal" }))
+	{   
+		@Html.AntiForgeryToken()
+		@Html.ValidationSummary(true)
+	
+		<div class="form-group">
+			@Html.EditorFor(x => x.Idnp)
+		</div>
+		
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-10">
+				<input type="submit" value="@MUI.ButtonSearch" class="btn btn-primary" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div id ="term_demo"></div>
+		</div>
+	}
+</div>*@
+
+<div class="clearfix">
+	<div class="col-md-12 box-content">
+		<div id ="term_demo" class="backgroundview prompt"></div>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		$('#term_demo').terminal(function (command, term) {
+			if (command !== '') {
+				if (validateIdnp(command)) {
+					term.echo('Idnp-ul ' + command + ' nu este valid');
+					term.echo();
+					term.echo('Introduceți IDNP-ul persoanei');
+				} else {
+					term.echo('Va rugăm asteptați ...');
+					term.pause();
+					var url = '@Url.Action("RspChecking","Voters")';
+					$.ajax({
+						type: "POST",
+						url: url,
+						data: { idnp: command },
+						success: function (returnData) {
+							term.resume();
+							if (returnData.Error) {
+								term.echo(returnData.Error);
+								term.echo();
+								term.echo('Introduceți IDNP-ul persoanei');
+							} else {
+								term.echo('Datele persoanei: ');
+								term.echo('	Idnp: ' + returnData.Data.Idnp);
+								term.echo('	Nume: ' + returnData.Data.LastName);
+								term.echo('	Prenume: ' + returnData.Data.FirstName);
+								term.echo('	Patronimic: ' + returnData.Data.SecondName);
+								term.echo('	Data nașterii: ' + returnData.Data.BirthDate);
+								term.echo('	Sexul: ' + returnData.Data.Sex);
+								term.echo('	Cetățenie: ' + returnData.Data.CitizenRm);
+								term.echo('	Decedat: ' + returnData.Data.Dead);
+								term.echo('	Seria: ' + returnData.Data.Series);
+								term.echo('	Numărul: ' + returnData.Data.Number);
+								term.echo('	Tipul: ' + returnData.Data.DocType);
+								term.echo('	Data eliberării: ' + returnData.Data.IssueDate);
+								term.echo('	Data expirării: ' + returnData.Data.ExpirationDate);
+								term.echo('	Oficiul: ' + returnData.Data.IssueLocation);
+								term.echo('	Valid: ' + returnData.Data.Validity);
+								
+								returnData.Data.Registration.forEach(function (entry) {
+									term.echo('	Adresa: ');
+									term.echo('		Tipul adresei: ' + entry.RegType);
+									term.echo('		Data înregistrării: ' + entry.RegDate);
+									term.echo('		Data expirării: ' + entry.ExpirationDateAddress);
+									term.echo('		Regiunea: ' + entry.Region);
+									term.echo('		Localitatea: ' + entry.Locality);
+									term.echo('		Codul adminitrativ: ' + entry.AdministrativCode);
+									term.echo('		Strada: ' + entry.Street);
+									term.echo('		Codul străzii: ' + entry.StreetCode);
+									term.echo('		Strada din nomenclator: ' + entry.StreetAddress);
+									term.echo('		Numărul casei: ' + entry.House);
+									term.echo('		Blocul: ' + entry.Block);
+									term.echo('		Apartamentul: ' + entry.Flat);
+								});
+							
+								term.echo();
+								term.echo('Introduceți IDNP-ul persoanei');
+							}
+						}
+					});
+				}
+			}
+		}, {
+			height: 600,
+			greetings: 'Introduceți IDNP-ul persoanei',
+			prompt: 'RSP> '
+		});	
+	});
+
+	function validateIdnp(idnp) {
+		if (idnp.length != 13) {
+			return true;
+		}
+		
+		var numberReg = new RegExp('^(09|20){1}[0-9]{11}$');
+		if (idnp.match(numberReg) == null) {
+			return true;
+		}
+		return false;
+	}
+</script>
+
+<style>
+	.prompt {
+		color: blue;
+	}
+	.backgroundview {
+		background: azure;
+	}
+	.cmd {
+		background: azure;
+	}
+</style>

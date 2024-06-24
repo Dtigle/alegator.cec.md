@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://cec-admin-dev.cs1.soft-tehnica.com/webservices/ReportService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/SAISE.Admin.WebApp.WebServices.Types" />
+  <xs:element name="GetAppReports">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="roleName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAppReportsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/SAISE.Admin.WebApp.WebServices.Types" minOccurs="0" name="GetAppReportsResult" nillable="true" type="q1:ReportResultDto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

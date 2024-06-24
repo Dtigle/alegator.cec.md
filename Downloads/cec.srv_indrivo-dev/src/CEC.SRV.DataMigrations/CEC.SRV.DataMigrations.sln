@@ -1,0 +1,17 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "CEC.SRV.DataMigrations", "CEC.SRV.DataMigrations\CEC.SRV.DataMigrations.dtproj", "{A6795495-98E5-46BB-BC3B-ABE8726F8B5D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A6795495-98E5-46BB-BC3B-ABE8726F8B5D}.Development|Default.ActiveCfg = Development
+		{A6795495-98E5-46BB-BC3B-ABE8726F8B5D}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

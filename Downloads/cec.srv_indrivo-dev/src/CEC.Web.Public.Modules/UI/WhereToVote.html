@@ -1,0 +1,131 @@
+﻿
+<div class="row">
+    <div id="breadcrumb" class="col-md-12">      
+    </div>
+</div>
+
+<div class="form-group col-md-12">
+    <div class="rsa-form-group">
+        <div class="col-sm-2 control-label">
+            <span>*</span>
+            <label for="UserName">Raion / Municipiu</label>
+        </div>
+        <div class="col-sm-6">
+
+            <input type='hidden' name='input' id='txtRegion'/>
+            
+            <div class="has-error">
+                <span id="regionError" class="field-validation-valid help-block"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="region2DIV" class="form-group col-md-12">
+    <div class="rsa-form-group">
+        <div class="col-sm-2 control-label">
+            <span>*</span>
+            <label for="UserName">Localitatea</label>
+        </div>
+        <div class="col-sm-6">
+
+            <input type='hidden' name='input' id='txtRegion2'/>
+            
+            <div class="has-error">
+                <span id="region2Error" class="field-validation-valid help-block"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="streetDIV" class="form-group col-md-12">
+    <div class="rsa-form-group">
+        <div class="col-sm-2 control-label">
+            <span>*</span>
+            <label for="UserName">Strada</label>
+        </div>
+        <div class="col-sm-6">
+
+            <input type='hidden' name='input' id='txtStreet'/>
+
+            <div class="has-error">
+                <span id="streetError" class="field-validation-valid help-block"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="StreetDiv" class="col-sm-12 col-md-8 box-content">
+    
+    <h4>Lista de adrese</h4>
+     
+       <div id="streetList">
+                
+       </div>
+</div>
+
+<div class="col-md-8">
+    <p>&nbsp;</p>
+</div>
+
+<div id="PollingStationDiv" class="col-sm-12 col-md-8 box-content">
+
+    <h4>Secția de votare asociată adresei de domiciliu</h4>
+    
+    <table id="tableResult" class="table table-hover">
+        <tbody>            
+            <tr>
+                <td>
+                    <h4>Secția de votare</h4>
+                </td>
+                <td>
+                    <h4 id="stationNumber"></h4>
+                </td>
+            </tr>
+            <tr>
+                <td>Localul secției de votare</td>
+                <td>
+                    <div id="locationDescription" class="info-container"></div>
+               </td>
+            </tr>
+		  <tr>
+                <td>Circumscriptia</td>
+                <td> 
+                    <div id="circumscription" class="info-container"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>Adresa</td>
+                <td>
+                    <div id="addressFull" class="info-container"></div>
+                </td>
+            </tr>
+            <tr>
+                <td>Contacte</td>
+                <td> 
+                    <div id="phoneNumber" class="info-container"></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div id="map-2" style="height: 400px;"></div>
+
+</div>
+ 
+<div id="psDIV" class="form-group col-md-12">
+    
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function ()
+    {
+        setInfoVisibility(false, false);
+        InitializeStreetControl();
+        InitializeRegion2Control();
+        InitializeRegionControl();
+    });
+
+</script>
+ 

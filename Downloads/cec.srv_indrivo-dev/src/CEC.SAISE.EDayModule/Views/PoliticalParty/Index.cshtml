@@ -1,0 +1,1230 @@
+﻿@using CEC.SAISE.Domain
+@using CEC.SAISE.EDayModule.Infrastructure
+
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-6">
+            @Html.Partial("_Delimitator")
+        </div>
+    </div>
+</div>
+
+<div class="box-content">
+    <div class="row">
+        <div class="col-xs-6" data-bind="with: leftPanel">
+            <div class="alert alert-success" data-bind="visible: LoadingParties()">
+                Rugăm așteptați...
+                <div class="progress progress-striped active">
+                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                </div>
+            </div>
+
+            <div data-bind="visible: PartiesItems().length == 0 && ($parent.Delimitator().isReady())">
+                <div class="alert alert-info">
+                    Nici un partid alocat.
+                </div>
+            </div>
+
+            <div data-bind="if: PartiesItems().length > 0">
+                <ul class="nav nav-tabs" role="tablist" data-bind="">
+                    <li role="presentation" class="active">
+                        <a href="#toParties" role="tab" data-toggle="tab">Partid Politic</a>
+                    </li>
+                    <li role="presentation" data-bind="visible: SelectedParty() != null">
+                        <a href="#toCandidates" role="tab" data-toggle="tab" data-bind="click: loadCandidates">Candidați</a>
+                    </li>
+                </ul>
+                <div data-bind="if: SelectedParty() != null">
+                    <div class="alert alert-info">
+                        Partidul selectat: <span data-bind="text: SelectedParty().Code"></span> - <span data-bind="text: SelectedParty().NameRo"></span>
+                    </div>
+                </div>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="toParties">
+                        @Html.Partial("_ToPartyGrid")
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="toCandidates">
+                        @Html.Partial("_ToCandidatesGrid")
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6" data-bind="with: rightPanel">
+            <div class="alert alert-success" data-bind="visible: LoadingParties()">
+                Rugăm așteptați...
+                <div class="progress progress-striped active">
+                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                </div>
+            </div>
+            <div data-bind="if: PartiesItems().length > 0">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active">
+                        <a href="#fromParties" role="tab" data-toggle="tab">Partid Politic</a>
+                    </li>
+                    <li role="presentation" data-bind="visible: SelectedParty() != null">
+                        <a href="#fromCandidates" role="tab" data-toggle="tab" data-bind="click: loadCandidates">Candidați</a>
+                    </li>
+                </ul>
+                <div data-bind="if: SelectedParty() != null && SelectedParty().editMode()">
+                    <div class="alert alert-info">
+                        Partidul selectat: <span data-bind="text: SelectedParty().Code"></span> - <span data-bind="text: SelectedParty().NameRo"></span>
+                        <div data-bind="if: SelectedCandidate() != null && SelectedCandidate().editMode()">
+                            Candidatul selectat: <span data-bind="text: SelectedCandidate().LastNameRo"></span> <span data-bind="text: SelectedCandidate().NameRo"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="fromParties">
+                        @Html.Partial("_EditPartyDialog")
+                        @Html.Partial("_EditIndependentDialog")
+                        @Html.Partial("_FromPartyGrid")
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="fromCandidates">
+                        @Html.Partial("_EditCandidateDialog")
+                        @Html.Partial("_FromCandidatesGrid")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="PartyTemplate">
+    <strong data-bind="text: $data.NameRo"></strong>
+    <br />
+    <br />
+    <span data-bind="text: $data.NameRu"></span>
+</script>
+
+<script type="text/html" id="IndependentTemplate">
+    <strong><span data-bind="text: $data.CandidateData().NameRo"></span> <span data-bind="text: $data.CandidateData().LastNameRo"></span></strong>
+    a.n.
+    <span data-bind="text: moment($data.CandidateData().DateOfBirth()).format('YYYY')"></span>,
+    <span data-bind="text: $data.CandidateData().Occupation"></span>,
+    <span data-bind="text: $data.CandidateData().Workplace"></span>
+    <br />
+    <br />
+    <span data-bind="text: $data.CandidateData().NameRu"></span>
+    <span data-bind="text: $data.CandidateData().LastNameRu"></span>
+    <span data-bind="text: moment($data.CandidateData().DateOfBirth()).format('YYYY')"></span> г.р.,
+    <span data-bind="text: $data.CandidateData().OccupationRu"></span>,
+    <span data-bind="text: $data.CandidateData().WorkplaceRu"></span>
+</script>
+
+<script type="text/javascript">
+    var validationMsgs = {
+        isRequired: 'Câmp obligatoriu',
+        MaxLen50: 'Maximum 50 caractere',
+        MaxLen100: 'Maximum 100 caractere'
+    };
+
+    _showConfimation = function (message, cssClass, confirmCallback) {
+        BootstrapDialog.yes_no_confirm({
+            draggable: true,
+            cssClass: (cssClass != null) ? cssClass : 'warning-dialog',
+            title: 'Atenție',
+            message: message,
+            callback: confirmCallback
+        });
+    }
+
+    _showAlert = function (message, title, cssClass) {
+        BootstrapDialog.show({
+            draggable: true,
+            cssClass: (typeof cssClass != 'undefined')? cssClass:'info-dialog',
+            title: (typeof title != 'undefined') ? title : 'Info',
+            message: message,
+            closable: false,
+            buttons: [
+            {
+                label: 'Închide',
+                action: function (dialogItself) {
+                    dialogItself.close();
+                }
+            }]
+        });
+    }
+
+    function DelimitatorChangedEvent(electionId, electionIsLocal, isMayorElection, circumscriptionId, regionId) {
+        var self = this;
+
+        self.ElectionId = electionId;
+        self.ElectionIsLocal = electionIsLocal;
+        self.IsMayorElection = isMayorElection;
+        self.CircumscriptionId = circumscriptionId;
+        self.RegionId = regionId;
+
+        self.isReady = function () {
+            return (self.ElectionIsLocal != null && !self.ElectionIsLocal && self.ElectionId != null) ||
+            (self.ElectionIsLocal != null && self.ElectionIsLocal && self.ElectionId != null &&
+                self.CircumscriptionId != null && self.RegionId != null);
+        }
+    }
+
+    function DelimitatorVM() {
+        var self = this;
+
+        self.SelectedElectionId = ko.observable();
+        self.SelectedCircumscriptionId = ko.observable();
+        self.SelectedRegionId = ko.observable();
+        self.ElectionIsLocal = ko.observable();
+        self.IsMayorElection = ko.observable();
+        self.onChanged = ko.observable();
+
+        self.isReady = ko.pureComputed(function () {
+            return self.onChanged() != null && self.onChanged().isReady();
+        });
+
+        self.enableElectionsSelector = function () {
+            var electionsSelect = $('.electionsSelect');
+            electionsSelect.select2("val", "");
+            
+            var circumscriptionSelect = $('.circumscriptionSelect');
+            circumscriptionSelect.select2("val", "");
+
+            var regionSelect = $('.regionSelect');
+            regionSelect.select2("val", "");
+
+            $('.electionsSelect').select2({
+                placeholder: 'Selectați scrutinul...',
+                ajax: {
+                    url: '@Url.Action("SelectElections", "Selectors")',
+                    dataType: 'json',
+                    delay: 250,
+                    data: self._dataFunc,
+                    results: self._pageFunc,
+                    cache: true
+                }
+            }).on('change', function (e) {
+                self.selectionChanged(parseInt(e.val), null, null);
+            });
+        };
+
+        self.enableCircumscriptionsSelector = function () {
+            var circumscriptionSelect = $('.circumscriptionSelect');
+            circumscriptionSelect.select2("val", "");
+
+            circumscriptionSelect.select2({
+                placeholder: 'Selectați circumscripția...',
+                ajax: {
+                    url: '@Url.Action("SelectCircumscription", "Selectors")',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (term, page) {
+                        return {
+                            q: term,
+                            pageLimit: 10,
+                            page: page,
+                            electionId: self.SelectedElectionId()
+                        };
+                    },
+                    results: self._pageFunc,
+                    cache: true
+                }
+            }).on('change', function (e) {
+                self.selectionChanged(self.SelectedElectionId(), parseInt(e.val), null);
+            });
+        };
+
+        self.enableRegionsSelector = function () {
+            var regionSelect = $('.regionSelect');
+            regionSelect.select2("val", "");
+
+            regionSelect.select2({
+                placeholder: 'Selectați localitatea...',
+                ajax: {
+                    url: '@Url.Action("SelectRegions", "Selectors")',
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (term, page) {
+                        return {
+                            q: term,
+                            pageLimit: 10,
+                            page: page,
+                            electionId: self.SelectedElectionId(),
+                            circumscriptionId: self.SelectedCircumscriptionId()
+                        };
+                    },
+                    results: self._pageFunc,
+                    cache: true
+                }
+            }).on('change', function (e) {
+                self.selectionChanged(self.SelectedElectionId(), self.SelectedCircumscriptionId(), parseInt(e.val));
+            });
+        };
+
+        self._dataFunc = function (term, page) {
+            return {
+                q: term,
+                pageLimit: 10,
+                page: page
+            };
+        };
+
+        self._pageFunc = function (data, page) {
+            var more = (page * 10) < data.Total;
+            return { results: data.Items, more: more };
+        };
+
+        self.selectionChanged = function (electionId, circumscriptionId, regionId) {
+            if (electionId != null && circumscriptionId == null && regionId == null) {
+                self.SelectedElectionId(electionId);
+                $.ajax({
+                    async: false,
+                    url: '@Url.Action("GetElection")',
+                    type: 'post',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ electionId: electionId }),
+                    success: function (data) {
+                        self.ElectionIsLocal(data.IsLocal);
+                        self.IsMayorElection(data.IsMayorElection);
+                    }
+                });
+
+                var eventData = new DelimitatorChangedEvent(electionId, self.ElectionIsLocal(), self.IsMayorElection(), circumscriptionId, regionId);
+                self.SelectedCircumscriptionId(null);
+                self.SelectedRegionId(null);
+
+                if (self.ElectionIsLocal()) {
+                    self.enableCircumscriptionsSelector();
+                }
+
+                self.onChanged(eventData);
+
+                return;
+            }
+
+            if (electionId != null && circumscriptionId != null && regionId == null) {
+                self.SelectedCircumscriptionId(circumscriptionId);
+                self.SelectedRegionId(null);
+                self.enableRegionsSelector();
+
+                var eventData = new DelimitatorChangedEvent(electionId, self.ElectionIsLocal(), self.IsMayorElection(), circumscriptionId, regionId);
+                self.onChanged(eventData);
+                return;
+            }
+
+            if (electionId != null && circumscriptionId != null && regionId != null) {
+                self.SelectedRegionId(regionId);
+                var eventData = new DelimitatorChangedEvent(electionId, self.ElectionIsLocal(), self.IsMayorElection(), circumscriptionId, regionId);
+
+                self.onChanged(eventData);
+                return;
+            }
+        };
+
+        self.getDelimitatorData = function () {
+            return {
+                ElectionId: self.SelectedElectionId(),
+                ElectionIsLocal: self.ElectionIsLocal(),
+                IsMayorElection: self.IsMayorElection(),
+                CircumscriptionId: self.SelectedCircumscriptionId(),
+                RegionId: self.SelectedRegionId()
+            };
+        }
+    }
+
+    function PartyData() {
+        var self = this;
+
+        self.Id = ko.observable();
+        self.Code = ko.observable('').extend({ required: { message: validationMsgs.isRequired } });
+        self.NameRo = ko.observable('').extend({ required: { message: validationMsgs.isRequired } });
+        self.NameRu = ko.observable('').extend({ required: { message: validationMsgs.isRequired } });
+        self.Status = ko.observable();
+        self.BallotOrder = ko.observable();
+        self.CandidateCount = ko.observable();
+        self.Status = ko.observable();
+        self.DateOfRegistration = ko.observable(moment());
+
+        self.IsIndependent = ko.observable();
+        self.CandidateData = ko.observable();
+
+        self.IsAllocated = ko.observable(false);
+
+        self.fileData = ko.observable({
+            dataURL: ko.observable()
+        });
+
+        self.isChecked = ko.observable(false);
+
+        self.isValid = ko.pureComputed(function() {
+            if (!self.IsIndependent()) {
+                return self.Code.isValid() && self.NameRo.isValid() && self.NameRu.isValid();
+            } else {
+                return self.Code.isValid() && (self.CandidateData() != null && self.CandidateData().isValid());
+            }
+        });
+
+        self.init = function (initData) {
+            if (initData == null) {
+                return null;
+            }
+
+            self.Id(initData.Id);
+            self.Code(initData.Code);
+            self.NameRo(initData.NameRo);
+            self.NameRu(initData.NameRu);
+            self.Status(initData.Status);
+            self.BallotOrder(initData.BallotOrder);
+            self.CandidateCount(initData.CandidateCount);
+            self.Status(initData.Status);
+            self.DateOfRegistration(initData.DateOfRegistration);
+
+            self.IsIndependent(initData.IsIndependent);
+            self.CandidateData(new CandidateData().init(initData.CandidateData));
+
+            return self;
+        }
+
+        self.setAllocated = function () {
+            self.IsAllocated(true);
+            return self;
+        }
+
+        self.clone = function () {
+            var data = JSON.parse(ko.toJSON(self));
+            return new PartyData().init(data);
+        }
+
+        self.getTemplate = function () {
+            return self.CandidateData() == null ? 'PartyTemplate' : 'IndependentTemplate';
+        }
+
+        self.editMode = ko.pureComputed(function () {
+            return self.Id() > 0;
+        });
+
+        self.getData = function () {
+            var candidateData = self.CandidateData() != null ? self.CandidateData().getData() : null;
+            self.adjustCode();
+            self.adjustPartyName();
+            return {
+                Id: self.Id(),
+                Code: self.Code(),
+                NameRo: self.NameRo(),
+                NameRu: self.NameRu(),
+                Status: self.Status(),
+                BallotOrder: self.BallotOrder(),
+                DateOfRegistration: self.DateOfRegistration() != null ? moment(self.DateOfRegistration()).format('DD.MM.YYYY') : null,
+                IsIndependent: self.IsIndependent(),
+                CandidateData: candidateData
+            }
+        };
+
+        self.ImageId = ko.pureComputed(function () {
+            return self.Id() != null ? self.Id() : -1;
+        });
+
+        self.adjustCode = function () {
+            if (self.IsIndependent() && self.Code().length === 0) {
+                self.Code('i' + self.CandidateData().LastNameRo().slice(0, 1) + self.CandidateData().NameRo().slice(0, 1));
+            }
+        }
+
+        self.adjustPartyName = function () {
+            if (self.IsIndependent()) {
+                var fullNameRo = (self.CandidateData().NameRo() + ' ' + self.CandidateData().LastNameRo()).trim();
+                var fullNameRu = (self.CandidateData().NameRu() + ' ' + self.CandidateData().LastNameRu()).trim();
+                self.NameRo('Candidat independent ' + fullNameRo);
+                self.NameRu('Независимый кандидат ' + ((fullNameRu.length > 0) ? fullNameRu : fullNameRo));
+            }
+        }
+
+        self.inCallMode = ko.observable();
+    }
+
+    function CandidateData() {
+        var self = this;
+
+        self.Id = ko.observable();
+        self.CandidateRegionRelId = ko.observable();
+        self.PoliticalPartyId = ko.observable();
+        self.Idnp = ko.observable().extend({ required: { message: validationMsgs.isRequired } });
+        self.NameRo = ko.observable('').extend({ required: { message: validationMsgs.isRequired } });
+        self.LastNameRo = ko.observable('').extend({ required: { message: validationMsgs.isRequired } });
+        self.NameRu = ko.observable('').extend({ required: { message: validationMsgs.isRequired } });
+        self.LastNameRu = ko.observable('').extend({ required: { message: validationMsgs.isRequired } });
+        self.DateOfBirth = ko.observable().extend({ required: { message: validationMsgs.isRequired } });
+        self.Occupation = ko.observable('').extend({ required: { message: validationMsgs.isRequired }, maxLength: {params: 50, message: validationMsgs.MaxLen50} });
+        self.OccupationRu = ko.observable('').extend({ required: { message: validationMsgs.isRequired }, maxLength: {params: 50, message: validationMsgs.MaxLen50} });
+        self.Workplace = ko.observable('').extend({ required: { message: validationMsgs.isRequired }, maxLength: {params: 100, message: validationMsgs.MaxLen100} });
+        self.WorkplaceRu = ko.observable('').extend({ required: { message: validationMsgs.isRequired }, maxLength: {params: 100, message: validationMsgs.MaxLen100} });
+        self.CandidateOrder = ko.observable();
+        self.Status = ko.observable();
+        self.Gender = ko.observable();
+
+        self.isChecked = ko.observable(false);
+
+        self.idnpSearchMode = ko.observable(false);
+
+        self.init = function (initData) {
+            if (initData == null) {
+                return null;
+            }
+
+            self.Id(initData.Id);
+            self.CandidateVillageRelId(initData.CandidateVillageRelId);
+            self.PoliticalPartyId(initData.PoliticalPartyId);
+            self.Idnp(initData.Idnp);
+            self.NameRo(initData.NameRo);
+            self.LastNameRo(initData.LastNameRo);
+            self.NameRu(initData.NameRu);
+            self.LastNameRu(initData.LastNameRu);
+            self.DateOfBirth(initData.DateOfBirth);
+            self.Occupation(initData.Occupation);
+            self.OccupationRu(initData.OccupationRu);
+            self.Workplace(initData.Workplace);
+            self.WorkplaceRu(initData.WorkplaceRu);
+            self.CandidateOrder(initData.CandidateOrder);
+            self.Status(initData.Status);
+            self.Gender(initData.Gender);
+
+            return self;
+        }
+
+        self.isValid = ko.pureComputed(function () {
+            return self.Idnp.isValid() && self.NameRo.isValid() &&
+                self.LastNameRo.isValid() && self.NameRu.isValid() &&
+                self.LastNameRu.isValid() && self.DateOfBirth.isValid() &&
+                self.Occupation.isValid() && self.OccupationRu.isValid() &&
+                self.Workplace.isValid() && self.WorkplaceRu.isValid();
+        });
+
+        self.clone = function () {
+            var data = JSON.parse(ko.toJSON(self));
+            return new CandidateData().init(data);
+        }
+
+        self.setOrder = function(order) {
+            self.CandidateOrder(order);
+            return self;
+        }
+
+        self.getData = function () {
+            return {
+                Id: self.Id(),
+                CandidateVillageRelId: self.CandidateVillageRelId(),
+                PoliticalPartyId: self.PoliticalPartyId(),
+                Idnp: self.Idnp(),
+                NameRo: self.NameRo(),
+                LastNameRo: self.LastNameRo(),
+                NameRu: self.NameRu(),
+                LastNameRu: self.LastNameRu(),
+                DateOfBirth: self.DateOfBirth() != null ? moment(self.DateOfBirth()).format('DD.MM.YYYY') : null,
+                Occupation: self.Occupation(),
+                OccupationRu: self.OccupationRu(),
+                Workplace: self.Workplace(),
+                WorkplaceRu: self.WorkplaceRu(),
+                CandidateOrder: self.CandidateOrder(),
+                Status: self.Status(),
+                Gender: self.Gender()
+            }
+        };
+
+        self.GenderText = ko.pureComputed(function () {
+            switch (self.Gender()) {
+            case 1:
+                return 'Masculin';
+            case 2:
+                return 'Feminin';
+            default:
+                return 'Necunoscut';
+            }
+        });
+
+        self.ChangeStatus = function () {
+            //todo: not finished.
+            $.ajax({
+                url: '@Url.Action("UpdateCandidateStatus")',
+                data: JSON.stringify({ candidateId: self.Id(), status: self.Status() }),
+                type: "post",
+                contentType: 'application/json',
+                success: function (data) {
+                    if (data) {
+                        _showAlert('Statut modifcat cu succes.');
+                    } else {
+                        _showAlert('Modificarea statutului a ieșuat.', 'Atenție', 'error-dialog');
+                    }
+                },
+                error: function (data) {
+                    _showAlert('Modificarea statutului a ieșuat.', 'Atenție', 'error-dialog');
+                }
+            });
+        }
+
+        self.editMode = ko.pureComputed(function () {
+            return self.Id() > 0;
+        });
+
+        self.inCallMode = ko.observable();
+
+        self.onRequestPersonalData = function(data, event) {
+            if (event.which == 13) {
+                self.requestPersonalData();
+            }
+        }
+
+        self.requestPersonalData = function () {
+            self.idnpSearchMode(true);
+            $.ajax({
+                url: '@Url.Action("GetPersonalData")',
+                data: JSON.stringify({ idnp: self.Idnp() }),
+                type: "post",
+                contentType: 'application/json',
+                success: function (data) {
+                    if (data == null) {
+                        _showAlert('A avut loc o eroare. Mai incercați.', 'Atenție', 'error-dialog');
+                        return;
+                    }
+
+                    if (data.Success) {
+                        self.NameRo(data.FirstName);
+                        self.NameRu(data.FirstName);
+                        self.LastNameRo(data.LastName);
+                        self.LastNameRu(data.LastName);
+                        self.DateOfBirth(data.DateOfBirth);
+                        self.Gender(data.Gender);
+                    } else {
+                        _showAlert('IDNP-ul introdus n-a fost găsit. Verificați IDNP-ul.', 'Atenție');
+                                }
+                },
+                error: function (e) {
+                    _showAlert(e.responseJSON.Message, 'Atenție', 'error-dialog');
+                            }
+            }).always(function () {
+                self.idnpSearchMode(false);
+            });
+        }
+    }
+
+    function PanelVM(parent) {
+        var self = this;
+        self.parent = parent;
+
+        self.PartiesItems = ko.observableArray([]);
+        self.checkedParties = ko.observableArray([]);
+        self.togglePartiesSelection = ko.observable(false);
+        self.CandidatesItems = ko.observableArray([]);
+        self.checkedCandidates = ko.observableArray([]);
+        self.toggleCandidatesSelection = ko.observable(false);
+        self.SelectedParty = ko.observable();
+        self.SelectedCandidate = ko.observable();
+
+        self.LoadingParties = ko.observable(false);
+        self.LoadingCandidates = ko.observable(false);
+        self.ProcessingAllocations = ko.observable(false);
+
+        self.PartiesListChanged = ko.observable(false);
+
+        self.sortedParties = function () {
+            return self.PartiesItems.sort(function (x, y) {
+                return (x.BallotOrder() - y.BallotOrder());
+            });
+        };
+
+        self.isAddEditCandidateVisible = function () {
+            if (self.parent.Delimitator().IsMayorElection()) {
+                return self.SelectedParty() != null && self.CandidatesItems().length === 0 || (self.SelectedCandidate() != null && self.SelectedCandidate().editMode());
+            } else {
+                return self.SelectedParty() != null && !self.SelectedParty().IsIndependent();
+            }
+        };
+
+        self.countParties = ko.pureComputed(function () {
+            var count = 0;
+            $.map(self.PartiesItems(), function (x) {
+                if (!x.IsIndependent()) {
+                    count++;
+                }
+            });
+            return count;
+        });
+
+        self.countIndependents = ko.pureComputed(function () {
+            var count = 0;
+            $.map(self.PartiesItems(), function (x) {
+                if (x.IsIndependent()) {
+                    count++;
+                }
+            });
+            return count;
+        });
+
+        self.reset = function () {
+            self.PartiesItems.removeAll();
+            self.checkedParties.removeAll();
+            self.CandidatesItems.removeAll();
+            self.checkedCandidates.removeAll();
+            self.SelectedParty(null);
+            self.PartiesListChanged(false);
+        };
+
+        self.selectParty = function () {
+            if (self.SelectedCandidate() != null) {
+                self.SelectedCandidate(null);
+            }
+
+            if (self.SelectedParty() != null) {
+                if (self.SelectedParty().Id() === this.Id()) {
+                    self.SelectedParty(null);
+                } else {
+                    self.SelectedParty(this);
+                }
+            } else {
+                self.SelectedParty(this);
+            }
+        };
+
+        self.onRowChecked = function (item) {
+            item.isChecked(!(item.isChecked()));
+            return true;
+        }
+
+        self.selectCandidate = function () {
+            if (self.SelectedCandidate() != null) {
+                if (self.SelectedCandidate().Id() === this.Id()) {
+                    self.SelectedCandidate(null);
+                } else {
+                    self.SelectedCandidate(this);
+                }
+            } else {
+                self.SelectedCandidate(this);
+            }
+        };
+
+        self.isSelectedParty = function (partyId) {
+            return $.inArray(partyId, self.checkedParties);
+        }
+
+        self.getModalDialog = function () {
+            if (self.SelectedParty() != null) {
+                if (self.SelectedParty().IsIndependent()) {
+                    return $('#editIndependentDialog');
+                } else {
+                    return $('#editPartyDialog');
+                }
+            }
+
+            return '';
+        }
+
+        self.loadCandidates = function () {
+            self.LoadingCandidates(true);
+            $.ajax({
+                url: '@Url.Action("GetCandidatesForParty")',
+                type: "post",
+                contentType: 'application/json',
+                data: JSON.stringify({ delimitation: parent.Delimitator().getDelimitatorData(), partyId: self.SelectedParty().Id() }),
+                success: function (data) {
+                    self.CandidatesItems.removeAll();
+                    self.checkedCandidates([]);
+                    self.SelectedCandidate(null);
+
+                    self.CandidatesItems(ko.utils.arrayMap(data, function (candidate) {
+                        return new CandidateData().init(candidate);
+                    }));
+
+                    self.SelectedParty().CandidateCount(self.CandidatesItems().length);
+                    var match = ko.utils.arrayFirst(self.parent.leftPanel().PartiesItems(), function (x) {
+                        return x.Id() === self.SelectedParty().Id();
+                    });
+
+                    if (match) {
+                        match.CandidateCount(self.CandidatesItems().length);
+                    }
+                }
+            }).done(function () {
+                self.LoadingCandidates(false);
+            });
+        };
+
+        self.SaveUpdateParty = function () {
+            var party = this;
+
+            var formData = new FormData();
+            self.getFormStructure(formData, 'delimitation', parent.Delimitator().getDelimitatorData());
+            self.getFormStructure(formData, 'partyData', party.getData());
+            formData.append('fileData', party.fileData().file());
+
+            party.inCallMode(true);
+
+            $.ajax({
+                url: '@Url.Action("SaveUpdateParty")',
+                type: "post",
+                processData: false,
+                contentType: false,
+                data: formData,
+                success: function (result) {
+                    //refresh of pannel MUST be done after modal finish to close. otherwise UI get stacked, modal background is not removed.
+                    var dialog = self.getModalDialog();
+                    dialog.on('hidden.bs.modal', function () {
+                        self.reset();
+                        self.parent.get_rightPanelPartiesItems(parent.Delimitator().getDelimitatorData());
+                    });
+                    dialog.modal('hide');
+                }
+            }).always(function () {
+                party.inCallMode(false);
+            });
+        };
+
+        self.SaveUpdateCandidate = function () {
+            var cc = this;
+            var callData = { delimitation: parent.Delimitator().getDelimitatorData(), candidateData: cc.getData(), IsResultConfirmed: false };
+
+            self._callSaveUpdateCandidate(cc, callData, function (result) {
+                self._callSaveUpdateCandidate(cc, result);
+            });
+        };
+
+        self._callSaveUpdateCandidate = function(candidate, callData, callback) {
+            candidate.inCallMode(true);
+
+            $.ajax({
+                url: '@Url.Action("SaveUpdateCandidate")',
+                type: "post",
+                contentType: 'application/json',
+                data: JSON.stringify(callData),
+                success: function(result) {
+
+                    if (result !== 'success') {
+                        if (typeof callback != 'undefined') {
+                            var message = '<strong>Candidat cu acest IDNP este deja introdus în lista candidaților </strong><br/>';
+
+                            var template = jQuery.validator.format("<li class='list-group-item'>Scrutin: {0}<br/>Circumscriptie: {1}<br/>Localitate: {2}<br/>Lista partidului: {3}</li>");
+
+                            message += '<ul class="list-group">';
+                            for (var i = 0; i < result.length; i++) {
+                                message += template(result[i].Election, result[i].Circumscription, result[i].Region, result[i].Party);
+                            }
+                            message += '</ul>';
+                            message += '<strong>Confirmați salvarea candidatului? </strong> ';
+
+                            _showConfimation(message, null, function(confirmResult) {
+                                if (confirmResult) {
+                                    callData.IsResultConfirmed = true;
+                                    callback(callData);
+                                    return;
+                                }
+                            });
+
+                        }
+                    } else {
+                        self.closeCandidateDialog();
+                    }
+                }
+            }).always(function() {
+                candidate.inCallMode(false);
+            });
+        };
+
+        self.closeCandidateDialog = function () {
+            //refresh of pannel MUST be done after modal finish to close. otherwise UI get stacked, modal background is not removed.
+            var dialog = $('#editCandidateDialog');
+            dialog.on('hidden.bs.modal', function () {
+                self.loadCandidates();
+            });
+            dialog.modal('hide');
+        }
+
+        self.DeleteCandidates = function () {
+            var itemsToDelete = $.map(self.checkedCandidates(), function (x, i) {
+                return [{ CandidateId: x, PoliticalPartyId: self.SelectedParty().Id() }];
+            });
+
+            if (itemsToDelete.length === 0) {
+                _showAlert('Nici o înregistrare selectată!');
+                return;
+            } else {
+
+                _showConfimation('Înregistrările selectate vor fi eliminate. Doriți să continuați?','error-dialog', function (confirmResult) {
+                        if (confirmResult) {
+                            $.ajax({
+                                url: '@Url.Action("DeleteCandidates")',
+                                type: "post",
+                                contentType: 'application/json',
+                                data: JSON.stringify({ itemsToDelete: itemsToDelete }),
+                                success: function (result) {
+                                    self.loadCandidates();
+                                },
+                            error: function (e) {
+                                _showAlert('A avut loc o eroare. Adresați-vă administratorilor.', 'Atenție', 'error-dialog');
+                                            }
+                                    });
+                                }
+                            });
+                        }
+        };
+
+        self.UpdateCandidatesOrder = function () {
+            var itemsToUpdate = $.map(self.CandidatesItems(), function (x, i) {
+                return [{ CandidateId: x.Id(), CandidateRegionRelId: x.CandidateRegionRelId(), CandidateOrder: x.CandidateOrder() }];
+            });
+
+            if (itemsToUpdate.length === 0) {
+                return;
+            } else {
+                _showConfimation('Ordinea candidaților va fi modificată. Doriți să continuați?', null,
+                    function (confirmResult) {
+                        if (confirmResult) {
+                            $.ajax({
+                                url: '@Url.Action("UpdateCandidatesOrder")',
+                                type: "post",
+                                contentType: 'application/json',
+                                data: JSON.stringify({ itemsToUpdate: itemsToUpdate }),
+                                success: function (result) {
+                                    self.loadCandidates();
+                                }
+                            });
+                        }
+                });
+            }
+        };
+
+        self.OverrideStatus = function () {
+            var party = this;
+
+            var data = JSON.stringify({ delimitation: parent.Delimitator().getDelimitatorData(), partyId: party.Id(), status: party.Status() });
+            $.ajax({
+                url: '@Url.Action("OverridePartyStatus")',
+                data: data,
+                type: "post",
+                contentType: 'application/json',
+                success: function (data) {
+                    if (data === true) {
+                        _showAlert('Statutul a fost modificat cu succes!', 'Info', 'info-dialog');
+                    } else {
+                        _showAlert('Statutul n-a fost modificat. ', 'Info', 'info-dialog');
+                    }
+                },
+                error: function(e) {
+                    _showAlert(e.responseJSON.Message, 'Atenție', 'error-dialog');
+                }
+            });
+        }
+
+        self.getFormStructure = function (form, prefix, dataObj) {
+            var dataObjKeys = Object.keys(dataObj);
+            for (var i = 0; i < dataObjKeys.length; i++) {
+                var key = dataObjKeys[i];
+                var val = dataObj[key];
+
+                if (val !== null && typeof (val) === 'object') {
+                    self.getFormStructure(form, prefix + '.' + key, val);
+                    continue;
+                }
+
+                form.append(prefix + '.' + key, val);
+            }
+        };
+
+        self.addEditParty = function () {
+            var self = this;
+
+            if (self.SelectedParty() == null) {
+                self.SelectedParty(new PartyData());
+            } else {
+                var cloned = self.SelectedParty().clone();
+                self.SelectedParty(cloned);
+            }
+            $('#editPartyDialog').draggable({ handle: ".modal-header" });
+            $('#editPartyDialog').modal({ backdrop: false });
+
+            $(".datePicker").datetimepicker({
+                useCurrent: true,
+                format: 'DD.MM.YYYY',
+                minDate: moment('01.01.1950'),
+                maxDate: moment('01.01.2100'),
+                ignoreReadonly: true,
+                locale: 'ro'
+            });
+
+            $(".datePicker").on("dp.change", function (e) {
+                self.SelectedParty().DateOfRegistration(e.date);
+            });
+        };
+
+        self.addEditIndependent = function () {
+            var self = this;
+
+            if (self.SelectedParty() != null && this.SelectedParty().IsIndependent()) {
+                self.SelectedParty(self.SelectedParty().clone());
+            } else {
+                var newParty = new PartyData();
+                newParty.CandidateData(new CandidateData());
+                newParty.IsIndependent(true);
+
+                this.SelectedParty(newParty);
+            }
+            $('#editIndependentDialog').draggable({ handle: ".modal-header" });
+            $('#editIndependentDialog').modal({ backdrop: false });
+            
+
+            $('.hasMask').each(function () {
+                var maskExpression = $(this).attr("data-input-mask");
+                $(this).mask(maskExpression, { placeholder: "#" });
+            });
+
+            $(".datePicker").datetimepicker({
+                useCurrent: true,
+                format: 'DD.MM.YYYY',
+                minDate: moment('01.01.1950'),
+                maxDate: moment('01.01.2100'),
+                ignoreReadonly: true,
+                locale: 'ro'
+            });
+
+            $(".datePicker").on("dp.change", function (e) {
+                self.SelectedParty().DateOfRegistration(e.date);
+            });
+        };
+
+        self.addEditCandidate = function () {
+            var orderNr = this.CandidatesItems().length + 1;
+            if (this.SelectedCandidate() == null) {
+                var candidate = new CandidateData().setOrder(orderNr);
+                candidate.PoliticalPartyId(this.SelectedParty().Id());
+                this.SelectedCandidate(candidate);
+            } else {
+                self.SelectedCandidate(self.SelectedCandidate().clone());
+            }
+            $('#editCandidateDialog').draggable({ handle: ".modal-header" });
+            $('#editCandidateDialog').modal({ backdrop: false });
+
+            $('.hasMask').each(function () {
+                var maskExpression = $(this).attr("data-input-mask");
+                $(this).mask(maskExpression, { placeholder: "#" });
+            });
+        };
+
+        self.CancelEditCandidate = function () {
+            self.SelectedCandidate(null);
+
+            $('#editCandidateDialog').modal('hide');
+        };
+
+        self.CancelEditParty = function () {
+            self.SelectedParty(null);
+
+            $('#editPartyDialog').modal('hide');
+        };
+
+        self.CancelEditIndependent = function () {
+            self.SelectedParty(null);
+
+            $('#editIndependentDialog').modal('hide');
+        };
+
+        self.togglePartiesSelection.subscribe(function () {
+            if (self.checkedParties().length > 0 && !self.togglePartiesSelection()) {
+                self.checkedParties([]);
+                $.map(self.PartiesItems(), function (v, i) {
+                    v.isChecked(false);
+                });
+            } else {
+                var allIds = $.map(self.PartiesItems(), function (v, i) {
+                    v.isChecked(true);
+                    return [v.Id()];
+                });
+                self.checkedParties(allIds);
+            }
+        });
+
+        self.toggleCandidatesSelection.subscribe(function () {
+            if (self.checkedCandidates().length > 0 && !self.toggleCandidatesSelection()) {
+                self.checkedCandidates([]);
+                $.map(self.CandidatesItems(), function (v, i) {
+                    v.isChecked(false);
+                });
+            } else {
+                var allIds = $.map(self.CandidatesItems(), function (v, i) {
+                    v.isChecked(true);
+                    return [v.Id()];
+                });
+                self.checkedCandidates(allIds);
+            }
+        });
+
+        self.allocateInternal = function () {
+            ko.utils.arrayForEach(self.checkedParties(), function (x) {
+                var matchLeft = ko.utils.arrayFirst(self.parent.leftPanel().PartiesItems(), function (y) {
+                    return x === y.Id();
+                });
+
+                var matchRight = ko.utils.arrayFirst(self.parent.rightPanel().PartiesItems(), function (z) {
+                    return x === z.Id();
+                });
+
+                if (!matchLeft) {
+                    if (matchRight) {
+                        self.parent.leftPanel().PartiesItems().push(matchRight.clone());
+
+                        self.parent.leftPanel().PartiesListChanged(true);
+                    }
+                }
+
+                matchRight.isChecked(false);
+            });
+
+            self.parent.leftPanel().PartiesItems().sort(function (x, y) {
+                return (x.BallotOrder() - y.BallotOrder());
+            });
+
+            self.parent.leftPanel().PartiesItems.valueHasMutated();
+            self.checkedParties([]);
+        }
+
+        self.callFireAllocation = function () {
+            var itemsToAllocate = $.map(self.PartiesItems(), function (x, i) {
+                return [{ PoliticalPartyId: x.Id(), BallotOrder: x.BallotOrder(), Status: x.Status(), IsIndependent: x.IsIndependent() }];
+            });
+
+            self.ProcessingAllocations(true);
+            var delimitation = parent.Delimitator().getDelimitatorData();
+
+            $.ajax({
+                url: '@Url.Action("FireAllocation")',
+                type: "post",
+                contentType: 'application/json',
+                data: JSON.stringify({ delimitation: delimitation, itemsToAllocate: itemsToAllocate }),
+                success: function(result) {
+                    self.PartiesListChanged(false);
+                    self.parent.get_leftPanelPartiesItems(delimitation);
+                },
+                error: function(e) {
+                    _showAlert(e.responseJSON.Message, 'Atenție', 'error-dialog');
+                }
+            }).always(function() {
+                self.ProcessingAllocations(false);
+            });
+        }
+
+        self.FireAllocation = function() {
+            _showConfimation('Rugăm să confirmați re-procesarea structurii buletinului.', null, function(result) {
+                    if (result) {
+                        self.callFireAllocation();
+                    }
+            });
+        }
+
+        self.removeConcurents = function() {
+            var delimitation = parent.Delimitator().getDelimitatorData();
+            var data = JSON.stringify({ delimitation: delimitation, itemsToDelete: self.checkedParties() });
+
+            _showConfimation('Rugăm să confirmați eliminarea concurenitlor. ', 'error-dialog', function (result) {
+
+                if (result) {
+                    $.ajax({
+                        url: '@Url.Action("RemoveConcurents")',
+                    type: "post",
+                    contentType: 'application/json',
+                    data: data,
+                    success: function() {
+
+                        _showAlert('A fost eliminat cu success', 'Info', 'confirm-dialog');
+
+                        self.PartiesListChanged(false);
+                        self.parent.get_leftPanelPartiesItems(delimitation);
+                    },
+                    error: function(e) {
+                        _showAlert(e.responseJSON.Message, 'Atenție', 'error-dialog');
+                    }
+
+                    });
+                }
+
+            });
+
+        }
+
+        self.GetPreviewExcellUrl = ko.pureComputed(function () {
+            var delimitation = parent.Delimitator().getDelimitatorData();
+            return '@Url.Action("GetExcelPreview")' + '/?'+$.param(delimitation);
+        });
+
+        self.leftReorderParties = function() {
+            self.PartiesItems().sort(function (x, y) {
+                return (x.BallotOrder() - y.BallotOrder());
+            });
+
+            self.PartiesItems.valueHasMutated();
+        }
+    }
+
+    function ConcurentsVM() {
+        var self = this;
+        self.UserIsAdmin = (@Json.Encode(User.IsInRole("Administrator")));
+
+        self.leftPanel = ko.observable(new PanelVM(self));
+        self.rightPanel = ko.observable(new PanelVM(self));
+
+        self.PartyStatuses = ko.observableArray($.parseJSON('@Html.Raw(Json.Encode(PoliticalPartyStatusExtension.GetValuesAsArray<PoliticalPartyStatus>()))'));
+        self.CandidateStatuses = ko.observableArray($.parseJSON('@Html.Raw(Json.Encode(PoliticalPartyStatusExtension.GetValuesAsArray<CandidateStatus>()))'));
+
+        self.Delimitator = ko.observable(new DelimitatorVM());
+        self.Delimitator().onChanged.subscribe(function (e) {
+            self.resetPanels();
+            if (e.isReady()) {
+                self.get_rightPanelPartiesItems(e);
+                self.get_leftPanelPartiesItems(e);
+            }
+        });
+
+        self.resetPanels = function () {
+            self.leftPanel().reset();
+            self.rightPanel().reset();
+        }
+
+        self.get_rightPanelPartiesItems = function (delimitation) {
+            self.rightPanel().LoadingParties(true);
+            $.ajax({
+                url: '@Url.Action("GetAllParties")',
+                type: 'post',
+                contentType: 'application/json',
+                data: JSON.stringify({ delimitation: delimitation }),
+                success: function (result) {
+                    self.rightPanel().PartiesItems(ko.utils.arrayMap(result, function (party) {
+                        return new PartyData().init(party);
+                    }));
+                }
+            }).done(function () {
+                self.rightPanel().LoadingParties(false);
+            });
+        }
+
+        self.get_leftPanelPartiesItems = function (delimitation) {
+            self.leftPanel().LoadingParties(true);
+            $.ajax({
+                url: '@Url.Action("GetAllocatedParties")',
+                type: 'post',
+                contentType: 'application/json',
+                data: JSON.stringify({ delimitation: delimitation }),
+                success: function (result) {
+                    self.leftPanel().PartiesItems(ko.utils.arrayMap(result, function (party) {
+                        return new PartyData().init(party).setAllocated();
+                    }));
+                }
+            }).done(function () {
+                self.leftPanel().LoadingParties(false);
+            });
+        }
+    }
+
+    ko.validation.configure({
+        insertMessages: true,
+        decoratedElement: true,
+        messagesOnModified: false,
+        decorateElementOnModified: false,
+        errorElementClass: 'has-error',
+        errorMessageClass: 'help-block'
+    });
+
+    var concurentsVM = new ConcurentsVM();
+    ko.applyBindings(concurentsVM);
+
+    (function ($) {
+        concurentsVM.Delimitator().enableElectionsSelector();
+    })(jQuery);
+</script>

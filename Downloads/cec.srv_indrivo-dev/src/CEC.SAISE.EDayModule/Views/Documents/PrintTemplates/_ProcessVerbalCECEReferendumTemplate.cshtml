@@ -1,0 +1,312 @@
+﻿<div class="template-page-container">
+    <div class="template-container">
+        <div data-bind="with: ballotPaperVM" class="template-header">
+            <div class="top-section">
+                <img height="180" src="~/Content/img/national-emblem.png" alt="national emblem" />
+
+                <div class="election-info">
+                    <p class="election-state-organ">COMISIA ELECTORALĂ CENTRALĂ</p>
+                    <p data-bind="text: electionName" class="election-description"></p>
+                    <p data-bind="text: formattedDate" class="election-date"></p>
+                </div>
+
+                <img height="180" src="~/Content/img/cec-logo.png" alt="CEC logo" />
+            </div>
+
+            <div class="bottom-section">
+                <p data-bind="text: referendumQuestion" class="referendum-question"></p>
+
+                <div class="circumscription-region">
+                    <p data-bind="text: circumscriptionRegion"></p>
+                    <p data-bind="text: circumscriptionName"></p>
+                </div>
+
+                <div class="document-name">
+                    <p class="document-title">PROCES-VERBAL</p>
+                    <p data-bind="text: documentHeaderElectionDetails"></p>
+                </div>
+            </div>
+        </div>
+
+        <p>
+            În temeiul art. 37 și art. 84 din Codul electoral, consiliul electoral de circumscripție a stabilit:
+        </p>
+
+        <div class="electoral-statistics-grid" data-bind="with: documentPrintPropertiesVM">
+            <div class="electoral-statistic-item-letter"><p>a</p></div>
+
+            <div class="electoral-statistic-item-name">
+                Numărul de alegători incluși în listele electorale de bază *
+            </div>
+
+            <div class="electoral-statistic-item-value"><p data-bind="text: RegisteredVoters"></p></div>
+
+            <div class="electoral-statistic-item-letter"><p>b</p></div>
+
+            <div class="electoral-statistic-item-name">
+                Numărul de alegători incluși în listele electorale suplimentare
+            </div>
+
+            <div class="electoral-statistic-item-value"><p data-bind="text: Supplementary"></p></div>
+
+            <div class="electoral-statistic-item-letter"><p>c</p></div>
+
+
+            <div class="electoral-statistic-item-name">
+                <p>Numărul de alegători care au primit buletine de vot**</p>
+                <p>
+                    <strong>(c ≤ a + b); (c ≥ d)</strong>
+                </p>
+            </div>
+
+            <div class="electoral-statistic-item-value"><p data-bind="text: BallotsIssued"></p></div>
+
+            <div class="electoral-statistic-item-letter"><p>d</p></div>
+
+
+            <div class="electoral-statistic-item-name">
+                <p>
+                    Numărul de alegători care au participat la votare
+                </p>
+                <p>
+                    <strong>(d = f + h)</strong>
+                </p>
+            </div>
+
+            <div class="electoral-statistic-item-value"><p data-bind="text: BallotsCasted"></p></div>
+
+            <div class="electoral-statistic-item-letter"><p>e</p></div>
+
+
+            <div class="electoral-statistic-item-name">
+                <p>
+                    Cifra ce reflectă diferența dintre numărul buletinelor de vot primite de
+                </p>
+                <p>
+                    alegători şi numărul alegătorilor care au participat la votare <strong>(e = c - d)</strong>
+                </p>
+            </div>
+
+            <div class="electoral-statistic-item-value"><p data-bind="text: DifferenceIssuedCasted"></p></div>
+
+            <div class="electoral-statistic-item-letter"><p>f</p></div>
+
+
+            <div class="electoral-statistic-item-name">
+                <p>Numărul buletinelor de vot declarate nevalabile <strong>(f = d - h)</strong></p>
+                <p>
+                    (buletinele extrase din urna de vot și declarate nevalabile)
+                </p>
+            </div>
+
+            <div class="electoral-statistic-item-value"><p data-bind="text: BallotsSpoiled"></p></div>
+        </div>
+
+        <div class="electoral-statistics-grid" data-bind="with: documentPrintPropertiesVM">
+            <div class="electoral-statistic-item-letter"><p>h</p></div>
+
+            <div class="electoral-statistic-item-name">
+                <p>
+                    Numărul total de voturi valabil exprimate
+                </p>
+
+                <p>
+                    <strong>(h = g1 + g2)</strong>
+                </p>
+            </div>
+
+            <div class="electoral-statistic-item-value"><p data-bind="text: BallotsValidVotes"></p></div>
+
+            <div class="electoral-statistic-item-letter"><p>i</p></div>
+
+            <div class="electoral-statistic-item-name">
+                <p>
+                    Numărul buletinelor de vot primite de consiliul electoral de circumscripţie <strong>(i = c + j)</strong>
+                </p>
+            </div>
+
+            <div class="electoral-statistic-item-value"><p data-bind="text: BallotsReceived"></p></div>
+
+            <div class="electoral-statistic-item-letter"><p>j</p></div>
+
+
+            <div class="electoral-statistic-item-name">
+                <p>Numărul buletinelor de vot neutilizate şi anulate*** <strong>(j = i – c)</strong></p>
+
+                <p>
+                    (inclusiv buletinele de vot completate greşit şi anulate)
+                </p>
+            </div>
+
+            <div class="electoral-statistic-item-value"><p data-bind="text: BallotsUnusedSpoiled"></p></div>
+        </div>
+
+        <div class="formulas-verification-block">
+            <p>Verificați corectitudinea întocmirii procesului-verbal după următoarele formule:</p>
+            <p>
+                <strong>c ≤ a + b; c ≥ d; d = f + h; e = c - d; f = d - h; h = g1 + g2; i = c + j; j = i – c.</strong>
+            </p>
+        </div>
+
+        <div class="candidate-votes-grid column-headers">
+            <div class="candidate-vote-item-letter column-header"><p>g</p></div>
+            <div class="candidate-vote-item-name column-header">
+                <p>Opțiunea exprimată:</p>
+            </div>
+            <div class="candidate-vote-item-value column-header wider-column">
+                <p>Numărul de voturi</p>
+                <p>valabil exprimate</p>
+            </div>
+        </div>
+
+        <div data-bind="foreach: CompetitorResults" class="candidate-votes-grid">
+            <div class="candidate-vote-item-letter"><p>g<span data-bind="text: ($index() + 1)"></span></p></div>
+            <div class="candidate-vote-item-name">
+                <p style="margin-bottom: 0"><strong data-bind="text: ElectionCompetitorMemberName"></strong></p>
+            </div>
+            <div class="candidate-vote-item-value wider-column">
+                <p data-bind="text: ValueContent"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="template-container2">
+        <div class="presidential-signatures">
+            <div class="presidential-signatures-grid-item"></div>
+            <div class="presidential-signatures-grid-item column-header">
+                <p>Numele şi prenumele</p>
+            </div>
+            <div class="presidential-signatures-grid-item column-header">
+                <p>Sexul</p>
+                <p>(B/F)</p>
+            </div>
+            <div class="presidential-signatures-grid-item column-header signature-column-header">
+                <p>Semnătura</p>
+            </div>
+            <div class="presidential-signatures-grid-item">
+                <p>
+                    <strong>Președintele</strong>
+                </p>
+            </div>
+            <div class="presidential-signatures-grid-item name"></div>
+            <div class="presidential-signatures-grid-item gender president"></div>
+            <div class="presidential-signatures-grid-item signature"></div>
+            <div class="presidential-signatures-grid-item">
+                <p>
+                    <strong>Secretarul</strong>
+                </p>
+            </div>
+            <div class="presidential-signatures-grid-item name"></div>
+            <div class="presidential-signatures-grid-item gender"></div>
+            <div class="presidential-signatures-grid-item signature"></div>
+        </div>
+
+        <p class="electoral-members-signatures-title">
+            <strong>Membrii consiliului electoral de circumscripție</strong>
+        </p>
+
+        <div class="electoral-members-signatures">
+            <div class="electoral-members-signatures-grid-item empty"></div>
+            <div class="electoral-members-signatures-grid-item column-header">
+                <p>Numele şi prenumele</p>
+            </div>
+            <div class="electoral-members-signatures-grid-item column-header">
+                <p>Sexul</p>
+                <p>(B/F)</p>
+            </div>
+            <div class="electoral-members-signatures-grid-item column-header signature-column-header">
+                <p>Semnătura</p>
+            </div>
+
+            <div class="electoral-members-signatures-grid-item name empty"></div>
+            <div class="electoral-members-signatures-grid-item name"></div>
+            <div class="electoral-members-signatures-grid-item gender"></div>
+            <div class="electoral-members-signatures-grid-item signature"></div>
+
+            <div class="electoral-members-signatures-grid-item name empty"></div>
+            <div class="electoral-members-signatures-grid-item name"></div>
+            <div class="electoral-members-signatures-grid-item gender"></div>
+            <div class="electoral-members-signatures-grid-item signature"></div>
+
+            <div class="electoral-members-signatures-grid-item name empty"></div>
+            <div class="electoral-members-signatures-grid-item name"></div>
+            <div class="electoral-members-signatures-grid-item gender"></div>
+            <div class="electoral-members-signatures-grid-item signature"></div>
+
+            <div class="electoral-members-signatures-grid-item name empty"></div>
+            <div class="electoral-members-signatures-grid-item name"></div>
+            <div class="electoral-members-signatures-grid-item gender"></div>
+            <div class="electoral-members-signatures-grid-item signature"></div>
+
+            <div class="electoral-members-signatures-grid-item name empty"></div>
+            <div class="electoral-members-signatures-grid-item name"></div>
+            <div class="electoral-members-signatures-grid-item gender"></div>
+            <div class="electoral-members-signatures-grid-item signature"></div>
+
+            <div class="electoral-members-signatures-grid-item name empty"></div>
+            <div class="electoral-members-signatures-grid-item name"></div>
+            <div class="electoral-members-signatures-grid-item gender"></div>
+            <div class="electoral-members-signatures-grid-item signature"></div>
+
+            <div class="electoral-members-signatures-grid-item name empty"></div>
+            <div class="electoral-members-signatures-grid-item name"></div>
+            <div class="electoral-members-signatures-grid-item gender"></div>
+            <div class="electoral-members-signatures-grid-item signature"></div>
+
+            <div class="electoral-members-signatures-grid-item name empty"></div>
+            <div class="electoral-members-signatures-grid-item name"></div>
+            <div class="electoral-members-signatures-grid-item gender"></div>
+            <div class="electoral-members-signatures-grid-item signature"></div>
+
+            <div class="electoral-members-signatures-grid-item name empty"></div>
+            <div class="electoral-members-signatures-grid-item name"></div>
+            <div class="electoral-members-signatures-grid-item gender"></div>
+            <div class="electoral-members-signatures-grid-item signature"></div>
+        </div>
+
+        <div class="print-template-footer">
+            <div class="footer-grid-item">
+                <p>Data şi ora întocmirii procesului-verbal</p>
+            </div>
+
+            <div class="footer-grid-item date">
+                <p>
+                    <span class="day-placeholder">_____</span>
+                    <span>_______________ 20____</span>
+                </p>
+            </div>
+
+            <div class="footer-grid-item">
+                <p><strong>L.Ş.</strong></p>
+            </div>
+
+            <div class="footer-grid-item time">
+                <p>ora ____  min ____</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="alert alert-success pdf-saving-loader" data-bind="visible: inCallMode">
+        Rugăm așteptați...
+        <div class="progress progress-striped active">
+            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+        </div>
+    </div>
+
+    <div class="alert alert-success pdf-saved-with-success-message" data-bind="visible: wasUploadedWithSuccess">
+        Documentul a fost încărcat cu succes.
+    </div>
+
+    <div class="alert alert-danger pdf-saving-error-message" data-bind="visible: wasUploadedWithSuccess() === false">
+        Documentul a fost deja încărcat anterior.
+    </div>
+
+    <input id="savePdf" type="button" class="btn-lg btn pull-right board-btn-lg btn-danger"
+           value="Salvează PDF"
+           data-bind="click: SavePdf" />
+
+    <input id="printTemplate" type="button" class="btn-lg btn pull-right board-btn-lg btn-danger"
+           value="Printează"
+           data-bind="click: PrintTemplate" />
+</div>
+

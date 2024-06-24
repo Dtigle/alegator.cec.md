@@ -1,0 +1,25 @@
+﻿@using CEC.Web.SRV.Resources
+@model CEC.Web.SRV.Models.Account.MultiSelectAccountEdit
+
+
+@using (Html.BeginForm("UpdateAccounts", "Account", FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
+{
+    @Html.AntiForgeryToken()
+
+    <h6>Vor fi modificați <label class="lblCounter"></label> utilizatori</h6>
+    <hr />
+    @Html.ValidationSummary()
+
+    <div class="form-group">
+        @Html.EditorFor(x => x.Status)
+    </div>
+    <div class="form-group">
+        @Html.EditorFor(x => x.Comments)
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="@MUI.BtnExecute" class="btn btn-primary" />
+        </div>
+    </div>
+}

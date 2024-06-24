@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="0251fe7c-8b45-492d-8469-11397f0d815d" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://cec-admin-dev.cs1.soft-tehnica.com/webservices/notifyservice.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="NotifyService.xsd" MetadataType="Schema" ID="d5cf8fe6-9c1d-4ddb-b4bf-260c9b47e2ad" SourceId="1" SourceUrl="http://cec-admin-dev.cs1.soft-tehnica.com/webservices/NotifyService.svc?xsd=xsd0" />
+    <MetadataFile FileName="NotifyService.wsdl" MetadataType="Wsdl" ID="9a691ce7-8992-4847-9059-c1254653eab6" SourceId="1" SourceUrl="http://cec-admin-dev.cs1.soft-tehnica.com/webservices/NotifyService.svc?wsdl" />
+    <MetadataFile FileName="NotifyService.disco" MetadataType="Disco" ID="9b302e07-e188-4d92-af02-860fd8d418ba" SourceId="1" SourceUrl="http://cec-admin-dev.cs1.soft-tehnica.com/webservices/NotifyService.svc?disco" />
+    <MetadataFile FileName="NotifyService1.xsd" MetadataType="Schema" ID="a324d3df-96e8-4f4a-8d05-6590acd880fc" SourceId="1" SourceUrl="http://cec-admin-dev.cs1.soft-tehnica.com/webservices/NotifyService.svc?xsd=xsd2" />
+    <MetadataFile FileName="NotifyService2.xsd" MetadataType="Schema" ID="7a51ba88-c493-4fe3-a325-6510a505b7cf" SourceId="1" SourceUrl="http://cec-admin-dev.cs1.soft-tehnica.com/webservices/NotifyService.svc?xsd=xsd1" />
+    <MetadataFile FileName="NotifyService3.xsd" MetadataType="Schema" ID="d13de284-9a56-496a-ba62-f8168ebf1670" SourceId="1" SourceUrl="http://cec-admin-dev.cs1.soft-tehnica.com/webservices/NotifyService.svc?xsd=xsd3" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

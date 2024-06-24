@@ -1,0 +1,1386 @@
+﻿<div class="box" data-bind="visible: !BallotPaperNotFound() && BallotPaper() != null">
+    <div class="box-content" data-bind="with: BallotPaper">
+        <div data-bind="template: {name: getStatusBarTemplate}, visible: ShowValidationErrors() || AlreadySent()"></div>
+
+        <table class="table">
+            <tr>
+                <td>
+                    <span class="badge">1.</span>
+                    Numărul persoanelor care au participat la procedura de deschidere a secției de votare:
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">a)</span>
+                    numărul membrii biroului electoral
+                </td>
+                <td>
+                    <input data-bind="value: ElectoralBoardMembersOnOpening" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">b)</span>
+                    numărul operatorilor SIAS „Alegeri”
+                </td>
+                <td>
+                    <input data-bind="value: SIASOperatorsOnOpening" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">c)</span>
+                    numărul reprezentanților ai participanților la referendum
+                </td>
+                <td>
+                    <input data-bind="value: ElectoralCompetitorsRepresentativesOnOpening" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">d)</span>
+                    numărul observatorilor internaționali
+                </td>
+                <td>
+                    <input data-bind="value: InternationalObserversOnOpening" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">e)</span>
+                    numărul observatorilor naționali din partea asociațiilor obștești
+                </td>
+                <td>
+                    <input data-bind="value: NationalObserversFromAssociationsOnOpening" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">f)</span>
+                    numărul reprezentanților ai mass-media
+                </td>
+                <td>
+                    <input data-bind="value: MediaRepresentativesOnOpening" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span class="badge">2.</span>
+                    Numărul persoanelor care au participat la procedura de deschidere a secției de votare în cea de-a doua zi de votare:
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">a)</span>
+                    numărul membrii biroului electoral
+                </td>
+                <td>
+                    <input data-bind="value: ElectoralBoardMembersSecondDay" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">b)</span>
+                    numărul operatorilor SIAS „Alegeri”
+                </td>
+                <td>
+                    <input data-bind="value: SIASOperatorsSecondDay" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">c)</span>
+                    numărul reprezentanților ai participanților la referendum
+                </td>
+                <td>
+                    <input data-bind="value: ElectoralCompetitorsRepresentativesSecondDay" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">d)</span>
+                    numărul observatorilor internaționali
+                </td>
+                <td>
+                    <input data-bind="value: InternationalObserversSecondDay" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">e)</span>
+                    numărul observatorilor naționali din partea asociațiilor obștești
+                </td>
+                <td>
+                    <input data-bind="value: NationalObserversFromAssociationsSecondDay" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">f)</span>
+                    numărul reprezentanților ai mass-media
+                </td>
+                <td>
+                    <input data-bind="value: MediaRepresentativesSecondDay" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span class="badge">3.</span>
+                    Numărul urnelor de vot sigilate:
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">a)</span>
+                    urne de vot staționare de 80 litri
+
+                    <div data-bind="visible: StationaryVotingBox80Liters.isValid() && ShowValidationErrors()">
+                        <div class="alert alert-danger" data-bind="visible: StationaryVotingBox80Liters() > 10">
+                            <span>maximum 10</span>
+                        </div>
+                    </div>
+                </td>
+
+                <td data-bind="validationElement: StationaryVotingBox80Liters, css: StationaryVotingBox80Liters() > 10 ? 'has-error' : ''">
+                    <input data-bind="value: StationaryVotingBox80Liters" class="form-control number" maxlength="2" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">b)</span>
+                    urne de vot staționare de 45 litri
+
+                    <div data-bind="visible: StationaryVotingBox45Liters.isValid() && ShowValidationErrors()">
+                        <div class="alert alert-danger" data-bind="visible: StationaryVotingBox45Liters() > 10">
+                            <span>maximum 10</span>
+                        </div>
+                    </div>
+                </td>
+
+                <td data-bind="validationElement: StationaryVotingBox45Liters, css: StationaryVotingBox45Liters() > 10 ? 'has-error' : ''">
+                    <input data-bind="value: StationaryVotingBox45Liters" class="form-control number" maxlength="2" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">c)</span>
+                    urne de vot mobile de 27 litri
+
+                    <div data-bind="visible: MobileVotingBox27Liters.isValid() && ShowValidationErrors()">
+                        <div class="alert alert-danger" data-bind="visible: MobileVotingBox27Liters() > 5">
+                            <span>maximum 5</span>
+                        </div>
+                    </div>
+                </td>
+
+                <td data-bind="validationElement: MobileVotingBox27Liters, css: MobileVotingBox27Liters() > 5 ? 'has-error' : ''">
+                    <input data-bind="value: MobileVotingBox27Liters" class="form-control number" maxlength="1" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">d)</span>
+                    numărul sigiliilor din plastic utilizate pentru sigilarea urnelor de vot
+
+                    <div data-bind="visible: !PlasticSealsForVotingBoxCount.isValid() && !PlasticSealsForVotingBoxCount_Rule_Succeeded() && ShowValidationErrors()">
+                        <div class="alert alert-danger alert-letter">
+                            <span>Regula: </span>
+                            <code>d ≥  4 * a + 4 * b + c</code>
+                        </div>
+                    </div>
+                </td>
+                <td data-bind="validationElement: PlasticSealsForVotingBoxCount">
+                    <input data-bind="value: PlasticSealsForVotingBoxCount" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">e)</span>
+                    Codurile inscripționate pe sigiliile de plastic aplicate pe urnele de vot
+                </td>
+                <td>
+                    <textarea type="text" data-bind="value: PlasticSealCodesOnVotingBox" class="form-control text" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">f)</span>
+                    Codurile inscripționate pe sigiliile de plastic aplicate pe fantele urnelor de vot
+                </td>
+                <td>
+                    <textarea type="text" data-bind="value: PlasticSealCodesOnVotingBoxSlits" class="form-control text" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span class="badge">4.</span>
+                    Numărul cabinelor de vot de care dispune secția de votare:
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">a)</span>
+                    numărul cabinelor pentru vot secret
+
+                    <div data-bind="visible: VotingBoothsCount.isValid() && ShowValidationErrors()">
+                        <div class="alert alert-danger" data-bind="visible: VotingBoothsCount() > 10">
+                            <span>maximum 10</span>
+                        </div>
+                    </div>
+                </td>
+
+                <td data-bind="validationElement: VotingBoothsCount, css: VotingBoothsCount() > 10 ? 'has-error' : ''">
+                    <input data-bind="value: VotingBoothsCount" class="form-control number" maxlength="2" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">b)</span>
+                    numărul cabinelor pentru persoane cu nevoi speciale
+
+                    <div data-bind="visible: SpecialNeedsVotingBoothsCount.isValid() && ShowValidationErrors()">
+                        <div class="alert alert-danger" data-bind="visible: SpecialNeedsVotingBoothsCount() > 5">
+                            <span>maximum 5</span>
+                        </div>
+                    </div>
+                </td>
+
+                <td data-bind="validationElement: SpecialNeedsVotingBoothsCount, css: SpecialNeedsVotingBoothsCount() > 5 ? 'has-error' : ''">
+                    <input data-bind="value: SpecialNeedsVotingBoothsCount" class="form-control number" maxlength="1" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span class="badge">5.</span>
+                    Numărul de ștampile de care dispune secția de votare:
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">a)</span>
+                    ștampile cu inscripția „Votat”
+                </td>
+
+                <td>
+                    <input data-bind="value: StampedVotedCount" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">b)</span>
+                    ștampile cu inscripția „Retras”
+                </td>
+                <td>
+                    <input data-bind="value: StampedWithdrawnCount" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span class="badge">6.</span>
+                    Componența numerică a membrilor biroului electoral
+
+                    <div data-bind="visible: ElectoralBoardMembersNumericComposition.isValid() && ShowValidationErrors()">
+                        <div class="alert alert-danger" data-bind="visible: ElectoralBoardMembersNumericComposition() > 15">
+                            <span>maximum 15</span>
+                        </div>
+                    </div>
+                </td>
+
+                <td data-bind="validationElement: ElectoralBoardMembersNumericComposition, css: ElectoralBoardMembersNumericComposition() > 15 ? 'has-error' : ''">
+                    <input data-bind="value: ElectoralBoardMembersNumericComposition" class="form-control number" maxlength="2" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span class="badge">7.</span>
+                    Numărul ședințelor organizate pe parcursul desfășurării activității
+                </td>
+
+                <td>
+                    <input data-bind="value: MeetingsCountBetweenRounds" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span class="badge">8.</span>
+                    Numărul hotărârilor adoptate de către biroul electoral
+                </td>
+
+                <td>
+                    <input data-bind="value: DecisionsCountBetweenRounds" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span class="badge">9.</span>
+                    Numărul contestațiilor/cererilor (demersuri, sesizări, petiții) depuse la biroul electoral:
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">a)</span>
+                    numărul depus până în ziua votării
+
+                    <div data-bind="visible: !ContestationsUntilEDay.isValid() && !ContestationsUntilEDay_Rule_Succeeded() && ShowValidationErrors()">
+                        <div class="alert alert-danger alert-letter">
+                            <span>Regula: </span>
+                            <code>a = 10(a) + 10(e) + 10(f) + 10(g)</code>
+                        </div>
+                    </div>
+                </td>
+                <td data-bind="validationElement: ContestationsUntilEDay">
+                    <input data-bind="value: ContestationsUntilEDay" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">b)</span>
+                    numărul depus în ziua votării
+
+                    <div data-bind="visible: !ContestationsOnEDay.isValid() && !ContestationsOnEDay_Rule_Succeeded() && ShowValidationErrors()">
+                        <div class="alert alert-danger alert-letter">
+                            <span>Regula: </span>
+                            <code>b = 11(a) + 11(e) + 11(f) + 11(g)</code>
+                        </div>
+                    </div>
+                </td>
+                <td data-bind="validationElement: ContestationsOnEDay">
+                    <input data-bind="value: ContestationsOnEDay" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">c)</span>
+                    numărul depus în cea de-a doua zi de votare
+
+                    <div data-bind="visible: !SubmittedOnVotingDayCountSecondDay.isValid() && !SubmittedOnVotingDayCountSecondDay_Rule_Succeeded() && ShowValidationErrors()">
+                        <div class="alert alert-danger alert-letter">
+                            <span>Regula: </span>
+                            <code>c = 12(a) + 12(e) + 12(f) + 12(g)</code>
+                        </div>
+                    </div>
+                </td>
+                <td data-bind="validationElement: SubmittedOnVotingDayCountSecondDay">
+                    <input data-bind="value: SubmittedOnVotingDayCountSecondDay" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span class="badge">10.</span>
+                    În urma examinării contestațiilor depuse <strong>până în ziua votării</strong> biroul electoral a întreprins:
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">a)</span>
+                    numărul total de hotărâri adoptate asupra contestațiilor
+
+                    <div data-bind="visible: !TotalDecisionsOnObjectionsBefore.isValid() && !TotalDecisionsOnObjectionsBefore_Rule_Succeeded() && ShowValidationErrors()">
+                        <div class="alert alert-danger alert-letter">
+                            <span>Regula: </span>
+                            <code>a =  b + c + d</code>
+                        </div>
+                    </div>
+                </td>
+                <td data-bind="validationElement: TotalDecisionsOnObjectionsBefore">
+                    <input data-bind="value: TotalDecisionsOnObjectionsBefore" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">b)</span>
+                    numărul de hotărâri prin care au fost admise integral contestații
+                </td>
+                <td>
+                    <input data-bind="value: DecisionsFullyAcceptedObjectionsBefore" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">c)</span>
+                    numărul de hotărâri prin care au fost admise parțial contestații
+                </td>
+                <td>
+                    <input data-bind="value: DecisionsPartiallyAcceptedObjectionsBefore" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">d)</span>
+                    numărul de hotărâri prin care au fost respinse ca neîntemeiate contestații
+                </td>
+                <td>
+                    <input data-bind="value: DecisionsRejectedObjectionsBefore" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">e)</span>
+                    numărul de răspunsuri la contestații date prin scrisoare
+                </td>
+                <td>
+                    <input data-bind="value: ObjectionResponsesByLetterBefore" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">f)</span>
+                    numărul de contestații remise conform competenței către alte organe
+                </td>
+                <td>
+                    <input data-bind="value: ObjectionsForwardedToOtherAuthoritiesBefore" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">g)</span>
+                    numărul de contestații restituite
+                </td>
+                <td>
+                    <input data-bind="value: ReturnedObjectionsBefore" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span class="badge">11.</span>
+                    În urma examinării contestațiilor depuse <strong>în ziua votării</strong> biroul electoral a întreprins:
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">a)</span>
+                    numărul total de hotărâri adoptate asupra contestațiilor
+
+                    <div data-bind="visible: !TotalDecisionsOnObjectionsFirstDay.isValid() && !TotalDecisionsOnObjectionsFirstDay_Rule_Succeeded() && ShowValidationErrors()">
+                        <div class="alert alert-danger alert-letter">
+                            <span>Regula: </span>
+                            <code>a = b + c + d</code>
+                        </div>
+                    </div>
+                </td>
+                <td data-bind="validationElement: TotalDecisionsOnObjectionsFirstDay">
+                    <input data-bind="value: TotalDecisionsOnObjectionsFirstDay" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">b)</span>
+                    numărul de hotărâri prin care au fost admise integral contestații
+                </td>
+                <td>
+                    <input data-bind="value: DecisionsFullyAcceptedObjectionsFirstDay" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">c)</span>
+                    numărul de hotărâri prin care au fost admise parțial contestații
+                </td>
+                <td>
+                    <input data-bind="value: DecisionsPartiallyAcceptedObjectionsFirstDay" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">d)</span>
+                    numărul de hotărâri prin care au fost respinse ca neîntemeiate contestații
+                </td>
+                <td>
+                    <input data-bind="value: DecisionsRejectedObjectionsFirstDay" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">e)</span>
+                    numărul de răspunsuri la contestații date prin scrisoare
+                </td>
+                <td>
+                    <input data-bind="value: ObjectionResponsesByLetterFirstDay" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">f)</span>
+                    numărul de contestații remise conform competenței către alte organe
+                </td>
+                <td>
+                    <input data-bind="value: ObjectionsForwardedToOtherBodiesFirstDay" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">g)</span>
+                    numărul de contestații restituite
+                </td>
+                <td>
+                    <input data-bind="value: ReturnedObjectionsFirstDay" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span class="badge">12.</span>
+                    În urma examinării contestațiilor depuse <strong>în cea de-a doua zi de votare</strong> biroul electoral a întreprins:
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">a)</span>
+                    numărul total de hotărâri adoptate asupra contestațiilor
+
+                    <div data-bind="visible: !TotalDecisionsOnObjectionsSecondDay.isValid() && !TotalDecisionsOnObjectionsSecondDay_Rule_Succeeded() && ShowValidationErrors()">
+                        <div class="alert alert-danger alert-letter">
+                            <span>Regula: </span>
+                            <code>a = b + c + d</code>
+                        </div>
+                    </div>
+                </td>
+                <td data-bind="validationElement: TotalDecisionsOnObjectionsSecondDay">
+                    <input data-bind="value: TotalDecisionsOnObjectionsSecondDay" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">b)</span>
+                    numărul de hotărâri prin care au fost admise integral contestații
+                </td>
+                <td>
+                    <input data-bind="value: DecisionsFullyAcceptedObjectionsSecondDay" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">c)</span>
+                    numărul de hotărâri prin care au fost admise parțial contestații
+                </td>
+                <td>
+                    <input data-bind="value: DecisionsPartiallyAcceptedObjectionsSecondDay" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">d)</span>
+                    numărul de hotărâri prin care au fost respinse ca neîntemeiate contestații
+                </td>
+                <td>
+                    <input data-bind="value: DecisionsRejectedObjectionsSecondDay" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">e)</span>
+                    numărul de răspunsuri la contestații date prin scrisoare
+                </td>
+                <td>
+                    <input data-bind="value: ObjectionResponsesByLetterSecondDay" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">f)</span>
+                    numărul de contestații remise conform competenței către alte organe
+                </td>
+                <td>
+                    <input data-bind="value: ObjectionsForwardedToOtherBodiesSecondDay" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">g)</span>
+                    numărul de contestații restituite
+                </td>
+                <td>
+                    <input data-bind="value: ReturnedObjectionsSecondDay" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span class="badge">13.</span>
+                    Numărul încălcărilor ordinii publice constatate în zilele votării
+                </td>
+
+                <td>
+                    <input data-bind="value: PublicOrderViolationsOnVotingDay" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span class="badge">14.</span>
+                    Numărul de completări a buletinului de vot cu ajutorul altor persoane
+                </td>
+
+                <td>
+                    <input data-bind="value: BallotAssistanceCount" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span class="badge">15.</span>
+                    Numărul de alegători înscriși în lista electorală de bază la momentul transmiterii acesteia de către primărie biroului electoral al secţiei de votare
+                </td>
+
+                <td>
+                    <input data-bind="value: NumberOfVotersInElectoralListByMunicipality" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span class="badge">16.</span>
+                    Numărul de solicitări depuse în baza documentelor confirmative privind neincluderea/excluderea alegătorului din lista electorală de bază
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">a)</span>
+                    numărul de solicitări depuse de către alegători
+
+                    <div data-bind="visible: !NumberOfRequestsByVoters.isValid() && !NumberOfRequestsByVoters_Rule_Succeeded() && ShowValidationErrors()">
+                        <div class="alert alert-danger alert-letter">
+                            <span>Regula: </span>
+                            <code>a + b + c = d + e + f = h + g</code>
+                        </div>
+                    </div>
+                </td>
+                <td data-bind="validationElement: NumberOfRequestsByVoters">
+                    <input data-bind="value: NumberOfRequestsByVoters" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">b)</span>
+                    numărul de solicitări depuse de către reprezentanți ai participanților la referendum
+                </td>
+                <td>
+                    <input data-bind="value: NumberOfRequestsByElectoralRepresentatives" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">c)</span>
+                    numărul de solicitări depuse de către observatori
+                </td>
+                <td>
+                    <input data-bind="value: NumberOfRequestsByObservers" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">d)</span>
+                    numărul de solicitări de includere în listă
+                </td>
+                <td>
+                    <input data-bind="value: NumberOfInclusionRequests" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">e)</span>
+                    numărul de solicitări de excludere din listă
+                </td>
+                <td>
+                    <input data-bind="value: NumberOfExclusionRequests" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">f)</span>
+                    numărul de solicitări de corectare a erorilor comise la înscrierea datelor
+                </td>
+                <td>
+                    <input data-bind="value: NumberOfDataCorrectionRequests" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">h)</span>
+                    numărul de solicitări admise
+                </td>
+                <td>
+                    <input data-bind="value: NumberOfAdmittedRequests" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">g)</span>
+                    numărul de solicitări respinse
+                </td>
+                <td>
+                    <input data-bind="value: NumberOfRejectedRequests" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span class="badge">17.</span>
+                    Numărul de alegători înscriși în lista electorală de bază după efectuarea modificărilor/actualizărilor solicitate în baza documentelor confirmative
+                </td>
+
+                <td>
+                    <input data-bind="value: NumberOfVotersInUpdatedElectoralList" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span class="badge">18.</span>
+                    Numărul certificatelor pentru drept de vot
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">a)</span>
+                    certificatele recepționate de la CECE
+
+                    <div data-bind="visible: !CertificatesReceivedFromCECE.isValid() && !CertificatesReceivedFromCECE_Rule_Succeeded() && ShowValidationErrors()">
+                        <div class="alert alert-danger alert-letter">
+                            <span>Regula: </span>
+                            <code>a = b + d</code>
+                        </div>
+                    </div>
+                </td>
+
+                <td data-bind="validationElement: CertificatesReceivedFromCECE">
+                    <input data-bind="value: CertificatesReceivedFromCECE" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">b)</span>
+                    certificatele eliberate alegătorilor
+                </td>
+                <td>
+                    <input data-bind="value: CertificatesIssuedToVoters" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">c)</span>
+                    seria certificatelor eliberate alegătorilor
+                </td>
+                <td>
+                    <textarea data-bind="value: SeriesOfCertificatesIssuedToVoters" class="form-control text" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">d)</span>
+                    certificatele rămase neutilizate/anulate
+                </td>
+                <td>
+                    <input data-bind="value: UnusedOrCancelledCertificates" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">e)</span>
+                    seria certificatelor rămase neutilizate/anulate
+                </td>
+                <td>
+                    <textarea data-bind="value: SeriesOfUnusedOrCancelledCertificates" class="form-control text" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span class="badge">19.</span>
+                    Numărul total de cereri de votare la locul aflării depuse
+                </td>
+
+                <td>
+                    <input data-bind="value: TotalVotingRequestsAtLocation" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span class="badge">20.</span>
+                    Numărul buletinelor de vot eliberate de echipa cu urna mobilă alegătorilor care au votat la locul aflării
+                </td>
+
+                <td>
+                    <input data-bind="value: BallotsIssuedByMobileTeam" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span class="badge">21.</span>
+                    Numărul buletinelor de vot eliberate de echipa cu urna mobilă alegătorilor care au votat la locul aflării în cea de-a doua zi de votare
+                </td>
+
+                <td>
+                    <input data-bind="value: BallotsIssuedByMobileTeamOnSecondVotingDay" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span class="badge">22.</span>
+                    Numărul de alegători care au participat la votare:
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">a)</span>
+                    în baza certificatelor pentru drept de vot
+                </td>
+                <td>
+                    <input data-bind="value: VotersBasedOnVotingCertificates" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">b)</span>
+                    în baza buletinului de identitate provizoriu
+                </td>
+                <td>
+                    <input data-bind="value: VotersWithTemporaryID" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">c)</span>
+                    în baza pașaportului
+                </td>
+                <td>
+                    <input data-bind="value: VotersWithPassport" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">d)</span>
+                    în baza pașaportului cu termen de valabilitate expirat
+
+                    <div data-bind="visible: !VotersWithExpiredPassport.isValid() && !VotersWithExpiredPassport_Rule_Succeeded() && ShowValidationErrors()">
+                        <div class="alert alert-danger alert-letter">
+                            <span>Regula: </span>
+                            <code>d ≤ c</code>
+                        </div>
+                    </div>
+                </td>
+                <td data-bind="validationElement: VotersWithExpiredPassport">
+                    <input data-bind="value: VotersWithExpiredPassport" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">e)</span>
+                    la locul aflării (cu urna de vot mobilă)
+                </td>
+                <td>
+                    <input data-bind="value: VotersAtLocationWithMobileBox" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">f)</span>
+                    persoane aflate în instituții penitenciare
+                </td>
+                <td>
+                    <input data-bind="value: VotersInPenitentiaryInstitutions" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">g)</span>
+                    persoane aflate în sanatorii, case de odihnă, spitale sau alte instituții curativ staționare
+                </td>
+                <td>
+                    <input data-bind="value: VotersInSanatoriumsOrHospitals" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">h)</span>
+                    militarii aflați în unitățile militare
+                </td>
+                <td>
+                    <input data-bind="value: MilitaryVotersInMilitaryUnits" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">k)</span>
+                    persoane cu dizabilități locomotorii
+                </td>
+                <td>
+                    <input data-bind="value: VotersWithLocomotorDisabilities" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">l)</span>
+                    persoane cu dizabilități de vedere
+                </td>
+                <td>
+                    <input data-bind="value: VotersWithVisualImpairments" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">m)</span>
+                    persoane cu dizabilități auditive
+                </td>
+                <td>
+                    <input data-bind="value: VotersWithHearingImpairments" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">n)</span>
+                    alegători în baza declarației privind locul nou de ședere
+                </td>
+                <td>
+                    <input data-bind="value: VotersBasedOnNewResidenceDeclaration" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">o)</span>
+                    cu carnet de student
+                </td>
+                <td>
+                    <input data-bind="value: VotersWithStudentCard" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">p)</span>
+                    funcționari electorali care activează în SV respectivă dar sunt arondați la altă SV
+                </td>
+                <td>
+                    <input data-bind="value: ElectoralOfficialsFromOtherSV" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span class="badge">23.</span>
+                    Numărul semnăturilor aplicate de către alegători pe liste electorale:
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">a)</span>
+                    numărul semnăturilor pe listele electorale de bază
+                </td>
+                <td>
+                    <input data-bind="value: SignaturesOnBasicListsFirstDay" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">b)</span>
+                    numărul semnăturilor pe listele electorale suplimentare
+                </td>
+                <td>
+                    <input data-bind="value: SignaturesOnSupplementaryListsFirstDay" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">c)</span>
+                    numărul semnăturilor pe listele electorale privind votarea la locul aflării
+                </td>
+                <td>
+                    <input data-bind="value: SignaturesOnVotingLocationListsFirstDay" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span class="badge">24.</span>
+                    Numărul semnăturilor aplicate de către alegători pe liste electorale în cea de-a doua zi de votare (inclusiv cu cele de la prima zi):
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">a)</span>
+                    numărul semnăturilor pe listele electorale de bază
+
+                    <div data-bind="visible: !SignaturesOnBasicListSecondDay.isValid() && !SignaturesOnBasicListSecondDay_Rule_Succeeded() && ShowValidationErrors()">
+                        <div class="alert alert-danger alert-letter">
+                            <span>Regula: </span>
+                            <code>pct. 24 lit. a ≥ pct. 23 lit. a</code>
+                        </div>
+                    </div>
+                </td>
+                <td data-bind="validationElement: SignaturesOnBasicListSecondDay">
+                    <input data-bind="value: SignaturesOnBasicListSecondDay" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">b)</span>
+                    numărul semnăturilor pe listele electorale suplimentare
+
+                    <div data-bind="visible: !SignaturesOnSupplementaryListSecondDay.isValid() && !SignaturesOnSupplementaryListSecondDay_Rule_Succeeded() && ShowValidationErrors()">
+                        <div class="alert alert-danger alert-letter">
+                            <span>Regula: </span>
+                            <code>pct. 24 lit. b ≥ pct. 23 lit. b</code>
+                        </div>
+                    </div>
+                </td>
+                <td data-bind="validationElement: SignaturesOnSupplementaryListSecondDay">
+                    <input data-bind="value: SignaturesOnSupplementaryListSecondDay" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">c)</span>
+                    numărul semnăturilor pe listele electorale privind votarea la locul aflării
+
+                    <div data-bind="visible: !SignaturesOnVotingLocationListSecondDay.isValid() && !SignaturesOnVotingLocationListSecondDay_Rule_Succeeded() && ShowValidationErrors()">
+                        <div class="alert alert-danger alert-letter">
+                            <span>Regula: </span>
+                            <code>pct. 24 lit. c ≥ pct. 23 lit. c</code>
+                        </div>
+                    </div>
+                </td>
+                <td data-bind="validationElement: SignaturesOnVotingLocationListSecondDay">
+                    <input data-bind="value: SignaturesOnVotingLocationListSecondDay" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span class="badge">25.</span>
+                    Numărul membrilor ai biroului electoral care au lipsit în ziua votării
+
+                    <div data-bind="visible: !AbsentElectoralBoardMembersOnVotingDay.isValid() && !AbsentElectoralBoardMembersOnVotingDay_Rule_Succeeded() && ShowValidationErrors()">
+                        <div class="alert alert-danger alert-letter">
+                            <span>Regula: </span>
+                            <code>nu poate fi mai mare decît cifra indicată la pct. 6</code>
+                        </div>
+                    </div>
+                </td>
+
+                <td data-bind="validationElement: AbsentElectoralBoardMembersOnVotingDay">
+                    <input data-bind="value: AbsentElectoralBoardMembersOnVotingDay" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span class="badge">26.</span>
+                    Numărul membrilor ai biroului electoral care au lipsit în cea de-a doua zi de votare
+
+                    <div data-bind="visible: !AbsentElectoralBoardMembersOnSecondDay.isValid() && !AbsentElectoralBoardMembersOnSecondDay_Rule_Succeeded() && ShowValidationErrors()">
+                        <div class="alert alert-danger alert-letter">
+                            <span>Regula: </span>
+                            <code>nu poate fi mai mare decît cifra indicată la pct. 6</code>
+                        </div>
+                    </div>
+                </td>
+
+                <td data-bind="validationElement: AbsentElectoralBoardMembersOnSecondDay">
+                    <input data-bind="value: AbsentElectoralBoardMembersOnSecondDay" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span class="badge">27.</span>
+                    Numărul reprezentanților participanților la referendum confirmați în perioada electorală de către biroul electoral:
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">a)</span>
+                    numărul reprezentaților desemnați de partide politice
+                </td>
+                <td>
+
+                    <input data-bind="value: PartyDesignatedRepresentativesCount" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">b)</span>
+                    numărul reprezentaților desemnați de blocurile electorale
+                </td>
+                <td>
+                    <input data-bind="value: ElectoralBlocDesignatedRepresentativesCount" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">c)</span>
+                    numărul reprezentaților desemnați de candidați independenți
+                </td>
+                <td>
+                    <input data-bind="value: IndependentCandidateDesignatedRepresentativesCount" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span class="badge">28.</span>
+                    Numărul persoanelor care au participat la procedura de numărare a buletinelor de vot:
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">a)</span>
+                    numărul membrilor biroului electoral
+
+                    <div data-bind="visible: !ElectoralBoardMembersCount.isValid() && !ElectoralBoardMembersCount_Rule_Succeeded() && ShowValidationErrors()">
+                        <div class="alert alert-danger alert-letter">
+                            <span>Regula: </span>
+                            <code>a= cifra de la pct. 6 – pct. 25</code>
+                        </div>
+                    </div>
+                </td>
+                <td data-bind="validationElement: ElectoralBoardMembersCount">
+                    <input data-bind="value: ElectoralBoardMembersCount" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">b)</span>
+                    numărul operatorilor SIAS „Alegeri”
+                </td>
+                <td>
+                    <input data-bind="value: SIASOperatorsCount" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">c)</span>
+                    numărul reprezentanților ai participanților la referendum
+                </td>
+                <td>
+                    <input data-bind="value: ElectoralCompetitorsRepresentativesCount" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">d)</span>
+                    numărul observatorilor internaționali
+                </td>
+                <td>
+                    <input data-bind="value: InternationalObserversCount" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">e)</span>
+                    numărul observatorilor naționali din partea asociațiilor obștești
+                </td>
+                <td>
+                    <input data-bind="value: NationalObserversFromAssociationsCount" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td class="letter-cell">
+                    <span class="badge badge-letter">f)</span>
+                    numărul reprezentanților ai mass-media
+                </td>
+                <td>
+                    <input data-bind="value: MediaRepresentativesCount" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <span class="badge">29.</span>
+                    Numărul proceselor verbale privind rezultatele numărării voturilor întocmite de BESV
+                </td>
+
+                <td>
+                    <input data-bind="value: VotingResultsReportCountByBESV" class="form-control number" maxlength="10" />
+                </td>
+            </tr>
+        </table>
+
+        <div class="alert alert-success" data-bind="visible: $parent.InCallMode">
+            Rugăm așteptați...
+            <div class="progress progress-striped active">
+                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+            </div>
+        </div>
+
+        <div class="alert alert-warning">
+            <div class="text-center">
+                <div>Verificați corectitudinea întocmirii raportului după formulele indicate:</div>
+
+                <div>
+                    <code><strong>3. d):</strong> d ≥ 4 * a + 4 * b + c</code>;
+                    <code><strong>9. a):</strong> a = 10(a) + 10(e) + 10(f) + 10(g)</code>;
+                    <code><strong>9. b):</strong> b = 11(a) + 11(e) + 11(f) + 11(g)</code>;
+                    <code><strong>9. c):</strong> b = 12(a) + 12(e) + 12(f) + 12(g)</code>;
+                </div>
+                <div>
+                    <code><strong>10. a):</strong> a = b + c + d</code>;
+                    <code><strong>11. a):</strong> a = b + c + d</code>;
+                    <code><strong>12. a):</strong> a = b + c + d</code>;
+                    <code><strong>16:</strong> a + b + c = d + e + f = h + g</code>;
+                    <code><strong>18. a):</strong> a = b + d</code>;
+                </div>
+                <div>
+                    <code><strong>22. d):</strong> d <= c</code>;
+                    <code><strong>24. a):</strong> pct. 24 lit. a ≥ pct. 23 lit. a</code>;
+                    <code><strong>24. b):</strong> pct. 24 lit. b ≥ pct. 23 lit. b</code>;
+                    <code><strong>24. c):</strong> pct. 24 lit. c ≥ pct. 23 lit. c</code>;
+                    <code><strong>25, 26:</strong> nu poate fi mai mare decît cifra indicată la pct. 6</code>;
+                    <code><strong>23. a):</strong> a = cifra de la pct. 5 – pct. 25</code>;
+                </div>
+            </div>
+        </div>
+
+        <div data-bind="template: {name: getStatusBarTemplate}, visible: ShowValidationErrors() || AlreadySent()"></div>
+
+        <div class="report-actions">
+            <button type="button" class="btn-lg btn board-btn-lg long-name btn-primary"
+                    data-bind="click: Validate, visible: !AlreadySent()">
+                <span>Verifică document</span>
+            </button>
+
+            <input type="button" class="btn-lg btn pull-right board-btn-lg btn-danger"
+                   value="Vizualizare și Tipar"
+                   data-bind="click: PrintDocument" />
+
+            <input type="button" class="btn-lg btn pull-right board-btn-lg btn-danger"
+                   value="Transmite"
+                   data-bind="click: SubmitResults, disable: $parent.InCallMode() || !isValid(), visible: !AlreadySent()" />
+        </div>
+
+        <div data-bind="visible: !AlreadySent()">
+            <div class="row">
+                <div class="col-xs-12">
+                    <valid-submission-notification params="isValid: isValid, electionName: $root.Delimitator().SelectedElection()">
+                    </valid-submission-notification>
+                </div>
+            </div>
+        </div>
+
+        <div class="well" data-bind="visible: AllowSubmitConfirmation()">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="col-xs-3">
+                        <button type="button" class="btn-lg btn board-btn-lg btn-primary"
+                                data-bind="click: Validate">
+                            <span>Verifică <br /> procesul verbal</span>
+                        </button>
+                    </div>
+
+                    <div class="col-xs-6 text-center">
+                        @*<p data-bind="visible: isValid()">
+                            Procesul verbal pentru scrutinul <b><span data-bind="text: $root.UserData().SelectedElection"></span></b> este corect întocmit.<br>
+                            Acum puteți expedia procesul verbal.<br>
+                            Procesul verbal expediat nu va mai fi disponibil pentru modificare.
+                        </p>*@
+                    </div>
+
+                    <div class="col-xs-3">
+                        <input type="button" class="btn-lg pull-right board-btn-lg btn"
+                               value="Confirmare"
+                               data-bind="visible: AllowSubmitConfirmation(), disable: $parent.InCallMode() || !isValid(), click: ConfirmResults" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

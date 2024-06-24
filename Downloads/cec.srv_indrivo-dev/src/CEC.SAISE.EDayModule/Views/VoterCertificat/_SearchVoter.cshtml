@@ -1,0 +1,195 @@
+﻿@using CEC.SAISE.EDayModule.Infrastructure.Grids
+@using CEC.SAISE.EDayModule.Models.VoterCertificate
+
+@using Lib.Web.Mvc.JQuery.JqGrid
+@{
+
+    var grid1 = Html.GridOptions<VoterGridViewModel>("searchVoters", height: 40)
+        .SetOptions(x =>
+        {
+            x.Url = Url.Action("SearchVoterAsync", "VoterCertificat");
+            x.Caption = "Rezultatul Căutării";
+            x.HiddenEnabled = true;
+            x.Hidden = true;
+            x.TopPager = false;
+            x.Sortable = false;
+            x.LoadComplete = "$.resultLoad";            
+
+        })
+        .BuildGrid()
+        .Navigator(new JqGridNavigatorOptions { Add = false, Edit = false, Delete = false, Search = false, Refresh = false, CloneToTop = true })
+        .AddNavigatorButton("Eliberează Certificat", onClick: "$.CreateCertificate");
+
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="alert alert-info">
+            <h5>Pentru a elibera certificat , introduceți codul personal în bara de căutare și acționați butonul <kbd>Caută alegător</kbd> sau aplicați <kbd>Enter</kbd>.</h5>
+        </div>
+    </div>
+</div>
+
+<div class="well">
+    <div class="row">
+        <div class="col-sm-12 col-xs-12 col-md-10 col-lg-7">
+            <div class="form-horizontal">
+                <div class="form-group form-group-lg has-feedback">
+                    <label class="col-sm-2 control-label">IDNP</label>
+                    <div class="col-sm-8">
+                        <div data-bind="validationElement: Idnp" class="input-group input-group-lg">
+
+                            <input type="text" class="form-control hasMask" id="idnp"
+                                   placeholder="IDNP – 13 cifre" data-input-mask="9999999999999"
+                                   data-bind="value: Idnp,
+                                              event: {keypress: enterSearch},
+                                              disable: InCallMode">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-primary " id="searchIdnp" data-bind="click: btnSearch, disable: InCallMode">
+                                    <span class="fa fa-search"></span>
+                                    <span>Caută</span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       <div class="col-xs-12">
+        @grid1.GetHtml()
+    </div>
+    </div>
+    <input type="hidden" id="myField" value="" />
+
+
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#searchIdnp').on('click',
+            function () {
+                document.getElementById('myField').value = 1;
+                var idnp = $('#idnp').val();
+                var searchVotersGrid = $('#searchVoters').jqGrid();
+                searchVotersGrid.jqGrid('setGridParam', { 'postData': { 'idnp': idnp } });
+                searchVotersGrid.trigger('reloadGrid');
+
+                if (searchVotersGrid.jqGrid('getGridParam', 'gridstate') === "hidden") {
+                    $(".ui-jqgrid-titlebar-close", $('#searchVoters')[0].grid.cDiv).click();
+                }
+
+
+            });
+
+        @grid1.GetJavaScript();
+
+        $('#idnp').keypress(function(e) {
+            var keycode = (e.keyCode ? e.keyCode : e.which);
+            if (keycode === '13') {
+                $('#searchIdnp').click();
+            }
+        });
+
+
+    });
+
+
+    $.resultLoad = function (data) {
+        var s = document.getElementById('myField').value;
+        if (data.total === 0 && s === 1) {
+            BootstrapDialog.alert({ message: 'Căutare eșuată , persoana dată nu are virsta de 18 sau nu este nici intr-o lista de votare . ', title: 'Informție' });
+        }
+    };
+    $.CreateCertificate = function(e) {
+
+        var rowId = $("#searchVoters").jqGrid('getGridParam', 'selrow');
+        var rowData = jQuery("#searchVoters").getRowData(rowId);
+        var colData = rowData['Idnp'];
+        var certificatData = rowData['Certificat'];
+        var message = $('<div></div>');
+
+
+        if (rowId == null || rowId.length == 0) {
+            BootstrapDialog.alert({ message: 'Selectati rindul ', title: 'Eroare' });
+            return;
+        }
+
+
+        if (certificatData === 'No') {
+            var url = '@Url.Action("CreateCertifcat", "VoterCertificat")';
+            var dialogTitle = 'Crearea Certificat';
+            var adres = url + '?idnp=' + colData;
+            $.ajax({
+                url: adres,
+                type: 'GET',
+                success: function (content) {
+                    message.append(content);
+                    var dialog = new BootstrapDialog({
+                        title: dialogTitle,
+                        message: message,
+                        buttons: [
+                            {
+                                id:'SaveCert',
+                                label: 'Salveaza',
+                                cssClass: 'btn btn-primary',
+                                action: function (dialog) {
+                                    var myForm = $('#certificatForm').serialize();
+                                    $.ajax({
+                                        type: "POST",
+                                        url: url,
+                                        data: myForm,
+                                        success: function (result) {
+                                            if (result == true) {
+                                                $('#SaveCert').attr("disabled", "disabled");
+                                                dialog.getModalBody().html("Salvat cu succes .");
+                                                $("#searchVoters").trigger('reloadGrid');
+
+                                                return;
+                                            }
+
+                                            if (result == false) {
+
+                                                $("#searchVoters").trigger('reloadGrid');
+                                                dialog.getModalBody().html("Eronat mai incearcă");
+                                                $('#EditCert').attr("disabled", "disabled");
+                                                return;
+                                            }
+
+
+
+                                            dialog.getModalBody().html(result);
+
+                                        }
+
+                                    });
+
+                                }
+                            },
+                            {
+                                label: 'Închide',
+                                action: function (dialog) {
+                                    dialog.close();
+                                    $("#votingStats").trigger('reloadGrid');
+                                    $("#searchVoters").trigger('reloadGrid');
+
+                                }
+                            }]
+                    });
+                    dialog.open();
+                }
+            });
+        };
+
+        if (certificatData === "Yes") {
+            BootstrapDialog.alert({ message: 'Persoana dată are deja eliberat certificat ', title: 'Informție' });
+            return;
+        }
+
+
+
+    };
+    function disablesaveButton() {
+        $('#SaveCert').attr("disabled", "disabled");
+    }
+
+</script>

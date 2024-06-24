@@ -1,0 +1,144 @@
+﻿<div class="modal fade" id="editIndependentDialog" style="top: 100px" data-bind="if: SelectedParty() != null && SelectedParty().IsIndependent()">
+    <div class=" modal-dialog" data-bind="with: SelectedParty">
+    <div class="modal-content modal-lg">
+        <div class="modal-header">
+            <h4 class="modal-title" data-bind="ifnot: editMode()">Adăugare Candidat Independent</h4>
+            <h4 class="modal-title" data-bind="if: editMode()">Editare Candidat Independent - <strong><span data-bind="text: CandidateData().NameRo"></span> <span data-bind="text: CandidateData().LastNameRo"></span></strong></h4>
+        </div>
+
+        <div class="modal-body">
+            <div class="well form-horizontal">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label class="col-xs-2 control-label">Cod:</label>
+                            <div class="col-xs-3" data-bind="validationElement: Code">
+                                <input class="form-control" placeholder="Cod" data-bind="value: Code" />
+                            </div>
+
+                            <label class="col-xs-3 control-label">Data înregistrării:</label>
+                            <div class="col-xs-3">
+                                <input class="form-control datePicker" placeholder="Data înregistrării" data-bind="value: moment(DateOfRegistration()).format('DD.MM.YYYY')" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-xs-2 control-label">IDNP:</label>
+                            <div class="col-xs-4" data-bind="validationElement: CandidateData().Idnp">
+                                <div class="input-group">
+                                    <input type="text" class="form-control hasMask" placeholder="IDNP"
+                                           data-input-mask="9999999999999"
+                                           data-bind="value: CandidateData().Idnp,
+                                                        event: {keypress: CandidateData().onRequestPersonalData},
+                                                        enable: !editMode() && !CandidateData().idnpSearchMode()" />
+
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-primary" value="Caută"
+                                                data-bind="click: CandidateData().requestPersonalData, enable: !editMode() && !CandidateData().idnpSearchMode()">
+                                            <span class="fa fa-search"></span>
+                                            <span>Caută</span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-6">
+                                <div class="progress progress-striped active" data-bind="visible: CandidateData().idnpSearchMode">
+                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-xs-2 control-label">Nume (Ro):</label>
+                            <div class="col-xs-4" data-bind="validationElement: CandidateData().LastNameRo">
+                                <input disabled class="form-control" placeholder="Nume (Ro)" data-bind="value: CandidateData().LastNameRo" />
+                            </div>
+
+                            <label class="col-xs-2 control-label">Фамилия:</label>
+                            <div class="col-xs-4" data-bind="validationElement: CandidateData().LastNameRu">
+                                <input class="form-control" placeholder="Фамилия" data-bind="value: CandidateData().LastNameRu" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-xs-2 control-label">Prenume (Ro):</label>
+                            <div class="col-xs-4" data-bind="validationElement: CandidateData().NameRo">
+                                <input disabled class="form-control" placeholder="Prenume (Ro)" data-bind="value: CandidateData().NameRo" />
+                            </div>
+
+                            <label class="col-xs-2 control-label">Имя:</label>
+                            <div class="col-xs-4" data-bind="validationElement: CandidateData().NameRu">
+                                <input class="form-control" placeholder="Имя" data-bind="value: CandidateData().NameRu" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-xs-2 control-label">Data nașterii:</label>
+                            <div class="col-xs-3">
+                                <input disabled class="form-control" placeholder="Data nașterii" data-bind="value: CandidateData().DateOfBirth() != null ? moment(CandidateData().DateOfBirth()).format('DD.MM.YYYY') : ''" />
+                            </div>
+
+                            <label class="col-xs-2 col-xs-push-1 control-label">Sex:</label>
+                            <div class="col-xs-3 col-xs-push-1">
+                                <input disabled class="form-control" placeholder="Sex" data-bind="value: CandidateData().GenderText" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-xs-2 control-label">Profesia (ocupația):</label>
+                            <div class="col-xs-4" data-bind="validationElement: CandidateData().Occupation">
+                                <textarea class="form-control" placeholder="Profesia (ocupația)" data-bind="value: CandidateData().Occupation"></textarea>
+                            </div>
+
+                            <label class="col-xs-2 control-label">Профессия (род занятий):</label>
+                            <div class="col-xs-4" data-bind="validationElement: CandidateData().OccupationRu">
+                                <textarea class="form-control" placeholder="Профессия (род занятий)" data-bind="value: CandidateData().OccupationRu"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-xs-2 control-label">Funcția/loc muncă:</label>
+                            <div class="col-xs-4" data-bind="validationElement: CandidateData().Workplace">
+                                <textarea class="form-control" placeholder="Funcția și locul de muncă" data-bind="value: CandidateData().Workplace"></textarea>
+                            </div>
+
+                            <label class="col-xs-2 control-label">Занимаемая должность:</label>
+                            <div class="col-xs-4" data-bind="validationElement: CandidateData().WorkplaceRu">
+                                <textarea class="form-control" placeholder="Занимаемая должность" data-bind="value: CandidateData().WorkplaceRu"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-xs-2 control-label">Logoul:</label>
+                            <div class="col-xs-6">
+                                <input type="file" class="form-control"
+                                       data-bind="fileInput: fileData, customFileInput: { buttonClass: 'btn btn-success', fileNameClass: 'disabled form-control'}"
+                                       accept="image/*" />
+                            </div>
+                            <div class="col-xs-4">
+                                <img style="height: 125px;" class="img-rounded pull-right" data-bind="attr: { src: fileData().dataURL }, visible: fileData().dataURL" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-xs-2 control-label">Statut:</label>
+                            <div class="col-xs-5">
+                                <select class="form-control" placeholder="Data înregistrării"
+                                        data-bind="options: $root.PartyStatuses,
+                                                       optionsText: 'Value', optionsValue: 'Key',
+                                                       value: Status"></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" data-bind="click: $parent.CancelEditIndependent">Închide</button>
+            <button type="button" class="btn btn-primary" data-bind="click: $parent.SaveUpdateParty, enable: isValid() && !inCallMode()">Salvează</button>
+        </div>
+    </div>
+</div>
+</div>

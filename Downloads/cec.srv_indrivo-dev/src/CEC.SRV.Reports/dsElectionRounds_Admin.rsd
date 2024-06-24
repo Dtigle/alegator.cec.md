@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SharedDataSet xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/shareddatasetdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSet Name="DataSet1">
+    <Query>
+      <DataSourceReference>CEC_Admin</DataSourceReference>
+      <DataSetParameters>
+        <DataSetParameter Name="@ElectionId">
+          <ReadOnly>false</ReadOnly>
+          <Nullable>false</Nullable>
+          <OmitFromQuery>false</OmitFromQuery>
+          <rd:DbType>Object</rd:DbType>
+        </DataSetParameter>
+      </DataSetParameters>
+      <CommandText>SELECT [electionRoundId]
+      ,[electionId]
+      ,[number]
+       , (CASE WHEN repeatElection = 1 THEN CONCAT([nameRo], ' (repetat)')
+        ELSE [nameRo]
+        END) AS [nameRo]
+      ,[electionDate]
+  FROM [SAISE].[ElectionRounds]
+  WHERE
+  deleted IS NULL
+  AND electionId = @ElectionId</CommandText>
+    </Query>
+    <Fields>
+      <Field Name="electionRoundId">
+        <DataField>electionRoundId</DataField>
+        <rd:TypeName>System.Int64</rd:TypeName>
+      </Field>
+      <Field Name="electionId">
+        <DataField>electionId</DataField>
+        <rd:TypeName>System.Int64</rd:TypeName>
+      </Field>
+      <Field Name="number">
+        <DataField>number</DataField>
+        <rd:TypeName>System.Byte</rd:TypeName>
+      </Field>
+      <Field Name="nameRo">
+        <DataField>nameRo</DataField>
+        <rd:TypeName>System.String</rd:TypeName>
+      </Field>
+      <Field Name="electionDate">
+        <DataField>electionDate</DataField>
+        <rd:TypeName>System.DateTime</rd:TypeName>
+      </Field>
+    </Fields>
+  </DataSet>
+</SharedDataSet>

@@ -1,0 +1,37 @@
+﻿@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.Lookup
+@using CEC.Web.SRV.Resources
+@using Lib.Web.Mvc.JQuery.JqGrid
+
+@{
+    ViewBag.Title = MUI.StreetTypes_TabTitle;
+}
+
+@{
+    var grid = Html.GridOptions<StreetsGridModel>("streets")
+        .BuildGrid(Url.Action("ListStreetsAjax"),null, null, null,
+                   null /*Url.Action("UnDeleteStreet", "Lookup")*/,
+                   Url.Action("StreetHistory", "History"), Url.Action("ExportStreets"))
+        .Navigator(new JqGridNavigatorOptions
+        {
+            Add = false,
+            Edit = false,
+            Delete = false,
+            Search = true,
+            AddFunction = "$.CreateUpdateStreet",
+            EditFunction = "$.CreateUpdateStreet",
+            DeleteFunction = "$.DeleteStreet",
+            CloneToTop = true
+        });
+
+}
+
+@grid.GetHtml()
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        @grid.GetJavaScript();
+    	$('#streets').jqGrid().remapColumns([0, 5, 6, 1, 4, 8, 9, 2, 3, 7], true, false);
+    });
+    
+</script>

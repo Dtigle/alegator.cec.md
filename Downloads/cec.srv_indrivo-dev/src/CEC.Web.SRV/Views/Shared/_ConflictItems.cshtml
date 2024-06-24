@@ -1,0 +1,23 @@
+﻿<span class="badge" id="conflictNotification"></span>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+	    $.getCountNotification();
+		//setInterval(function () { $.getCountConflict(); }, 30000);
+	});
+	
+	$.getCountNotification = function () {
+		var url = '@Url.Action("GetConflictCount", "Conflict")';
+		$.ajax({
+			type: "POST",
+			url: url,
+			success: function (data) {
+				if (data > 0) {
+					$("#conflictNotification").text(data);
+				} else {
+					$("#conflictNotification").hide();
+				}
+			}
+		});
+	};
+</script>

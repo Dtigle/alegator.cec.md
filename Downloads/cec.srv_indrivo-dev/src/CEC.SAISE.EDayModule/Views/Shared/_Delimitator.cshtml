@@ -1,0 +1,25 @@
+﻿<h4 class="page-header">Delimitare</h4>
+<div class="row form-horizontal">
+    <div class="col-xs-12">
+        <table class="table table-condensed borderless">
+            <tr>
+                <td><strong>Scrutin:</strong></td>
+                <td data-bind="text: viewModel.UserData().AssignedElection().Name"></td>
+            </tr>
+
+            <tr>
+                <td><strong>Circumscripție:</strong></td>
+                <td data-bind="text: viewModel.UserData().AssignedCircumscription().Id > 0 ? viewModel.UserData().AssignedCircumscription().Name : 'Toate'"></td>
+            </tr>
+
+            <tr>
+                <td><strong>Secție de votare:</strong></td>
+                <td data-bind="text: viewModel.UserData().AssignedPollingStation().Id > 0 ? viewModel.UserData().AssignedPollingStation().Name : 'Toate'"></td>
+            </tr>
+            <tr>
+                <td><strong>Localitatea secției de votare :</strong></td>
+                <td data-bind="text: viewModel.UserData().AssignedRegion().Id > 0 ? viewModel.UserData().AssignedRegion().Name : 'Toate'"></td>
+            </tr>
+        </table>
+    </div>
+</div>

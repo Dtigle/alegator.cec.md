@@ -1,0 +1,312 @@
+﻿<div id="koMainMun">
+
+    <div class="row">
+        <div id="breadcrumb" class="col-md-12" />
+    </div>
+
+    <div class="col-xs-12 col-md-6 col-lg-6 box-legacy" data-bind="with: M1">
+        <div class="box-header-legacy">
+            <div class="box-name">
+                <i class="fa fa-bar-chart-o"></i>
+                <strong>Alegerea Consilierilor Municipali (Chișinău) <span style="color: crimson">Rezultate preliminare</span></strong>
+            </div>
+            <div class="box-icons">
+                <a class="expand-link" data-bind="click: expandClick">
+                    <i class="fa fa-expand"></i>
+                </a>
+            </div>
+            <div class="no-move"></div>
+        </div>
+        <div class="box-content-legacy">
+            <div class="form-horizontal">
+                <h3 class="page-header">
+                    Procese verbale procesate <span data-bind="text: totalProcessedBallotPapers"></span> din 
+                    <span data-bind="text: totalBallotPapers"></span> (<span data-bind="text: percentProcessedBallotPapers"></span>)
+                </h3>
+                <h4>Total voturi <strong><span data-bind="text: totalVotes"></span></strong> dintre care valabile 
+                <strong><span data-bind="text: totalValidVotes"></span></strong> și nevalabile <strong><span data-bind="text: totalSpoiledVotes"></span></strong></h4>
+                <div id="chartM1"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-md-6 col-lg-6 box-legacy" data-bind="with: M2">
+        <div class="box-header-legacy">
+            <div class="box-name">
+                <i class="fa fa-bar-chart-o"></i>
+                <strong>Alegerea Primarului General al mun. Chișinău (Turul I) <span style="color: crimson">Rezultate preliminare</span></strong>
+            </div>
+            <div class="box-icons">
+                <a class="expand-link" data-bind="click: expandClick">
+                    <i class="fa fa-expand"></i>
+                </a>
+            </div>
+            <div class="no-move"></div>
+        </div>
+        <div class="box-content-legacy">
+            <h3 class="page-header">
+                Procese verbale procesate <span data-bind="text: totalProcessedBallotPapers"></span> din 
+                <span data-bind="text: totalBallotPapers"></span> (<span data-bind="text: percentProcessedBallotPapers"></span>)
+            </h3>
+            <h4>
+                Total voturi <strong><span data-bind="text: totalVotes"></span></strong> dintre care valabile
+                <strong><span data-bind="text: totalValidVotes"></span></strong> și nevalabile <strong><span data-bind="text: totalSpoiledVotes"></span></strong>
+            </h4>
+            <div id="chartM2"></div>
+        </div>
+    </div>
+    
+    <div class="col-xs-12 col-md-6 col-lg-6 box-legacy" data-bind="with: M3">
+        <div class="box-header-legacy">
+            <div class="box-name">
+                <i class="fa fa-bar-chart-o"></i>
+                <strong>Alegerea Consilierilor Municipali (Bălți) <span style="color: crimson">Rezultate preliminare</span></strong>
+            </div>
+            <div class="box-icons">
+                <a class="expand-link" data-bind="click: expandClick">
+                    <i class="fa fa-expand"></i>
+                </a>
+            </div>
+            <div class="no-move"></div>
+        </div>
+        <div class="box-content-legacy">
+            <h3 class="page-header">
+                Procese verbale procesate <span data-bind="text: totalProcessedBallotPapers"></span> din 
+                <span data-bind="text: totalBallotPapers"></span> (<span data-bind="text: percentProcessedBallotPapers"></span>)
+            </h3>
+            <h4>
+                Total voturi <strong><span data-bind="text: totalVotes"></span></strong> dintre care valabile
+                <strong><span data-bind="text: totalValidVotes"></span></strong> și nevalabile <strong><span data-bind="text: totalSpoiledVotes"></span></strong>
+            </h4>
+            <div id="chartM3"></div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-md-6 col-lg-6 box-legacy" data-bind="with: M4">
+        <div class="box-header-legacy">
+            <div class="box-name">
+                <i class="fa fa-bar-chart-o"></i>
+                <strong>Alegerea Primarului mun. Bălți (Turul I) <span style="color: crimson">Rezultate preliminare</span></strong>
+            </div>
+            <div class="box-icons">
+                <a class="expand-link" data-bind="click: expandClick">
+                    <i class="fa fa-expand"></i>
+                </a>
+            </div>
+            <div class="no-move"></div>
+        </div>
+        <div class="box-content-legacy">
+            <h3 class="page-header">
+                Procese verbale procesate <span data-bind="text: totalProcessedBallotPapers"></span> din 
+                <span data-bind="text: totalBallotPapers"></span> (<span data-bind="text: percentProcessedBallotPapers"></span>)
+            </h3>
+            <h4>
+                Total voturi <strong><span data-bind="text: totalVotes"></span></strong> dintre care valabile
+                <strong><span data-bind="text: totalValidVotes"></span></strong> și nevalabile <strong><span data-bind="text: totalSpoiledVotes"></span></strong>
+            </h4>
+            <div id="chartM4"></div>
+        </div>
+    </div>
+    
+</div>
+<script>
+    
+
+    function ElelctionData2(electionId, districtId, chartId) {
+        var self = this;
+
+        self.ElectionId = electionId;
+        self.DistrictId = districtId;
+
+        self.totalBallotPapers = ko.observable(0);
+        self.totalProcessedBallotPapers = ko.observable(0);
+        self.percentProcessedBallotPapers = ko.observable(0);
+        self.totalVotes = ko.observable(0);
+        self.totalValidVotes = ko.observable(0);
+        self.totalSpoiledVotes = ko.observable(0);
+        self.preliminary= [];
+
+        self.color = 'blue';
+
+        self.chartId = chartId;
+        self.chart;
+        self.chartData;
+        self.chartOptions = {
+            fontSize: 18,
+            legend: { position: 'none' },
+            animation: {
+                duration: 1000,
+                easing: 'out',
+                startup: true
+            },
+            vAxis: {
+                gridlines: { count: 8 },
+                title: 'Voturi',
+                minValue: 0,
+                minorGridLines: { count: 5 }
+            },
+            hAxis: {
+                viewWindow: {
+                    min: 1
+                }
+            },
+            chartArea: {
+                left: '10%',
+                width: '85%',
+                height: '60%'
+            },
+            annotations: {
+                textStyle: {
+                    fontSize: 18,
+                }
+            },
+            tooltip: { isHtml: true },
+        };
+
+        self.isExpanded = false;
+
+        self.expandClick = function () {
+            setTimeout(function () {
+                self.isExpanded = !self.isExpanded;
+                self.draw();
+            }, 200);
+            
+        };
+
+        self.processedBP = ko.pureComputed(function() {
+            return self.BallotPapersCount() + ' ( ' + self.BallotPapersPercentage() + ' )';
+        });
+
+        self.init = function (data) {
+            if (data != undefined) {
+                self.totalBallotPapers(data.TotalBallotPapers);
+                self.totalProcessedBallotPapers(data.TotalProcessedBallotPapers);
+                self.percentProcessedBallotPapers(data.PercentProcessedBallotPapers);
+                self.totalVotes(data.TotalVotes);
+                self.totalValidVotes(data.TotalValidVotes);
+                self.totalSpoiledVotes(data.TotalSpoiledVotes);
+                self.preliminary = data.Preliminary || [];
+
+                google.load('visualization', '1.1', { packages: ['corechart'], callback: self.draw });
+            }
+
+            return self;
+        }
+
+        self.createTooltip = function(data) {
+            return '<div style="padding: 5px;font-size: 18pt">' +
+                '<table>' +
+                    '<tr><td><strong>' + data.CandidateName + '</strong></td><td/></tr>' +
+                    '<tr><td><strong>Voturi: </strong>' + '</td><td>' + data.CandidateResult + '</td></tr>' +
+                    '<tr><td><strong>Rata: </strong>' + '</td><td>' + data.CandidatePercentResult + '%</td></tr>' +
+                '</table></div>';
+        }
+
+        self.draw = function () {
+            var view = null;
+            var arr = [];
+            arr.push(['Formațiune', 'Voturi', { 'role': 'tooltip', 'p': { 'html': true } }, { role: 'style' }]);
+            arr.push(['x', 0, null, null]);
+            if (self.preliminary.length > 0) {
+                self.chartOptions.colors = [self.preliminary[0].CandidateColor];
+            }
+            $.each(self.preliminary, function () {
+                var item = this;
+                arr.push([item.CandidateName, item.CandidateResult, self.createTooltip(item), item.CandidateColor]);
+            });
+            self.chartData = google.visualization.arrayToDataTable(arr);
+            view = new google.visualization.DataView(self.chartData);
+            view.setColumns([0, 1, 
+            {
+                calc: 'stringify',
+                sourceColumn: 1,
+                type: 'string',
+                role: 'annotation'
+            }, 2]);
+
+            var div = document.getElementById(self.chartId);
+            if (div != null) {
+                if (self.chart == null) {
+                    self.chart = new google.visualization.ColumnChart(div);
+                }
+
+                if (self.isExpanded) {
+                    self.chartOptions.width = $(div).parent().width() - 40;
+                    self.chartOptions.height = 800;
+                    self.chartOptions.fontSize = 24;
+                    self.chartOptions.annotations.textStyle.fontSize = 28;
+
+                } else {
+                    self.chartOptions.width = $(div).parent().width();
+                    self.chartOptions.height = 300;
+                    self.chartOptions.fontSize = 18;
+                    self.chartOptions.annotations.textStyle.fontSize = 18;
+                }
+
+                self.chart.draw(view, self.chartOptions);
+            }
+        }
+    };
+
+    function VM2() {
+        var self = this;
+
+        self.M1 = ko.observable(new ElelctionData2(57, 44, 'chartM1'));
+        self.M2 = ko.observable(new ElelctionData2(58, 44, 'chartM2'));
+        self.M3 = ko.observable(new ElelctionData2(57, 45, 'chartM3'));
+        self.M4 = ko.observable(new ElelctionData2(58, 45, 'chartM4'));
+        
+        self.init = function (data) {
+            if (data != undefined) {
+                var mm = [self.M1(), self.M2(), self.M3(), self.M4()];
+                for (var i = 0; i < data.length; i++) {
+                    var x = data[i];
+                    for (var j = 0; j < mm.length; j++) {
+                        var y = mm[j];
+                        if (x.ElectionId === y.ElectionId && x.DistrictId === y.DistrictId) {
+                            y.init(x.StatsInfo);
+                            break;
+                        }
+                    }
+                }
+            }
+
+            return self;
+        }
+        
+    };
+
+    var xx2 = new VM2();
+    if (!ko.dataFor(document.getElementById("koMainMun"))) {
+        ko.applyBindings(xx2, document.getElementById("koMainMun"));
+    }
+
+    function ConnectWS() {
+        var webSocketLiveResults = new WebSocket(globalServerSocket + 'api/LiveMunicipalResults?pollId=0');
+
+        webSocketLiveResults.onerror = onWsError;
+        webSocketLiveResults.onmessage = onWsMessage;
+    }
+    
+    function onWsError(event) {
+        ConnectWS();
+    }
+
+    function onWsMessage(event) {
+        var stringData = event.data;
+        var json = $.parseJSON(stringData);
+
+        if (json == undefined) {
+            console.log(event);
+        }
+
+        xx2.init(json);
+
+    }
+
+    $(document).ready(function () {
+        ConnectWS();
+    });
+
+
+</script>

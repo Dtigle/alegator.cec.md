@@ -1,0 +1,606 @@
+﻿<div class="template-page-container">
+    <div class="template-container">
+        <div data-bind="with: ballotPaperVM" class="template-header">
+            <div class="top-section">
+                <img height="180" src="~/Content/img/national-emblem.png" alt="national emblem" />
+
+                <div class="election-info">
+                    <p class="election-state-organ">COMISIA ELECTORALĂ CENTRALĂ</p>
+                    <p data-bind="text: electionName" class="election-description"></p>
+                    <p data-bind="text: formattedDate" class="election-date"></p>
+                </div>
+
+                <img height="180" src="~/Content/img/gagauzia-emblem.png" alt="Gagauzia emblem" />
+            </div>
+
+            <div class="bottom-section">
+                <div class="circumscription-region">
+                    <p data-bind="text: circumscriptionRegion"></p>
+                    <p data-bind="text: circumscriptionName"></p>
+                </div>
+
+                <p class="document-type" style="margin-top: 40px">RAPORTUL</p>
+
+                <p>
+                    BIROULUI ELECTORAL AL SECŢIEI DE VOTARE
+                </p>
+
+                <p class="circumscription-location">
+                    <span data-bind="text: pollingStationRegion" class="assigned-circumscription"></span>
+                    <span data-bind="text: pollingStationNumber" class="polling-station-number"></span>
+                </p>
+            </div>
+        </div>
+
+        <p class="report-intro">
+            Pe parcursul perioadei de activitate biroul electoral a ținut evidența următoarelor evenimente:
+        </p>
+
+        <p class="report-group-title">1. Numărul persoanelor care au participat la procedura de deschidere a secției de votare:</p>
+        <ul data-bind="with: documentPrintPropertiesVM">
+            <li>
+                a) numărul membrii biroului electoral -
+                <span class="report-group-item" data-bind="text: ElectoralBoardMembersOnOpening"></span>;
+            </li>
+            <li>
+                b) numărul operatorilor SIAS „Alegeri” -
+                <span class="report-group-item" data-bind="text: SIASOperatorsOnOpening"></span>;
+            </li>
+            <li>
+                c) numărul reprezentanților ai concurenților electorali -
+                <span class="report-group-item" data-bind="text: ElectoralCompetitorsRepresentativesOnOpening"></span>;
+            </li>
+            <li>
+                d) numărul observatorilor internaționali -
+                <span class="report-group-item" data-bind="text: InternationalObserversOnOpening"></span>;
+            </li>
+            <li>
+                e) numărul observatorilor naționali din partea asociațiilor obștești -
+                <span class="report-group-item" data-bind="text: NationalObserversFromAssociationsOnOpening"></span>;
+            </li>
+            <li>
+                f) numărul reprezentanților ai mass-media -
+                <span class="report-group-item" data-bind="text: MediaRepresentativesOnOpening"></span>.
+            </li>
+        </ul>
+
+        <p class="report-group-title">2. Numărul persoanelor care au participat la procedura de deschidere a secției de votare în cea de-a doua zi de votare:</p>
+        <ul data-bind="with: documentPrintPropertiesVM">
+            <li>
+                a) numărul membrii biroului electoral -
+                <span class="report-group-item" data-bind="text: ElectoralBoardMembersSecondDay"></span>;
+            </li>
+            <li>
+                b) numărul operatorilor SIAS „Alegeri” -
+                <span class="report-group-item" data-bind="text: SIASOperatorsSecondDay"></span>;
+            </li>
+            <li>
+                c) numărul reprezentanților ai concurenților electorali -
+                <span class="report-group-item" data-bind="text: ElectoralCompetitorsRepresentativesSecondDay"></span>;
+            </li>
+            <li>
+                d) numărul observatorilor internaționali -
+                <span class="report-group-item" data-bind="text: InternationalObserversSecondDay"></span>;
+            </li>
+            <li>
+                e) numărul observatorilor naționali din partea asociațiilor obștești -
+                <span class="report-group-item" data-bind="text: NationalObserversFromAssociationsSecondDay"></span>;
+            </li>
+            <li>
+                f) numărul reprezentanților ai mass-media -
+                <span class="report-group-item" data-bind="text: MediaRepresentativesSecondDay"></span>.
+            </li>
+        </ul>
+
+        <p class="report-group-title">
+            3. Numărul urnelor de vot sigilate:
+        </p>
+        <ul data-bind="with: documentPrintPropertiesVM">
+            <li>
+                a) urne de vot staționare de 80 litri -
+                <span class="report-group-item" data-bind="text: StationaryVotingBox80Liters"></span>;
+            </li>
+            <li>
+                b) urne de vot staționare de 45 litri -
+                <span class="report-group-item" data-bind="text: StationaryVotingBox45Liters"></span>;
+            </li>
+            <li>
+                c) urne de vot mobile de 27 litri -
+                <span class="report-group-item" data-bind="text: MobileVotingBox27Liters"></span>;
+            </li>
+            <li>
+                d) numărul sigiliilor din plastic utilizate pentru sigilarea urnelor de vot -
+                <span class="report-group-item" data-bind="text: PlasticSealsForVotingBoxCount"></span>;
+            </li>
+            <li>
+                e) Codurile inscripționate pe sigiliile de plastic aplicate pe urnele de vot
+                <span class="explanation-info series-or-codes-placeholder">(exemplu: 121121, 121122,…)</span> :
+                <span class="report-group-item" data-bind="text: PlasticSealCodesOnVotingBox"></span>,.
+            </li>
+            <li>
+                f) Codurile inscripționate pe sigiliile de plastic aplicate pe fantele urnelor de vot
+                <span class="explanation-info series-or-codes-placeholder">(exemplu: 121121, 121122,…)</span> :
+                <span class="report-group-item" data-bind="text: PlasticSealCodesOnVotingBoxSlits"></span>,.
+            </li>
+        </ul>
+    </div>
+
+    <div class="template-container2" data-bind="with: documentPrintPropertiesVM">
+        <p class="report-group-title">4. Numărul cabinelor de vot de care dispune secția de votare:</p>
+        <ul>
+            <li>
+                a) numărul cabinelor pentru vot secret -
+                <span class="report-group-item" data-bind="text: VotingBoothsCount"></span>;
+            </li>
+            <li>
+                b) numărul cabinelor pentru persoane cu nevoi speciale -
+                <span class="report-group-item" data-bind="text: SpecialNeedsVotingBoothsCount"></span>;
+            </li>
+        </ul>
+
+        <p class="report-group-title">5. Numărul de ștampile de care dispune secția de votare:</p>
+        <ul>
+            <li>
+                a) ștampile cu inscripția „Votat” -
+                <span class="report-group-item" data-bind="text: StampedVotedCount"></span>;
+            </li>
+            <li>
+                b) ștampile cu inscripția „Retras” -
+                <span class="report-group-item" data-bind="text: StampedWithdrawnCount"></span>;
+            </li>
+        </ul>
+
+        <p class="report-group-title">
+            6. Componența numerică a membrilor biroului electoral -
+            <span class="report-group-item" data-bind="text: ElectoralBoardMembersNumericComposition"></span>;
+        </p>
+
+        <p class="report-group-title">
+            7. Numărul ședințelor organizate pe parcursul desfășurării activității -
+            <span class="report-group-item" data-bind="text: MeetingsCountBetweenRounds"></span>;
+        </p>
+
+        <p class="report-group-title">
+            8. Numărul hotărârilor adoptate de către biroul electoral -
+            <span class="report-group-item" data-bind="text: DecisionsCountBetweenRounds"></span>;
+        </p>
+
+        <p class="report-group-title">9. Numărul contestațiilor/cererilor (demersuri, sesizări, petiții) depuse la biroul electoral:</p>
+        <ul>
+            <li>
+                a) numărul depus până în ziua votării -
+                <span class="report-group-item" data-bind="text: ContestationsUntilEDay"></span>;
+            </li>
+            <li>
+                b) numărul depus în ziua votării -
+                <span class="report-group-item" data-bind="text: ContestationsOnEDay"></span>;
+            </li>
+            <li>
+                c) numărul depus în cea de-a doua zi de votare -
+                <span class="report-group-item" data-bind="text: SubmittedOnVotingDayCountSecondDay"></span>;
+            </li>
+        </ul>
+
+        <p class="report-group-title">10. În urma examinării contestațiilor depuse <strong>până în ziua votării</strong> biroul electoral a întreprins:</p>
+        <ul>
+            <li>
+                a) numărul total de hotărâri adoptate asupra contestațiilor -
+                <span class="report-group-item" data-bind="text: TotalDecisionsOnObjectionsBefore"></span>;
+            </li>
+            <li>
+                b) numărul de hotărâri prin care au fost admise integral contestații -
+                <span class="report-group-item" data-bind="text: DecisionsFullyAcceptedObjectionsBefore"></span>;
+            </li>
+            <li>
+                c) numărul de hotărâri prin care au fost admise parțial contestații -
+                <span class="report-group-item" data-bind="text: DecisionsPartiallyAcceptedObjectionsBefore"></span>;
+            </li>
+            <li>
+                d) numărul de hotărâri prin care au fost respinse ca neîntemeiate contestații -
+                <span class="report-group-item" data-bind="text: DecisionsRejectedObjectionsBefore"></span>;
+            </li>
+            <li>
+                e) numărul de răspunsuri la contestații date prin scrisoare -
+                <span class="report-group-item" data-bind="text: ObjectionResponsesByLetterBefore"></span>;
+            </li>
+            <li>
+                f) numărul de contestații remise conform competenței către alte organe -
+                <span class="report-group-item" data-bind="text: ObjectionsForwardedToOtherAuthoritiesBefore"></span>;
+            </li>
+            <li>
+                g) numărul de contestații restituite -
+                <span class="report-group-item" data-bind="text: ReturnedObjectionsBefore"></span>;
+            </li>
+        </ul>
+
+        <p class="report-group-title">11. În urma examinării contestațiilor depuse <strong>în ziua votării</strong> biroul electoral a întreprins:</p>
+        <ul>
+            <li>
+                a) numărul total de hotărâri adoptate asupra contestațiilor -
+                <span class="report-group-item" data-bind="text: TotalDecisionsOnObjectionsFirstDay"></span>;
+            </li>
+            <li>
+                b) numărul de hotărâri prin care au fost admise integral contestații -
+                <span class="report-group-item" data-bind="text: DecisionsFullyAcceptedObjectionsFirstDay"></span>;
+            </li>
+            <li>
+                c) numărul de hotărâri prin care au fost admise parțial contestații -
+                <span class="report-group-item" data-bind="text: DecisionsPartiallyAcceptedObjectionsFirstDay"></span>;
+            </li>
+            <li>
+                d) numărul de hotărâri prin care au fost respinse ca neîntemeiate contestații -
+                <span class="report-group-item" data-bind="text: DecisionsRejectedObjectionsFirstDay"></span>;
+            </li>
+            <li>
+                e) numărul de răspunsuri la contestații date prin scrisoare -
+                <span class="report-group-item" data-bind="text: ObjectionResponsesByLetterFirstDay"></span>;
+            </li>
+            <li>
+                f) numărul de contestații remise conform competenței către alte organe -
+                <span class="report-group-item" data-bind="text: ObjectionsForwardedToOtherBodiesFirstDay"></span>;
+            </li>
+            <li>
+                g) numărul de contestații restituite -
+                <span class="report-group-item" data-bind="text: ReturnedObjectionsFirstDay"></span>;
+            </li>
+        </ul>
+
+        <p class="report-group-title">12. În urma examinării contestațiilor depuse <strong>în cea de-a doua zi de votare</strong> biroul electoral a întreprins:</p>
+        <ul>
+            <li>
+                a) numărul total de hotărâri adoptate asupra contestațiilor -
+                <span class="report-group-item" data-bind="text: TotalDecisionsOnObjectionsSecondDay"></span>;
+            </li>
+            <li>
+                b) numărul de hotărâri prin care au fost admise integral contestații -
+                <span class="report-group-item" data-bind="text: DecisionsFullyAcceptedObjectionsSecondDay"></span>;
+            </li>
+        </ul>
+    </div>
+
+    <div class="template-container3" data-bind="with: documentPrintPropertiesVM">
+        <ul>
+            <li>
+                c) numărul de hotărâri prin care au fost admise parțial contestații -
+                <span class="report-group-item" data-bind="text: DecisionsPartiallyAcceptedObjectionsSecondDay"></span>;
+            </li>
+            <li>
+                d) numărul de hotărâri prin care au fost respinse ca neîntemeiate contestații -
+                <span class="report-group-item" data-bind="text: DecisionsRejectedObjectionsSecondDay"></span>;
+            </li>
+            <li>
+                e) numărul de răspunsuri la contestații date prin scrisoare -
+                <span class="report-group-item" data-bind="text: ObjectionResponsesByLetterSecondDay"></span>;
+            </li>
+            <li>
+                f) numărul de contestații remise conform competenței către alte organe -
+                <span class="report-group-item" data-bind="text: ObjectionsForwardedToOtherBodiesSecondDay"></span>;
+            </li>
+            <li>
+                g) numărul de contestații restituite -
+                <span class="report-group-item" data-bind="text: ReturnedObjectionsSecondDay"></span>;
+            </li>
+        </ul>
+
+        <p class="report-group-title">
+            13. Numărul încălcărilor ordinii publice constatate în zilele votării -
+            <span class="report-group-item" data-bind="text: PublicOrderViolationsOnVotingDay"></span>;
+        </p>
+
+        <p class="report-group-title">
+            14. Numărul de completări a buletinului de vot cu ajutorul altor persoane -
+            <span class="report-group-item" data-bind="text: BallotAssistanceCount"></span>;
+        </p>
+
+        <p class="report-group-title">
+            15. Numărul de alegători înscriși în lista electorală de bază la momentul transmiterii acesteia de către primărie biroului electoral al secţiei de votare -
+            <span class="report-group-item" data-bind="text: NumberOfVotersInElectoralListByMunicipality"></span>;
+        </p>
+
+        <p class="report-group-title">
+            16. Numărul de solicitări depuse în baza documentelor confirmative privind neincluderea/excluderea alegătorului din lista electorală de bază:
+        </p>
+        <ul>
+            <li>
+                a) numărul de solicitări depuse de către alegători -
+                <span class="report-group-item" data-bind="text: NumberOfRequestsByVoters"></span>
+            </li>
+            <li>
+                b) numărul de solicitări depuse de către reprezentanți ai concurenților electorali -
+                <span class="report-group-item" data-bind="text: NumberOfRequestsByElectoralRepresentatives"></span>;
+            </li>
+            <li>
+                c) numărul de solicitări depuse de către observatori -
+                <span class="report-group-item" data-bind="text: NumberOfRequestsByObservers"></span>;
+            </li>
+            <li>
+                d) numărul de solicitări de includere în listă -
+                <span class="report-group-item" data-bind="text: NumberOfInclusionRequests"></span>;
+            </li>
+            <li>
+                e) numărul de solicitări de excludere din listă -
+                <span class="report-group-item" data-bind="text: NumberOfExclusionRequests"></span>;
+            </li>
+            <li>
+                f) numărul de solicitări de corectare a erorilor comise la înscrierea datelor -
+                <span class="report-group-item" data-bind="text: NumberOfDataCorrectionRequests"></span>;
+            </li>
+            <li>
+                h) numărul de solicitări admise -
+                <span class="report-group-item" data-bind="text: NumberOfAdmittedRequests"></span>;
+            </li>
+            <li>
+                g) numărul de solicitări respinse -
+                <span class="report-group-item" data-bind="text: NumberOfRejectedRequests"></span>;
+            </li>
+        </ul>
+
+        <p class="report-group-title">
+            17. Numărul de alegători înscriși în lista electorală de bază după efectuarea modificărilor/actualizărilor solicitate în baza documentelor confirmative -
+            <span class="report-group-item" data-bind="text: NumberOfVotersInUpdatedElectoralList"></span>;
+        </p>
+
+        <p class="report-group-title">
+            18. Numărul certificatelor pentru drept de vot:
+        </p>
+        <ul>
+            <li>
+                a) certificatele recepționate de la CECE -
+                <span class="report-group-item" data-bind="text: CertificatesReceivedFromCECE"></span>
+            </li>
+            <li>
+                b) certificatele eliberate alegătorilor -
+                <span class="report-group-item" data-bind="text: CertificatesIssuedToVoters"></span>;
+            </li>
+            <li>
+                c) seria certificatelor eliberate alegătorilor
+                <span class="explanation-info series-or-codes-placeholder">(exemplu: 121121, 121122,…)</span>:
+                <span class="report-group-item" data-bind="text: SeriesOfCertificatesIssuedToVoters"></span>;
+            </li>
+            <li>
+                d) certificatele rămase neutilizate/anulate -
+                <span class="report-group-item" data-bind="text: UnusedOrCancelledCertificates"></span>;
+            </li>
+            <li>
+                e) seria certificatelor rămase neutilizate/anulate
+                <span class="explanation-info series-or-codes-placeholder">(exemplu: 121121, 121122,…)</span>:
+                <span class="report-group-item" data-bind="text: SeriesOfUnusedOrCancelledCertificates"></span>;
+            </li>
+        </ul>
+
+        <p class="report-group-title">
+            19. Numărul total de cereri de votare la locul aflării depuse -
+            <span class="report-group-item" data-bind="text: TotalVotingRequestsAtLocation"></span>;
+        </p>
+
+        <p class="report-group-title">
+            20. Numărul buletinelor de vot eliberate de echipa cu urna mobilă alegătorilor care au votat la locul aflării:
+            <span class="report-group-item" data-bind="text: BallotsIssuedByMobileTeam"></span>;
+        </p>
+
+        <p class="report-group-title">
+            21. Numărul buletinelor de vot eliberate de echipa cu urna mobilă alegătorilor care au votat la locul aflării în cea de-a doua zi de votare:
+            <span class="report-group-item" data-bind="text: BallotsIssuedByMobileTeamOnSecondVotingDay"></span>;
+        </p>
+    </div>
+
+    <div class="template-container4" data-bind="with: documentPrintPropertiesVM">
+        <p class="report-group-title">
+            22. Numărul de alegători care au participat la votare:
+        </p>
+        <ul>
+            <li>
+                a) în baza certificatelor pentru drept de vot -
+                <span class="report-group-item" data-bind="text: VotersBasedOnVotingCertificates"></span>
+            </li>
+            <li>
+                b) în baza buletinului de identitate provizoriu -
+                <span class="report-group-item" data-bind="text: VotersWithTemporaryID"></span>;
+            </li>
+            <li>
+                c) în baza pașaportului -
+                <span class="report-group-item" data-bind="text: VotersWithPassport"></span>;
+            </li>
+            <li>
+                d) în baza pașaportului cu termen de valabilitate expirat -
+                <span class="report-group-item" data-bind="text: VotersWithExpiredPassport"></span>;
+            </li>
+            <li>
+                e) la locul aflării (cu urna de vot mobilă) -
+                <span class="report-group-item" data-bind="text: VotersAtLocationWithMobileBox"></span>;
+            </li>
+            <li>
+                f) persoane aflate în instituții penitenciare -
+                <span class="report-group-item" data-bind="text: VotersInPenitentiaryInstitutions"></span>;
+            </li>
+            <li>
+                g) persoane aflate în sanatorii, case de odihnă, spitale sau alte instituții curativ staționare -
+                <span class="report-group-item" data-bind="text: VotersInSanatoriumsOrHospitals"></span>;
+            </li>
+            <li>
+                h) militarii aflați în unitățile militare -
+                <span class="report-group-item" data-bind="text: MilitaryVotersInMilitaryUnits"></span>;
+            </li>
+            <li>
+                k) persoane cu dizabilități locomotorii -
+                <span class="report-group-item" data-bind="text: VotersWithLocomotorDisabilities"></span>;
+            </li>
+            <li>
+                l) persoane cu dizabilități de vedere -
+                <span class="report-group-item" data-bind="text: VotersWithVisualImpairments"></span>;
+            </li>
+            <li>
+                m) persoane cu dizabilități auditive -
+                <span class="report-group-item" data-bind="text: VotersWithHearingImpairments"></span>;
+            </li>
+            <li>
+                n) alegători în baza declarației privind locul nou de ședere -
+                <span class="report-group-item" data-bind="text: VotersBasedOnNewResidenceDeclaration"></span>;
+            </li>
+            <li>
+                o) cu carnet de student -
+                <span class="report-group-item" data-bind="text: VotersWithStudentCard"></span>;
+            </li>
+            <li>
+                p) funcționari electorali care activează în SV respectivă dar sunt arondați la altă SV -
+                <span class="report-group-item" data-bind="text: ElectoralOfficialsFromOtherSV"></span>;
+            </li>
+        </ul>
+
+        <p class="report-group-title">
+            23. Numărul semnăturilor aplicate de către alegători pe liste electorale:
+        </p>
+        <ul>
+            <li>
+                a) numărul semnăturilor pe listele electorale de bază -
+                <span class="report-group-item" data-bind="text: SignaturesOnBasicListsFirstDay"></span>
+            </li>
+            <li>
+                b) numărul semnăturilor pe listele electorale suplimentare -
+                <span class="report-group-item" data-bind="text: SignaturesOnSupplementaryListsFirstDay"></span>;
+            </li>
+            <li>
+                c) numărul semnăturilor pe listele electorale privind votarea la locul aflării -
+                <span class="report-group-item" data-bind="text: SignaturesOnVotingLocationListsFirstDay"></span>;
+            </li>
+        </ul>
+
+        <p class="report-group-title">
+            24. Numărul semnăturilor aplicate de către alegători pe liste electorale în cea de-a doua zi de votare (inclusiv cu cele de la prima zi):
+        </p>
+        <ul>
+            <li>
+                a) numărul semnăturilor pe listele electorale de bază -
+                <span class="report-group-item" data-bind="text: SignaturesOnBasicListSecondDay"></span>
+            </li>
+            <li>
+                b) numărul semnăturilor pe listele electorale suplimentare -
+                <span class="report-group-item" data-bind="text: SignaturesOnSupplementaryListSecondDay"></span>;
+            </li>
+            <li>
+                c) numărul semnăturilor pe listele electorale privind votarea la locul aflării -
+                <span class="report-group-item" data-bind="text: SignaturesOnVotingLocationListSecondDay"></span>;
+            </li>
+        </ul>
+
+        <p class="report-group-title">
+            25. Numărul membrilor ai biroului electoral care au lipsit în ziua votării -
+            <span class="report-group-item" data-bind="text: AbsentElectoralBoardMembersOnVotingDay"></span>;
+        </p>
+
+        <p class="report-group-title">
+            26. Numărul membrilor ai biroului electoral care au lipsit în cea de-a doua zi de votare -
+            <span class="report-group-item" data-bind="text: AbsentElectoralBoardMembersOnSecondDay"></span>;
+        </p>
+
+        <p class="report-group-title">
+            27. Numărul reprezentanților concurenților electorali confirmați în perioada electorală de către biroul electoral:
+        </p>
+        <ul>
+            <li>
+                a) numărul reprezentaților desemnați de partide politice -
+                <span class="report-group-item" data-bind="text: PartyDesignatedRepresentativesCount"></span>;
+            </li>
+            <li>
+                b) numărul reprezentaților desemnați de blocurile electorale -
+                <span class="report-group-item" data-bind="text: ElectoralBlocDesignatedRepresentativesCount"></span>;
+            </li>
+            <li>
+                c) numărul reprezentaților desemnați de candidați independenți -
+                <span class="report-group-item" data-bind="text: IndependentCandidateDesignatedRepresentativesCount"></span>;
+            </li>
+        </ul>
+
+        <p class="report-group-title">
+            28. Numărul persoanelor care au participat la procedura de numărare a buletinelor de vot:
+        </p>
+        <ul>
+            <li>
+                a) numărul membrilor biroului electoral -
+                <span class="report-group-item" data-bind="text: ElectoralBoardMembersCount"></span>;
+            </li>
+        </ul>
+    </div>
+
+    <div class="template-container5" data-bind="with: documentPrintPropertiesVM">
+        <ul>
+            <li>
+                b) numărul operatorilor SIAS „Alegeri” -
+                <span class="report-group-item" data-bind="text: SIASOperatorsCount"></span>;
+            </li>
+            <li>
+                c) numărul reprezentanților ai concurenților electorali -
+                <span class="report-group-item" data-bind="text: ElectoralCompetitorsRepresentativesCount"></span>;
+            </li>
+            <li>
+                d) numărul observatorilor internaționali -
+                <span class="report-group-item" data-bind="text: InternationalObserversCount"></span>;
+            </li>
+            <li>
+                e) numărul observatorilor naționali din partea asociațiilor obștești -
+                <span class="report-group-item" data-bind="text: NationalObserversFromAssociationsCount"></span>;
+            </li>
+            <li>
+                f) numărul reprezentanților ai mass-media -
+                <span class="report-group-item" data-bind="text: MediaRepresentativesCount"></span>;
+            </li>
+        </ul>
+
+        <p class="report-group-title">
+            29. Numărul proceselor verbale privind rezultatele numărării voturilor întocmite de BESV -
+            <span class="report-group-item" data-bind="text: VotingResultsReportCountByBESV"></span>.
+        </p>
+
+        <div class="president-polling-station">
+            <div class="president-polling-station-grid-item president">Președintele biroului electoral</div>
+            <div class="president-polling-station-grid-item signature-placeholder"></div>
+            <div class="president-polling-station-grid-item name-placeholder"></div>
+            <div class="president-polling-station-grid-item president">al secției de votare</div>
+            <div class="president-polling-station-grid-item signature">semnătura</div>
+            <div class="president-polling-station-grid-item name">nume, prenume</div>
+        </div>
+
+        <div class="print-template-footer report-final-besv">
+            <div class="footer-grid-item">
+                <p>Data întocmirii raportului</p>
+            </div>
+
+            <div class="footer-grid-item date">
+                <p>
+                    <span class="day-placeholder">_____</span>
+                    <span>_______________ 20____</span>
+                </p>
+            </div>
+
+            <div class="footer-grid-item">
+                <p><strong><i>L.Ş.</i></strong></p>
+            </div>
+
+            <div class="footer-grid-item time"></div>
+        </div>
+    </div>
+
+    <div class="alert alert-success pdf-saving-loader" data-bind="visible: inCallMode">
+        Rugăm așteptați...
+        <div class="progress progress-striped active">
+            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+        </div>
+    </div>
+
+    <div class="alert alert-success pdf-saved-with-success-message" data-bind="visible: wasUploadedWithSuccess">
+        Documentul a fost încărcat cu succes.
+    </div>
+
+    <div class="alert alert-danger pdf-saving-error-message" data-bind="visible: wasUploadedWithSuccess() === false">
+        Documentul a fost deja încărcat anterior.
+    </div>
+
+    <input id="savePdf" type="button" class="btn-lg btn pull-right board-btn-lg btn-danger"
+           value="Salvează PDF"
+           data-bind="click: SavePdf" />
+
+    <input id="printTemplate" type="button" class="btn-lg btn pull-right board-btn-lg btn-danger"
+           value="Printează"
+           data-bind="click: PrintTemplate" />
+</div>
+

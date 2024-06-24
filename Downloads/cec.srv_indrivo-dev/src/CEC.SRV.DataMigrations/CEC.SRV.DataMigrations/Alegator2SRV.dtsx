@@ -1,0 +1,894 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="7/21/2014 10:50:10 AM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="ISURUCEANU-PC"
+  DTS:CreatorName="AMDARIS\ion.suruceanu"
+  DTS:DTSID="{31E8C201-6A4A-4AA6-824B-E3350ACD1A84}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.3369.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Alegator2SRV"
+  DTS:PackageType="5"
+  DTS:VersionBuild="16"
+  DTS:VersionGUID="{332C216E-AC3A-4D60-85F3-920061B726E2}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.CEC.SRV]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{42638DCD-FA1E-4967-AD70-4D557B4938A7}"
+      DTS:ObjectName="LocalHost.CEC.SRV">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=.;Initial Catalog=CEC.SRV;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.listea]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{A860E43F-C68D-44D0-AADB-27BFEFBFD5E1}"
+      DTS:ObjectName="LocalHost.listea">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=.;Initial Catalog=listea;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\PollingStations"
+      DTS:CreationName="{5918251B-2970-45A4-AB5F-01C3C588FE5A}"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{A4E330A9-A3FD-4A3F-B165-DEA884A32974}"
+      DTS:ExecutableType="{5918251B-2970-45A4-AB5F-01C3C588FE5A}"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="PollingStations">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\PollingStations\Data Conversion"
+              componentClassID="{62B1106C-7DB8-4EC8-ADD6-4C664DFFC54A}"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\PollingStations\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\PollingStations\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\PollingStations\Data Conversion.Inputs[Data Conversion Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\PollingStations\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\PollingStations\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\PollingStations\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\PollingStations\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\PollingStations\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\PollingStations\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\PollingStations\Data Conversion 1"
+              componentClassID="{62B1106C-7DB8-4EC8-ADD6-4C664DFFC54A}"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion 1"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\PollingStations\Data Conversion 1.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\PollingStations\Data Conversion 1.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\PollingStations\Data Conversion 1.Inputs[Data Conversion Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\PollingStations\Data Conversion 1.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\PollingStations\Data Conversion 1.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\PollingStations\Data Conversion 1.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\PollingStations\Data Conversion 1.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\PollingStations\Data Conversion 1.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\PollingStations\Data Conversion 1.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\PollingStations\Data Conversion 2"
+              componentClassID="{62B1106C-7DB8-4EC8-ADD6-4C664DFFC54A}"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion 2"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\PollingStations\Data Conversion 2.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\PollingStations\Data Conversion 2.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\PollingStations\Data Conversion 2.Inputs[Data Conversion Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\PollingStations\Data Conversion 2.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\PollingStations\Data Conversion 2.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\PollingStations\Data Conversion 2.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\PollingStations\Data Conversion 2.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\PollingStations\Data Conversion 2.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\PollingStations\Data Conversion 2.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\PollingStations\Lookup"
+              componentClassID="{671046B0-AA63-4C9F-90E4-C06E0B710CE3}"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [Lookup].[Regions]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [Lookup].[Regions]) [refTable]
+where [refTable].[saiseId] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="regionId" dataType="DT_I8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="name" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="description" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="parentId" dataType="DT_I8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="regionTypeId" dataType="DT_I8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="saiseId" dataType="DT_I8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="registruId" dataType="DT_I8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="statisticCode" dataType="DT_I8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="statisticIdentifier" dataType="DT_I8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="hasStreets" dataType="DT_BOOL" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="geolatitude" dataType="DT_R8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="geolongitude" dataType="DT_R8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="created" dataType="DT_DBTIMESTAMPOFFSET" length="0" precision="0" scale="7" codePage="0"/&gt;&lt;referenceColumn name="modified" dataType="DT_DBTIMESTAMPOFFSET" length="0" precision="0" scale="7" codePage="0"/&gt;&lt;referenceColumn name="deleted" dataType="DT_DBTIMESTAMPOFFSET" length="0" precision="0" scale="7" codePage="0"/&gt;&lt;referenceColumn name="createdById" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="modifiedById" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="deletedById" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="publicAdministrationId" dataType="DT_I8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].Columns[VillageId]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\PollingStations\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.CEC.SRV]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.CEC.SRV]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\PollingStations\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\PollingStations\Lookup.Inputs[Lookup Input].Columns[VillageId]"
+                      cachedDataType="i8"
+                      cachedName="VillageId"
+                      lineageId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].Columns[VillageId]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">saiseId</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\PollingStations\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="RedirectRow"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\PollingStations\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\PollingStations\Lookup.Outputs[Lookup Match Output].Columns[regionId]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\PollingStations\Lookup.Outputs[Lookup Match Output].Columns[regionId]"
+                      name="regionId"
+                      truncationRowDisposition="RedirectRow">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">regionId</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\PollingStations\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\PollingStations\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\PollingStations\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\PollingStations\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\PollingStations\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\PollingStations\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\PollingStations\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\PollingStations\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\PollingStations\OLE DB Source"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[PollingStationn]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\PollingStations\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.listea]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.listea]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].Columns[PollingStationId]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PollingStationId]"
+                      lineageId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].Columns[PollingStationId]"
+                      name="PollingStationId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].Columns[Type]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Type]"
+                      lineageId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].Columns[Type]"
+                      name="Type"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].Columns[Number]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Number]"
+                      lineageId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].Columns[Number]"
+                      name="Number"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].Columns[SubNumber]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SubNumber]"
+                      length="50"
+                      lineageId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].Columns[SubNumber]"
+                      name="SubNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].Columns[NameRo]"
+                      dataType="nText"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NameRo]"
+                      lineageId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].Columns[NameRo]"
+                      name="NameRo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].Columns[VillageId]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[VillageId]"
+                      lineageId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].Columns[VillageId]"
+                      name="VillageId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].Columns[LocationLatitude]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LocationLatitude]"
+                      lineageId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].Columns[LocationLatitude]"
+                      name="LocationLatitude"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].Columns[LocationLongitude]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LocationLongitude]"
+                      lineageId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].Columns[LocationLongitude]"
+                      name="LocationLongitude"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].Columns[ExcludeInLocalElections]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ExcludeInLocalElections]"
+                      lineageId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].Columns[ExcludeInLocalElections]"
+                      name="ExcludeInLocalElections"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PollingStationId]"
+                      dataType="i8"
+                      name="PollingStationId" />
+                    <externalMetadataColumn
+                      refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Type]"
+                      dataType="i4"
+                      name="Type" />
+                    <externalMetadataColumn
+                      refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Number]"
+                      dataType="i4"
+                      name="Number" />
+                    <externalMetadataColumn
+                      refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SubNumber]"
+                      dataType="wstr"
+                      length="50"
+                      name="SubNumber" />
+                    <externalMetadataColumn
+                      refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[OldName]"
+                      dataType="nText"
+                      name="OldName" />
+                    <externalMetadataColumn
+                      refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NameRo]"
+                      dataType="nText"
+                      name="NameRo" />
+                    <externalMetadataColumn
+                      refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[NameRu]"
+                      dataType="nText"
+                      name="NameRu" />
+                    <externalMetadataColumn
+                      refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DistrictId]"
+                      dataType="i8"
+                      name="DistrictId" />
+                    <externalMetadataColumn
+                      refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[VillageId]"
+                      dataType="i8"
+                      name="VillageId" />
+                    <externalMetadataColumn
+                      refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StreetId]"
+                      dataType="i8"
+                      name="StreetId" />
+                    <externalMetadataColumn
+                      refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StreetNumber]"
+                      dataType="i4"
+                      name="StreetNumber" />
+                    <externalMetadataColumn
+                      refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[StreetSubNumber]"
+                      dataType="wstr"
+                      length="50"
+                      name="StreetSubNumber" />
+                    <externalMetadataColumn
+                      refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EditUserId]"
+                      dataType="i8"
+                      name="EditUserId" />
+                    <externalMetadataColumn
+                      refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[EditDate]"
+                      dataType="dbTimeStamp"
+                      name="EditDate" />
+                    <externalMetadataColumn
+                      refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Version]"
+                      dataType="i4"
+                      name="Version" />
+                    <externalMetadataColumn
+                      refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LocationLatitude]"
+                      dataType="r8"
+                      name="LocationLatitude" />
+                    <externalMetadataColumn
+                      refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[LocationLongitude]"
+                      dataType="r8"
+                      name="LocationLongitude" />
+                    <externalMetadataColumn
+                      refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ExcludeInLocalElections]"
+                      dataType="bool"
+                      name="ExcludeInLocalElections" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PollingStationId]"
+                      dataType="i8"
+                      lineageId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PollingStationId]"
+                      name="PollingStationId" />
+                    <outputColumn
+                      refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Type]"
+                      dataType="i4"
+                      lineageId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Type]"
+                      name="Type" />
+                    <outputColumn
+                      refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Number]"
+                      dataType="i4"
+                      lineageId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Number]"
+                      name="Number" />
+                    <outputColumn
+                      refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SubNumber]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SubNumber]"
+                      name="SubNumber" />
+                    <outputColumn
+                      refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NameRo]"
+                      dataType="nText"
+                      lineageId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[NameRo]"
+                      name="NameRo" />
+                    <outputColumn
+                      refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[VillageId]"
+                      dataType="i8"
+                      lineageId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[VillageId]"
+                      name="VillageId" />
+                    <outputColumn
+                      refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LocationLatitude]"
+                      dataType="r8"
+                      lineageId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LocationLatitude]"
+                      name="LocationLatitude" />
+                    <outputColumn
+                      refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LocationLongitude]"
+                      dataType="r8"
+                      lineageId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[LocationLongitude]"
+                      name="LocationLongitude" />
+                    <outputColumn
+                      refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ExcludeInLocalElections]"
+                      dataType="bool"
+                      lineageId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ExcludeInLocalElections]"
+                      name="ExcludeInLocalElections" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\PollingStations.Paths[Lookup Error Output]"
+              endId="Package\PollingStations\Data Conversion 2.Inputs[Data Conversion Input]"
+              name="Lookup Error Output"
+              startId="Package\PollingStations\Lookup.Outputs[Lookup Error Output]" />
+            <path
+              refId="Package\PollingStations.Paths[Lookup Match Output]"
+              endId="Package\PollingStations\Data Conversion.Inputs[Data Conversion Input]"
+              name="Lookup Match Output"
+              startId="Package\PollingStations\Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\PollingStations.Paths[Lookup No Match Output]"
+              endId="Package\PollingStations\Data Conversion 1.Inputs[Data Conversion Input]"
+              name="Lookup No Match Output"
+              startId="Package\PollingStations\Lookup.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\PollingStations.Paths[OLE DB Source Output]"
+              endId="Package\PollingStations\Lookup.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\PollingStations\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="147,42"
+          Id="Package\PollingStations"
+          TopLeft="5.5,5.5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\PollingStations">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\PollingStations\OLE DB Source"
+          TopLeft="443,74" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\PollingStations\Data Conversion"
+          TopLeft="749.238045002732,456.211562255049" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\PollingStations\Data Conversion 1"
+          TopLeft="1104,294" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\PollingStations\Data Conversion 2"
+          TopLeft="1074,424" />
+        <NodeLayout
+          Size="113,42"
+          Id="Package\PollingStations\Lookup"
+          TopLeft="834,330" />
+        <EdgeLayout
+          Id="Package\PollingStations.Paths[Lookup Match Output]"
+          TopLeft="890.5,372">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-63.2619549972676,84.2115622550493"
+              Start="0,0"
+              End="-63.2619549972676,76.7115622550493">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.1057811275247" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,38.1057811275247"
+                    Point2="0,42.1057811275247"
+                    Point3="-4,42.1057811275247" />
+                  <mssgle:LineSegment
+                    End="-59.2619549972676,42.1057811275247" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-59.2619549972676,42.1057811275247"
+                    Point2="-63.2619549972676,42.1057811275247"
+                    Point3="-63.2619549972676,46.1057811275247" />
+                  <mssgle:LineSegment
+                    End="-63.2619549972676,76.7115622550493" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-88.6910165611338,47.1057811275247,114.120078125,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\PollingStations.Paths[Lookup No Match Output]"
+          TopLeft="947,351">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="157,-36"
+              Start="0,0"
+              End="149.5,-36">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="74.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="74.5,0"
+                    Point2="78.5,0"
+                    Point3="78.5,-4" />
+                  <mssgle:LineSegment
+                    End="78.5,-32" />
+                  <mssgle:CubicBezierSegment
+                    Point1="78.5,-32"
+                    Point2="78.5,-36"
+                    Point3="82.5,-36" />
+                  <mssgle:LineSegment
+                    End="149.5,-36" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="22.69361328125,1,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\PollingStations.Paths[Lookup Error Output]"
+          TopLeft="908,372">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="248.5,52"
+              Start="0,0"
+              End="248.5,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.2356020942408" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.2356020942408"
+                    Point2="0,21.2356020942408"
+                    Point3="4,21.2356020942408" />
+                  <mssgle:LineSegment
+                    End="244.5,21.2356020942408" />
+                  <mssgle:CubicBezierSegment
+                    Point1="244.5,21.2356020942408"
+                    Point2="248.5,21.2356020942408"
+                    Point3="248.5,25.2356020942408" />
+                  <mssgle:LineSegment
+                    End="248.5,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="69.5149609375,26.2356020942408,109.470078125,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\PollingStations.Paths[OLE DB Source Output]"
+          TopLeft="518,116">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="372.5,214"
+              Start="0,0"
+              End="372.5,206.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,103" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,103"
+                    Point2="0,107"
+                    Point3="4,107" />
+                  <mssgle:LineSegment
+                    End="368.5,107" />
+                  <mssgle:CubicBezierSegment
+                    Point1="368.5,107"
+                    Point2="372.5,107"
+                    Point3="372.5,111" />
+                  <mssgle:LineSegment
+                    End="372.5,206.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\PollingStations\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\PollingStations\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[Lookup].[Regions]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

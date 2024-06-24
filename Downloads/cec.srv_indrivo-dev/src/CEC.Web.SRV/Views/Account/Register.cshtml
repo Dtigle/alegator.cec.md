@@ -1,0 +1,36 @@
+﻿@using CEC.Web.SRV.Resources
+@model CEC.Web.SRV.Models.Account.RegisterViewModel
+@{
+    ViewBag.Title = @MUI.Register_TabTitle;
+    Layout = "_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    <div class="form-group">
+        @Html.LabelFor(m => m.DisplayName, new { @class = "control-label" })
+        @Html.TextBoxFor(m => m.DisplayName, new { @class = "form-control", name = "email" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.PreferredEmail, new { @class = "control-label" })
+        @Html.TextBoxFor(m => m.PreferredEmail, new { @class = "form-control", name = "email" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.UserName, new { @class = "control-label" })
+        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", name = "email" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password, new { @class = "control-label" })
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label" })
+        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+    </div>
+    <div class="text-center">
+        <input type="submit" class="btn btn-primary" value="@MUI.ButtonRegister" />
+    </div>
+}
+

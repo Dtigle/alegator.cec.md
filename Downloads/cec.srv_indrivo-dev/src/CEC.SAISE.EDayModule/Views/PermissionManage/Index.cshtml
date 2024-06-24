@@ -1,0 +1,541 @@
+﻿@using CEC.SAISE.EDayModule.Infrastructure.Grids
+@using CEC.SAISE.EDayModule.Models.PermissionManage
+@using Lib.Web.Mvc.JQuery.JqGrid
+
+@Scripts.Render("~/bundles/jqGrid")
+
+@{
+    var grid = Html.GridOptions<PollingStationStageEnablerGridModel>("pollingStationStageEnabler", rowsPerPage: 100)
+        .SetOptions(x => x.MultiSelect = true)
+        .BuildGrid(null, columnChooser: false, showFilterToolbar: true)
+        .Navigator(new JqGridNavigatorOptions() { Add = false, Edit = false, Delete = false, CloneToTop = true })
+        .AddNavigatorButton("Modificare etapă SV", onClick: "toggleOptions")
+        .AddNavigatorButton("Modificare PV", onClick: "processverbal")
+        .AddNavigatorButton("Aprobarea PV", onClick: "approuvePV")
+        .AddNavigatorButton("Orele de votare", onClick: "votingHours")
+        .AddNavigatorButton("Suspendare", onClick: "suspendVotingSection")
+        .AddNavigatorButton("Anularea suspendarei", onClick: "cancelSuspension")
+        .AddNavigatorButton("Captare semnaturei", onClick: "captureSignature")
+        .AddNavigatorButton("Anularea captarei", onClick: "cancelCapturing");
+}
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.css"
+      integrity="sha512-bYPO5jmStZ9WI2602V2zaivdAnbAhtfzmxnEGh9RwtlI00I9s8ulGe4oBa5XxiC6tCITJH/QG70jswBhbLkxPw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" />
+
+<div class="well">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="row padding-15">
+                <div class="col-xs-2">
+                    <strong>Scrutin:</strong>
+                </div>
+                <div class="col-xs-8">
+                    <input type="hidden" class="electionsSelect" />
+                </div>
+            </div>
+            @grid.GetHtml()
+        </div>
+    </div>
+</div>
+
+@Html.Partial("_OptionsDialog")
+
+@Html.Partial("_VotingHoursDialog")
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"
+        integrity="sha512-AIOTidJAcHBH2G/oZv9viEGXRqDNmfdPVPYOYKGy3fti0xIplnlgMHUGfuNRzC6FkzIo0iIxgFnr9RikFxK+sw=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        @grid.GetJavaScript();
+
+        jQuery.datetimepicker.setLocale('ro');
+
+        $('#gs_ElectionStartTime').datetimepicker({
+            step: 10,
+            format: 'Y/m/d H:i',
+            formatDate: 'm/d/Y',
+        });
+
+        $('#gs_ElectionEndTime').datetimepicker({
+            step: 10,
+            format: 'Y/m/d H:i',
+            formatDate: 'm/d/Y',
+        });
+
+        $('.electionsSelect').select2({
+            placeholder: 'Selectați scrutinul...',
+            ajax: {
+                url: '@Url.Action("SelectElections", "Selectors")',
+                dataType: 'json',
+                delay: 250,
+                data: function (term, page) {
+                    return {
+                        q: term,
+                        pageLimit: 10,
+                        page: page
+                    };
+                },
+                results: function (data, page) {
+                    var more = (page * 10) < data.Total;
+                    return { results: data.Items, more: more };
+                },
+                cache: true
+            }
+        }).on('change', function (e) {
+            var psGrid = $("#pollingStationStageEnabler").jqGrid();
+            psGrid.jqGrid('setGridParam', { 'url': '@Url.Action("ListPollingStationAjax", "PermissionManage")', 'postData': { 'electionId': parseInt(e.val) } });
+            psGrid.jqGrid('setGridParam', {
+                multiSort: true,
+                sortname: "CircumscriptionNumber asc, PollingStation"
+            });
+
+            $('#refresh_pollingStationStageEnabler_top').click();
+
+            psGrid.trigger('reloadGrid');
+        });
+    });
+
+    function toggleOptions() {
+        var grid = $('#pollingStationStageEnabler');
+        var selectedRows = grid.jqGrid('getGridParam', 'selarrrow');
+
+        $('.dialogControl').prop('checked', false);
+
+        if (selectedRows.length > 0) {
+            var rowData = grid.jqGrid('getRowData', selectedRows[0]);
+            var s = rowData.PollingStation;
+
+            $('#cbOpening').prop('checked', rowData.EnableOpening === 'true');
+            $('#cbTurnout').prop('checked', rowData.EnableTurnout === 'true');
+            $('#cbResults').prop('checked', rowData.EnabelElectionResult === 'true');
+
+        }
+
+        $('#selectedItems').text(selectedRows.length);
+        $('#optionsDialog').modal('show');
+    }
+
+    function submitOptions() {
+        var action = parseInt($("input:radio[name ='radio']:checked").val());
+        var electionId = parseInt($('.electionsSelect').select2('val'));
+
+        if (isNaN(electionId)) {
+            ShowAlert('Selectați scrutinul', 'Atenție');
+            return;
+        }
+
+        if (isNaN(action)) {
+            ShowAlert('Selectați acțiunea', 'Atenție');
+            return;
+        }
+
+        ShowConfirmDialog('Doriți să continuați?', function(confirmed) {
+            if (confirmed) {
+                var grid = $('#pollingStationStageEnabler');
+                var selectedRows = grid.jqGrid('getGridParam', 'selarrrow');
+
+                var data = {
+                    ElectionId: electionId,
+                    SelectedAPSIds: selectedRows,
+                    EnableOpening: $('#cbOpening').is(':checked'),
+                    EnableTurnout: $('#cbTurnout').is(':checked'),
+                    EnableElectionResults: $('#cbResults').is(':checked'),
+                    Action: action
+                };
+
+                $.ajax({
+                    url: '@Url.Action("ProcessOptions")',
+                    type: "post",
+                    contentType: 'application/json',
+                    data: JSON.stringify({ model: data }),
+                    success: function(result) {
+                        $("#pollingStationStageEnabler").trigger('reloadGrid');
+                    }
+                }).always(function() {
+                    $('#optionsDialog').modal('hide');
+                });
+            }
+        });
+    }
+
+    function processverbal() {
+        var grid = $('#pollingStationStageEnabler');
+        var selectedRows = grid.jqGrid('getGridParam', 'selarrrow');
+        if (selectedRows.length > 1) {
+            ShowAlert('La modificare/aprobarea procesului verbal nu este admisibil selectarea mutiplă');
+            return;
+        }
+
+        if (selectedRows.length === 0) {
+            ShowAlert('Selecta-ți secția de votare.', 'Atenție');
+            return;
+        }
+        var electionId = parseInt($('.electionsSelect').select2('val'));
+
+        if (isNaN(electionId)) {
+            ShowAlert('Selectați scrutinul', 'Atenție');
+            return;
+        }
+
+        var s = parseInt(selectedRows[0]);
+        var pollingstationid;
+                $.ajax({
+                    url: '@Url.Action("GetPoolingStation")',
+                    type: "POST",
+                    data: { id: s },
+                    success: function (result) {
+
+                        pollingstationid = result;
+
+                    }
+                })
+        ShowConfirmDialog('Doriți să continuați?', function (confirmed) {
+            if (confirmed) {
+
+                var message = $('<div class="popupWindows"><div/>');
+                var adres = '@Url.Action("GetBallotPaper", "PermissionManage")';
+                var dialogTitle = 'Aprobare proces verbal';
+                var grid = $('#pollingStationStageEnabler');
+                var selectedRows = grid.jqGrid('getGridParam', 'selarrrow');
+                var rowData = grid.jqGrid('getRowData', selectedRows[0]);
+                var s = rowData.BallotPaperStatus;
+
+                if (s === 'Nou') {
+                    ShowAlert('Procesul verbal nu a fost expediat pentru aprobare.', 'Atenție');
+                    return;
+                }
+
+                $.ajax({
+                    url: '@Url.Action("GetBallotPapper", "PermissionManage")',
+                    type: "post",
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        delimitationData: {
+                            ElectionId: electionId,
+                            PollingStationId: pollingstationid
+                        }
+                    }),
+                    success: function (result) {
+
+                        message.append(result);
+                          var dialog = new BootstrapDialog({
+                          title: dialogTitle,
+                           message: message,
+                          });
+                           dialog.open();
+                    }
+                })
+               }
+            });
+    }
+
+    function approuvePV() {
+        var grid = $('#pollingStationStageEnabler');
+        var selectedRows = grid.jqGrid('getGridParam','selarrrow');
+
+        if (selectedRows.length === 0) {
+            ShowAlert('Selecta-ți secția de votare.', 'Atenție');
+            return;
+        }
+
+        var myList = new Array();
+        var number = 0;
+        for (var ballotPaperID in selectedRows) {
+            var rowData = grid.jqGrid('getRowData', selectedRows[number]);
+            var s = rowData.BallotPaperId;
+            myList.push(s);
+            number += 1;
+        }
+         ShowConfirmDialog('Doriți să continuați?', function (confirmed) {
+            if (confirmed) {
+
+
+
+                $.ajax({
+                    url: '@Url.Action("ConfirmResults", "PermissionManage")',
+
+                    type: "POST",
+                    data: { model: myList },
+
+                    success: function (result) {
+
+                        BootstrapDialog.show({
+                            title: 'Inforamție',
+                            message: result,
+                            buttons: [
+                                {
+                                    label: 'Închide',
+                                    action: function (dialogItself) {
+                                        $("#pollingStationStageEnabler").trigger('reloadGrid');
+                                        dialogItself.close();
+
+                                    }
+                                }
+
+                            ]
+
+                        });
+
+                    }
+                })
+               }
+            });
+    }
+
+    function votingHours() {
+        const grid = $('#pollingStationStageEnabler');
+        const selectedRows = grid.jqGrid('getGridParam', 'selarrrow');
+
+        $('.dialogControl').prop('checked', false);
+
+        if (selectedRows.length <= 0) {
+            return;
+        }
+
+        $('#electionDurationId').attr('checked') === false;
+
+        const rowData = grid.jqGrid('getRowData', selectedRows[0]);
+
+        jQuery.datetimepicker.setLocale('ro');
+
+        function formatDateToNumber(inputDateTime) {
+            const parsedDate = new Date(inputDateTime);
+            const year = parsedDate.getFullYear();
+            const month = String(parsedDate.getMonth() + 1).padStart(2, '0');
+            const day = String(parsedDate.getDate()).padStart(2, '0');
+            const formattedDateNumber = parseInt(`${year}${month}${day}`);
+
+            return formattedDateNumber;
+        }
+
+        function getElectionDateNumber() {
+            const electionDateInputString = $('.electionsSelect .select2-chosen').text();
+            const parts = electionDateInputString.split('-');
+            const electionDate = parts[0].trim();
+            const dateComponents = electionDate.split('.');
+            const transformedElectionDate = `${dateComponents[1]}.${dateComponents[0]}.${dateComponents[2]}`;
+
+            return transformedElectionDate;
+        }
+
+        const electionDateNumber = formatDateToNumber(getElectionDateNumber());
+
+        function validateEndTime() {
+            const electionEndTimeNumber = formatDateToNumber($('#electionEndTime').val());
+            const isTwoDaysElection = $('#electionDurationId').prop('checked');
+
+            const isInvalidEndTime = (
+                (isTwoDaysElection === false && (electionEndTimeNumber > electionDateNumber || electionEndTimeNumber < electionDateNumber)) ||
+                (isTwoDaysElection === true && electionEndTimeNumber > (electionDateNumber + 1)) ||
+                (isTwoDaysElection === true && electionEndTimeNumber === electionDateNumber)
+            );
+
+            const electionEndTimeError = $('#electionEndTimeError');
+            const executeSubmittingVotingHours = $('#executeSubmittingVotingHours');
+
+            if (isInvalidEndTime) {
+                electionEndTimeError.removeClass("d-none");
+                executeSubmittingVotingHours.prop("disabled", true);
+            } else {
+                electionEndTimeError.addClass("d-none");
+                executeSubmittingVotingHours.prop("disabled", false);
+            }
+        }
+
+        $('#electionStartTime').val(rowData.ElectionStartTime);
+        $('#electionEndTime').val(rowData.ElectionEndTime);
+
+        $('#electionStartTime').datetimepicker({
+            datepicker: false,
+            step: 10,
+            format: 'H:i',
+            onChangeDateTime: function () {
+                const electionStartTimeNumber = formatDateToNumber($('#electionStartTime').val());
+
+                if (electionStartTimeNumber > (electionDateNumber + 1) || electionStartTimeNumber < electionDateNumber) {
+                    $('#electionStartTimeError').removeClass("d-none");
+                    $('#executeSubmittingVotingHours').prop("disabled", true);
+                } else {
+                    $('#electionStartTimeError').addClass("d-none");
+                    $('#executeSubmittingVotingHours').prop("disabled", false);
+                }
+            },
+        });
+
+        $('#electionEndTime').datetimepicker({
+            datepicker: false,
+            step: 10,
+            format: 'H:i',
+            onChangeDateTime: function () {
+                validateEndTime();
+            }
+        });
+
+        $('#timeDifferenceMoldova').on("input", function () {
+            if ($(this).val() < -12 || $(this).val() > 12) {
+                $('#timeDifferenceMoldovaError').removeClass("d-none");
+                $('#executeSubmittingVotingHours').prop("disabled", true);
+            } else {
+                $('#timeDifferenceMoldovaError').addClass("d-none");
+                $('#executeSubmittingVotingHours').prop("disabled", false);
+            }
+        });
+
+        $('#hoursExtendedDropdown').change(function () {
+            const selectedValue = parseInt($(this).val(), 10);
+            const errorMessage = $('#hoursExtendedError');
+
+            if (selectedValue < 10 || selectedValue > 120 || isNaN(selectedValue)) {
+                errorMessage.removeClass('d-none');
+            } else {
+                errorMessage.addClass('d-none');
+            }
+        });
+
+        $('#electionDurationId').change(function () {
+            validateEndTime();
+
+            $("#firstDay").toggleClass("d-none");
+            $("#hoursExtendedSecondDay").toggleClass("d-none");
+
+            $('#electionDurationId').val(this.checked);
+        });
+
+        $('.selectedItems').text(selectedRows.length);
+        $('#votingHoursDialog').modal('show');
+    }
+
+    function submitVotinHoursOptions() {
+        var action = parseInt($("input:radio[name ='radio']:checked").val());
+
+        if (isNaN(action)) {
+            ShowAlert('Selectați acțiunea', 'Atenție');
+            return;
+        }
+
+        ShowConfirmDialog('Confirmați modificarea orelor de vot pentru secțiile selectate', function (confirmed) {
+            if (confirmed) {
+                const grid = $('#pollingStationStageEnabler');
+                const selectedRows = grid.jqGrid('getGridParam', 'selarrrow');
+
+                const timeDifferenceMoldova = parseInt($('#timeDifferenceMoldovaDropdown').val()) || 0;
+                const hoursExtended = parseInt($('#hoursExtendedDropdown').val());
+                const hoursExtendedSecondDay = parseInt($('#hoursExtendedDropdownSecondDay').val()) || 0;
+                const electionStartTime = formatDateTime($('#electionStartTime').val());
+                const electionEndTime = formatDateTime($('#electionEndTime').val());
+
+                function formatDateTime(timeString) {
+                    return timeString;
+                }
+
+                function getElectionDurationId() {
+                    if ($('#electionDurationId').is(':checked')) {
+                        return 2;
+                    }
+
+                    return 1;
+                }
+
+                const data = {
+                    Ids: selectedRows,
+                    ElectionStartTime: electionStartTime,
+                    ElectionEndTime: electionEndTime,
+                    TimeDifferenceMoldova: timeDifferenceMoldova,
+                    ActivityTimeExtendedFirstDay: hoursExtended,
+                    ActivityTimeExtendedSecondDay: hoursExtendedSecondDay,
+                    ElectionDurationId: getElectionDurationId(),
+                    Action: action,
+                };
+
+
+                $.ajax({
+                    url: '@Url.Action("ConfirmPollingStationActivityHours", "PermissionManage")',
+                    type: "post",
+                    contentType: 'application/json',
+                    data: JSON.stringify({ model: data }),
+                    success: function(result) {
+                        $("#pollingStationStageEnabler").trigger('reloadGrid');
+                    }
+                }).always(function() {
+                    $('#votingHoursDialog').modal('hide');
+                });
+            }
+        });
+    }
+
+    function manageSuspension(confirmMessage, suspendStatus) {
+        ShowConfirmDialog(confirmMessage, function (confirmed) {
+            if (confirmed) {
+                const grid = $('#pollingStationStageEnabler');
+                const selectedRows = grid.jqGrid('getGridParam', 'selarrrow');
+
+                const data = {
+                    ids: selectedRows,
+                    suspend: suspendStatus,
+                };
+
+                $.ajax({
+                    url: '@Url.Action("SuspendPollingStationActivity", "PermissionManage")',
+                    type: "post",
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                    success: function (result) {
+                        $("#pollingStationStageEnabler").trigger('reloadGrid');
+                    }
+                });
+            }
+        });
+    }
+
+    function suspendVotingSection() {
+        manageSuspension('Confirmați suspendare pentru secțiile selectate', true);
+    }
+
+    function cancelSuspension() {
+        manageSuspension('Confirmați anularea suspendarei pentru secțiile selectate', false);
+    }
+
+    function manageSignatureCapturing(confirmMessage, capturingStatus) {
+        ShowConfirmDialog(confirmMessage, function (confirmed) {
+            if (confirmed) {
+                const grid = $('#pollingStationStageEnabler');
+                const selectedRows = grid.jqGrid('getGridParam', 'selarrrow');
+
+                const data = {
+                    ids: selectedRows,
+                    capture: capturingStatus,
+                };
+
+                $.ajax({
+                    url: '@Url.Action("SetPollingStationCaptureSignature", "PermissionManage")',
+                    type: "post",
+                    contentType: 'application/json',
+                    data: JSON.stringify(data),
+                    success: function (result) {
+                        $("#pollingStationStageEnabler").trigger('reloadGrid');
+                    }
+                });
+            }
+        });
+    }
+
+    function captureSignature() {
+        manageSignatureCapturing('Confirmați captare semnaturei pentru secțiile selectate', true);
+    }
+
+    function cancelCapturing() {
+        manageSignatureCapturing('Confirmați anularea captarei pentru secțiile selectate', false);
+    }
+</script>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://cec-admin-dev.cs1.soft-tehnica.com/webservices/ElectionsService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/SAISE.Admin.WebApp.WebServices.Types" />
+  <xs:element name="GetElections">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/SAISE.Admin.WebApp.WebServices.Types" minOccurs="0" name="request" nillable="true" type="q1:ElectionsRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetElectionsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/SAISE.Admin.WebApp.WebServices.Types" minOccurs="0" name="GetElectionsResult" nillable="true" type="q2:ElectionsResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetElectionRounds">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="electionId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetElectionRoundsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/SAISE.Admin.WebApp.WebServices.Types" minOccurs="0" name="GetElectionRoundsResult" nillable="true" type="q3:ArrayOfElectionRound" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetElectionCircumscriptions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/SAISE.Admin.WebApp.WebServices.Types" minOccurs="0" name="request" nillable="true" type="q4:ElectionCircumscriptionsRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetElectionCircumscriptionsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/SAISE.Admin.WebApp.WebServices.Types" minOccurs="0" name="GetElectionCircumscriptionsResult" nillable="true" type="q5:ElectionCircumscriptionsResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetElectionPollingStations">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/SAISE.Admin.WebApp.WebServices.Types" minOccurs="0" name="request" nillable="true" type="q6:ElectionPollingStationsRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetElectionPollingStationsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/SAISE.Admin.WebApp.WebServices.Types" minOccurs="0" name="GetElectionPollingStationsResult" nillable="true" type="q7:ElectionPollingStationsResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetElectionRegions">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="electionRoundId" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetElectionRegionsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/SAISE.Admin.WebApp.WebServices.Types" minOccurs="0" name="GetElectionRegionsResult" nillable="true" type="q8:ElectionRegions" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetElectionCompetitors">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/SAISE.Admin.WebApp.WebServices.Types" minOccurs="0" name="request" nillable="true" type="q9:ElectionCompetitorsRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetElectionCompetitorsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/SAISE.Admin.WebApp.WebServices.Types" minOccurs="0" name="GetElectionCompetitorsResult" nillable="true" type="q10:ElectionCompetitors" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetElectionMembers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/SAISE.Admin.WebApp.WebServices.Types" minOccurs="0" name="request" nillable="true" type="q11:ElectionMembersRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetElectionMembersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/SAISE.Admin.WebApp.WebServices.Types" minOccurs="0" name="GetElectionMembersResult" nillable="true" type="q12:ElectionMembers" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetElectionObservers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/SAISE.Admin.WebApp.WebServices.Types" minOccurs="0" name="request" nillable="true" type="q13:ElectionObserversRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetElectionObserversResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/SAISE.Admin.WebApp.WebServices.Types" minOccurs="0" name="GetElectionObserversResult" nillable="true" type="q14:ElectionObservers" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetPollingStationAddress">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="pollingStationId" type="xs:long" />
+        <xs:element minOccurs="0" name="address" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetPollingStationAddressResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetElectionResults">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/SAISE.Admin.WebApp.WebServices.Types" minOccurs="0" name="electionResults" nillable="true" type="q15:ElectionResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetElectionResultsResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

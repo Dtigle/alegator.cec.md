@@ -1,0 +1,78 @@
+﻿@using CEC.Web.SRV.Infrastructure.Grids
+@using CEC.Web.SRV.Models.Lookup
+@using CEC.Web.SRV.Resources
+@using Lib.Web.Mvc.JQuery.JqGrid
+
+@{
+    ViewBag.Title = MUI.StreetTypes_TabTitle;
+}
+
+@{
+    var grid = Html.GridOptions<LookupGridModel>("streetTypes")
+        .BuildGrid(Url.Action("ListStreetTypeAjax"), null, null, null,null /*Url.Action("UnDeleteStreetType")*/,
+            Url.Action("StreetTypeHistory", "History"), Url.Action("ExportStreetTypes"))
+        .Navigator(new JqGridNavigatorOptions()
+        {
+            Add = false,
+            Edit = false,
+            Delete = false,
+            Search = true,
+            AddFunction = "$.CreateUpdateStreetType",
+            EditFunction = "$.CreateUpdateStreetType",
+            DeleteFunction = "$.DeleteStreetType",
+            CloneToTop = true
+        });
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-content">
+                <h4 class="page-header">@MUI.StreetTypes_TabTitle</h4>
+                @grid.GetHtml()
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        @grid.GetJavaScript();
+    });
+    
+	$.CreateUpdateStreetType = function (streetTypeId) {
+		var streetTypeParam = null;
+		var url = '@Url.Action("CreateUpdateStreetType","Lookup")';
+		var dialogTitle = '@MUI.StreetTypeAdd_DialogTitle';
+		if (streetTypeId != undefined) {
+			dialogTitle = '@MUI.StreetTypeEdite_DialogTitle';
+			streetTypeParam = streetTypeId;
+		}
+
+		$.openDialog($(this), {
+			url: url + '?streetTypeId=' + streetTypeParam,
+			title: dialogTitle,
+			onSubmit: function () {
+				$("#streetTypes").trigger('reloadGrid');
+			},
+		});
+	};
+
+	$.DeleteStreetType = function (streetTypeId) {
+
+		var url = '@Url.Action("DeleteStreetType")';
+
+		BootstrapDialog.confirm('@MUI.StreetTypeDelete_Message', function (result) {
+			if (result) {
+				$.ajax({
+					type: "POST",
+					url: url,
+					data: { id: streetTypeId },
+					success: function () {
+						$("#streetTypes").trigger('reloadGrid');
+					}
+				});
+			}
+		});
+	};
+</script>

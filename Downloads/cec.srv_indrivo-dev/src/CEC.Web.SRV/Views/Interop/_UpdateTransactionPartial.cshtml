@@ -1,0 +1,70 @@
+﻿@using CEC.SRV.BLL
+@using CEC.SRV.Domain
+@using CEC.Web.SRV.Resources
+@model CEC.Web.SRV.Models.Interop.UpdateTransactionModel
+
+<div class="clearfix">
+
+    @using (Html.BeginForm("CreateUpdateTransaction", "Interop", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(x => x.Id)
+
+        <div class="form-group">
+            @Html.EditorFor(x => x.InstitutionTypeId)
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(x => x.InstitutionId)
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(x => x.Idnp)
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(x => x.LastName)
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(x => x.FirstName)
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(x => x.DateOfBirth)
+        </div>
+        
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="@MUI.ButtonSave" class="btn btn-primary" />
+            </div>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+    $('.rsa-form-group > div.col-sm-4').removeClass('col-sm-4').addClass('col-sm-6');
+    $('.rsa-form-group > div.col-sm-2').removeClass('col-sm-2').addClass('col-sm-4');
+
+    function institutionTypeDataRequest(term, page, pageLimit) {
+        return {
+            q: term,
+            pageLimit: pageLimit,
+            page: page
+        };
+    }
+
+    function institutionTypeResults(data, more) {
+        return { results: data, more: more };
+    }
+
+
+    function institutionDataRequest(term, page, pageLimit) {
+        return {
+            institutionTypeId: $('#InstitutionTypeId').val(),
+            q: term,
+            pageLimit: pageLimit,
+            page: page
+        };
+    }
+
+    function institutionResults(data, more) {
+        return { results: data, more: more };
+    }
+</script>

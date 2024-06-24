@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="EdayDatatSource">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=192.168.200.220;Initial Catalog=SAISE.ElectionDay20190224</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>0f94eec1-7e3f-4520-bae0-643b8f279711</DataSourceID>
+</RptDataSource>

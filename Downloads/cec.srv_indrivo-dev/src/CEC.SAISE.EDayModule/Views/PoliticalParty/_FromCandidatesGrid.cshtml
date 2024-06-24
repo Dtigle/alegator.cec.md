@@ -1,0 +1,87 @@
+﻿<div class="well">
+    <input type="button" class="btn btn-primary board-btn"
+           data-bind="click: addEditCandidate,
+                        enable: isAddEditCandidateVisible(),
+                        value: (SelectedCandidate()!=null?'Editare':'Adăugare')+' Candidat'" />
+    <input type="button" class="btn btn-primary board-btn" value="Înnoiește ordinea candidaților"
+           data-bind="click: UpdateCandidatesOrder, enable: CandidatesItems().length != 0" />
+    <input type="button" class="btn btn-danger pull-right" value="Elimină candidați"
+           data-bind="enable: checkedCandidates().length > 0, 
+                        click: DeleteCandidates, 
+                        visible: SelectedParty()!=null && !SelectedParty().IsIndependent()" />
+</div>
+
+<div class="alert alert-success" data-bind="visible: LoadingCandidates">
+    Se încarcă. Rugăm așteptați...
+    <div class="progress progress-striped active">
+        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+    </div>
+</div>
+
+<div data-bind="visible: !LoadingParties() && PartiesItems().length != 0">
+    <span class="label label-success">Total înregistrări: <span data-bind="text: CandidatesItems().length"></span></span>
+    <span class="label label-info">Selectate: <span data-bind="text: checkedCandidates().length"></span></span>
+</div>
+
+<table class="table table-bordered" data-bind="visible: !LoadingCandidates() && CandidatesItems().length != 0">
+    <thead>
+        <tr>
+            <th>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" data-bind="checked: toggleCandidatesSelection" />
+                        <i class="fa fa-square-o"></i>
+                    </label>
+                </div>
+            </th>
+            <th class="col-md-1">Candidat</th>
+            <th class="col-md-1">Ordinea</th>
+            <th class="col-md-2">Nume</th>
+            <th class="col-md-2">Prenume</th>
+            <th class="col-md-1">Data naşterii </th>
+            <th class="col-md-1">Ocupaţia</th>
+            <th class="col-md-2">Funcția și locul de muncă</th>
+            <th class="col-md-1">Statut</th>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach: CandidatesItems">
+        <tr data-bind="css: {'alert-warning': isChecked, 'alert-info': $parent.SelectedCandidate()!=null && $parent.SelectedCandidate().Id()===Id()}">
+            <td>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" data-bind="checkedValue: Id, checked: $parent.checkedCandidates, click: $parent.onRowChecked" />
+                        <i class="fa fa-square-o"></i>
+                    </label>
+                </div>
+            </td>
+            <td>
+                <button data-bind="text: CandidateOrder, click: $parent.selectCandidate"></button>
+            </td>
+            <td>
+                <input class="number" style="width: 45px" data-bind="value: CandidateOrder" />
+            </td>
+            <td>
+                <span data-bind="text: LastNameRo"></span>
+            </td>
+            <td>
+                <span data-bind="text: NameRo"></span>
+            </td>
+            <td>
+                <span data-bind="text: moment(DateOfBirth()).format('DD.MM.YYYY')"></span>
+            </td>
+            <td>
+                <span class="col-md-12 no-leftright-padding" disabled data-bind="text: Occupation"></span>
+            </td>
+            <td>
+                <span class="col-md-12 no-leftright-padding" disabled data-bind="text: Workplace"></span>
+            </td>
+            <td middle>
+                <select class="col-md-12 no-leftright-padding"
+                        data-bind="options: $root.CandidateStatuses,
+                                            optionsText : 'Value',
+                                            optionsValue : 'Key',
+                                            value: Status"></select>
+            </td>
+        </tr>
+    </tbody>
+</table>

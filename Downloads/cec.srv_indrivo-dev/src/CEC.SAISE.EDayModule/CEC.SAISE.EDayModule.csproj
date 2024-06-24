@@ -1,0 +1,1005 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1BEA3960-B85C-4ED1-9DEF-6207EF1EBDB6}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CEC.SAISE.EDayModule</RootNamespace>
+    <AssemblyName>CEC.SAISE.EDayModule</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <IncludeIisSettings>false</IncludeIisSettings>
+    <PublishDatabases>true</PublishDatabases>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Amdaris">
+      <HintPath>..\Infrastructure\Amdaris.dll</HintPath>
+    </Reference>
+    <Reference Include="Amdaris.Domain">
+      <HintPath>..\Infrastructure\Amdaris.Domain.dll</HintPath>
+    </Reference>
+    <Reference Include="Amdaris.Domain.Identity">
+      <HintPath>..\Infrastructure\Amdaris.Domain.Identity.dll</HintPath>
+    </Reference>
+    <Reference Include="Amdaris.NHibernateProvider">
+      <HintPath>..\Infrastructure\Amdaris.NHibernateProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="Amdaris.NHibernateProvider.Audit, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Infrastructure\Amdaris.NHibernateProvider.Audit.dll</HintPath>
+    </Reference>
+    <Reference Include="Amdaris.NHibernateProvider.Identity">
+      <HintPath>..\Infrastructure\Amdaris.NHibernateProvider.Identity.dll</HintPath>
+    </Reference>
+    <Reference Include="Amdaris.NHibernateProvider.Web">
+      <HintPath>..\Infrastructure\Amdaris.NHibernateProvider.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Amdaris.NLogProvider">
+      <HintPath>..\Infrastructure\Amdaris.NLogProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="Amdaris.UnityProvider">
+      <HintPath>..\Infrastructure\Amdaris.UnityProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="Amdaris.Web.Mvc">
+      <HintPath>..\Infrastructure\Amdaris.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.8.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.8.1\lib\net40\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\packages\FluentNHibernate.1.4.0.0\lib\net35\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\packages\Iesi.Collections.3.2.0.1001\lib\Net35\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="Inflector">
+      <HintPath>..\packages\Inflector.1.0.0.0\lib\net45\Inflector.dll</HintPath>
+    </Reference>
+    <Reference Include="Lib.Web.Mvc">
+      <HintPath>..\packages\Lib.Web.Mvc.6.4.2\lib\net40\Lib.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration">
+      <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Mvc">
+      <HintPath>..\packages\Unity.Mvc.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention">
+      <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\packages\NHibernate.3.3.4.4000\lib\Net35\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.3.2.0.0\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx">
+      <HintPath>..\packages\WebActivatorEx.2.0.6\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\AutoMapperConfig.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IoC.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\UnityConfig.cs" />
+    <Compile Include="App_Start\UnityMvcActivator.cs" />
+    <Compile Include="Connected Services\EDayServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\LoggingServices\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\Notifyservice\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ReportServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BaseDataController.cs" />
+    <Compile Include="Controllers\DocumentsController.cs" />
+    <Compile Include="Controllers\DocumentsGridController.cs" />
+    <Compile Include="Controllers\FileController.cs" />
+    <Compile Include="Controllers\KeepAliveController.cs" />
+    <Compile Include="Controllers\ReportingController.cs" />
+    <Compile Include="Controllers\TemplateNameController.cs" />
+    <Compile Include="Controllers\TransferController.cs" />
+    <Compile Include="Controllers\VoterCertificatController.cs" />
+    <Compile Include="Controllers\PermissionManageController.cs" />
+    <Compile Include="Controllers\PoliticalPartyController.cs" />
+    <Compile Include="Controllers\ElectionResultsController.cs" />
+    <Compile Include="Controllers\SelectorsController.cs" />
+    <Compile Include="Controllers\SyncController.cs" />
+    <Compile Include="Controllers\VotingController.cs" />
+    <Compile Include="Controllers\VotingProcessStatsController.cs" />
+    <Compile Include="Helpers\PrintTemplateNameMappings.cs" />
+    <Compile Include="Infrastructure\Export\CsvExporter.cs" />
+    <Compile Include="Infrastructure\Export\ExcelExporter.cs" />
+    <Compile Include="Infrastructure\Export\ExportFileInfo.cs" />
+    <Compile Include="Infrastructure\Export\ExportHelper.cs" />
+    <Compile Include="Infrastructure\Export\ExportType.cs" />
+    <Compile Include="Infrastructure\Export\GridExporter.cs" />
+    <Compile Include="Infrastructure\Grids\FilterValueAttribute.cs" />
+    <Compile Include="Infrastructure\Grids\HtmlGridExtensions.cs" />
+    <Compile Include="Infrastructure\Grids\IJqGridColumnCustomVisibilityRules.cs" />
+    <Compile Include="Infrastructure\Grids\JqGridRow.cs" />
+    <Compile Include="Infrastructure\Grids\PageRequestExtensions.cs" />
+    <Compile Include="Infrastructure\Grids\SearchDataAttribute.cs" />
+    <Compile Include="Infrastructure\Grids\SoftDeletableEntityAttribute.cs" />
+    <Compile Include="Infrastructure\HandleAndLogErrorAttribute.cs" />
+    <Compile Include="Infrastructure\KeepAliveOutputCacheAttribute.cs" />
+    <Compile Include="Infrastructure\LoggerUtil.cs" />
+    <Compile Include="Infrastructure\MNotifyUtils.cs" />
+    <Compile Include="Infrastructure\PoliticalPartyStatusExtension.cs" />
+    <Compile Include="Infrastructure\SearchableColumnsHelper.cs" />
+    <Compile Include="Infrastructure\Security\CustomUserManager.cs" />
+    <Compile Include="Infrastructure\MenuCacheItem.cs" />
+    <Compile Include="Infrastructure\MenuHelper.cs" />
+    <Compile Include="Infrastructure\MenuItem.cs" />
+    <Compile Include="Infrastructure\Security\PermissionRequiredAttribute.cs" />
+    <Compile Include="Infrastructure\Security\SaisePasswordHasher.cs" />
+    <Compile Include="Infrastructure\Security\SaiseUserStore.cs" />
+    <Compile Include="Infrastructure\Select2Extensions.cs" />
+    <Compile Include="Infrastructure\SelectListItemExtension.cs" />
+    <Compile Include="Models\Account\LoginViewModel.cs" />
+    <Compile Include="Models\DelimitationData.cs" />
+    <Compile Include="Models\Document\BESVReportOnPollingStationPrep.cs" />
+    <Compile Include="Models\Document\DocumentModel.cs" />
+    <Compile Include="Models\Document\DocumentDataModel.cs" />
+    <Compile Include="Models\Document\ReportParameterValueModel.cs" />
+    <Compile Include="Models\EDaySync\EDayStageGridModel.cs" />
+    <Compile Include="Models\EDaySync\EDayStatus.cs" />
+    <Compile Include="Models\EDaySync\TransferEDayModel.cs" />
+    <Compile Include="Models\ElectionResults\BallotPaperConsolidationDataModel.cs" />
+    <Compile Include="Models\ElectionResults\BallotPaperDataModel.cs" />
+    <Compile Include="Models\ElectionResults\BallotPaperModel.cs" />
+    <Compile Include="Models\ElectionResults\CompetitorResult.cs" />
+    <Compile Include="Models\ElectionResults\DelimitationModel.cs" />
+    <Compile Include="Models\ElectionResults\ElectionResultsModel.cs" />
+    <Compile Include="Models\File\DocumentSaveModel.cs" />
+    <Compile Include="Models\Home\InitialDataModel.cs" />
+    <Compile Include="Models\Home\ReportLinkModel.cs" />
+    <Compile Include="Models\Home\ExerciseLinkModel.cs" />
+    <Compile Include="Models\PermissionManage\OptionsToggleModel.cs" />
+    <Compile Include="Models\DocumentsGrid\PollingStationDocumentStageGridModel.cs" />
+    <Compile Include="Models\PermissionManage\PollingStationStageEnablerGridModel.cs" />
+    <Compile Include="Models\PermissionManage\UpdatePollingStationActivityModel.cs" />
+    <Compile Include="Models\PoliticalParty\AllocationItemModel.cs" />
+    <Compile Include="Models\PoliticalParty\CandidateModel.cs" />
+    <Compile Include="Models\PoliticalParty\DeleteCandidateModel.cs" />
+    <Compile Include="Models\PoliticalParty\DelimitationModel.cs" />
+    <Compile Include="Models\PoliticalParty\PoliticalPartyModel.cs" />
+    <Compile Include="Models\PoliticalParty\UpdateCandidateOrderModel.cs" />
+    <Compile Include="Models\CircumscriptionDelimitation.cs" />
+    <Compile Include="Models\TemplateName\TemplateNameModel.cs" />
+    <Compile Include="Models\TemplateName\TemplateNameViewModel.cs" />
+    <Compile Include="Models\ValueNameModel.cs" />
+    <Compile Include="Models\VoterCertificate\CertificateDateValidation.cs" />
+    <Compile Include="Models\VoterCertificate\CertificatModel.cs" />
+    <Compile Include="Models\VoterCertificate\VoterCertificateGridModel.cs" />
+    <Compile Include="Models\VoterCertificate\VoterGridViewModel.cs" />
+    <Compile Include="Models\VotingProcessStats\VotingProcessStatsGridModel.cs" />
+    <Compile Include="Models\Voting\InitialDataModel.cs" />
+    <Compile Include="Models\Voting\OpeningModel.cs" />
+    <Compile Include="Models\Voting\OpeningUpdateModel.cs" />
+    <Compile Include="Models\Voting\SearchVoterModel.cs" />
+    <Compile Include="Models\Voting\UpdateVoterModel.cs" />
+    <Compile Include="Models\Voting\UpdateVoterResultModel.cs" />
+    <Compile Include="Models\Voting\UserDataModel.cs" />
+    <Compile Include="Models\Voting\PollingStationStatisticsModel.cs" />
+    <Compile Include="Profiles\CandidatesProfile.cs" />
+    <Compile Include="Profiles\DocumentsProfile.cs" />
+    <Compile Include="Profiles\ElectionResultsProfile.cs" />
+    <Compile Include="Profiles\PollingStationEnablerProfile.cs" />
+    <Compile Include="Profiles\UserDataProfile.cs" />
+    <Compile Include="Profiles\VoterCertificatProfile.cs" />
+    <Compile Include="Profiles\VotingProfile.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <DependentUpon>Settings.settings</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Startup.cs" />
+    <Compile Include="WebSecurityContext.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebServices\GetDataVoters.svc.cs">
+      <DependentUpon>GetDataVoters.svc</DependentUpon>
+    </Compile>
+    <Compile Include="WebServices\IGetDataVoters.cs" />
+    <Compile Include="WebServices\Methods.cs" />
+    <Compile Include="WebServices\Modeldto\ResultVotersdto.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Connected Services\EDayServiceReference\CEC.SAISE.EDayModule.EDayServiceReference.EDayResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ReportServiceReference\CEC.SAISE.EDayModule.ReportServiceReference.ReportResultDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\ReportServiceReference\configuration91.svcinfo" />
+    <None Include="Connected Services\ReportServiceReference\configuration.svcinfo" />
+    <None Include="Connected Services\ReportServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\ReportServiceReference\ReportService1.disco" />
+    <Content Include="Content\mvcreportviewer-bootstrap.css" />
+    <Content Include="Scripts\document-print-custom-styles.js" />
+    <Content Include="Scripts\document-print-properties.js" />
+    <Content Include="Scripts\document-print-templates.js" />
+    <Content Include="Scripts\document-reports-validation.js" />
+    <Content Include="Scripts\document-reports.js" />
+    <Content Include="Scripts\jquery.highlight-5.js" />
+    <Content Include="Scripts\moment-timezone-with-data.min.js" />
+    <Content Include="Scripts\signature-sdk\aes-ecb.js" />
+    <Content Include="Scripts\signature-sdk\browser-report.js" />
+    <Content Include="Scripts\signature-sdk\sigCaptDialog.js" />
+    <Content Include="Scripts\signature-sdk\signature_sdk.js" />
+    <Content Include="Scripts\signature-sdk\signature_sdk_helper.js" />
+    <Content Include="Scripts\signature-sdk\simple.js" />
+    <Content Include="Scripts\signature-sdk\stuCaptDialog.js" />
+    <Content Include="Scripts\signature-sdk\stu_capture_encryption.js" />
+    <Content Include="Scripts\ViewModel\DelimitatorVM.js" />
+    <Content Include="WebServices\GetDataVoters.svc" />
+    <None Include="Connected Services\EDayServiceReference\configuration91.svcinfo" />
+    <None Include="Connected Services\EDayServiceReference\configuration.svcinfo" />
+    <None Include="Connected Services\EDayServiceReference\EDayService.wsdl" />
+    <None Include="Connected Services\EDayServiceReference\EDayService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\EDayServiceReference\EDayService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\EDayServiceReference\EDayService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\EDayServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\EDayServiceReference\SAISE.Admin.WebApp.WebServices.Types.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\EDayServiceReference\service1.wsdl" />
+    <None Include="Connected Services\EDayServiceReference\service2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\EDayServiceReference\service21.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\LoggingServices\configuration91.svcinfo" />
+    <None Include="Connected Services\LoggingServices\configuration.svcinfo" />
+    <None Include="Connected Services\LoggingServices\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Connected Services\Notifyservice\CEC.SAISE.EDayModule.Notifyservice.PageResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\Notifyservice\NotifyService.disco" />
+    <None Include="Connected Services\Notifyservice\configuration91.svcinfo" />
+    <None Include="Connected Services\Notifyservice\configuration.svcinfo" />
+    <None Include="Connected Services\Notifyservice\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Content\bootstrap-datepicker\bootstrap-datepicker.css" />
+    <Content Include="Content\bootstrap-dialog.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\font-awesome.css" />
+    <Content Include="Content\css\font-awesome.min.css" />
+    <Content Include="Content\css\google-fonts.css" />
+    <Content Include="Content\css\images\animated-overlay.gif" />
+    <Content Include="Content\css\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\css\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\css\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\css\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\css\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\css\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\css\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\css\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\css\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\css\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\css\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\css\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\css\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\css\select2-spinner.gif" />
+    <Content Include="Content\css\select2.css" />
+    <Content Include="Content\css\select2.png" />
+    <Content Include="Content\css\select2x2.png" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\jqGrid.bootstrap.css" />
+    <Content Include="Content\jquery.jqGrid\ui.jqgrid.css" />
+    <Content Include="Content\knockout-file-bindings.css" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\img\CEC_logo.png" />
+    <Content Include="Content\img\chevron-left.png" />
+    <Content Include="Content\img\chevron-right.png" />
+    <Content Include="Content\img\devoops_getdata.gif" />
+    <Content Include="Content\img\devoops_pattern_b10.png" />
+    <Content Include="Content\img\getdata.gif" />
+    <Content Include="Content\img\map-pin.png" />
+    <Content Include="Content\img\NoLogo.png" />
+    <Content Include="Content\img\NoPic.png" />
+    <Content Include="Content\img\sort-asc.png" />
+    <Content Include="Content\img\sort-desc.png" />
+    <Content Include="Content\img\sort.png" />
+    <Content Include="Content\img\times.png" />
+    <Content Include="Content\img\ui-accordion-down.png" />
+    <Content Include="Content\img\ui-accordion-right.png" />
+    <Content Include="Content\img\ui-left.png" />
+    <Content Include="Content\img\ui-right.png" />
+    <Content Include="Content\sounds\error.wav" />
+    <Content Include="Content\themes\base\images\animated-overlay.gif" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.menu.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.spinner.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\jquery.ui.tooltip.css" />
+    <Content Include="Content\themes\base\minified\images\animated-overlay.gif" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.menu.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.spinner.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Content\fonts\google-font-v5-Righteous-latin-ext.woff2" />
+    <Content Include="Content\fonts\google-font-v5-Righteous-latin.woff2" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\bootstrap-dialog.less" />
+    <None Include="Connected Services\LoggingServices\LoggingService.wsdl" />
+    <Content Include="Properties\DataSources\CEC.SAISE.BLL.Notifyservice.PageResponse.datasource" />
+    <None Include="Connected Services\Notifyservice\NotifyService.wsdl" />
+    <None Include="Connected Services\Notifyservice\NotifyService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\Notifyservice\NotifyService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\Notifyservice\NotifyService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\Notifyservice\NotifyService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ReportServiceReference\ReportService1.wsdl" />
+    <None Include="Connected Services\ReportServiceReference\ReportService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ReportServiceReference\ReportService31.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ReportServiceReference\ReportService32.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\PublishProfiles\cec.saise.eday.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\Settings.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Scripts\jquery-2.1.3.intellisense.js" />
+    <Content Include="Icon.png" />
+    <Content Include="Scripts\bootstrap-datepicker.js" />
+    <Content Include="Scripts\bootstrap-dialog.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\cec.saise.js" />
+    <Content Include="Scripts\devoops.js" />
+    <Content Include="Scripts\i18n\grid.locale-ar.js" />
+    <Content Include="Scripts\i18n\grid.locale-bg.js" />
+    <Content Include="Scripts\i18n\grid.locale-bg1251.js" />
+    <Content Include="Scripts\i18n\grid.locale-cat.js" />
+    <Content Include="Scripts\i18n\grid.locale-cn.js" />
+    <Content Include="Scripts\i18n\grid.locale-cs.js" />
+    <Content Include="Scripts\i18n\grid.locale-da.js" />
+    <Content Include="Scripts\i18n\grid.locale-de.js" />
+    <Content Include="Scripts\i18n\grid.locale-dk.js" />
+    <Content Include="Scripts\i18n\grid.locale-el.js" />
+    <Content Include="Scripts\i18n\grid.locale-en.js" />
+    <Content Include="Scripts\i18n\grid.locale-es.js" />
+    <Content Include="Scripts\i18n\grid.locale-fa.js" />
+    <Content Include="Scripts\i18n\grid.locale-fi.js" />
+    <Content Include="Scripts\i18n\grid.locale-fr.js" />
+    <Content Include="Scripts\i18n\grid.locale-gl.js" />
+    <Content Include="Scripts\i18n\grid.locale-he.js" />
+    <Content Include="Scripts\i18n\grid.locale-hr.js" />
+    <Content Include="Scripts\i18n\grid.locale-hr1250.js" />
+    <Content Include="Scripts\i18n\grid.locale-hu.js" />
+    <Content Include="Scripts\i18n\grid.locale-id.js" />
+    <Content Include="Scripts\i18n\grid.locale-is.js" />
+    <Content Include="Scripts\i18n\grid.locale-it.js" />
+    <Content Include="Scripts\i18n\grid.locale-ja.js" />
+    <Content Include="Scripts\i18n\grid.locale-kr.js" />
+    <Content Include="Scripts\i18n\grid.locale-lt.js" />
+    <Content Include="Scripts\i18n\grid.locale-mne.js" />
+    <Content Include="Scripts\i18n\grid.locale-nl.js" />
+    <Content Include="Scripts\i18n\grid.locale-no.js" />
+    <Content Include="Scripts\i18n\grid.locale-pl.js" />
+    <Content Include="Scripts\i18n\grid.locale-pt-br.js" />
+    <Content Include="Scripts\i18n\grid.locale-pt.js" />
+    <Content Include="Scripts\i18n\grid.locale-ro.js" />
+    <Content Include="Scripts\i18n\grid.locale-ru.js" />
+    <Content Include="Scripts\i18n\grid.locale-sk.js" />
+    <Content Include="Scripts\i18n\grid.locale-sr-latin.js" />
+    <Content Include="Scripts\i18n\grid.locale-sr.js" />
+    <Content Include="Scripts\i18n\grid.locale-sv.js" />
+    <Content Include="Scripts\i18n\grid.locale-th.js" />
+    <Content Include="Scripts\i18n\grid.locale-tr.js" />
+    <Content Include="Scripts\i18n\grid.locale-tw.js" />
+    <Content Include="Scripts\i18n\grid.locale-ua.js" />
+    <Content Include="Scripts\i18n\grid.locale-vi.js" />
+    <Content Include="Scripts\jquery-ui-1.10.4.js" />
+    <Content Include="Scripts\jquery-ui-1.10.4.min.js" />
+    <Content Include="Scripts\jquery.idletimeout.js" />
+    <Content Include="Scripts\jquery.idletimer.js" />
+    <Content Include="Scripts\jquery.jqGrid.min.js" />
+    <Content Include="Scripts\jquery.jqGrid.src.js" />
+    <Content Include="Scripts\knockout-file-bindings.js" />
+    <Content Include="Scripts\jquery-2.1.3.js" />
+    <Content Include="Scripts\jquery-2.1.3.min.js" />
+    <Content Include="Scripts\jquery-2.1.3.min.map" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.maskedinput.js" />
+    <Content Include="Scripts\jquery.maskedinput.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\knockout-3.3.0.debug.js" />
+    <Content Include="Scripts\knockout-3.3.0.js" />
+    <Content Include="Scripts\knockout.validation.debug.js" />
+    <Content Include="Scripts\knockout.validation.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_ar.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_az.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_bg.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_ca.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_cs.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_da.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_de.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_el.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_es.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_et.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_eu.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_fa.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_fi.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_fr.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_gl.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_he.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_hr.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_hu.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_id.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_is.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_it.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_ja.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_ka.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_ko.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_lt.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_lv.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_mk.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_ms.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_nb.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_nl.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_pl.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_pt-BR.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_pt-PT.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_ro.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_rs.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_ru.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_sk.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_sv.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_th.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_tr.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_ua.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_ug-CN.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_uk.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_vi.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_zh-CN.js" />
+    <Content Include="Scripts\Select2-locales\select2_locale_zh-TW.js" />
+    <Content Include="Scripts\select2.js" />
+    <Content Include="Scripts\select2.min.js" />
+    <Content Include="Scripts\ViewModel\CreationCandidatInd.js" />
+    <Content Include="Scripts\ViewModel\CreationCandidatVm.js" />
+    <Content Include="Scripts\ViewModel\CandidateVM.js" />
+    <Content Include="Scripts\ViewModel\PartyVM.js" />
+    <Content Include="Scripts\ViewModel\PartidPoliticVm.js" />
+    <Content Include="Scripts\ViewModel\SearchVoterVM.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Error.html" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Voting\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Voting\_Delimitator.cshtml" />
+    <Content Include="Views\Account\_Layout.cshtml" />
+    <Content Include="Views\Shared\_MenuItems.cshtml" />
+    <Content Include="Views\Shared\_BreadcrumbMenu.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\_Template.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Date.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\String.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\_Template.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Checkbox.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Int32.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Int64.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\MultilineText.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Password.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
+    <Content Include="Views\Voting\_Statistics.cshtml" />
+    <Content Include="Views\Voting\NotImplementedForAdmin.cshtml" />
+    <Content Include="Views\Voting\OpenPollingStation.cshtml" />
+    <Content Include="Views\ElectionResults\EditorTemplates\_Template.cshtml" />
+    <Content Include="Views\ElectionResults\EditorTemplates\Int64.cshtml" />
+    <Content Include="Views\ElectionResults\EditorTemplates\Int32.cshtml" />
+    <Content Include="Views\Shared\_Delimitator.cshtml" />
+    <Content Include="Views\PoliticalParty\Index.cshtml" />
+    <Content Include="Views\PoliticalParty\_Delimitator.cshtml" />
+    <Content Include="Views\PoliticalParty\_FromPartyGrid.cshtml" />
+    <Content Include="Views\PoliticalParty\_ToPartyGrid.cshtml" />
+    <Content Include="Views\PoliticalParty\_FromCandidatesGrid.cshtml" />
+    <Content Include="Views\PoliticalParty\_ToCandidatesGrid.cshtml" />
+    <Content Include="Views\PoliticalParty\_EditPartyDialog.cshtml" />
+    <Content Include="Views\PoliticalParty\_EditIndependentDialog.cshtml" />
+    <Content Include="Views\PoliticalParty\_EditCandidateDialog.cshtml" />
+    <Content Include="Views\Voting\FunctionalityTimeNotAchieved.cshtml" />
+    <Content Include="Views\Home\_AdminIndex.cshtml" />
+    <Content Include="Views\Home\_CandidatesRegistratorIndex.cshtml" />
+    <Content Include="Views\Home\_PollingOfficerIndex.cshtml" />
+    <Content Include="Views\PermissionManage\Index.cshtml" />
+    <Content Include="Views\PermissionManage\_OptionsDialog.cshtml" />
+    <Content Include="Views\Shared\_Select.cshtml" />
+    <Content Include="Views\Voting\_TurnoutNotEnabled.cshtml" />
+    <Content Include="Views\ElectionResults\_NotEnabled.cshtml" />
+    <Content Include="Views\VotingProcessStats\Index.cshtml" />
+    <Content Include="Views\Home\_AccessibleReports.cshtml" />
+    <Content Include="Views\ElectionResults\Index.cshtml" />
+    <Content Include="Views\ElectionResults\_Delimitator.cshtml" />
+    <Content Include="Views\Home\_ExercisesLinks.cshtml" />
+    <Content Include="Views\VoterCertificat\Index.cshtml" />
+    <Content Include="Views\VoterCertificat\_SearchVoter.cshtml" />
+    <Content Include="Views\VoterCertificat\CreateCertifcat.cshtml" />
+    <Content Include="Views\VoterCertificat\ViewCertificat.cshtml" />
+    <Content Include="Views\Sync\Index.cshtml" />
+    <Content Include="Views\VoterCertificat\NotImplementedForAdmin.cshtml" />
+    <Content Include="Views\Transfer\Index.cshtml" />
+    <Content Include="Views\PermissionManage\_BallotPaper.cshtml" />
+    <Content Include="Views\Voting\_NotImplementForUC.cshtml" />
+    <Content Include="Views\ElectionResults\_NotImplementForUC.cshtml" />
+    <Content Include="Views\VoterCertificat\_NotImplementForUC.cshtml" />
+    <Content Include="Views\Reporting\Index.cshtml" />
+    <Content Include="Views\Reporting\_ViewReport.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Documents\Index.cshtml" />
+    <Content Include="Views\Documents\_Delimitator.cshtml" />
+    <Content Include="Views\PermissionManage\_VotingHoursDialog.cshtml" />
+    <Content Include="Views\Documents\_BESVReportOnSVPreparation.cshtml" />
+    <Content Include="Views\Documents\_BESVReportOnSVPreparationSecondDay.cshtml" />
+    <Content Include="Views\Documents\_IntermediateBESVReport1400Elections.cshtml" />
+    <Content Include="Views\Documents\_IntermediateBESVReport1400Referendum.cshtml" />
+    <Content Include="Views\Documents\_IntermediateBESVReport2100.cshtml" />
+    <Content Include="Views\Documents\_FinalBESVReportElections1Day1stRound.cshtml" />
+    <Content Include="Views\Documents\_ProcessVerbalBESVOnVoteCountResultsElections.cshtml" />
+    <Content Include="Views\Documents\_ProcessVerbalBESVOnVoteCountResultsReferendum.cshtml" />
+    <Content Include="Views\Documents\_ProcessVerbalBESVOnVoteCountResultsUTAGagauziaElections.cshtml" />
+    <Content Include="Views\Documents\_ProcessVerbalBESVOnVoteCountResultsUTAGagauziaReferendum.cshtml" />
+    <Content Include="Views\Documents\_FinalBESVReportElections1Day2ndRound.cshtml" />
+    <Content Include="Views\Documents\_FinalBESVReportElections2Days1stRound.cshtml" />
+    <Content Include="Views\Documents\_FinalBESVReportElections2Days2ndRound.cshtml" />
+    <Content Include="Views\Documents\_FinalBESVReportReferendum1day.cshtml" />
+    <Content Include="Views\Documents\_FinalBESVReportReferendum2days.cshtml" />
+    <Content Include="Views\Documents\_FinalBESVReportElections1Day1stRoundUTAG.cshtml" />
+    <Content Include="Views\Documents\_FinalBESVReportElections1Day2ndRoundUTAG.cshtml" />
+    <Content Include="Views\Documents\_FinalBESVReportElections2Days1stRoundUTAG.cshtml" />
+    <Content Include="Views\Documents\_FinalBESVReportElections2Days2ndRoundUTAG.cshtml" />
+    <Content Include="Views\Documents\_FinalBESVReportReferendum1dayUTAG.cshtml" />
+    <Content Include="Views\Documents\_FinalBESVReportReferendum2daysUTAG.cshtml" />
+    <Content Include="Views\Documents\_IntermediateCECEReportElections.cshtml" />
+    <Content Include="Views\Documents\_IntermediateCECEReportReferendum.cshtml" />
+    <Content Include="Views\Documents\_ProcessVerbalCECECouncillor.cshtml" />
+    <Content Include="Views\Documents\_ProcessVerbalCECEMayor.cshtml" />
+    <Content Include="Views\Documents\_ProcessVerbalCECEParliamentRM.cshtml" />
+    <Content Include="Views\Documents\_ProcessVerbalCECEPresidentRM.cshtml" />
+    <Content Include="Views\Documents\_ProcessVerbalCECEReferendum.cshtml" />
+    <Content Include="Views\Documents\_ProcessVerbalCECEGovernorUTAG.cshtml" />
+    <Content Include="Views\Documents\_ProcessVerbalCECEDeputyAPUTAG.cshtml" />
+    <Content Include="Views\Documents\_ProcessVerbalCECEReferendumUTAG.cshtml" />
+    <Content Include="Views\Documents\_FinalCECEReportElections1Day1stRound.cshtml" />
+    <Content Include="Views\Documents\_FinalCECEReportElections1Day2ndRound.cshtml" />
+    <Content Include="Views\Documents\_FinalCECEReportElections2Days1stRound.cshtml" />
+    <Content Include="Views\Documents\_FinalCECEReportElections2Days2ndRound.cshtml" />
+    <Content Include="Views\Documents\_FinalCECEReportReferendum1day.cshtml" />
+    <Content Include="Views\Documents\_FinalCECEReportReferendum2days.cshtml" />
+    <Content Include="Views\Documents\_FinalCECEReportElections1Day1stRoundUTAG.cshtml" />
+    <Content Include="Views\Documents\_FinalCECEReportElections1Day2ndRoundUTAG.cshtml" />
+    <Content Include="Views\Documents\_FinalCECEReportElections2Days1stRoundUTAG.cshtml" />
+    <Content Include="Views\Documents\_FinalCECEReportElections2Days2ndRoundUTAG.cshtml" />
+    <Content Include="Views\Documents\_FinalCECEReportReferendum1dayUTAG.cshtml" />
+    <Content Include="Views\Documents\_FinalCECEReportReferendum2daysUTAG.cshtml" />
+    <Content Include="Views\Documents\Print.cshtml" />
+    <Content Include="Views\Documents\PrintTemplates\_ProcessVerbalBESVOnVoteCountResultsElectionsTemplate.cshtml" />
+    <Content Include="Views\Documents\PrintTemplates\_ProcessVerbalBESVOnVoteCountResultsReferendumTemplate.cshtml" />
+    <Content Include="Views\Documents\PrintTemplates\_ProcessVerbalBESVOnVoteCountResultsUTAGagauziaElectionsTemplate.cshtml" />
+    <Content Include="Views\Documents\PrintTemplates\_ProcessVerbalBESVOnVoteCountResultsUTAGagauziaReferendumTemplate.cshtml" />
+    <Content Include="Views\Documents\PrintTemplates\_FinalBESVReportElections1Day1stRoundTemplate.cshtml" />
+    <Content Include="Views\Documents\PrintTemplates\_ProcessVerbalCECEMayorTemplate.cshtml" />
+    <Content Include="Views\Documents\PrintTemplates\_FinalCECEReportElections1Day1stRoundTemplate.cshtml" />
+    <Content Include="Views\Documents\PrintTemplates\_FinalBESVReportReferendum1dayTemplate.cshtml" />
+    <Content Include="Views\Documents\PrintTemplates\_ProcessVerbalCECEReferendumTemplate.cshtml" />
+    <Content Include="Views\Documents\PrintTemplates\_FinalCECEReportReferendum1dayTemplate.cshtml" />
+    <Content Include="Views\Documents\PrintTemplates\_FinalBESVReportElections1Day1stRoundUTAGTemplate.cshtml" />
+    <Content Include="Views\Documents\PrintTemplates\_ProcessVerbalCECEGovernorUTAGTemplate.cshtml" />
+    <Content Include="Views\Documents\PrintTemplates\_FinalCECEReportElections1Day1stRoundUTAGTemplate.cshtml" />
+    <Content Include="Views\Documents\PrintTemplates\_FinalBESVReportReferendum2daysTemplate.cshtml" />
+    <Content Include="Views\Documents\PrintTemplates\_FinalCECEReportReferendum2daysTemplate.cshtml" />
+    <Content Include="Views\Documents\PrintTemplates\_FinalBESVReportElections2Days1stRoundTemplate.cshtml" />
+    <Content Include="Views\Documents\PrintTemplates\_FinalCECEReportElections2Days1stRoundTemplate.cshtml" />
+    <Content Include="Views\Documents\PrintTemplates\_FinalBESVReportReferendum1dayUTAGTemplate.cshtml" />
+    <Content Include="Views\Documents\PrintTemplates\_ProcessVerbalCECEReferendumUTAGTemplate.cshtml" />
+    <Content Include="Views\Documents\PrintTemplates\_FinalCECEReportReferendum1dayUTAGTemplate.cshtml" />
+    <Content Include="Views\Documents\PrintTemplates\_FinalBESVReportReferendum2daysUTAGTemplate.cshtml" />
+    <Content Include="Views\Documents\PrintTemplates\_FinalCECEReportReferendum2daysUTAGTemplate.cshtml" />
+    <Content Include="Views\Documents\PrintTemplates\_FinalBESVReportElections2Days1stRoundUTAGTemplate.cshtml" />
+    <Content Include="Views\Documents\PrintTemplates\_FinalCECEReportElections2Days1stRoundUTAGTemplate.cshtml" />
+    <Content Include="Views\Documents\PrintTemplates\_ProcessVerbalCECECouncillorTemplate.cshtml" />
+    <Content Include="Views\Documents\PrintTemplates\_ProcessVerbalCECEParliamentRMTemplate.cshtml" />
+    <Content Include="Views\Documents\PrintTemplates\_ProcessVerbalCECEPresidentRMTemplate.cshtml" />
+    <Content Include="Views\Documents\PrintTemplates\_FinalBESVReportElections1Day2ndRoundTemplate.cshtml" />
+    <Content Include="Views\Documents\PrintTemplates\_FinalBESVReportElections2Days2ndRoundTemplate.cshtml" />
+    <Content Include="Views\Documents\PrintTemplates\_FinalCECEReportElections1Day2ndRoundTemplate.cshtml" />
+    <Content Include="Views\Documents\PrintTemplates\_FinalCECEReportElections2Days2ndRoundTemplate.cshtml" />
+    <Content Include="Views\Documents\PrintTemplates\_FinalBESVReportElections1Day2ndRoundUTAGTemplate.cshtml" />
+    <Content Include="Views\Documents\PrintTemplates\_FinalBESVReportElections2Days2ndRoundUTAGTemplate.cshtml" />
+    <Content Include="Views\Documents\PrintTemplates\_FinalCECEReportElections1Day2ndRoundUTAGTemplate.cshtml" />
+    <Content Include="Views\Documents\PrintTemplates\_FinalCECEReportElections2Days2ndRoundUTAGTemplate.cshtml" />
+    <Content Include="Views\Documents\PrintTemplates\_ProcessVerbalCECEDeputyAPUTAGTemplate.cshtml" />
+    <Content Include="Views\Voting\_PollingStationSuspended.cshtml" />
+    <Content Include="Views\DocumentsGrid\Index.cshtml" />
+    <Content Include="Scripts\signature-sdk\stu-sdk.min.js" />
+    <Content Include="Scripts\signature-sdk\signature_sdk.wasm" />
+    <Content Include="Views\Voting\_SignatureDialog.cshtml" />
+    <Content Include="Views\Voting\_SignatureExpirationDialog.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Content\docs\video\" />
+    <Folder Include="Views\BaseData\" />
+    <Folder Include="Views\Error\" />
+    <Folder Include="Views\File\" />
+    <Folder Include="Views\KeepAlive\" />
+    <Folder Include="Views\Selectors\" />
+    <Folder Include="Views\TemplateName\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CEC.SAISE.BLL\CEC.SAISE.BLL.csproj">
+      <Project>{84e8f7ef-62e5-4760-af80-ecbe02a64f15}</Project>
+      <Name>CEC.SAISE.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CEC.SAISE.Domain.NHibernateMappings\CEC.SAISE.Domain.NHibernateMappings.csproj">
+      <Project>{e2e932ac-7558-4a7c-bab5-75dfd846a0d6}</Project>
+      <Name>CEC.SAISE.Domain.NHibernateMappings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CEC.SAISE.Domain\CEC.SAISE.Domain.csproj">
+      <Project>{5bc65967-e41d-4250-955a-4f0e31b8cb2e}</Project>
+      <Name>CEC.SAISE.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CEC.SRV.Domain.NHibernateMappings\CEC.SRV.Domain.NHibernateMappings.csproj">
+      <Project>{5DBEBBD6-4DF7-40F1-99D9-5A6C5B6FEE21}</Project>
+      <Name>CEC.SRV.Domain.NHibernateMappings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CEC.Web.SRV.Resources\CEC.Web.SRV.Resources.csproj">
+      <Project>{BC52DC9D-B91F-428E-9CDF-73641E905013}</Project>
+      <Name>CEC.Web.SRV.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure\SoftTehnica.MvcReportViewer\SoftTehnica.MvcReportViewer.csproj">
+      <Project>{319C1302-6331-4D5C-9558-D1E2B3F1DB82}</Project>
+      <Name>SoftTehnica.MvcReportViewer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\EDayServiceReference\" />
+    <WCFMetadataStorage Include="Connected Services\LoggingServices\" />
+    <WCFMetadataStorage Include="Connected Services\Notifyservice\" />
+    <WCFMetadataStorage Include="Connected Services\ReportServiceReference\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>59855</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:59855</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{84E8F7EF-62E5-4760-AF80-ECBE02A64F15}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CEC.SAISE.BLL</RootNamespace>
+    <AssemblyName>CEC.SAISE.BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>GlobalizationRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Amdaris, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Infrastructure\Amdaris.dll</HintPath>
+    </Reference>
+    <Reference Include="Amdaris.Domain">
+      <HintPath>..\Infrastructure\Amdaris.Domain.dll</HintPath>
+    </Reference>
+    <Reference Include="Amdaris.NHibernateProvider">
+      <HintPath>..\Infrastructure\Amdaris.NHibernateProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.8.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.8.1\lib\net40\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\packages\Iesi.Collections.3.2.0.1001\lib\Net35\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Minio, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Minio.0.2.1\lib\net45\Minio.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\packages\NHibernate.3.3.4.4000\lib\Net35\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.1.0\lib\net45\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BllResult.cs" />
+    <Compile Include="Dto\AuditEventTypeDto.cs" />
+    <Compile Include="Dto\TemplateManager\BallotPaperConsolidationDataExtendedDto.cs" />
+    <Compile Include="Dto\BallotPaperDto.cs" />
+    <Compile Include="Dto\BallotPaperHeaderDataDto.cs" />
+    <Compile Include="Dto\BallotPaperValidationStatus.cs" />
+    <Compile Include="Dto\CertificatViewDto.cs" />
+    <Compile Include="Dto\CompetitorResultDto.cs" />
+    <Compile Include="Dto\Concurents\AllocationItemDto.cs" />
+    <Compile Include="Dto\Concurents\CandidateConflictDto.cs" />
+    <Compile Include="Dto\Concurents\CandidateDto.cs" />
+    <Compile Include="Dto\Concurents\DeleteCandidateDto.cs" />
+    <Compile Include="Dto\Concurents\DelimitationDto.cs" />
+    <Compile Include="Dto\Concurents\PersonalDataResponse.cs" />
+    <Compile Include="Dto\Concurents\PoliticalPartyDto.cs" />
+    <Compile Include="Dto\Concurents\UpdateCandidateOrderDto.cs" />
+    <Compile Include="Dto\ElectionDurationDto.cs" />
+    <Compile Include="Dto\TemplateManager\BallotPaperConsolidationDataDto.cs" />
+    <Compile Include="Dto\TemplateManager\DocumentBallotPaperDto.cs" />
+    <Compile Include="Dto\TemplateManager\DocumentDto.cs" />
+    <Compile Include="Dto\TemplateManager\PollintStationDocumentStageDto.cs" />
+    <Compile Include="Dto\TemplateManager\ReportParameterDto.cs" />
+    <Compile Include="Dto\TemplateManager\ReportParameterValueDto.cs" />
+    <Compile Include="Dto\TemplateManager\ReportParamValueResultsDto.cs" />
+    <Compile Include="Dto\TemplateManager\TemplateNameDto.cs" />
+    <Compile Include="Dto\UnconfirmedPollingStationsDto.cs" />
+    <Compile Include="Dto\UpdatePollingStationActivityDto.cs" />
+    <Compile Include="Dto\VoterCertificatDto.cs" />
+    <Compile Include="Dto\VoterDataSignature.cs" />
+    <Compile Include="EnumExtension.cs" />
+    <Compile Include="Helpers\DocumentsHelper.cs" />
+    <Compile Include="IAuditEvents.cs" />
+    <Compile Include="IDocumentsBll.cs" />
+    <Compile Include="IMinIoBll.cs" />
+    <Compile Include="Impl\AuditEventsBLL.cs" />
+    <Compile Include="Impl\ConcurentsBll.cs" />
+    <Compile Include="Impl\DocumentsBll.cs" />
+    <Compile Include="Impl\MinIoBll.cs" />
+    <Compile Include="Impl\TemplateNameBll.cs" />
+    <Compile Include="Impl\VoterCertificatBll.cs" />
+    <Compile Include="ITemplateNameBll.cs" />
+    <Compile Include="IVoterCertificatBll.cs" />
+    <Compile Include="Dto\OpenPollingStationResult.cs" />
+    <Compile Include="Dto\OptionsToggleDto.cs" />
+    <Compile Include="Dto\PoliticalPartyDto.cs" />
+    <Compile Include="Dto\PollingStationOpeningData.cs" />
+    <Compile Include="Dto\PollingStationStageEnablerDto.cs" />
+    <Compile Include="Dto\SaveUpdateResult.cs" />
+    <Compile Include="Dto\SearchResult.cs" />
+    <Compile Include="Dto\Select2Item.cs" />
+    <Compile Include="Dto\Select2PagedResponse.cs" />
+    <Compile Include="Dto\Select2Request.cs" />
+    <Compile Include="Dto\StatisticsDto.cs" />
+    <Compile Include="Dto\BallotPaperDataDto.cs" />
+    <Compile Include="Dto\UpdateVoterResult.cs" />
+    <Compile Include="Dto\UserDataDto.cs" />
+    <Compile Include="Dto\ValueNamePair.cs" />
+    <Compile Include="Dto\VoterUpdateData.cs" />
+    <Compile Include="Dto\VotingProcessStatsDto.cs" />
+    <Compile Include="Helpers\PoliticalPartyStatusExtension.cs" />
+    <Compile Include="Helpers\SaisePermissions.cs" />
+    <Compile Include="Helpers\SecurityHelper.cs" />
+    <Compile Include="Helpers\Select2PageExtensions.cs" />
+    <Compile Include="Helpers\SqlStringBuilder.cs" />
+    <Compile Include="IConcurentsBll.cs" />
+    <Compile Include="IConfigurationBll.cs" />
+    <Compile Include="IElectionBll.cs" />
+    <Compile Include="IElectionResultsBll.cs" />
+    <Compile Include="ILogoImageBll.cs" />
+    <Compile Include="Impl\BallotPapersGenerator.cs" />
+    <Compile Include="Impl\ConfigurationBll.cs" />
+    <Compile Include="Impl\ElectionResultsBll.cs" />
+    <Compile Include="Impl\LogoImageBll.cs" />
+    <Compile Include="Impl\SaiseRepository.cs" />
+    <Compile Include="Impl\PollingStationStageBll.cs" />
+    <Compile Include="Impl\UserBll.cs" />
+    <Compile Include="Impl\VotingBll.cs" />
+    <Compile Include="IPoliticalPartyBll.cs" />
+    <Compile Include="ISaiseRepository.cs" />
+    <Compile Include="IPollingStationStageBll.cs" />
+    <Compile Include="IUserBll.cs" />
+    <Compile Include="IVotingBll.cs" />
+    <Compile Include="Impl\PoliticalPartyBll.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CEC.SAISE.Domain\CEC.SAISE.Domain.csproj">
+      <Project>{5bc65967-e41d-4250-955a-4f0e31b8cb2e}</Project>
+      <Name>CEC.SAISE.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CEC.SRV.BLL\CEC.SRV.BLL.csproj">
+      <Project>{E46CD8A4-BF92-4309-AA5B-7DA68CAB10C4}</Project>
+      <Name>CEC.SRV.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CEC.Web.SRV\CEC.Web.SRV.csproj">
+      <Project>{C4AF37A8-133C-44A5-A8E1-FF0611F69BB0}</Project>
+      <Name>CEC.Web.SRV</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
